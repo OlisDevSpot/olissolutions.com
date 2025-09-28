@@ -12,6 +12,7 @@
       }
     ]
   },
+  "references": [{ "path": "../../packages/db" }],
   "include": [
     "next-env.d.ts",
     "next.config.ts",
