@@ -7,8 +7,6 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {

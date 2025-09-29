@@ -3,15 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "exports": {
-    "./schema": {
-      "types": "./dist/schema/index.d.ts",
-      "default": "./dist/schema/index.js"
-    }
+    "./schema": "./src/schema/index.ts"
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",

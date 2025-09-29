@@ -2,6 +2,7 @@
   "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["react", "react-dom", "node"],
     "paths": {
       "@/*": ["./*"],
       "@workspace/ui/*": ["../../packages/ui/src/*"]
@@ -12,7 +13,6 @@
       }
     ]
   },
-  "references": [{ "path": "../../packages/db" }],
   "include": [
     "next-env.d.ts",
     "next.config.ts",
