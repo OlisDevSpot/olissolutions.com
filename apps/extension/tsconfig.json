@@ -1,7 +1,14 @@
 {
-  "extends": "./.wxt/tsconfig.json",
+  "extends": "@workspace/typescript-config/wxt.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@workspace/ui/*": ["../../packages/ui/src/*"]
+    },
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx"
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "./.wxt/wxt.d.ts"],
+  "exclude": ["node_modules", ".output"]
 }

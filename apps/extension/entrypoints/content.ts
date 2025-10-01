@@ -1,6 +1,7 @@
 export default defineContentScript({
-  matches: ['*://*.google.com/*'],
+  matches: ['*://*/*'],
   main() {
-    console.log('Hello content.');
+    console.log(import.meta.env.MODE)
+    console.log('Hello from content entrypoint.');
   },
 });

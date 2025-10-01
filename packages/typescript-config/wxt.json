@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "WXT",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@": [".."],
+      "@/*": ["../*"],
+      "~": [".."],
+      "~/*": ["../*"],
+      "@@": [".."],
+      "@@/*": ["../*"],
+      "~~": [".."],
+      "~~/*": ["../*"]
+    }
+  },
+}
