@@ -3,7 +3,7 @@ import { cors } from "hono/cors";
 import { createFactory } from "hono/factory";
 import { notFound, onError } from "stoker/middlewares";
 
-import type { AppBindings } from "@/server/types";
+import type { AppBindings } from "@/types";
 
 export const factory = createFactory<AppBindings>({ defaultAppOptions: { strict: false } });
 
