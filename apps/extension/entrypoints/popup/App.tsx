@@ -1,17 +1,14 @@
-import { useState } from "react";
 import "./App.css";
 import { Button } from "@workspace/ui/components/button";
+import { toast } from "sonner";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const [msg, sendMsg] = useState();
-
   async function handleClick() {
-    const data = await fetch("http://localhost:8787/api").then((res) =>
-      res.json()
-    );
-    alert(data);
+    const data = await fetch("http://localhost:8787/api").then<{
+      msg: string;
+      cookie: string;
+    }>((res) => res.json());
+    toast.success(`message: ${data.msg}, cookie: ${data.cookie}`);
   }
 
   return (

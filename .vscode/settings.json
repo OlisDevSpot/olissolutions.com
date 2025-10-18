@@ -1,4 +1,8 @@
 {
   "tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
-  "typescript.preferences.includePackageJsonAutoImports": "on"
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "workbench.colorTheme": "Default Dark+"
 }

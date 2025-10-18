@@ -1,14 +1,15 @@
 "use client";
 
 import { Button } from "@workspace/ui/components/button";
-import { db } from "@workspace/db";
+import { toast } from "sonner";
 
 export default function Page() {
   async function handleClick() {
-    const data = await fetch("http://localhost:8787/api").then((res) =>
-      res.json()
-    );
-    alert(data);
+    const data = await fetch("http://localhost:8787/api").then<{
+      msg: string;
+      cookie: string;
+    }>((res) => res.json());
+    toast.success(`msg: ${data.msg}, cookie: ${data.cookie}`);
   }
 
   return (

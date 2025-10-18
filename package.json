@@ -1,6 +1,7 @@
 {
   "name": "shadcn-ui-monorepo",
   "version": "0.0.1",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9.37.0",
     "prettier": "^3.6.2",
     "turbo": "^2.5.5",
     "typescript": "5.7.3"
