@@ -6,9 +6,11 @@
     "check-types": "tsc --noEmit"
   },
   "exports": {
-    "./schema": "./src/schema/index.ts"
+    "./constants/*": "./src/constants/*.ts",
+    "./types/*": "./src/types/*.ts"
   },
   "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "typescript": "^5.9.2"
   },

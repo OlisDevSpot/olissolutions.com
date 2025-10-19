@@ -1,22 +1,19 @@
 {
   "name": "@workspace/db",
-  "version": "1.0.0",
-  "private": true,
   "type": "module",
+  "version": "1.0.0",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./schema/public": "./src/schema/public/index.ts",
+    "./schema/one-stop-sales/*": "./src/schema/one-stop-sales/*.ts",
+    "./seeds/landing": "./src/seeds/landing/index.ts",
+    "./lib/*": "./src/lib/*.ts"
   },
   "scripts": {
-    "check-types": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.3",
-    "@types/pg": "^8.15.5",
-    "@workspace/typescript-config": "workspace:*",
-    "drizzle-kit": "^0.31.5",
-    "eslint": "^9.34.0",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.2"
+    "check-types": "tsc --noEmit",
+    "db:push": "drizzle-kit push",
+    "db:seed": "tsx ./src/lib/seed.ts",
+    "db:init-schemas": "tsx ./src/lib/init-schemas.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
@@ -26,5 +23,17 @@
     "drizzle-zod": "^0.8.3",
     "pg": "^8.16.3",
     "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@types/node": "^22.15.3",
+    "@types/pg": "^8.15.5",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "drizzle-kit": "^0.31.5",
+    "eslint": "^9.34.0",
+    "eslint-plugin-format": "^1.0.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
   }
 }

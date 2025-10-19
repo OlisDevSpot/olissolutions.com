@@ -1,4 +1,6 @@
-import { config } from "@workspace/eslint-config/react-internal"
+import antfu from '@antfu/eslint-config'
 
-/** @type {import("eslint").Linter.Config} */
-export default config
+export default antfu({
+  formatters: true,
+  react: true,
+})

@@ -8,6 +8,7 @@ export default defineConfig({
       chrome: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   manifest: (({ browser, command, mode, manifestVersion }) => {
     return {
       name: "Olis WXT React",

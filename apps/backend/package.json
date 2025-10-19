@@ -12,7 +12,8 @@
     "hono": "^4.9.9",
     "stoker": "^2.0.1",
     "@workspace/shared": "workspace:*",
-    "@workspace/db": "workspace:*"
+    "@workspace/db": "workspace:*",
+    "@workspace/auth": "workspace:*"
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",

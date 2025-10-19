@@ -1,16 +1,17 @@
-import { config } from "dotenv";
-import { defineConfig } from "drizzle-kit";
+import { config } from 'dotenv'
+import { defineConfig } from 'drizzle-kit'
 
-config();
-
-console.log(process.env.DATABASE_URL)
+config()
 
 export default defineConfig({
-  schema: "../shared/src/schema/index.ts",
-  out: "./src/server/drizzle/migrations",
-  dialect: "postgresql",
+  schema: ['./src/schema/public/index.ts', './src/schema/one-stop-sales/index.ts'],
+  schemaFilter: ['public', 'one_stop_sales'],
+  tablesFilter: ['*'],
+  out: './src/migrations',
+  dialect: 'postgresql',
   verbose: true,
+  strict: true,
   dbCredentials: {
     url: process.env.DATABASE_URL!,
   },
-});
+})

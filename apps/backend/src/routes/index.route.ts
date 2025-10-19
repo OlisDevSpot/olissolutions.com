@@ -1,3 +1,5 @@
+import { db } from "@workspace/db";
+import { solutions } from "@workspace/db/schema/public"
 import { createRouter } from "../lib/create-app";
 import { getCookie, setCookie } from "hono/cookie"
 
@@ -17,6 +19,10 @@ const indexRoute = createRouter()
       secure: false
     })
     return c.json({ msg: "Cookie set!" });
+  })
+  .get("/landing/solutions", async (c) => {
+    const foundSolutions = await db.select().from(solutions)
+    return c.json(foundSolutions)
   })
 
 export default indexRoute;

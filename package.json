@@ -1,5 +1,6 @@
 {
-  "name": "shadcn-ui-monorepo",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/package.json",
+  "name": "olissolutions.com",
   "version": "0.0.1",
   "type": "module",
   "private": true,
@@ -14,6 +15,7 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.37.0",
+    "eslint-config-prettier": "^9.1.2",
     "prettier": "^3.6.2",
     "turbo": "^2.5.5",
     "typescript": "5.7.3"
@@ -21,5 +23,10 @@
   "packageManager": "pnpm@10.4.1",
   "engines": {
     "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.9.3"
+    }
   }
 }
