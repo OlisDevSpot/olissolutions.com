@@ -7,7 +7,7 @@ interface LogoProps {
 
 export function Logo({ long = false }: LogoProps) {
   return (
-    <Link href="/">
+    <Link href="/" className="flex items-center space-x-2">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

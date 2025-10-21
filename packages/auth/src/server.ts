@@ -1,26 +1,20 @@
+import type { BetterAuthOptions } from 'better-auth'
 import { db } from '@workspace/db'
-import * as publicSchema from '@workspace/db/schema/public'
+import * as authSchema from '@workspace/db/schema/public/auth'
 import { betterAuth } from 'better-auth'
 
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
-import { openAPI, organization } from 'better-auth/plugins'
+import { customSession, openAPI, organization } from 'better-auth/plugins'
 
-export const auth = betterAuth({
+export const options = {
   database: drizzleAdapter(db, {
-    schema: publicSchema,
+    schema: authSchema,
     provider: 'pg',
   }),
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
-  },
-  pages: {
-    signIn: '/auth/sign-in',
-    signUp: '/auth/sign-up',
-    verifyEmail: '/auth/verify-email',
-    forgotPassword: '/auth/forgot-password',
-    resetPassword: '/auth/reset-password',
   },
   trustedOrigins: process.env.NODE_ENV === 'production'
     ? [
@@ -57,10 +51,58 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
+  user: {
+    additionalFields: {
+      nickname: {
+        type: 'string',
+        required: false,
+      },
+      role: {
+        type: ['user', 'admin'] as const,
+        defaultValue: 'user',
+      },
+      companyId: {
+        type: 'string',
+        required: false,
+        input: false,
+      },
+    },
+  },
+  session: {
+    additionalFields: {
+      coolField: {
+        type: 'string',
+        required: false,
+        input: false,
+      },
+    },
+  },
   plugins: [
     organization(),
     openAPI(),
     nextCookies(),
+  ],
+} satisfies BetterAuthOptions
+
+export const auth = betterAuth({
+  ...options,
+  pages: {
+    signIn: '/auth/sign-in',
+    signUp: '/auth/sign-up',
+    verifyEmail: '/auth/verify-email',
+    forgotPassword: '/auth/forgot-password',
+    resetPassword: '/auth/reset-password',
+  },
+  plugins: [
+    ...(options.plugins || []),
+    customSession(async (session, _ctx) => {
+      const coolField = session.session.coolField
+
+      return {
+        ...session,
+        coolField,
+      }
+    }, options),
   ],
 })
 

@@ -1,0 +1,52 @@
+{
+  "autorun": false,
+  "terminals": [
+    {
+      "name": "turbo",
+      "description": "This is a turbo terminal",
+      "focus": true
+    },
+    {
+      "name": "one-stop-sales",
+      "description": "This is one stop sales terminal",
+      "focus": true,
+      "command": "cd apps/one-stop-sales && clear"
+    },
+    {
+      "name": "landing",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd apps/landing && clear"
+    },
+    {
+      "name": "auth",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/auth && clear"
+    },
+    {
+      "name": "db",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/db && clear"
+    },
+    {
+      "name": "ui",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/ui && clear"
+    },
+    {
+      "name": "core",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/core && clear"
+    },
+    {
+      "name": "hono",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/hono && clear"
+    }
+  ]
+}

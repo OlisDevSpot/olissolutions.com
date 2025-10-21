@@ -1,12 +1,17 @@
 import type z from 'zod'
 
+import { userRoles } from '@workspace/core/constants/enums'
 import {
   boolean,
+  pgEnum,
   pgTable,
   text,
   timestamp,
 } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+
+export const userRoleEnum = pgEnum('user_role', userRoles)
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -17,6 +22,7 @@ export const user = pgTable('user', {
     .$defaultFn(() => false)
     .notNull(),
   image: text('image'),
+  role: userRoleEnum('role').notNull().default('user'),
   createdAt: timestamp('created_at')
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
@@ -69,6 +75,41 @@ export const verification = pgTable('verification', {
   updatedAt: timestamp('updated_at').$defaultFn(
     () => /* @__PURE__ */ new Date(),
   ),
+})
+
+export const organization = pgTable('organization', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  slug: text('slug').unique(),
+  logo: text('logo'),
+  createdAt: timestamp('created_at').notNull(),
+  metadata: text('metadata'),
+})
+
+export const member = pgTable('member', {
+  id: text('id').primaryKey(),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  role: text('role').default('member').notNull(),
+  createdAt: timestamp('created_at').notNull(),
+})
+
+export const invitation = pgTable('invitation', {
+  id: text('id').primaryKey(),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+  email: text('email').notNull(),
+  role: text('role'),
+  status: text('status').default('pending').notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  inviterId: text('inviter_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
 })
 
 export const selectUserSchema = createSelectSchema(user)

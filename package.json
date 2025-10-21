@@ -26,7 +26,15 @@
   },
   "pnpm": {
     "overrides": {
-      "typescript": "5.9.3"
-    }
+      "typescript": "5.9.3",
+      "lucide-react": "0.543.0",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "@types/react": "^19",
+      "@types/react-dom": "^19"
+    },
+    "ignoredBuiltDependencies": [
+      "@clerk/shared"
+    ]
   }
 }

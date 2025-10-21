@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/package.json",
+  "name": "accounts",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "dotenv -e .env.local next dev --turbopack --port $PORT",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@workspace/auth": "workspace:*",
+    "@workspace/db": "workspace:*",
+    "@workspace/core": "workspace:*",
+    "@workspace/ui": "workspace:*",
+    "lucide-react": "^0.543.0",
+    "next": "^15.4.5",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@eslint-react/eslint-plugin": "^2.2.2",
+    "@types/node": "^20.19.9",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9.38.0",
+    "eslint-plugin-format": "^1.0.2",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.23",
+    "typescript": "^5.9.2"
+  }
+}

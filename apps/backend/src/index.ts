@@ -1,4 +1,4 @@
-import { createApp } from "./lib/create-app";
+import { createApp } from "@workspace/hono/lib/create-app";
 import indexRoute from "./routes/index.route";
 
 const app = createApp()

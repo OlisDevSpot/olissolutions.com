@@ -1,0 +1,37 @@
+{
+  "name": "@workspace/hono",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/app.ts",
+    "./client": "./src/client.ts",
+    "./lib/*": "./src/lib/*.ts",
+    "./routes/*": "./src/routes/*.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "drizzle-orm": "^0.44.6"
+  },
+  "dependencies": {
+    "@workspace/auth": "workspace:*",
+    "@workspace/db": "workspace:*",
+    "@workspace/core": "workspace:*",
+    "hono": "^4.10.1",
+    "hono-pino": "^0.10.3",
+    "pino": "^9.8.0",
+    "pino-pretty": "^13.1.1",
+    "stoker": "^2.0.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@types/node": "^24.9.0",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "drizzle-orm": "^0.44.6",
+    "eslint": "^9.37.0",
+    "eslint-plugin-format": "^1.0.2",
+    "typescript": "^5.9.3"
+  }
+}

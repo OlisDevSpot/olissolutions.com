@@ -1,0 +1,54 @@
+import type { UpgradeAccessor } from '@workspace/core/entities/upgrades/types'
+import type { InsertAddon } from '@workspace/db/schema/one-stop-sales'
+
+export const addonsData = [
+  {
+    label: 'Install attic fan',
+    accessor: 'atticFan',
+    description: 'Improve your home\'s ventilation and energy efficiency by installing an attic fan to keep your space cooler and more comfortable',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/attic-fan_ajlrdt.webp',
+    upgradeAccessor: 'atticBasement',
+  },
+  {
+    label: 'Install radiant barrier',
+    accessor: 'radiantBarrier',
+    description: 'Boost your home\'s energy efficiency and reduce cooling costs by installing a radiant barrier in your attic',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/radiant-barrier_fq7118.webp',
+    upgradeAccessor: 'atticBasement',
+  },
+  {
+    label: 'Install retaining wall',
+    accessor: 'retainingWall',
+    description: 'Boost yard appeal with new retaining wall',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/retaining-wall_tuovew.jpg',
+    upgradeAccessor: 'dryscapingHardscaping',
+  },
+  {
+    label: 'Facia Boards Replacement',
+    accessor: 'replaceFasciaBoards',
+    description: 'Boost your home\'s curb appeal with modern facia boards',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/fascia-board-replacement_gw8owg.webp',
+    upgradeAccessor: 'roof',
+  },
+  {
+    label: 'Facia Boards Repaint',
+    accessor: 'repaintFasciaBoards',
+    description: 'Boost your home\'s curb appeal with modern facia boards6389p',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/fascia-board-repaint_zsnxhp.jpg',
+    upgradeAccessor: 'exteriorPaintSiding',
+  },
+  {
+    label: 'Gutters upgrade',
+    accessor: 'upgradeGutters',
+    description: 'Boost yard appeal with new retaining wall',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/gutter-replacement-2_xbly5l.webp',
+    upgradeAccessor: 'roof',
+  },
+  {
+    label: 'Ducting replacement',
+    accessor: 'replaceDucts',
+    description: 'Upgrade the energy efficiency of your ducts',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1757092099/duct-replacement_xkoil9.webp',
+    upgradeAccessor: 'hvac',
+  },
+] as const satisfies (Omit<InsertAddon, 'upgradeId'> & { upgradeAccessor: UpgradeAccessor })[]

@@ -1,2 +1,2 @@
-export * from './one-stop-sales'
-export * from './public'
+export * as oneStopSalesSchema from './one-stop-sales'
+export * as coreSchema from './public'

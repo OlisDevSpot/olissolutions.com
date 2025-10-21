@@ -63,8 +63,7 @@ export function HeroSection() {
                 as="p"
                 className="mt-8 max-w-2xl text-pretty text-lg"
               >
-                Born from deep construction expertise. The only comprehensive
-                sales ecosystem designed for high-stakes residential home
+                The only comprehensive sales ecosystem designed for high-stakes residential home
                 improvement sales where single meetings determine $18,000 to
                 $200,000+ commissions.
               </TextEffect>
@@ -83,26 +82,22 @@ export function HeroSection() {
                 }}
                 className="mt-12 flex items-center gap-2"
               >
-                <div
+                <Button
                   key={1}
-                  className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
+                  asChild
+                  size="lg"
+                  className="text-base"
                 >
-                  <Button
-                    asChild
-                    size="lg"
-                    className="rounded-xl px-5 text-base"
-                  >
-                    <Link href="#link">
-                      <span className="text-nowrap">Start Building</span>
-                    </Link>
-                  </Button>
-                </div>
+                  <Link href="/dashboard">
+                    <span className="text-nowrap">Start Building</span>
+                  </Link>
+                </Button>
                 <Button
                   key={2}
                   asChild
                   size="lg"
-                  variant="ghost"
-                  className="h-10.5 rounded-xl px-5 text-base"
+                  variant="outline"
+                  className="text-base"
                 >
                   <Link href="#link">
                     <span className="text-nowrap">Request a demo</span>

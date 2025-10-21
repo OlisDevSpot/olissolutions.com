@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "exports": {
     ".": "./src/index.ts",
-    "./schema/public": "./src/schema/public/index.ts",
+    "./schema/public/*": "./src/schema/public/*.ts",
     "./schema/one-stop-sales/*": "./src/schema/one-stop-sales/*.ts",
-    "./seeds/landing": "./src/seeds/landing/index.ts",
+    "./seeds/one-stop-sales/*": "./src/seeds/one-stop-sales/*.ts",
     "./lib/*": "./src/lib/*.ts"
   },
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
-    "@workspace/shared": "workspace:*",
+    "@workspace/core": "workspace:*",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",
     "drizzle-zod": "^0.8.3",

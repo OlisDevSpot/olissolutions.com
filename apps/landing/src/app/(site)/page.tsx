@@ -41,7 +41,6 @@ export default function HomePage() {
       <MarketRealitySection />
       <ContentSection />
 
-      {/* Revolutionary Solution Suite */}
       <section
         id="solutions"
         className="py-20 bg-background"
@@ -65,6 +64,7 @@ export default function HomePage() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We don&apos;t just provide tools—we provide the unfair advantage
               that guarantees the sale.
+              Born from deep construction expertise.
             </p>
           </AnimateOnScroll>
 
@@ -154,7 +154,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Financial Reality Section */}
       <section className="py-20 bg-gradient-to-br from-green-900/20 via-emerald-900/20 to-teal-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll
@@ -232,7 +231,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Elite Testimonials */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll
@@ -342,7 +340,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA - Urgency & Scarcity */}
       <section className="py-20 bg-gradient-to-br from-red-900/20 via-orange-900/20 to-yellow-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll

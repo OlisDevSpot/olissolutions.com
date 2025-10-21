@@ -1,0 +1,14 @@
+{
+  "extends": "@workspace/typescript-config/base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "paths": {
+      "@workspace/services/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,6 +1,6 @@
 import type * as z from 'zod'
+import { easeOfUse } from '@workspace/core/constants/enums'
 import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
-import { easeOfUse } from '@workspace/shared/constants/enums'
 import { boolean, pgEnum, pgTable, real, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 

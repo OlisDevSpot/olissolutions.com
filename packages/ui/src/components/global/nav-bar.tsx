@@ -25,7 +25,7 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on('change', (latest) => {
-      setScrolled(latest > 0.05)
+      setScrolled(latest > 0.01)
     })
     return () => unsubscribe()
   }, [scrollYProgress])
@@ -42,13 +42,7 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
         <div className="mx-auto container px-6 transition-all duration-300">
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center space-x-2"
-              >
-                <Logo />
-              </Link>
+              <Logo />
               <button
                 type="button"
                 onClick={() => setMenuState(!menuState)}

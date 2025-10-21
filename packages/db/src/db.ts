@@ -9,10 +9,11 @@ const pool = new Pool({
 
 const db = drizzle(pool, {
   logger: process.env.npm_config_logger === 'true',
-  schema,
+  schema: {
+    ...schema.coreSchema,
+    ...schema.oneStopSalesSchema,
+  },
 })
-
-export const myName = 'Oliver'
 
 export type DB = typeof db
 export { db }
