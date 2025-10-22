@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@workspace/ui/components/button";
+import { Button } from "@olis/ui/components/button";
 import { toast } from "sonner";
-import { useSession } from "@workspace/auth/client";
+import { useSession } from "@olis/auth/client";
 
 export default function Page() {
   async function handleClick() {

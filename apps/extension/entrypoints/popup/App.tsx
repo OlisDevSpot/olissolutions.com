@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button } from "@workspace/ui/components/button";
+import { Button } from "@olis/ui/components/button";
 import { toast } from "sonner";
 
 function App() {

@@ -1,7 +1,7 @@
 'use client'
 
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
-import { cn } from '@workspace/ui/lib/utils'
+import { cn } from '@olis/ui/lib/utils'
 
 import * as React from 'react'
 

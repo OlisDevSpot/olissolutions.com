@@ -1,8 +1,6 @@
 /* eslint-disable perfectionist/sort-exports */
 
 // dynamic
-export * from './customer'
-export * from './company'
 export * from './project'
 export * from './jobsite-profile'
 export * from './jobsite-roof'
@@ -14,7 +12,7 @@ export * from './x-project-solution'
 // core entities
 export * from './addon'
 export * from './solution'
-export * from './upgrade'
+export * from './trade'
 export * from './variable'
 export * from './x-solution-variable'
 
@@ -22,9 +20,8 @@ export * from './x-solution-variable'
 export * from './benefit'
 export * from './benefit-category'
 export * from './material'
-export * from './license'
 export * from './x-material-benefits'
 export * from './x-solution-benefits'
 export * from './x-solution-material'
-export * from './x-upgrade-benefit'
+export * from './x-trade-benefit'
 export * from './x-company-licenses'

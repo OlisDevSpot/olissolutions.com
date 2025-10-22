@@ -4,7 +4,7 @@ export const easeOfUse = ['easy', 'moderate', 'advanced'] as const
 // ONE STOP SALES
 export const electricProviders = ["ladwp", "edison", "glendale water & power", "burbank water & power", "riverside public utilities", "pg&e", "other"] as const;
 
-export const upgradeLocations = ["exterior", "interior", "lot"] as const;
+export const tradeLocations = ["exterior", "interior", "lot"] as const;
 export const constructionTypes = ["energy-efficient", "rough-construction", "finish-construction"] as const;
 
 export const roofLocations = ["main home", "garage", "adu"] as const;
@@ -17,4 +17,4 @@ export const insulationLevels = ["low", "medium", "high"] as const;
 export const foundationTypes = ["raised", "slab"] as const;
 
 export const variableDataTypes = ["text", "select", "number", "boolean"] as const;
-export const variableGroups = ["project", "upgrade"] as const;
+export const variableGroups = ["project", "trade"] as const;

@@ -1,4 +1,4 @@
-import * as schema from '@workspace/db/schema/index'
+import * as schema from '@olis/db/schema/index'
 import { drizzle } from 'drizzle-orm/node-postgres'
 
 import { Pool } from 'pg'

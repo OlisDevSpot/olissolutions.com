@@ -1,4 +1,4 @@
-import { cn } from '@workspace/ui/lib/utils'
+import { cn } from '@olis/ui/lib/utils'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode

@@ -1,16 +1,16 @@
 'use client'
 
 import { useUser } from '@clerk/nextjs'
-import { Button } from '@workspace/ui/components/button'
+import { Button } from '@olis/ui/components/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@workspace/ui/components/card'
-import { Label } from '@workspace/ui/components/label'
-import { Switch } from '@workspace/ui/components/switch'
+} from '@olis/ui/components/card'
+import { Label } from '@olis/ui/components/label'
+import { Switch } from '@olis/ui/components/switch'
 import { Bell, Shield, User } from 'lucide-react'
 import { motion } from 'motion/react'
 

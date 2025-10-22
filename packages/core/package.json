@@ -1,28 +1,28 @@
 {
-  "name": "@workspace/core",
-  "version": "1.0.0",
+  "name": "@olis/core",
   "type": "module",
-  "scripts": {
-    "check-types": "tsc --noEmit"
-  },
+  "version": "1.0.0",
   "exports": {
     "./constants/*": "./src/constants/*.ts",
     "./entities/*": "./src/entities/*.ts",
-    "./types/*": "./src/types/*.ts",
+    "./types": "./src/types/index.ts",
     "./services/*": "./src/services/*.ts",
     "./lib/*": "./src/lib/*.ts"
   },
-  "devDependencies": {
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.38.0",
-    "typescript": "^5.9.2",
-    "@antfu/eslint-config": "^6.0.0",
-    "eslint-plugin-format": "^1.0.2"
+  "scripts": {
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "drizzle-orm": "^0.44.5",
+    "drizzle-orm": "^0.44.6",
     "drizzle-zod": "^0.8.3",
     "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@olis/eslint-config": "workspace:*",
+    "@olis/typescript-config": "workspace:*",
+    "eslint": "^9.38.0",
+    "eslint-plugin-format": "^1.0.2",
+    "typescript": "^5.9.2"
   }
 }

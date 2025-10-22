@@ -746,7 +746,7 @@ interface SchedulerWaitOptions {
     signal?: AbortSignal;
 }
 /**
- * Extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle. This ensures that any functional events (like FetchEvent) are not dispatched until it upgrades database schemas and deletes the outdated cache entries.
+ * Extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle. This ensures that any functional events (like FetchEvent) are not dispatched until it trades database schemas and deletes the outdated cache entries.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ExtendableEvent)
  */
@@ -2427,7 +2427,7 @@ interface Socket {
     get writable(): WritableStream;
     get closed(): Promise<void>;
     get opened(): Promise<SocketInfo>;
-    get upgraded(): boolean;
+    get traded(): boolean;
     get secureTransport(): "on" | "off" | "starttls";
     close(): Promise<void>;
     startTls(options?: TlsOptions): Socket;
@@ -7938,7 +7938,7 @@ declare namespace TailStream {
     }
     // This marks the worker handler return information.
     // This is separate from Outcome because the worker invocation can live for a long time after
-    // returning. For example - Websockets that return an http upgrade response but then continue
+    // returning. For example - Websockets that return an http trade response but then continue
     // streaming information or SSE http connections.
     interface Return {
         readonly type: "return";

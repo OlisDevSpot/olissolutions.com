@@ -5,7 +5,7 @@ import type {
   Variant,
   Variants,
 } from 'motion/react'
-import { cn } from '@workspace/ui/lib/utils'
+import { cn } from '@olis/ui/lib/utils'
 import {
   AnimatePresence,
   motion,

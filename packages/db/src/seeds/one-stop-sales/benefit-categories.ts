@@ -1,9 +1,8 @@
-import { sql } from "drizzle-orm";
+import type { DB } from '@olis/db'
 
-import type { DB } from "@/server/drizzle";
-
-import { benefitCategories } from "@workspace/db/schema/one-stop-sales/index";
-import { benefitCategoriesData } from "./data/benefit-categories";
+import { benefitCategories } from '@olis/db/schema/one-stop-sales/index'
+import { sql } from 'drizzle-orm'
+import { benefitCategoriesData } from './data/benefit-categories'
 
 export default async function seed(db: DB) {
   await db
@@ -11,8 +10,8 @@ export default async function seed(db: DB) {
     .values(benefitCategoriesData)
     .onConflictDoUpdate({
       target: benefitCategories.accessor,
-      set: { 
+      set: {
         label: sql`EXCLUDED.label`,
       },
-    });
+    })
 }

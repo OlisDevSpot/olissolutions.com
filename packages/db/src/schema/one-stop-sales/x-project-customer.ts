@@ -1,11 +1,11 @@
-import { unsafeId } from '@workspace/db/lib/schema-helpers'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { unsafeId } from '@olis/db/lib/schema-helpers'
+import { customers } from '@olis/db/schema/core/customer'
+import { projects } from '@olis/db/schema/one-stop-sales/project'
 import { relations } from 'drizzle-orm'
+import { boolean, unique, uuid } from 'drizzle-orm/pg-core'
 
-import { boolean, pgTable, unique, uuid } from 'drizzle-orm/pg-core'
-import { customers } from './customer'
-import { projects } from './project'
-
-export const x_projectCustomers = pgTable('x_project_customer', {
+export const x_projectCustomers = oneStopSalesSchema.table('x_project_customer', {
   id: unsafeId,
   projectId: uuid('project_id')
     .notNull()

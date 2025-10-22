@@ -1,7 +1,7 @@
-import { Badge } from '@workspace/ui/components/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/card'
-import { AnimateOnScroll } from '@workspace/ui/components/global/animate-on-scroll'
-import { fadeInUp, staggerContainer, staggerItem, useScrollAnimation } from '@workspace/ui/hooks/use-scroll-animation'
+import { Badge } from '@olis/ui/components/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@olis/ui/components/card'
+import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
+import { fadeInUp, staggerContainer, staggerItem, useScrollAnimation } from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
 
 export function MarketRealitySection() {

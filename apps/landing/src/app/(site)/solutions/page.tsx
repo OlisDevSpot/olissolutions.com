@@ -1,13 +1,13 @@
 'use client'
 
-import { Badge } from '@workspace/ui/components/badge'
-import { AnimateOnScroll } from '@workspace/ui/components/global/animate-on-scroll'
+import { Badge } from '@olis/ui/components/badge'
+import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
 import {
   fadeInUp,
   staggerContainer,
   staggerItem,
   useScrollAnimation,
-} from '@workspace/ui/hooks/use-scroll-animation'
+} from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
 import SolutionCard from '@/components/solution-card'
 import { categories, solutions } from '@/features/landing/data'
@@ -19,7 +19,7 @@ export default function SolutionsPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-background to-muted/50">
+      <section className="py-20 lg:py-32 bg-linear-to-br from-background to-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div

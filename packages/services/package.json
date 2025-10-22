@@ -1,5 +1,5 @@
 {
-  "name": "@workspace/services",
+  "name": "@olis/services",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
+    "@olis/eslint-config": "workspace:*",
+    "@olis/typescript-config": "workspace:*",
     "typescript": "^5.9.2"
   },
   "dependencies": {

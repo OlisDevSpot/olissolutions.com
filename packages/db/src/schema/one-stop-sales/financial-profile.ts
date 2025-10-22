@@ -1,19 +1,19 @@
 import type z from 'zod'
 
-import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
+
 import {
   boolean,
-  pgTable,
   real,
   uuid,
 } from 'drizzle-orm/pg-core'
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-
 import { projects } from './project'
 
-export const financialProfiles = pgTable('financial_profile', {
+export const financialProfiles = oneStopSalesSchema.table('financial_profile', {
   id,
 
   // disadvantages info

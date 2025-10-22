@@ -1,5 +1,5 @@
 {
-  "name": "@workspace/trpc",
+  "name": "@olis/trpc",
   "version": "0.0.1",
   "private": true,
   "exports": {
@@ -8,6 +8,6 @@
   "type": "module",
   "devDependencies": {
     "typescript": "5.9.3",
-    "@workspace/typescript-config": "workspace:*"
+    "@olis/typescript-config": "workspace:*"
   }
 }

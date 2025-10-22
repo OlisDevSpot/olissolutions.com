@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@workspace/ui/components/card'
+import { Card, CardContent } from '@olis/ui/components/card'
 import { Shield, Users } from 'lucide-react'
 import { LandingSection } from './global/landing-section'
 

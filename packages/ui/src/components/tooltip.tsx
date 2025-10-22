@@ -1,7 +1,7 @@
 'use client'
 
+import { cn } from '@olis/ui/lib/utils'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import { cn } from '@workspace/ui/lib/utils'
 
 import * as React from 'react'
 
@@ -10,7 +10,7 @@ function TooltipProvider({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (
-    <TooltipPrimitive
+    <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delayDuration={delayDuration}
       {...props}

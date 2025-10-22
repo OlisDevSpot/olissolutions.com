@@ -9,21 +9,21 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@workspace/ui/components/accordion'
-import { Badge } from '@workspace/ui/components/badge'
-import { Button } from '@workspace/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
-import { AnimateOnScroll } from '@workspace/ui/components/global/animate-on-scroll'
-import { Input } from '@workspace/ui/components/input'
-import { Label } from '@workspace/ui/components/label'
-import { Textarea } from '@workspace/ui/components/textarea'
+} from '@olis/ui/components/accordion'
+import { Badge } from '@olis/ui/components/badge'
+import { Button } from '@olis/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
+import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
+import { Input } from '@olis/ui/components/input'
+import { Label } from '@olis/ui/components/label'
+import { Textarea } from '@olis/ui/components/textarea'
 import {
   fadeInUp,
   scaleIn,
   staggerContainer,
   staggerItem,
   useScrollAnimation,
-} from '@workspace/ui/hooks/use-scroll-animation'
+} from '@olis/ui/hooks/use-scroll-animation'
 import { Send } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useState } from 'react'

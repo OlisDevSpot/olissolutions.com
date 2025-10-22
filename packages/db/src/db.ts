@@ -1,4 +1,4 @@
-import * as schema from '@workspace/db/schema/index'
+import * as schema from '@olis/db/schema/core/auth'
 import { drizzle } from 'drizzle-orm/node-postgres'
 
 import { Pool } from 'pg'
@@ -9,10 +9,7 @@ const pool = new Pool({
 
 const db = drizzle(pool, {
   logger: process.env.npm_config_logger === 'true',
-  schema: {
-    ...schema.coreSchema,
-    ...schema.oneStopSalesSchema,
-  },
+  schema,
 })
 
 export type DB = typeof db

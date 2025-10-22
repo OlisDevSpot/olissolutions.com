@@ -1,20 +1,20 @@
-import type { DB } from '@workspace/db'
+import type { TradeAccessor } from '@olis/db/types/trades'
 
-import type { InsertVariable } from '@workspace/db/schema/one-stop-sales'
-import type { UpgradeAccessor } from '@workspace/core/entities/upgrades/types'
-import { variables } from '@workspace/db/schema/one-stop-sales'
+import type { DB } from '@olis/db'
+import type { InsertVariable } from '@olis/db/schema/one-stop-sales'
+import { variables } from '@olis/db/schema/one-stop-sales'
 
 import { sql } from 'drizzle-orm'
 
 import { variablesData } from './data/variables'
 
 export default async function seed(db: DB) {
-  const upgrades = Object.keys(variablesData) as UpgradeAccessor[]
+  const trades = Object.keys(variablesData) as TradeAccessor[]
 
   const mappedVariables: InsertVariable[] = []
-  for (const upgrade of upgrades) {
-    const upgradeVariables = variablesData[upgrade]
-    for (const variable of upgradeVariables) {
+  for (const trade of trades) {
+    const tradeVariables = variablesData[trade]
+    for (const variable of tradeVariables) {
       mappedVariables.push({ ...variable })
     }
   }

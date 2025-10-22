@@ -1,8 +1,8 @@
 'use client'
 
 import type { UseEmblaCarouselType } from 'embla-carousel-react'
-import { Button } from '@workspace/ui/components/button'
-import { cn } from '@workspace/ui/lib/utils'
+import { Button } from '@olis/ui/components/button'
+import { cn } from '@olis/ui/lib/utils'
 import useEmblaCarousel from 'embla-carousel-react'
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'

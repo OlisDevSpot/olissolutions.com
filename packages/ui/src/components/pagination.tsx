@@ -1,6 +1,6 @@
-import type { Button } from '@workspace/ui/components/button'
-import { buttonVariants } from '@workspace/ui/components/button'
-import { cn } from '@workspace/ui/lib/utils'
+import type { Button } from '@olis/ui/components/button'
+import { buttonVariants } from '@olis/ui/components/button'
+import { cn } from '@olis/ui/lib/utils'
 
 import {
   ChevronLeftIcon,

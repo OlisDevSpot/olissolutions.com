@@ -1,17 +1,18 @@
 import type z from 'zod'
 
-import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
-import { user } from '@workspace/db/schema/public/auth'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
+import { user } from '@olis/db/schema/core/auth'
+
 import { relations, sql } from 'drizzle-orm'
 
-import { pgTable, text, varchar } from 'drizzle-orm/pg-core'
-
+import { text, varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
 import { x_projectCustomers } from './x-project-customer'
 import { x_projectSolutions } from './x-project-solution'
 
-export const projects = pgTable('project', {
+export const projects = oneStopSalesSchema.table('project', {
   id,
   ownerId: text('owner_id')
     .notNull()

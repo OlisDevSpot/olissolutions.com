@@ -1,15 +1,16 @@
 import type z from 'zod'
 
-import { unsafeId } from '@workspace/db/lib/schema-helpers'
-import { relations } from 'drizzle-orm'
-import { integer, pgTable, text } from 'drizzle-orm/pg-core'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { unsafeId } from '@olis/db/lib/schema-helpers'
 
+import { relations } from 'drizzle-orm'
+import { integer, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { benefitCategories } from './benefit-category'
 import { x_materialBenefits } from './x-material-benefits'
-import { x_upgradeBenefits } from './x-upgrade-benefit'
+import { x_tradeBenefits } from './x-trade-benefit'
 
-export const benefits = pgTable('benefit', {
+export const benefits = oneStopSalesSchema.table('benefit', {
   id: unsafeId,
   accessor: text('accessor').notNull().unique(),
   content: text('content').notNull(),
@@ -20,7 +21,7 @@ export const benefits = pgTable('benefit', {
 })
 
 export const benefitRelations = relations(benefits, ({ one, many }) => ({
-  x_upgradeBenefits: many(x_upgradeBenefits),
+  x_tradeBenefits: many(x_tradeBenefits),
   materialBenefits: many(x_materialBenefits),
   benefitCategories: one(benefitCategories, {
     fields: [benefits.categoryId],

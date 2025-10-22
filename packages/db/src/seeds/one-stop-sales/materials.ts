@@ -1,10 +1,10 @@
-import { sql } from "drizzle-orm";
+import type { DB } from '@olis/db'
 
-import type { DB } from "@/server/drizzle";
+import { materials } from '@olis/db/schema/one-stop-sales'
 
-import { materials } from "@/shared/schema";
+import { sql } from 'drizzle-orm'
 
-import { materialsData } from "./data/materials";
+import { materialsData } from './data/materials'
 
 export default async function seed(db: DB) {
   await db
@@ -12,7 +12,7 @@ export default async function seed(db: DB) {
     .values(materialsData)
     .onConflictDoUpdate({
       target: [materials.accessor],
-      set: { 
+      set: {
         label: sql`EXCLUDED.label`,
         description: sql`EXCLUDED.description`,
         imageUrl: sql`EXCLUDED.image_url`,

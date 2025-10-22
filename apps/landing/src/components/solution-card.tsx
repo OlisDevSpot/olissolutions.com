@@ -1,9 +1,9 @@
 'use client'
 
 import type { SolutionWithPsychologyConcepts } from '@/features/solutions/types'
-import { Badge } from '@workspace/ui/components/badge'
-import { Button } from '@workspace/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
+import { Badge } from '@olis/ui/components/badge'
+import { Button } from '@olis/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
 import { ArrowRight, Brain, Star, Users, Zap } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
@@ -87,7 +87,7 @@ export default function SolutionCard({
         <CardContent className="flex-1 flex flex-col justify-between">
           <div className="space-y-4 mb-6">
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                 <Zap className="h-4 w-4 text-primary" />
               </div>
               <div>
@@ -97,7 +97,7 @@ export default function SolutionCard({
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                 <Users className="h-4 w-4 text-primary" />
               </div>
               <div>
@@ -107,7 +107,7 @@ export default function SolutionCard({
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                 <Star className="h-4 w-4 text-primary" />
               </div>
               <div>

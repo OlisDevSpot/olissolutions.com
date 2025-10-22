@@ -1,23 +1,23 @@
 import type z from 'zod'
 
-import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
-import { roofLocations, roofTypes } from '@workspace/core/constants/enums'
-import { relations } from 'drizzle-orm'
+import { roofLocations, roofTypes } from '@olis/core/constants/enums'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 
+import { relations } from 'drizzle-orm'
 import {
   integer,
   pgEnum,
-  pgTable,
   uuid,
 } from 'drizzle-orm/pg-core'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
 
 export const roofLocationEnum = pgEnum('roof_location', roofLocations)
 export const roofTypeEnum = pgEnum('roof_type', roofTypes)
 
-export const jobsiteRoofs = pgTable('jobsite_roof', {
+export const jobsiteRoofs = oneStopSalesSchema.table('jobsite_roof', {
   id,
   roofLocation: roofLocationEnum('roof_location').default('main home'),
   roofType: roofTypeEnum('roof_type'),

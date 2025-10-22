@@ -1,175 +1,175 @@
-import type { SolutionAccessorOfUpgrade } from "@/shared/entities/solutions/types";
-import type { UpgradeAccessor } from "@/shared/entities/upgrades/types";
-import type { VariablesKeys } from "@/shared/entities/variables/types";
+import type { SolutionAccessorOfTrade } from '@olis/db/types/solutions'
+import type { TradeAccessor } from '@olis/db/types/trades'
+import type { VariablesKeys } from '@olis/db/types/variables'
 
-interface XSolutionVariablesSingle<Upgrade extends UpgradeAccessor> {
-  solutionAccessor: SolutionAccessorOfUpgrade<Upgrade>;
-  variableKey: VariablesKeys<Upgrade>;
+interface XSolutionVariablesSingle<Trade extends TradeAccessor> {
+  solutionAccessor: SolutionAccessorOfTrade<Trade>
+  variableKey: VariablesKeys<Trade>
 }
 
 export const xSolutionVariablesData = {
   solar: [
     {
-      solutionAccessor: "installPanels",
-      variableKey: "numPanels",
+      solutionAccessor: 'installPanels',
+      variableKey: 'numPanels',
     },
     {
-      solutionAccessor: "installPanels",
-      variableKey: "wattsPerPanel",
+      solutionAccessor: 'installPanels',
+      variableKey: 'wattsPerPanel',
     },
     {
-      solutionAccessor: "installPanels",
-      variableKey: "inverterType",
+      solutionAccessor: 'installPanels',
+      variableKey: 'inverterType',
     },
     {
-      solutionAccessor: "installBattery",
-      variableKey: "numBatteries",
+      solutionAccessor: 'installBattery',
+      variableKey: 'numBatteries',
     },
     {
-      solutionAccessor: "rnrPanels",
-      variableKey: "numPanels",
+      solutionAccessor: 'rnrPanels',
+      variableKey: 'numPanels',
     },
   ],
   roof: [
     {
-      solutionAccessor: "overlay",
-      variableKey: "numPitchedBSQ",
+      solutionAccessor: 'overlay',
+      variableKey: 'numPitchedBSQ',
     },
     {
-      solutionAccessor: "overlay",
-      variableKey: "numFlatBSQ",
+      solutionAccessor: 'overlay',
+      variableKey: 'numFlatBSQ',
     },
     {
-      solutionAccessor: "tearOff",
-      variableKey: "numPitchedBSQ",
+      solutionAccessor: 'tearOff',
+      variableKey: 'numPitchedBSQ',
     },
     {
-      solutionAccessor: "tearOff",
-      variableKey: "numFlatBSQ",
+      solutionAccessor: 'tearOff',
+      variableKey: 'numFlatBSQ',
     },
     {
-      solutionAccessor: "tearOff",
-      variableKey: "numLayers",
+      solutionAccessor: 'tearOff',
+      variableKey: 'numLayers',
     },
     {
-      solutionAccessor: "tearOff",
-      variableKey: "desiredRoofType",
+      solutionAccessor: 'tearOff',
+      variableKey: 'desiredRoofType',
     },
     {
-      solutionAccessor: "tearOff",
-      variableKey: "percentFreeDeckReplacement",
+      solutionAccessor: 'tearOff',
+      variableKey: 'percentFreeDeckReplacement',
     },
     {
-      solutionAccessor: "redeck",
-      variableKey: "numFlatBSQ",
+      solutionAccessor: 'redeck',
+      variableKey: 'numFlatBSQ',
     },
     {
-      solutionAccessor: "redeck",
-      variableKey: "numPitchedBSQ",
+      solutionAccessor: 'redeck',
+      variableKey: 'numPitchedBSQ',
     },
     {
-      solutionAccessor: "redeck",
-      variableKey: "numLayers",
+      solutionAccessor: 'redeck',
+      variableKey: 'numLayers',
     },
     {
-      solutionAccessor: "tileReset",
-      variableKey: "numPitchedBSQ",
+      solutionAccessor: 'tileReset',
+      variableKey: 'numPitchedBSQ',
     },
   ],
   hvac: [
     {
-      solutionAccessor: "replaceSplitSystem",
-      variableKey: "systemTonnage",
+      solutionAccessor: 'replaceSplitSystem',
+      variableKey: 'systemTonnage',
     },
     {
-      solutionAccessor: "replaceFurnace",
-      variableKey: "systemTonnage",
+      solutionAccessor: 'replaceFurnace',
+      variableKey: 'systemTonnage',
     },
     {
-      solutionAccessor: "replaceAC",
-      variableKey: "systemTonnage",
+      solutionAccessor: 'replaceAC',
+      variableKey: 'systemTonnage',
     },
     {
-      solutionAccessor: "installMiniSplit",
-      variableKey: "systemTonnage",
+      solutionAccessor: 'installMiniSplit',
+      variableKey: 'systemTonnage',
     },
     {
-      solutionAccessor: "installMiniSplit",
-      variableKey: "numMiniSplits",
+      solutionAccessor: 'installMiniSplit',
+      variableKey: 'numMiniSplits',
     },
   ],
   windows: [
     {
-      solutionAccessor: "replaceWindows",
-      variableKey: "numSmallWindows",
+      solutionAccessor: 'replaceWindows',
+      variableKey: 'numSmallWindows',
     },
     {
-      solutionAccessor: "replaceWindows",
-      variableKey: "numLargeWindows",
+      solutionAccessor: 'replaceWindows',
+      variableKey: 'numLargeWindows',
     },
     {
-      solutionAccessor: "replaceSlidingDoor",
-      variableKey: "numStandardSliders",
+      solutionAccessor: 'replaceSlidingDoor',
+      variableKey: 'numStandardSliders',
     },
     {
-      solutionAccessor: "replaceSlidingDoor",
-      variableKey: "numSpecialSliders",
+      solutionAccessor: 'replaceSlidingDoor',
+      variableKey: 'numSpecialSliders',
     },
   ],
   atticBasement: [
     {
-      solutionAccessor: "rnrAttic",
-      variableKey: "sqft",
+      solutionAccessor: 'rnrAttic',
+      variableKey: 'sqft',
     },
     {
-      solutionAccessor: "topOffAttic",
-      variableKey: "sqft",
+      solutionAccessor: 'topOffAttic',
+      variableKey: 'sqft',
     },
     {
-      solutionAccessor: "installCrawlSpaceInsulation",
-      variableKey: "sqft",
+      solutionAccessor: 'installCrawlSpaceInsulation',
+      variableKey: 'sqft',
     },
   ],
   exteriorPaintSiding: [
     {
-      solutionAccessor: "installExteriorPaint",
-      variableKey: "paintType",
+      solutionAccessor: 'installExteriorPaint',
+      variableKey: 'paintType',
     },
     {
-      solutionAccessor: "installExteriorPaint",
-      variableKey: "homeSqFt",
+      solutionAccessor: 'installExteriorPaint',
+      variableKey: 'homeSqFt',
     },
     {
-      solutionAccessor: "installExteriorPaint",
-      variableKey: "garageSqFt"
-    }
+      solutionAccessor: 'installExteriorPaint',
+      variableKey: 'garageSqFt',
+    },
   ],
   dryscapingHardscaping: [
     {
-      solutionAccessor: "installArtificial",
-      variableKey: "installSqFt",
+      solutionAccessor: 'installArtificial',
+      variableKey: 'installSqFt',
     },
     {
-      solutionAccessor: "installConcrete",
-      variableKey: "installSqFt",
+      solutionAccessor: 'installConcrete',
+      variableKey: 'installSqFt',
     },
     {
-      solutionAccessor: "installGravel",
-      variableKey: "installSqFt",
+      solutionAccessor: 'installGravel',
+      variableKey: 'installSqFt',
     },
     {
-      solutionAccessor: "installMulch",
-      variableKey: "installSqFt",
+      solutionAccessor: 'installMulch',
+      variableKey: 'installSqFt',
     },
     {
-      solutionAccessor: "installPavers",
-      variableKey: "installSqFt",
+      solutionAccessor: 'installPavers',
+      variableKey: 'installSqFt',
     },
   ],
   electricals: [
     {
-      solutionAccessor: "mpu",
-      variableKey: "relocationRequired",
+      solutionAccessor: 'mpu',
+      variableKey: 'relocationRequired',
     },
   ],
-} as const satisfies Partial<{ [Key in UpgradeAccessor]: XSolutionVariablesSingle<Key>[] }>;
+} as const satisfies Partial<{ [Key in TradeAccessor]: XSolutionVariablesSingle<Key>[] }>

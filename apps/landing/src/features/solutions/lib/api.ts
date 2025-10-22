@@ -1,11 +1,11 @@
 import type { PsychologyConcept, SolutionWithPsychologyConcepts } from '../types'
-import { eq, inArray } from 'drizzle-orm'
-import { db } from '@/drizzle'
+import { db } from '@olis/db'
 import {
   psychologyConcepts,
   solutions,
   xSolutionsPsychologyConcepts,
-} from '@/drizzle/schema'
+} from '@olis/db/schema/core'
+import { eq, inArray } from 'drizzle-orm'
 
 export async function getAllSolutions(): Promise<
   SolutionWithPsychologyConcepts[]
@@ -107,10 +107,16 @@ export async function getSolutionById(
     )
     .where(eq(solutions.id, id))
 
-  if (result.length === 0)
+  if (result.length === 0) {
     return null
+  }
 
   const firstRow = result[0]
+
+  if (!firstRow) {
+    return null
+  }
+
   const solution: SolutionWithPsychologyConcepts = {
     id: firstRow.id,
     name: firstRow.name,

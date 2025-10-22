@@ -1,36 +1,36 @@
-import { sql } from "drizzle-orm";
+import type { TradeAccessor } from '@olis/db/types/trades'
 
-import type { DB } from "@/server/drizzle";
-import type { UpgradeAccessor } from "@/shared/entities/upgrades/types";
+import type { DB } from '@olis/db'
+import type { InsertXSolutionVariable } from '@olis/db/schema/one-stop-sales/index'
 
-import type { InsertXSolutionVariable } from "@workspace/db/schema/one-stop-sales/index";
+import { solutions, variables, x_solutionVariables } from '@olis/db/schema/one-stop-sales/index'
 
-import { solutions, variables, x_solutionVariables } from "@workspace/db/schema/one-stop-sales/index";
-import { xSolutionVariablesData } from "./data/x-solution-variables";
+import { sql } from 'drizzle-orm'
+import { xSolutionVariablesData } from './data/x-solution-variables'
 
 export default async function seed(db: DB) {
-  const upgrades = Object.keys(xSolutionVariablesData) as UpgradeAccessor[];
+  const trades = Object.keys(xSolutionVariablesData) as TradeAccessor[]
 
-  const mappedXSolutionVariables: InsertXSolutionVariable[] = [];
+  const mappedXSolutionVariables: InsertXSolutionVariable[] = []
 
   const [allSolutions, allVariables] = await Promise.all([
     db.select().from(solutions),
     db.select().from(variables),
-  ]);
+  ])
 
-  for (const upgrade of upgrades) {
-    const upgradeVariables = xSolutionVariablesData[upgrade as keyof typeof xSolutionVariablesData];
-    for (const solutionVariable of upgradeVariables) {
-      const solutionEntry = allSolutions.find(dbSolution => dbSolution.accessor === solutionVariable.solutionAccessor);
-      const variableEntry = allVariables.find(dbVariable => dbVariable.key === solutionVariable.variableKey);
+  for (const trade of trades) {
+    const tradeVariables = xSolutionVariablesData[trade as keyof typeof xSolutionVariablesData]
+    for (const solutionVariable of tradeVariables) {
+      const solutionEntry = allSolutions.find(dbSolution => dbSolution.accessor === solutionVariable.solutionAccessor)
+      const variableEntry = allVariables.find(dbVariable => dbVariable.key === solutionVariable.variableKey)
 
       if (!solutionEntry || !variableEntry)
-        continue;
+        continue
 
-      mappedXSolutionVariables.push({ 
-        solutionId: solutionEntry.id, 
-        variableId: variableEntry.id
-      });
+      mappedXSolutionVariables.push({
+        solutionId: solutionEntry.id,
+        variableId: variableEntry.id,
+      })
     }
   }
 
@@ -39,9 +39,9 @@ export default async function seed(db: DB) {
     .values(mappedXSolutionVariables)
     .onConflictDoUpdate({
       target: [x_solutionVariables.solutionId, x_solutionVariables.variableId],
-      set: { 
+      set: {
         solutionId: sql`EXCLUDED.solution_id`,
         variableId: sql`EXCLUDED.variable_id`,
       },
-    });
+    })
 }

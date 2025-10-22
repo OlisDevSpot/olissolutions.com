@@ -1,19 +1,19 @@
 'use client'
 
-import { Badge } from '@workspace/ui/components/badge'
-import { Button } from '@workspace/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
-import ContentSection from '@workspace/ui/components/content-7'
-import { FeaturesSection } from '@workspace/ui/components/features-7'
-import { KanbanFeaturesSection } from '@workspace/ui/components/features-8'
-import { AnimateOnScroll } from '@workspace/ui/components/global/animate-on-scroll'
+import { Badge } from '@olis/ui/components/badge'
+import { Button } from '@olis/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
+import ContentSection from '@olis/ui/components/content-7'
+import { FeaturesSection } from '@olis/ui/components/features-7'
+import { KanbanFeaturesSection } from '@olis/ui/components/features-8'
+import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
 import {
   fadeInUp,
   scaleIn,
   staggerContainer,
   staggerItem,
   useScrollAnimation,
-} from '@workspace/ui/hooks/use-scroll-animation'
+} from '@olis/ui/hooks/use-scroll-animation'
 import {
   ArrowRight,
   CheckCircle,

@@ -9,16 +9,16 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "@workspace/auth": "workspace:*",
-    "@workspace/db": "workspace:*",
-    "@workspace/hono": "workspace:*",
-    "@workspace/core": "workspace:*",
+    "@olis/auth": "workspace:*",
+    "@olis/db": "workspace:*",
+    "@olis/server": "workspace:*",
+    "@olis/core": "workspace:*",
     "hono": "^4.9.9",
     "stoker": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^24.9.0",
-    "@workspace/typescript-config": "workspace:*",
+    "@olis/typescript-config": "workspace:*",
     "eslint": "^9.36.0",
     "typescript": "^5.9.2",
     "wrangler": "^4.4.0"

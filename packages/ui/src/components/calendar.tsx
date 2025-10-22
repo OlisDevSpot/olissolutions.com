@@ -1,8 +1,8 @@
 'use client'
 
 import type { DayButton } from 'react-day-picker'
-import { Button, buttonVariants } from '@workspace/ui/components/button'
-import { cn } from '@workspace/ui/lib/utils'
+import { Button, buttonVariants } from '@olis/ui/components/button'
+import { cn } from '@olis/ui/lib/utils'
 
 import {
   ChevronDownIcon,

@@ -1,27 +1,27 @@
-import { sql } from "drizzle-orm";
+import type { TradeAccessor } from '@olis/db/types/trades'
 
-import type { DB } from "@/server/drizzle";
-import type { UpgradeAccessor } from "@/shared/entities/upgrades/types";
-import type { InsertSolution } from "@/shared/schema";
+import type { DB } from '@olis/db'
+import type { InsertSolution } from '@olis/db/schema/one-stop-sales'
+import { solutions, trades } from '@olis/db/schema/one-stop-sales'
 
-import { solutions, upgrades } from "@/shared/schema";
+import { sql } from 'drizzle-orm'
 
-import { solutionsData } from "./data/solutions";
+import { solutionsData } from './data/solutions'
 
 export default async function seed(db: DB) {
-  const upgradeAccessors = Object.keys(solutionsData) as UpgradeAccessor[];
-  const mappedSolutions: InsertSolution[] = [];
-  const allUpgrades = await db.select().from(upgrades);
+  const tradeAccessors = Object.keys(solutionsData) as TradeAccessor[]
+  const mappedSolutions: InsertSolution[] = []
+  const allTrades = await db.select().from(trades)
 
-  for (const upgradeAccessor of upgradeAccessors) {
-    const upgradeSolutions = solutionsData[upgradeAccessor];
-    const upgradeEntry = allUpgrades.find(upgrade => upgrade.accessor === upgradeAccessor);
+  for (const tradeAccessor of tradeAccessors) {
+    const tradeSolutions = solutionsData[tradeAccessor]
+    const tradeEntry = allTrades.find(trade => trade.accessor === tradeAccessor)
 
-    if (!upgradeEntry || upgradeSolutions.length === 0)
-      continue;
+    if (!tradeEntry || tradeSolutions.length === 0)
+      continue
 
-    for (const solution of upgradeSolutions) {
-      mappedSolutions.push({ ...solution, upgradeId: upgradeEntry.id });
+    for (const solution of tradeSolutions) {
+      mappedSolutions.push({ ...solution, tradeId: tradeEntry.id })
     }
   }
 
@@ -30,8 +30,8 @@ export default async function seed(db: DB) {
     .values(mappedSolutions)
     .onConflictDoUpdate({
       target: solutions.accessor,
-      set: { 
-        upgradeId: sql`EXCLUDED.upgrade_id`,
+      set: {
+        tradeId: sql`EXCLUDED.trade_id`,
         label: sql`EXCLUDED.label`,
         description: sql`EXCLUDED.description`,
         imageUrl: sql`EXCLUDED.image_url`,

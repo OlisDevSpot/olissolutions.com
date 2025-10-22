@@ -1,10 +1,15 @@
 {
-  "extends": "@workspace/typescript-config/nextjs.json",
+  "extends": "@olis/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
+      "@olis/ui/*": ["../../packages/ui/src/*"],
+      "@olis/server/*": ["../../packages/server/src/*"],
+      "@olis/auth/*": ["../../packages/auth/src/*"],
+      "@olis/core/*": ["../../packages/core/src/*"],
+      "@olis/db/*": ["../../packages/db/src/*"],
+      "@olis/types/*": ["../../packages/types/src/*"]
     },
     "plugins": [
       {

@@ -1,11 +1,12 @@
 'use client'
-import { Button } from '@workspace/ui/components/button'
-import { cn } from '@workspace/ui/lib/utils'
+import { Button } from '@olis/ui/components/button'
+import { cn } from '@olis/ui/lib/utils'
 import { Menu, X } from 'lucide-react'
 import { useScroll } from 'motion/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Logo } from './logo'
+import { ModeToggle } from './theme-toggle'
 
 interface NavigationItem {
   name: string
@@ -15,9 +16,10 @@ interface NavigationItem {
 interface Props {
   navigationItems: NavigationItem[]
   isSignedIn?: boolean
+  dashboardUrl?: string
 }
 
-export function Navbar({ navigationItems, isSignedIn = false }: Props) {
+export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/dashboard' }: Props) {
   const [menuState, setMenuState] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -56,7 +58,7 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
               <div className="hidden lg:block">
                 <ul className="flex gap-8 text-sm">
                   {navigationItems.map(item => (
-                    <li key={item.href}>
+                    <li key={item.name}>
                       <Link
                         href={item.href}
                         className="text-muted-foreground hover:text-accent-foreground block duration-150"
@@ -74,7 +76,7 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
               <div className="lg:hidden">
                 <ul className="space-y-6 text-base">
                   {navigationItems.map(item => (
-                    <li key={item.href}>
+                    <li key={item.name}>
                       <Link
                         href={item.href}
                         className="text-muted-foreground hover:text-accent-foreground block duration-150"
@@ -85,13 +87,14 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
                   ))}
                 </ul>
               </div>
-              <div className="hidden md:block">
+              <div className="hidden md:flex items-center space-x-4">
+                <ModeToggle />
                 {isSignedIn
                   ? (
                       <div className="flex items-center space-x-4">
                         <Button asChild size="sm">
                           <Link
-                            href="/dashboard"
+                            href={dashboardUrl}
                             className="text-muted-foreground hover:text-accent-foreground block duration-150"
                           >
                             <span>Dashboard</span>
@@ -106,18 +109,18 @@ export function Navbar({ navigationItems, isSignedIn = false }: Props) {
                           size="sm"
                           asChild
                         >
-                          <Link href="/auth/sign-in">
+                          <a href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in?redirect_to=${encodeURI(window.location.href)}`}>
                             <span>Sign In</span>
-                          </Link>
+                          </a>
                         </Button>
                         <Button
                           className="btn-primary"
                           size="sm"
                           asChild
                         >
-                          <Link href="/auth/sign-up">
+                          <a href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-up?redirect_to=${encodeURI(window.location.href)}`}>
                             <span>Sign Up</span>
-                          </Link>
+                          </a>
                         </Button>
                       </div>
                     )}

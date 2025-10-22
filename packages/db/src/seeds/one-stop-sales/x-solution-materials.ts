@@ -1,45 +1,45 @@
-import { sql } from "drizzle-orm";
+import type { DB } from '@olis/db'
 
-import type { DB } from "@/server/drizzle";
-import type { InsertXSolutionMaterial } from "@/shared/schema";
+import type { InsertXSolutionMaterial } from '@olis/db/schema/one-stop-sales'
+import { materials, solutions, x_solutionMaterials } from '@olis/db/schema/one-stop-sales'
 
-import { materials, solutions, x_solutionMaterials } from "@/shared/schema";
+import { sql } from 'drizzle-orm'
 
-import { xSolutionMaterialsData } from "./data/x-solution-materials";
+import { xSolutionMaterialsData } from './data/x-solution-materials'
 
 export default async function seed(db: DB) {
   const [allSolutions, allMaterials] = await Promise.all(
     [
       db.select().from(solutions),
       db.select().from(materials),
-    ]
-  );
+    ],
+  )
 
-  const mappedXSolutionMaterials: InsertXSolutionMaterial[] = [];
+  const mappedXSolutionMaterials: InsertXSolutionMaterial[] = []
 
   for (const solutionMaterial of xSolutionMaterialsData) {
-    const solutionEntry = allSolutions.find(dbSolution => dbSolution.accessor === solutionMaterial.solutionAccessor);
-    const materialEntry = allMaterials.find(dbMaterial => dbMaterial.accessor === solutionMaterial.materialAccessor);
+    const solutionEntry = allSolutions.find(dbSolution => dbSolution.accessor === solutionMaterial.solutionAccessor)
+    const materialEntry = allMaterials.find(dbMaterial => dbMaterial.accessor === solutionMaterial.materialAccessor)
 
     if (!solutionEntry || !materialEntry)
-      continue;
+      continue
 
-    mappedXSolutionMaterials.push({ 
+    mappedXSolutionMaterials.push({
       solutionId: solutionEntry.id,
       materialId: materialEntry.id,
-      isMostPopular: solutionMaterial.isMostPopular
-    });
+      isMostPopular: solutionMaterial.isMostPopular,
+    })
   }
-  
+
   return await db
     .insert(x_solutionMaterials)
     .values(mappedXSolutionMaterials)
     .onConflictDoUpdate({
       target: [x_solutionMaterials.solutionId, x_solutionMaterials.materialId],
-      set: { 
+      set: {
         isMostPopular: sql`EXCLUDED.is_most_popular`,
         solutionId: sql`EXCLUDED.solution_id`,
         materialId: sql`EXCLUDED.material_id`,
       },
-    });
+    })
 }

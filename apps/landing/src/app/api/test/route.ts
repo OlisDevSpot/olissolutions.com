@@ -1,5 +1,5 @@
-import { db } from '@workspace/db'
-import { solutions } from '@workspace/db/schema/public'
+import { db } from '@olis/db'
+import { solutions } from '@olis/db/schema/core'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

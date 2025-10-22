@@ -1,9 +1,9 @@
 'use client'
 
 import type { SolutionCardProps } from '../types'
-import { Badge } from '@workspace/ui/components/badge'
-import { Button } from '@workspace/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
+import { Badge } from '@olis/ui/components/badge'
+import { Button } from '@olis/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
 import { Brain, DollarSign, Star } from 'lucide-react'
 import Link from 'next/link'
 

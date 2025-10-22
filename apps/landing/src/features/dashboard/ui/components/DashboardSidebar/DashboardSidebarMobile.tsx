@@ -1,8 +1,8 @@
 'use client'
 
 import { UserButton, useUser } from '@clerk/nextjs'
-import { Badge } from '@workspace/ui/components/badge'
-import { Button } from '@workspace/ui/components/button'
+import { Badge } from '@olis/ui/components/badge'
+import { Button } from '@olis/ui/components/button'
 import { ChevronLeft, ChevronRight, Star, X } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'

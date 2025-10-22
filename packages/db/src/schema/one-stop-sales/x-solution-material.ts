@@ -1,14 +1,15 @@
 import type z from 'zod'
 
-import { unsafeId } from '@workspace/db/lib/schema-helpers'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-import { boolean, integer, pgTable, unique } from 'drizzle-orm/pg-core'
 
+import { boolean, integer, unique } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { materials } from './material'
 import { solutions } from './solution'
 
-export const x_solutionMaterials = pgTable('x_solution_material', {
+export const x_solutionMaterials = oneStopSalesSchema.table('x_solution_material', {
   id: unsafeId,
   solutionId: integer('solution_id')
     .notNull()

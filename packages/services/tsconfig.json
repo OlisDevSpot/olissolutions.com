@@ -1,5 +1,5 @@
 {
-  "extends": "@workspace/typescript-config/base.json",
+  "extends": "@olis/typescript-config/base.json",
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
@@ -7,7 +7,7 @@
     "moduleResolution": "bundler",
     "module": "esnext",
     "paths": {
-      "@workspace/services/*": ["./src/*"]
+      "@olis/services/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

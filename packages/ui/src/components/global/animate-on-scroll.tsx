@@ -1,7 +1,7 @@
 'use client'
 
 import type { Variants } from 'motion/react'
-import { fadeInUp, useScrollAnimation } from '@workspace/ui/hooks/use-scroll-animation'
+import { fadeInUp, useScrollAnimation } from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
 
 export function AnimateOnScroll({

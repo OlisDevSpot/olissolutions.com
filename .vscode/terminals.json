@@ -43,10 +43,22 @@
       "command": "cd packages/core && clear"
     },
     {
-      "name": "hono",
+      "name": "server",
       "description": "This is a description",
       "focus": true,
-      "command": "cd packages/hono && clear"
+      "command": "cd packages/server && clear"
+    },
+    {
+      "name": "data-client",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/data-client && clear"
+    },
+    {
+      "name": "types",
+      "description": "This is a description",
+      "focus": true,
+      "command": "cd packages/types && clear"
     }
   ]
 }

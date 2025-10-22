@@ -2,26 +2,26 @@
 
 import type { VariantProps } from 'class-variance-authority'
 import { Slot } from '@radix-ui/react-slot'
-import { Button } from '@workspace/ui/components/button'
-import { Input } from '@workspace/ui/components/input'
+import { Button } from '@olis/ui/components/button'
+import { Input } from '@olis/ui/components/input'
 
-import { Separator } from '@workspace/ui/components/separator'
+import { Separator } from '@olis/ui/components/separator'
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from '@workspace/ui/components/sheet'
-import { Skeleton } from '@workspace/ui/components/skeleton'
+} from '@olis/ui/components/sheet'
+import { Skeleton } from '@olis/ui/components/skeleton'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@workspace/ui/components/tooltip'
-import { useIsMobile } from '@workspace/ui/hooks/use-mobile'
-import { cn } from '@workspace/ui/lib/utils'
+} from '@olis/ui/components/tooltip'
+import { useIsMobile } from '@olis/ui/hooks/use-mobile'
+import { cn } from '@olis/ui/lib/utils'
 import { cva } from 'class-variance-authority'
 import { PanelLeftIcon } from 'lucide-react'
 import * as React from 'react'

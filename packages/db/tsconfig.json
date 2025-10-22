@@ -1,5 +1,5 @@
 {
-  "extends": "@workspace/typescript-config/base.json",
+  "extends": "@olis/typescript-config/base.json",
   "compilerOptions": {
     "incremental": true,
     "composite": true,
@@ -8,7 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@workspace/db/*": ["./src/*"]
+      "@olis/db/*": ["./src/*"]
     },
     "types": ["node"],
     "declaration": true,

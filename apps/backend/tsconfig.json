@@ -11,9 +11,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@workspace/*": ["../packages/*"]
+      "@olis/*": ["../packages/*"]
     }
   },
-  "include": ["src/**/*", "worker-configuration.d.ts"],
+  "include": ["src/**/*", "worker-configuration.d.ts", "../../packages/server/src/routes/one-stop-sales/solutions.router.ts", "../../packages/server/src/routes/one-stop-sales/trades.router.ts"],
   "exclude": ["node_modules", "dist"]
 }

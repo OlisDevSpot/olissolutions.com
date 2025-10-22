@@ -1,12 +1,13 @@
-import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
+import { companies } from '@olis/db/schema/core/company'
+
+import { licenses } from '@olis/db/schema/core/license'
 import { relations } from 'drizzle-orm'
-import { integer, pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
-
+import { integer, uuid, varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { companies } from './company'
-import { licenses } from './license'
 
-export const x_companyLicenses = pgTable('x-company-license', {
+export const x_companyLicenses = oneStopSalesSchema.table('x-company-license', {
   id,
   companyId: uuid('company_id').notNull().references(() => companies.id),
   licenseId: integer('license_id').notNull().references(() => licenses.id),

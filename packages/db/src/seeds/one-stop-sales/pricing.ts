@@ -1,32 +1,32 @@
-import { sql } from "drizzle-orm";
+import type { DB } from '@olis/db'
 
-import type { DB } from "@/server/drizzle";
-import type { InsertPricing } from "@/shared/schema";
+import type { InsertPricing } from '@olis/db/schema/one-stop-sales'
+import { pricing, trades } from '@olis/db/schema/one-stop-sales'
 
-import { pricing, upgrades } from "@/shared/schema";
+import { sql } from 'drizzle-orm'
 
-import { pricingData } from "./data/pricing";
+import { pricingData } from './data/pricing'
 
 export default async function seed(db: DB) {
-  const allUpgrades = await db.select().from(upgrades);
+  const allTrades = await db.select().from(trades)
 
-  const mappedPricing: (InsertPricing & { upgradeId: number })[] = [];
+  const mappedPricing: (InsertPricing & { tradeId: number })[] = []
 
-  for (const [upgradeAccessor, prices] of Object.entries(pricingData)) {
+  for (const [tradeAccessor, prices] of Object.entries(pricingData)) {
     if (!prices || prices.length === 0)
-      continue;
-    
-    const upgradeEntry = allUpgrades.find(upgrade => upgrade.accessor === upgradeAccessor);
+      continue
 
-    if (!upgradeEntry)
-      continue;
+    const tradeEntry = allTrades.find(trade => trade.accessor === tradeAccessor)
 
-    prices.forEach((price) => { 
+    if (!tradeEntry)
+      continue
+
+    prices.forEach((price) => {
       mappedPricing.push({
-        ...price, 
-        upgradeId: upgradeEntry.id
+        ...price,
+        tradeId: tradeEntry.id,
       })
-    });
+    })
   }
 
   await db
@@ -34,11 +34,11 @@ export default async function seed(db: DB) {
     .values(mappedPricing)
     .onConflictDoUpdate({
       target: pricing.key,
-      set: { 
+      set: {
         defaultValue: sql`EXCLUDED.default_value`,
         label: sql`EXCLUDED.label`,
         description: sql`EXCLUDED.description`,
-        upgradeId: sql`EXCLUDED.upgrade_id`,
+        tradeId: sql`EXCLUDED.trade_id`,
       },
     })
 }

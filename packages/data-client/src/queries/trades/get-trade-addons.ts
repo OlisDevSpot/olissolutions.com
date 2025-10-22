@@ -1,0 +1,38 @@
+import type { UseQueryOptions } from '@tanstack/react-query'
+
+import type { GetTradeAddonsResponse } from '@/shared/entities/trades/types'
+
+import { queryOptions, useQuery } from '@tanstack/react-query'
+
+import { honoClient } from '@olis/server/hono-client'
+import { tradeQueryKeys } from './query-keys'
+
+export function getTradeAddonsQueryOptions(
+  tradeId: number,
+  options?: Omit<UseQueryOptions<GetTradeAddonsResponse>, 'queryKey' | 'queryFn'>,
+) {
+  return queryOptions({
+    staleTime: Infinity,
+    ...options,
+    queryKey: tradeQueryKeys.withAddons(tradeId),
+    queryFn: async () => {
+      const res = await honoClient.api.trades[':id'].addons.$get({ param: {
+        id: String(tradeId),
+      } })
+
+      if (!res.ok) {
+        throw new Error('Trades not found')
+      }
+
+      const tradeAddons = await res.json()
+      return tradeAddons
+    },
+  })
+}
+
+export function useGetTradeAddons(
+  tradeId: number,
+  options?: Omit<UseQueryOptions<GetTradeAddonsResponse>, 'queryKey' | 'queryFn'>,
+) {
+  return useQuery(getTradeAddonsQueryOptions(tradeId, options))
+}

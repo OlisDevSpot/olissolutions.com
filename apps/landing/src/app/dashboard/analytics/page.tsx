@@ -1,7 +1,7 @@
 'use client'
 
-import { Badge } from '@workspace/ui/components/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
+import { Badge } from '@olis/ui/components/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
 import { BarChart3, Calendar, DollarSign, Target, TrendingUp } from 'lucide-react'
 import { motion } from 'motion/react'
 

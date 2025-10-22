@@ -1,9 +1,9 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "@olis/typescript-config/react-library.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@workspace/trpc/*": ["./src/*"]
+      "@olis/trpc/*": ["./src/*"]
     }
   },
   "include": ["."],

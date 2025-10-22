@@ -1,18 +1,18 @@
 import type z from 'zod'
 
-import { createdAt, id, updatedAt } from '@workspace/db/lib/schema-helpers'
-import { electricProviders, foundationTypes, hvacComponents, hvacTypes, insulationLevels, windowsTypes } from '@workspace/core/constants/enums'
-import { relations } from 'drizzle-orm'
+import { electricProviders, foundationTypes, hvacComponents, hvacTypes, insulationLevels, windowsTypes } from '@olis/core/constants/enums'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 
+import { relations } from 'drizzle-orm'
 import {
   boolean,
   integer,
   pgEnum,
-  pgTable,
   uuid,
 } from 'drizzle-orm/pg-core'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteRoofs } from './jobsite-roof'
 import { projects } from './project'
 
@@ -23,7 +23,7 @@ export const insulationLevelEnum = pgEnum('insulation_level', insulationLevels)
 export const foundationTypeEnum = pgEnum('foundation_type', foundationTypes)
 export const electricProviderEnum = pgEnum('electric_provider', electricProviders)
 
-export const jobsiteProfiles = pgTable('jobsite_profile', {
+export const jobsiteProfiles = oneStopSalesSchema.table('jobsite_profile', {
   id,
 
   // general property

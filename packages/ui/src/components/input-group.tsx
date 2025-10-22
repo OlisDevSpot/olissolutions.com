@@ -1,11 +1,11 @@
 'use client'
 
 import type { VariantProps } from 'class-variance-authority'
-import { Button } from '@workspace/ui/components/button'
+import { Button } from '@olis/ui/components/button'
 
-import { Input } from '@workspace/ui/components/input'
-import { Textarea } from '@workspace/ui/components/textarea'
-import { cn } from '@workspace/ui/lib/utils'
+import { Input } from '@olis/ui/components/input'
+import { Textarea } from '@olis/ui/components/textarea'
+import { cn } from '@olis/ui/lib/utils'
 import { cva } from 'class-variance-authority'
 import * as React from 'react'
 

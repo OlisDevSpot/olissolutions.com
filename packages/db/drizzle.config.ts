@@ -4,8 +4,7 @@ import { defineConfig } from 'drizzle-kit'
 config()
 
 export default defineConfig({
-  schema: ['./src/schema/public/index.ts', './src/schema/one-stop-sales/index.ts'],
-  schemaFilter: ['public', 'one_stop_sales'],
+  schema: ['./src/schema/core/index.ts', './src/schema/one-stop-sales/index.ts'],
   tablesFilter: ['*'],
   out: './src/migrations',
   dialect: 'postgresql',

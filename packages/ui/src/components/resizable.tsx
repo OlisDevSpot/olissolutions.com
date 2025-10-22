@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from '@workspace/ui/lib/utils'
+import { cn } from '@olis/ui/lib/utils'
 import { GripVerticalIcon } from 'lucide-react'
 import * as React from 'react'
 

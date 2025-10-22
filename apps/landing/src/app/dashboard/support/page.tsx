@@ -1,7 +1,7 @@
 'use client'
 
-import { Button } from '@workspace/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
+import { Button } from '@olis/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
 import { Book, ExternalLink, HelpCircle, Mail, MessageCircle, Phone } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
@@ -52,8 +52,8 @@ export default function Support() {
       answer: 'Yes, all our solutions are optimized for mobile and tablet use, perfect for in-home sales presentations.',
     },
     {
-      question: 'How do I upgrade my trial to a full subscription?',
-      answer: 'You can upgrade from the \'My Solutions\' page by clicking \'Upgrade to Full Version\' on any trial solution.',
+      question: 'How do I trade my trial to a full subscription?',
+      answer: 'You can trade from the \'My Solutions\' page by clicking \'Trade to Full Version\' on any trial solution.',
     },
   ]
 

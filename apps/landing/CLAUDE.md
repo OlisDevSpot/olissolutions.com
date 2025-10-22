@@ -143,7 +143,7 @@ Olis Solutions provides high-conversion, in-home sales tools tailored for reside
    Multi-phase project structure support
    Real-time margin and pricing calculator
    Exportable proposals (PDF, web view)
-   Product/upgrade database with configuration options
+   Product/trade database with configuration options
 
 3. Salesperson Enablement Toolkit
    Onboarding dashboard with training content

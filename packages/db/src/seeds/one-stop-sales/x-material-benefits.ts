@@ -1,36 +1,36 @@
-import { sql } from "drizzle-orm";
+import type { MaterialAccessor } from '@olis/db/types/materials'
 
-import type { DB } from "@/server/drizzle";
-import type { MaterialAccessor } from "@/shared/entities/materials/types";
+import type { DB } from '@olis/db'
+import type { InsertXMaterialBenefit } from '@olis/db/schema/one-stop-sales/index'
 
-import type { InsertXMaterialBenefit } from "@workspace/db/schema/one-stop-sales/index";
+import { benefits, materials, x_materialBenefits } from '@olis/db/schema/one-stop-sales/index'
 
-import { benefits, materials, x_materialBenefits } from "@workspace/db/schema/one-stop-sales/index";
-import { materialBenefitsData } from "./data/x-material-benefits";
+import { sql } from 'drizzle-orm'
+import { materialBenefitsData } from './data/x-material-benefits'
 
 export default async function seed(db: DB) {
   const materialAccessors = Object.keys(materialBenefitsData) as MaterialAccessor[]
-  
+
   const [allMaterials, allBenefits] = await Promise.all([
     db.select().from(materials),
     db.select().from(benefits),
   ])
 
-  const mappedXMaterialBenefits: InsertXMaterialBenefit[] = [];
+  const mappedXMaterialBenefits: InsertXMaterialBenefit[] = []
 
   for (const materialAccessor of materialAccessors) {
-    const materialEntry = allMaterials.find(dbMaterial => dbMaterial.accessor === materialAccessor);
+    const materialEntry = allMaterials.find(dbMaterial => dbMaterial.accessor === materialAccessor)
 
     for (const benefit of materialBenefitsData[materialAccessor as keyof typeof materialBenefitsData]) {
-      const benefitEntry = allBenefits.find(dbBenefit => dbBenefit.accessor === benefit);
+      const benefitEntry = allBenefits.find(dbBenefit => dbBenefit.accessor === benefit)
 
       if (!materialEntry || !benefitEntry)
-        continue;
+        continue
 
-      mappedXMaterialBenefits.push({ 
-        materialId: materialEntry.id, 
-        benefitId: benefitEntry.id
-      });
+      mappedXMaterialBenefits.push({
+        materialId: materialEntry.id,
+        benefitId: benefitEntry.id,
+      })
     }
   }
 
@@ -39,9 +39,9 @@ export default async function seed(db: DB) {
     .values(mappedXMaterialBenefits)
     .onConflictDoUpdate({
       target: [x_materialBenefits.materialId, x_materialBenefits.benefitId],
-      set: { 
+      set: {
         materialId: sql`EXCLUDED.material_id`,
         benefitId: sql`EXCLUDED.benefit_id`,
       },
-    });
+    })
 }

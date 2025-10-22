@@ -1,13 +1,18 @@
 {
-  "name": "@workspace/db",
+  "name": "@olis/db",
   "type": "module",
   "version": "1.0.0",
   "exports": {
     ".": "./src/index.ts",
-    "./schema/public/*": "./src/schema/public/*.ts",
+    "./schema": "./src/schema/index.ts",
+    "./schema/core": "./src/schema/core/index.ts",
+    "./schema/core/*": "./src/schema/core/*.ts",
+    "./schema/one-stop-sales": "./src/schema/one-stop-sales/index.ts",
     "./schema/one-stop-sales/*": "./src/schema/one-stop-sales/*.ts",
+    "./seeds/one-stop-sales": "./src/seeds/one-stop-sales/index.ts",
     "./seeds/one-stop-sales/*": "./src/seeds/one-stop-sales/*.ts",
-    "./lib/*": "./src/lib/*.ts"
+    "./lib/*": "./src/lib/*.ts",
+    "./types": "./src/types/index.ts"
   },
   "scripts": {
     "check-types": "tsc --noEmit",
@@ -17,19 +22,19 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
-    "@workspace/core": "workspace:*",
+    "@olis/core": "workspace:*",
     "dotenv": "^17.2.2",
-    "drizzle-orm": "^0.44.5",
+    "drizzle-orm": "^0.44.6",
     "drizzle-zod": "^0.8.3",
     "pg": "^8.16.3",
     "zod": "^4.1.11"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.0.0",
+    "@olis/eslint-config": "workspace:*",
+    "@olis/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/pg": "^8.15.5",
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
     "drizzle-kit": "^0.31.5",
     "eslint": "^9.34.0",
     "eslint-plugin-format": "^1.0.2",

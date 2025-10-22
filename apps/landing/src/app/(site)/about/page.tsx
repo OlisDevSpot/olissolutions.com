@@ -1,21 +1,21 @@
 'use client'
 
-import { Badge } from '@workspace/ui/components/badge'
+import { Badge } from '@olis/ui/components/badge'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@workspace/ui/components/card'
-import { AnimateOnScroll } from '@workspace/ui/components/global/animate-on-scroll'
+} from '@olis/ui/components/card'
+import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
 import {
   fadeInUp,
   scaleIn,
   staggerContainer,
   staggerItem,
   useScrollAnimation,
-} from '@workspace/ui/hooks/use-scroll-animation'
+} from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
 import { stats, values } from '@/features/landing/data'
 

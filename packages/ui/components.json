@@ -11,11 +11,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@workspace/ui/components",
-    "utils": "@workspace/ui/lib/utils",
-    "hooks": "@workspace/ui/hooks",
-    "lib": "@workspace/ui/lib",
-    "ui": "@workspace/ui/components"
+    "components": "@olis/ui/components",
+    "utils": "@olis/ui/lib/utils",
+    "hooks": "@olis/ui/hooks",
+    "lib": "@olis/ui/lib",
+    "ui": "@olis/ui/components"
   },
   "registries": {
     "@tailark": "https://tailark.com/r/{name}.json"

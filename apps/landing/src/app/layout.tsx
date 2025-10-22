@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Toaster } from '@workspace/ui/components/sonner'
+import { Toaster } from '@olis/ui/components/sonner'
 import { Nunito, Syne } from 'next/font/google'
-import { Providers } from '@/shared/providers/providers'
+import { Providers } from '@/shared/components/providers'
 
-import '@workspace/ui/globals.css'
+import '@olis/ui/globals.css'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -43,6 +43,7 @@ export default function RootLayout({
       <html
         lang="en"
         className="scroll-smooth dark"
+        suppressHydrationWarning
       >
         <body
           className={`${nunito.variable} ${nunito.className} ${syne.variable} font-sans antialiased`}

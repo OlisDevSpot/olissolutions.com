@@ -1,8 +1,8 @@
 import type { VariantProps } from 'class-variance-authority'
 import { Slot } from '@radix-ui/react-slot'
-import { Separator } from '@workspace/ui/components/separator'
+import { Separator } from '@olis/ui/components/separator'
 
-import { cn } from '@workspace/ui/lib/utils'
+import { cn } from '@olis/ui/lib/utils'
 import { cva } from 'class-variance-authority'
 import * as React from 'react'
 

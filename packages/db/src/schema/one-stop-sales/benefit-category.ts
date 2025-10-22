@@ -1,13 +1,14 @@
 import type z from 'zod'
 
-import { accessor, unsafeId } from '@workspace/db/lib/schema-helpers'
+import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { accessor, unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-import { pgTable, varchar } from 'drizzle-orm/pg-core'
 
+import { varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { benefits } from './benefit'
 
-export const benefitCategories = pgTable('benefit_category', {
+export const benefitCategories = oneStopSalesSchema.table('benefit_category', {
   id: unsafeId,
   accessor: accessor.unique(),
   label: varchar('label', { length: 80 }).notNull(),
