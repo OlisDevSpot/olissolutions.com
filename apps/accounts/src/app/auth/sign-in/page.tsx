@@ -1,15 +1,20 @@
 'use client'
 
 import type { LoginFormSchema } from '@olis/types/schemas/auth-forms'
-import { signIn } from '@olis/auth/client'
+import { signIn, useSession } from '@olis/auth/client'
 import { SignInForm } from '@olis/ui/components/global/forms/sign-in-form'
-import { useRouter } from 'next/navigation'
+import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
 export default function SigninPage() {
+  const { data: session, isPending: isSessionPending } = useSession()
   const [isPending, setIsPending] = useState(false)
+  const searchParams = useSearchParams()
+  const redirectTo = decodeURIComponent(searchParams.get('redirect_to') || '') || `${process.env.NEXT_PUBLIC_LANDING_URL!}/dashboard`
   const router = useRouter()
+
   async function onSubmit(data: LoginFormSchema) {
     await signIn.email({
       email: data.email,
@@ -26,10 +31,18 @@ export default function SigninPage() {
       },
       onSuccess: () => {
         toast.success('Login successful')
-        router.push('/dashboard')
+        router.push(`${redirectTo}`)
       },
     })
   }
+  if (isSessionPending) {
+    return <LoadingState title="Loading..." />
+  }
+
+  if (session && !isSessionPending) {
+    return router.push(`${redirectTo}`)
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
       <SignInForm onSubmitCallback={onSubmit} isPending={isPending} />

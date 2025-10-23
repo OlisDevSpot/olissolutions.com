@@ -1,14 +1,14 @@
 {
   "extends": "@olis/typescript-config/base.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
     "baseUrl": ".",
+    "rootDir": "./src",
     "moduleResolution": "bundler",
     "module": "esnext",
     "paths": {
       "@olis/services/*": ["./src/*"]
-    }
+    },
+    "outDir": "./dist"
   },
   "exclude": ["node_modules", "dist"]
 }

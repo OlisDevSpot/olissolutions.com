@@ -1,4 +1,5 @@
 'use client'
+
 import { Button } from '@olis/ui/components/button'
 import { cn } from '@olis/ui/lib/utils'
 import { Menu, X } from 'lucide-react'
@@ -22,8 +23,22 @@ interface Props {
 export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/dashboard' }: Props) {
   const [menuState, setMenuState] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
   const { scrollYProgress } = useScroll()
+  const [redirectTo] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return encodeURI(window.location.href)
+    }
+    return false as const
+  })
+
+  useEffect(() => {
+    const signInAnchor = document.getElementById('sign-in-button') as HTMLAnchorElement
+    const signUpAnchor = document.getElementById('sign-up-button') as HTMLAnchorElement
+    if (redirectTo && signInAnchor && signUpAnchor) {
+      signInAnchor.href = `${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in?redirect_to=${redirectTo}`
+      signUpAnchor.href = `${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-up?redirect_to=${redirectTo}`
+    }
+  }, [redirectTo])
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on('change', (latest) => {
@@ -109,7 +124,7 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                           size="sm"
                           asChild
                         >
-                          <a href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in?redirect_to=${encodeURI(window.location.href)}`}>
+                          <a id="sign-in-button" href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in`}>
                             <span>Sign In</span>
                           </a>
                         </Button>
@@ -118,7 +133,7 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                           size="sm"
                           asChild
                         >
-                          <a href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-up?redirect_to=${encodeURI(window.location.href)}`}>
+                          <a id="sign-up-button" href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-up`}>
                             <span>Sign Up</span>
                           </a>
                         </Button>

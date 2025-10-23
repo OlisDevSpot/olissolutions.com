@@ -39,24 +39,24 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <Providers>
-      <html
-        lang="en"
-        className="scroll-smooth dark"
-        suppressHydrationWarning
+    <html
+      lang="en"
+      className="scroll-smooth dark"
+      suppressHydrationWarning
+    >
+      <body
+        className={`${nunito.variable} ${nunito.className} ${syne.variable} font-sans antialiased`}
+        style={
+          {
+            '--navbar-height': '64px',
+          } as React.CSSProperties
+        }
       >
-        <body
-          className={`${nunito.variable} ${nunito.className} ${syne.variable} font-sans antialiased`}
-          style={
-            {
-              '--navbar-height': '64px',
-            } as React.CSSProperties
-          }
-        >
+        <Providers>
           <Toaster />
           {children}
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   )
 }

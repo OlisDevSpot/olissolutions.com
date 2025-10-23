@@ -160,7 +160,7 @@ export function DashboardSidebarMobile() {
                       isActive(item.href) && 'bg-accent text-accent-foreground',
                     )}
                   >
-                    <item.icon className="h-4 w-4 flex-shrink-0" />
+                    <item.icon className="h-4 w-4 shrink-0" />
                     {isOpen && (
                       <motion.div
                         initial={{ opacity: 0 }}

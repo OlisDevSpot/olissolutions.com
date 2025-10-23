@@ -5,6 +5,7 @@ import { factory } from '@olis/server/lib/create-app'
 import { signInEmailValidator, signUpEmailValidator } from './validators'
 
 export const signUp = factory.createHandlers(signUpEmailValidator, async (c) => {
+  console.log('signUp!!!')
   const { email, password, name } = c.req.valid('json')
   const response = await auth.api.signUpEmail({ body: { email, password, name }, returnHeaders: true })
   // No cookie in header on sign up as verification needed

@@ -7,8 +7,8 @@ import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { solutionQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api.solutions[':id{[0-9]+}']['$get']>
-export type Response = InferResponseType<typeof honoClient.api.solutions[':id{[0-9]+}']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['solutions'][':id{[0-9]+}']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['solutions'][':id{[0-9]+}']['$get'], 200>
 
 export function getSolutionQueryOptions(
   solutionId: number,
@@ -19,7 +19,7 @@ export function getSolutionQueryOptions(
     ...options,
     queryKey: solutionQueryKeys.byId(solutionId),
     queryFn: async () => {
-      const res = await honoClient.api.solutions[':id{[0-9]+}'].$get({ param: {
+      const res = await honoClient.api['one-stop-sales'].solutions[':id{[0-9]+}'].$get({ param: {
         id: String(solutionId),
       } })
 

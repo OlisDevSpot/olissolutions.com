@@ -1,7 +1,7 @@
-import type { BenefitCategoryAccessor } from '@olis/db/types/benefits'
-
 import type { DB } from '@olis/db'
+
 import type { InsertBenefit } from '@olis/db/schema/one-stop-sales'
+import type { BenefitCategoryAccessor } from '@olis/db/types/benefits'
 
 import { benefits } from '@olis/db/schema/one-stop-sales/index'
 

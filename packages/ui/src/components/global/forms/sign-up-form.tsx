@@ -31,6 +31,7 @@ export function SignupForm({
       email: '',
       password: '',
     },
+    disabled: isPending,
   })
 
   return (
@@ -55,7 +56,7 @@ export function SignupForm({
                       <FormItem>
                         <FormLabel>Full name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -68,7 +69,7 @@ export function SignupForm({
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="johndoe@example.com" {...field} />
+                          <Input placeholder="johndoe@example.com" {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -89,13 +90,13 @@ export function SignupForm({
                           </a>
                         </div>
                         <FormControl>
-                          <Input type="password" placeholder="******" {...field} />
+                          <Input type="password" placeholder="******" {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full" disabled={isPending}>
                     Sign up
                   </Button>
                   <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">

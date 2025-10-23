@@ -1,11 +1,11 @@
-import { useGetTrades } from "@/shared/entities/trades/data/queries/get-trades";
+import { useGetTrades } from '@olis/data-client/queries/trades/get-trades'
 
 export function useGetTradeById(id: number) {
-  const trades = useGetTrades();
+  const trades = useGetTrades()
 
   if (!trades.data) {
-    return null;
+    return null
   }
 
-  return trades.data.find(trade => trade.id === id);
+  return trades.data.find(trade => trade.id === id)
 }

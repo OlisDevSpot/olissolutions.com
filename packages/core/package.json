@@ -3,13 +3,23 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./constants/*": "./src/constants/*.ts",
-    "./entities/*": "./src/entities/*.ts",
-    "./types": "./src/types/index.ts",
-    "./services/*": "./src/services/*.ts",
-    "./lib/*": "./src/lib/*.ts"
+    "./constants/*": {
+      "types": "./dist/constants/*.d.ts",
+      "default": "./dist/constants/*.js"
+    },
+    "./services/*": {
+      "types": "./dist/services/*.d.ts",
+      "default": "./dist/services/*.js"
+    },
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./dist/lib/*.js"
+    },
+    "./types": "./src/types/index.ts"
   },
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

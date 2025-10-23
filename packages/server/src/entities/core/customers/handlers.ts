@@ -1,5 +1,4 @@
 import { factory } from '@olis/server/lib/create-app'
-
 import * as repository from './repository'
 import { createCustomerValidator, idParam, updateCustomerValidator } from './validators'
 
@@ -53,7 +52,7 @@ export const updateOne = factory.createHandlers(idParam, updateCustomerValidator
     return c.json({ error: 'Customer not updated' }, 404)
   }
 
-  return c.json(updatedCustomer)
+  return c.json(updatedCustomer, 200)
 })
 
 export const deleteOne = factory.createHandlers(idParam, async (c) => {

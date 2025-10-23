@@ -1,8 +1,10 @@
 'use client'
 
-import { UserButton, useUser } from '@clerk/nextjs'
+import { useSession } from '@olis/auth/client'
 import { Badge } from '@olis/ui/components/badge'
 import { Button } from '@olis/ui/components/button'
+import { LogoutButton } from '@olis/ui/components/buttons/logout-button'
+import { LoadingState } from '@olis/ui/components/global/loading-state'
 import { Logo } from '@olis/ui/components/global/logo'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { motion } from 'motion/react'
@@ -15,7 +17,12 @@ import { cn } from '@/shared/lib/utils'
 export function DashboardSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const pathname = usePathname()
-  const { user } = useUser()
+  const { data: session, isPending } = useSession()
+  const user = session?.user
+
+  if (isPending) {
+    return <LoadingState title="Loading sidebar..." />
+  }
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -61,13 +68,6 @@ export function DashboardSidebar() {
         {/* User Profile */}
         <div className="p-4 border-b border-border">
           <div className="flex items-center space-x-3">
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: 'w-10 h-10',
-                },
-              }}
-            />
             {!isCollapsed && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -76,12 +76,10 @@ export function DashboardSidebar() {
                 className="flex-1 min-w-0"
               >
                 <p className="text-sm font-medium text-foreground truncate">
-                  {user?.firstName}
-                  {' '}
-                  {user?.lastName}
+                  {user?.name}
                 </p>
                 <p className="text-xs text-muted-foreground truncate">
-                  {user?.primaryEmailAddress?.emailAddress}
+                  {user?.email}
                 </p>
               </motion.div>
             )}
@@ -118,7 +116,7 @@ export function DashboardSidebar() {
                       isActive(item.href) && 'bg-accent text-accent-foreground',
                     )}
                   >
-                    <item.icon className="h-4 w-4 flex-shrink-0" />
+                    <item.icon className="h-4 w-4 shrink-0" />
                     {!isCollapsed && (
                       <motion.div
                         initial={{ opacity: 0 }}
@@ -180,6 +178,7 @@ export function DashboardSidebar() {
             </motion.div>
           )}
         </div>
+        <LogoutButton />
       </motion.aside>
     </>
   )

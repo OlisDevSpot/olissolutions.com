@@ -2,15 +2,15 @@
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "@olis/typescript-config/base.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "noImplicitAny": false,
     "baseUrl": ".",
-    "moduleResolution": "bundler",
+    "rootDir": "./src",
     "module": "esnext",
+    "moduleResolution": "bundler",
     "paths": {
-      "@olis/core/*": ["./src/*"]
-    }
+      "@olis/data-client/*": ["./src/*"]
+    },
+    "noImplicitAny": false,
+    "outDir": "./dist"
   },
   "exclude": ["node_modules", "dist"]
 }

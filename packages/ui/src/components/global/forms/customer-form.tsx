@@ -1,24 +1,27 @@
 'use client'
 
-import type { CustomerFormSchema } from '../../../../../types/src/schemas/customers-forms'
+import type { CustomerFormSchema } from '@olis/types/schemas/customers-forms'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useGetProjectCustomers } from '@olis/data-client/'
+
+import { useUpdateCustomer } from '@olis/data-client/mutations/customers/use-update-customer'
+import { customerFormSchema } from '@olis/types/schemas/customers-forms'
 import { Button } from '@olis/ui/components/button'
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'
-
 import { Input } from '@olis/ui/components/input'
+import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useGetProjectCustomers } from '@/features/project-creator/data/queries/get-project-customers'
-import { useCurrentProjectId } from '@/features/project-creator/hooks/use-current-project-id'
-import { useUpdateCustomer } from '@/shared/entities/customers/data/mutations/use-update-customer'
-import { customerFormSchema } from '../../../../../types/src/schemas/customers-forms'
+import { toast } from 'sonner'
 
-export function CustomerForm() {
-  const projectId = useCurrentProjectId()
+interface Props {
+  projectId: string
+}
+
+export function UpdateCustomerForm({ projectId }: Props) {
   const { data: customers } = useGetProjectCustomers(projectId)
   const mutation = useUpdateCustomer(customers?.[0]?.customer?.id || '')
-
+  const queryClient = useQueryClient()
   const form = useForm<CustomerFormSchema>({
     resolver: zodResolver(customerFormSchema),
     defaultValues: {
@@ -42,14 +45,19 @@ export function CustomerForm() {
       form.setValue('email', customer.email || '')
       form.setValue('phoneNum', customer.phoneNum || '')
     }
-  }, [customers])
+  }, [customers, form])
 
   if (!customers) {
     return null
   }
 
   function onSubmit(data: CustomerFormSchema) {
-    mutation.mutate(data)
+    mutation.mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['project'] })
+        toast.success('Customer updated')
+      },
+    })
   }
 
   return (

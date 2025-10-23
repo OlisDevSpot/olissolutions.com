@@ -15,7 +15,34 @@ export function createRouter() {
 export function createApp() {
   const app = new Hono<AppBindings>().basePath('/api')
 
-  app.use(cors())
+  app.use('*', async (c, next) => {
+    console.log('CORS middleware ran for', c.req.method, c.req.path)
+    return next()
+  })
+
+  app.use(cors({
+    origin: process.env.NODE_ENV === 'production'
+      ? [
+          'https://*.olissolutions.com',
+        ]
+      : [
+          'http://localhost:3000',
+          'http://localhost:3001',
+          'http://localhost:3002',
+          'http://localhost:3003',
+          'http://localhost:3004',
+        ],
+    credentials: true,
+    allowMethods: ['POST', 'GET', 'OPTIONS'],
+  }))
+
+  app.options('*', (c) => {
+    c.header('Access-Control-Allow-Origin', c.req.header('Origin') || '')
+    c.header('Access-Control-Allow-Credentials', 'true')
+    c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE,PATCH')
+    c.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,Cookie')
+    return c.text('', 204)
+  })
 
   app.notFound(notFound)
   app.onError(onError)

@@ -3,10 +3,22 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/index.ts",
-    "./queries/*": "./src/queries/*.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./queries/*": {
+      "types": "./dist/queries/*.d.ts",
+      "default": "./dist/queries/*.js"
+    },
+    "./mutations/*": {
+      "types": "./dist/mutations/*.d.ts",
+      "default": "./dist/mutations/*.js"
+    }
   },
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "peerDependencies": {

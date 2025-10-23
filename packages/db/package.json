@@ -3,18 +3,47 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/index.ts",
-    "./schema": "./src/schema/index.ts",
-    "./schema/core": "./src/schema/core/index.ts",
-    "./schema/core/*": "./src/schema/core/*.ts",
-    "./schema/one-stop-sales": "./src/schema/one-stop-sales/index.ts",
-    "./schema/one-stop-sales/*": "./src/schema/one-stop-sales/*.ts",
-    "./seeds/one-stop-sales": "./src/seeds/one-stop-sales/index.ts",
-    "./seeds/one-stop-sales/*": "./src/seeds/one-stop-sales/*.ts",
-    "./lib/*": "./src/lib/*.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "default": "./dist/schema/index.js"
+    },
+    "./schema/core": {
+      "types": "./dist/schema/core/index.d.ts",
+      "default": "./dist/schema/core/index.js"
+    },
+    "./schema/core/*": {
+      "types": "./dist/schema/core/*.d.ts",
+      "default": "./dist/schema/core/*.js"
+    },
+    "./schema/one-stop-sales": {
+      "types": "./dist/schema/one-stop-sales/index.d.ts",
+      "default": "./dist/schema/one-stop-sales/index.js"
+    },
+    "./schema/one-stop-sales/*": {
+      "types": "./dist/schema/one-stop-sales/*.d.ts",
+      "default": "./dist/schema/one-stop-sales/*.js"
+    },
+    "./seeds/one-stop-sales": {
+      "types": "./dist/seeds/one-stop-sales/index.d.ts",
+      "default": "./dist/seeds/one-stop-sales/index.js"
+    },
+    "./seeds/one-stop-sales/*": {
+      "types": "./dist/seeds/one-stop-sales/*.d.ts",
+      "default": "./dist/seeds/one-stop-sales/*.js"
+    },
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./dist/lib/*.js"
+    },
     "./types": "./src/types/index.ts"
   },
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx ./src/lib/seed.ts",

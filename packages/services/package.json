@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "exports": {
-    "./resend": "./src/resend/index.ts"
+    "./resend": {
+      "types": "./dist/resend/index.d.ts",
+      "default": "./dist/resend/index.js"
+    }
   },
   "devDependencies": {
     "@types/node": "^24.9.1",

@@ -3,13 +3,27 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/app.ts",
-    "./hono-client": "./src/hono-client.ts",
-    "./lib/*": "./src/lib/*.ts",
-    "./routes/*": "./src/routes/*.ts",
+    ".": {
+      "types": "./dist/app.d.ts",
+      "default": "./dist/app.js"
+    },
+    "./hono-client": {
+      "types": "./dist/hono-client.d.ts",
+      "default": "./dist/hono-client.js"
+    },
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./dist/lib/*.js"
+    },
+    "./routes/*": {
+      "types": "./dist/routes/*.d.ts",
+      "default": "./dist/routes/*.js"
+    },
     "./types": "./src/types/index.ts"
   },
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

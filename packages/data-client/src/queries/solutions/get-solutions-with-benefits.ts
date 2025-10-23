@@ -7,8 +7,8 @@ import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { solutionQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api.solutions['with-benefits']['$get']>
-export type Response = InferResponseType<typeof honoClient.api.solutions['with-benefits']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['solutions']['with-benefits']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['solutions']['with-benefits']['$get'], 200>
 
 export function getSolutionsWithBenefitsQueryOptions(
   options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
@@ -18,7 +18,7 @@ export function getSolutionsWithBenefitsQueryOptions(
     ...options,
     queryKey: solutionQueryKeys.allWithBenefits,
     queryFn: async () => {
-      const res = await honoClient.api.solutions['with-benefits'].$get()
+      const res = await honoClient.api['one-stop-sales'].solutions['with-benefits'].$get()
 
       if (!res.ok) {
         throw new Error('Trades not found')

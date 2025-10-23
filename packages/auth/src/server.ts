@@ -1,3 +1,4 @@
+import type { AdapterFactory } from 'better-auth/adapters'
 import { db } from '@olis/db'
 import * as schema from '@olis/db/schema/core/auth'
 import { betterAuth } from 'better-auth'
@@ -7,7 +8,7 @@ import { nextCookies } from 'better-auth/next-js'
 import { openAPI } from 'better-auth/plugins'
 
 export const auth = betterAuth({
-  adapter: drizzleAdapter(db, {
+  database: drizzleAdapter(db, {
     schema,
     provider: 'pg',
   }),
@@ -15,6 +16,29 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: false,
   },
+  secret: process.env.BETTER_AUTH_SECRET!,
+  baseURL: process.env.BETTER_AUTH_BASE_URL!,
+  plugins: [
+    openAPI(),
+    nextCookies(),
+  ],
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+    },
+  },
+  trustedOrigins: process.env.NODE_ENV === 'production'
+    ? [
+        'https://*.olissolutions.com',
+      ]
+    : [
+        'http://localhost:3000',
+        'http://localhost:3001',
+        'http://localhost:3002',
+        'http://localhost:3003',
+        'http://localhost:3004',
+
+      ],
   /*
   emailVerification: {
     sendOnSignUp: true,
@@ -65,10 +89,6 @@ export const auth = betterAuth({
   //     },
   //   },
   // },
-  plugins: [
-    openAPI(),
-    nextCookies(),
-  ],
 })
 
 export type Auth = typeof auth

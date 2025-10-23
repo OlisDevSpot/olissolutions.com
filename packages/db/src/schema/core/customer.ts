@@ -22,11 +22,9 @@ export const customerRelations = relations(customers, ({ many }) => ({
   x_projectCustomers: many(x_projectCustomers),
 }))
 
-export type Customer = typeof customers.$inferSelect
 export const selectCustomerSchema = createSelectSchema(customers)
-export type SelectCustomerSchema = z.infer<typeof selectCustomerSchema>
+export type Customer = z.infer<typeof selectCustomerSchema>
 
-export type CustomerInsert = typeof customers.$inferInsert
 export const insertCustomerSchema = createInsertSchema(customers).omit({
   id: true,
   createdAt: true,

@@ -9,5 +9,6 @@ export default antfu({
     'react/no-unstable-context-value': 'off',
     'react/no-array-index-key': 'off',
     'react/no-nested-component-definitions': 'off',
+    'node/prefer-global/process': 'off',
   },
 })
