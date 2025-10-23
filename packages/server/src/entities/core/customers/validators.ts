@@ -1,4 +1,3 @@
-import type { InferInput } from '@olis/server/types'
 import { zValidator } from '@hono/zod-validator'
 
 import { insertCustomerSchema } from '@olis/db/schema/core'
@@ -22,6 +21,3 @@ export const updateCustomerValidator = zValidator('json', insertCustomerSchema.p
     return c.json({ errors: result.error.issues.map(issue => ({ path: issue.path[0], message: issue.message })) }, 400)
   }
 })
-
-// export type CreateCustomerValidator = InferInput<typeof createCustomerValidator>
-// export type UpdateCustomerValidator = InferInput<typeof updateCustomerValidator>

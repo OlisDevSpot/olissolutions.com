@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { roofLocations, roofTypes } from '@olis/core/constants/enums'
+import { roofLocations, roofTypes } from '@olis/core/constants'
 import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 

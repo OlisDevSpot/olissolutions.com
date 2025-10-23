@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { userRoles } from '@olis/core/constants/enums'
+import { userRoles } from '@olis/core/constants'
 import {
   boolean,
   pgEnum,

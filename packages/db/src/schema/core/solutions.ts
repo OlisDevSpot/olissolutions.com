@@ -1,5 +1,5 @@
 import type * as z from 'zod'
-import { easeOfUse } from '@olis/core/constants/enums'
+import { easeOfUse } from '@olis/core/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { boolean, pgEnum, pgTable, real, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'

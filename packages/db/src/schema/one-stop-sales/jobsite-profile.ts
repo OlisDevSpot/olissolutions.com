@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { electricProviders, foundationTypes, hvacComponents, hvacTypes, insulationLevels, windowsTypes } from '@olis/core/constants/enums'
+import { electricProviders, foundationTypes, hvacComponents, hvacTypes, insulationLevels, windowsTypes } from '@olis/core/constants'
 import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 

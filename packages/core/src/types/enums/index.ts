@@ -13,7 +13,7 @@ import type {
   variableDataTypes,
   variableGroups,
   windowsTypes,
-} from '@olis/core/constants/enums'
+} from '@olis/core/constants'
 
 export type EaseOfUse = (typeof easeOfUse)[number]
 export type UserRole = (typeof userRoles)[number]

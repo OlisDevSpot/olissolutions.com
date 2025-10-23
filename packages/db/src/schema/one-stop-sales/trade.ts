@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { tradeLocations } from '@olis/core/constants/enums'
+import { tradeLocations } from '@olis/core/constants'
 import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 

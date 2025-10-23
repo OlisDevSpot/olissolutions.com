@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./constants/*": {
-      "types": "./dist/constants/*.d.ts",
-      "default": "./dist/constants/*.js"
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "default": "./dist/constants/index.js"
     },
     "./services/*": {
       "types": "./dist/services/*.d.ts",

@@ -1,4 +1,4 @@
-import { variableDataTypes } from '@olis/core/constants/enums'
+import { variableDataTypes } from '@olis/core/constants'
 import { oneStopSalesSchema } from '@olis/db/lib/constants'
 
 import { unsafeId } from '@olis/db/lib/schema-helpers'
