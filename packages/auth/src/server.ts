@@ -39,20 +39,18 @@ export const auth = betterAuth({
         'http://localhost:3004',
 
       ],
-  /*
-  emailVerification: {
-    sendOnSignUp: true,
-    autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url }) => {
-      resend.emails.send({
-        from: "onboarding@resend.dev",
-        to: user.email,
-        subject: "Verify your email address",
-        html: `<p>Click the link to verify your email: ${url}</p>`,
-      });
-    },
-  },
-  */
+  // emailVerification: {
+  //   sendOnSignUp: true,
+  //   autoSignInAfterVerification: true,
+  //   sendVerificationEmail: async ({ user, url }) => {
+  //     resend.emails.send({
+  //       from: 'onboarding@resend.dev',
+  //       to: user.email,
+  //       subject: 'Verify your email address',
+  //       html: `<p>Click the link to verify your email: ${url}</p>`,
+  //     })
+  //   },
+  // },
   // socialProviders: {
   //   github: {
   //     clientId: process.env.GITHUB_CLIENT_ID!,
