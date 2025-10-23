@@ -1,8 +1,8 @@
 'use client'
 
+import type { Customer } from '@olis/db/schema/core'
 import type { CustomerFormSchema } from '@olis/types/schemas/customers-forms'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useGetProjectCustomers } from '@olis/data-client/'
 
 import { useUpdateCustomer } from '@olis/data-client/mutations/customers/use-update-customer'
 import { customerFormSchema } from '@olis/types/schemas/customers-forms'
@@ -15,41 +15,28 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 interface Props {
-  projectId: string
+  customer: Customer
 }
 
-export function UpdateCustomerForm({ projectId }: Props) {
-  const { data: customers } = useGetProjectCustomers(projectId)
-  const mutation = useUpdateCustomer(customers?.[0]?.customer?.id || '')
+export function UpdateCustomerForm({ customer }: Props) {
+  const mutation = useUpdateCustomer(customer.id || '')
   const queryClient = useQueryClient()
   const form = useForm<CustomerFormSchema>({
     resolver: zodResolver(customerFormSchema),
     defaultValues: {
-      firstName: customers?.[0]?.customer?.firstName || '',
-      lastName: customers?.[0]?.customer?.lastName || '',
-      email: customers?.[0]?.customer?.email || '',
-      phoneNum: customers?.[0]?.customer?.phoneNum || '',
+      firstName: customer.firstName || '',
+      lastName: customer.lastName || '',
+      email: customer?.email || '',
+      phoneNum: customer?.phoneNum || '',
     },
   })
 
   useEffect(() => {
-    if (customers?.[0]) {
-      const { customer } = customers?.[0]
-
-      if (!customer) {
-        return
-      }
-
-      form.setValue('firstName', customer.firstName)
-      form.setValue('lastName', customer.lastName)
-      form.setValue('email', customer.email || '')
-      form.setValue('phoneNum', customer.phoneNum || '')
-    }
-  }, [customers, form])
-
-  if (!customers) {
-    return null
-  }
+    form.setValue('firstName', customer.firstName)
+    form.setValue('lastName', customer.lastName)
+    form.setValue('email', customer?.email || '')
+    form.setValue('phoneNum', customer?.phoneNum || '')
+  }, [])
 
   function onSubmit(data: CustomerFormSchema) {
     mutation.mutate(data, {
