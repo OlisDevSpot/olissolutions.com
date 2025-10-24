@@ -1,12 +1,12 @@
-import type { InsertCustomerSchema } from '@olis/db/schema/core'
+import type { InsertCustomerSchema } from '../../../../../db/dist/schema/platform'
 import type { InsertFinancialProfileSchema, InsertJobsiteProfileSchema, InsertJobsiteRoofSchema, InsertProject, InsertXProjectSolutionSchema } from '@olis/db/schema/one-stop-sales'
 
-import type { JoinTables } from '@olis/server/features/project-creator/types'
+import type { JoinTables } from '@olis/server/routers/features/project-creator/types'
 import type { TableFilters } from '@olis/server/types'
 import type { Column, SQL } from 'drizzle-orm'
 
 import { db } from '@olis/db'
-import { customers } from '@olis/db/schema/core'
+import { customers } from '../../../../../db/dist/schema/platform'
 import { financialProfiles, fullAddress, jobsiteProfiles, jobsiteRoofs, projects, x_projectCustomers, x_projectSolutions } from '@olis/db/schema/one-stop-sales'
 import { and, desc, eq, getTableColumns } from 'drizzle-orm'
 

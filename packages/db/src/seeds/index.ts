@@ -1,2 +1,3 @@
-export * as core from './core'
+export * as identity from './identity'
 export * as oneStopSales from './one-stop-sales'
+export * as platform from './platform'

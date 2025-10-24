@@ -7,15 +7,14 @@ import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
 import {
   integer,
-  pgEnum,
   uuid,
 } from 'drizzle-orm/pg-core'
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
 
-export const roofLocationEnum = pgEnum('roof_location', roofLocations)
-export const roofTypeEnum = pgEnum('roof_type', roofTypes)
+export const roofLocationEnum = oneStopSalesSchema.enum('roof_location', roofLocations)
+export const roofTypeEnum = oneStopSalesSchema.enum('roof_type', roofTypes)
 
 export const jobsiteRoofs = oneStopSalesSchema.table('jobsite_roof', {
   id,

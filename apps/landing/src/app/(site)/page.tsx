@@ -133,7 +133,7 @@ export default function HomePage() {
                             key={feature}
                             className="flex items-center text-sm"
                           >
-                            <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                            <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
                             {feature}
                           </div>
                         ))}
@@ -154,7 +154,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-green-900/20 via-emerald-900/20 to-teal-900/20">
+      <section className="py-20 bg-linear-to-br from-green-900/20 via-emerald-900/20 to-teal-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll
             variants={fadeInUp}
@@ -340,7 +340,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-red-900/20 via-orange-900/20 to-yellow-900/20">
+      <section className="py-20 bg-linear-to-br from-red-900/20 via-orange-900/20 to-yellow-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll
             variants={scaleIn}
@@ -413,7 +413,7 @@ export default function HomePage() {
                   <Button
                     asChild
                     size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg px-8 py-4 h-auto shadow-xl"
+                    className="bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg px-8 py-4 h-auto shadow-xl"
                   >
                     <Link href="/sign-in">
                       Claim Your Elite Access

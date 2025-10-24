@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { selectUserSchema } from '@olis/db/schema/core'
+import { selectUserSchema } from '../../../../../../packages/db/dist/schema/platform'
 
 export const generalSettingsFormSchema = selectUserSchema.pick({
   name: true,

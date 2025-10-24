@@ -5,14 +5,14 @@
     ".": "./src/index.ts",
     "./schemas/*": "./src/schemas/*.ts"
   },
-  "devDependencies": {
-    "typescript": "5.9.3",
-    "@olis/typescript-config": "workspace:*",
-    "@antfu/eslint-config": "^6.0.0",
-    "eslint": "^9.37.0",
-    "eslint-plugin-format": "^1.0.2"
-  },
   "dependencies": {
     "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@olis/typescript-config": "workspace:*",
+    "eslint": "^9.37.0",
+    "eslint-plugin-format": "^1.0.2",
+    "typescript": "5.9.3"
   }
 }

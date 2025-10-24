@@ -3,21 +3,17 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
     "./get-query-client": {
       "types": "./dist/lib/get-query-client.d.ts",
       "default": "./dist/lib/get-query-client.js"
     },
-    "./queries/*": {
-      "types": "./dist/queries/*.d.ts",
-      "default": "./dist/queries/*.js"
+    "./fetchers/core/*": {
+      "types": "./dist/fetchers/core/*.d.ts",
+      "default": "./dist/fetchers/core/*.js"
     },
-    "./mutations/*": {
-      "types": "./dist/mutations/*.d.ts",
-      "default": "./dist/mutations/*.js"
+    "./fetchers/one-stop-sales/*": {
+      "types": "./dist/fetchers/one-stop-sales/*.d.ts",
+      "default": "./dist/fetchers/one-stop-sales/*.js"
     }
   },
   "scripts": {

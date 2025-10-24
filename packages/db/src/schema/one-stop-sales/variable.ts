@@ -6,12 +6,11 @@ import { relations } from 'drizzle-orm'
 
 import {
   jsonb,
-  pgEnum,
   varchar,
 } from 'drizzle-orm/pg-core'
-import { x_solutionVariables } from './x-solution-variable'
+import { x_scopeVariables } from './x-scope-variables'
 
-export const dataTypeEnum = pgEnum('data_type', variableDataTypes)
+export const dataTypeEnum = oneStopSalesSchema.enum('data_type', variableDataTypes)
 
 export const variables = oneStopSalesSchema.table('variable', {
   id: unsafeId,
@@ -23,7 +22,7 @@ export const variables = oneStopSalesSchema.table('variable', {
 })
 
 export const variableRelations = relations(variables, ({ many }) => ({
-  x_solutionVariables: many(x_solutionVariables),
+  x_scopeVariables: many(x_scopeVariables),
 }))
 
 export type Variable = typeof variables.$inferSelect

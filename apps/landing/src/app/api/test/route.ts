@@ -1,5 +1,5 @@
 import { db } from '@olis/db'
-import { solutions } from '@olis/db/schema/core'
+import { solutions } from '../../../../../../packages/db/dist/schema/platform'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

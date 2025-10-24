@@ -8,7 +8,6 @@ import { relations } from 'drizzle-orm'
 import {
   boolean,
   integer,
-  pgEnum,
   uuid,
 } from 'drizzle-orm/pg-core'
 
@@ -16,12 +15,12 @@ import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteRoofs } from './jobsite-roof'
 import { projects } from './project'
 
-export const hvacTypeEnum = pgEnum('hvac_type', hvacTypes)
-export const hvacComponentsEnum = pgEnum('hvac_components', hvacComponents)
-export const windowsTypeEnum = pgEnum('windows_type', windowsTypes)
-export const insulationLevelEnum = pgEnum('insulation_level', insulationLevels)
-export const foundationTypeEnum = pgEnum('foundation_type', foundationTypes)
-export const electricProviderEnum = pgEnum('electric_provider', electricProviders)
+export const hvacTypeEnum = oneStopSalesSchema.enum('hvac_type', hvacTypes)
+export const hvacComponentsEnum = oneStopSalesSchema.enum('hvac_components', hvacComponents)
+export const windowsTypeEnum = oneStopSalesSchema.enum('windows_type', windowsTypes)
+export const insulationLevelEnum = oneStopSalesSchema.enum('insulation_level', insulationLevels)
+export const foundationTypeEnum = oneStopSalesSchema.enum('foundation_type', foundationTypes)
+export const electricProviderEnum = oneStopSalesSchema.enum('electric_provider', electricProviders)
 
 export const jobsiteProfiles = oneStopSalesSchema.table('jobsite_profile', {
   id,

@@ -1,4 +1,4 @@
-import { useGetTrades } from '@olis/data-client/queries/trades/get-trades'
+import { useGetTrades } from '../../../dist/fetchers/one-stop-sales/trades/queries/get-trades'
 
 export function useGetTradeById(id: number) {
   const trades = useGetTrades()

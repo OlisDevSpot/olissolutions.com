@@ -11,29 +11,29 @@
       "types": "./dist/schema/index.d.ts",
       "default": "./dist/schema/index.js"
     },
-    "./schema/core": {
-      "types": "./dist/schema/core/index.d.ts",
-      "default": "./dist/schema/core/index.js"
+    "./schema/platform": {
+      "types": "./dist/schema/platform/index.d.ts",
+      "default": "./dist/schema/platform/index.js"
     },
-    "./schema/core/*": {
-      "types": "./dist/schema/core/*.d.ts",
-      "default": "./dist/schema/core/*.js"
+    "./schema/identity": {
+      "types": "./dist/schema/identity/index.d.ts",
+      "default": "./dist/schema/identity/index.js"
     },
     "./schema/one-stop-sales": {
       "types": "./dist/schema/one-stop-sales/index.d.ts",
       "default": "./dist/schema/one-stop-sales/index.js"
     },
-    "./schema/one-stop-sales/*": {
-      "types": "./dist/schema/one-stop-sales/*.d.ts",
-      "default": "./dist/schema/one-stop-sales/*.js"
+    "./seeds/platform": {
+      "types": "./dist/seeds/platform/index.d.ts",
+      "default": "./dist/seeds/platform/index.js"
+    },
+    "./seeds/identity": {
+      "types": "./dist/seeds/identity/index.d.ts",
+      "default": "./dist/seeds/identity/index.js"
     },
     "./seeds/one-stop-sales": {
       "types": "./dist/seeds/one-stop-sales/index.d.ts",
       "default": "./dist/seeds/one-stop-sales/index.js"
-    },
-    "./seeds/one-stop-sales/*": {
-      "types": "./dist/seeds/one-stop-sales/*.d.ts",
-      "default": "./dist/seeds/one-stop-sales/*.js"
     },
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
@@ -51,7 +51,7 @@
     "db:init-schemas": "dotenv -e .env tsx ./src/lib/init-schemas.ts"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.1",
+    "@neondatabase/serverless": "^1.0.2",
     "@olis/core": "workspace:*",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.6",

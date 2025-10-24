@@ -1,6 +1,6 @@
 'use client'
 
-import type { User } from '@olis/db/schema/core'
+import type { User } from '../../../../../../../packages/db/dist/schema/platform'
 import { useSession } from '@olis/auth/client'
 import { GeneralSettingsForm } from '@/features/account-management/ui/components/forms/general-settings-form'
 

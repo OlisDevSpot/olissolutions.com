@@ -2,15 +2,15 @@ import type z from 'zod'
 
 import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-import { user } from '@olis/db/schema/core/auth'
+import { user } from '@olis/db/schema/identity'
 
 import { relations, sql } from 'drizzle-orm'
 
 import { text, varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
-import { x_projectCustomers } from './x-project-customer'
-import { x_projectSolutions } from './x-project-solution'
+import { x_projectCustomers } from './x-project-customers'
+import { x_projectScopes } from './x-project-scopes'
 
 export const projects = oneStopSalesSchema.table('project', {
   id,
@@ -36,7 +36,7 @@ export const projectRelations = relations(projects, ({ many, one }) => ({
     fields: [projects.id],
     references: [jobsiteProfiles.projectId],
   }),
-  x_projectSolutions: many(x_projectSolutions),
+  x_projectScopes: many(x_projectScopes),
   x_projectCustomers: many(x_projectCustomers),
 }))
 

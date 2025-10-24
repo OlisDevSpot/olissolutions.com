@@ -4,7 +4,7 @@ import {
   psychologyConcepts,
   solutions,
   xSolutionsPsychologyConcepts,
-} from '@olis/db/schema/core'
+} from '../../../../../../packages/db/dist/schema/platform'
 import { eq, inArray } from 'drizzle-orm'
 
 export async function getAllSolutions(): Promise<

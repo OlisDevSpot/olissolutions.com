@@ -1,10 +1,10 @@
 'use client'
 
-import type { Customer } from '@olis/db/schema/core'
+import type { Customer } from '../../../../../db/dist/schema/platform'
 import type { CustomerFormSchema } from '@olis/types/schemas/customers-forms'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useUpdateCustomer } from '@olis/data-client/mutations/customers/use-update-customer'
+import { useUpdateCustomer } from '@olis/data-client/fetchers/core/customers/mutations/use-update-customer'
 import { customerFormSchema } from '@olis/types/schemas/customers-forms'
 import { Button } from '@olis/ui/components/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'
@@ -36,7 +36,7 @@ export function UpdateCustomerForm({ customer }: Props) {
     form.setValue('lastName', customer.lastName)
     form.setValue('email', customer?.email || '')
     form.setValue('phoneNum', customer?.phoneNum || '')
-  }, [])
+  }, [form, customer])
 
   function onSubmit(data: CustomerFormSchema) {
     mutation.mutate(data, {

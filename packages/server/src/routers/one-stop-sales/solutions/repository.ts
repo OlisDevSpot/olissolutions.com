@@ -6,7 +6,7 @@ import type { Column, SQL } from 'drizzle-orm'
 import { db } from '@olis/db'
 
 import { benefitCategories, benefits, solutions, trades, variables, x_projectSolutions, x_solutionBenefits } from '@olis/db/schema/one-stop-sales'
-import { x_solutionVariables } from '@olis/db/schema/one-stop-sales/x-solution-variable'
+import { x_solutionVariables } from '@olis/db/schema/one-stop-sales/x-scope-variables'
 import { and, asc, eq, getTableColumns } from 'drizzle-orm'
 
 export async function findAll() {

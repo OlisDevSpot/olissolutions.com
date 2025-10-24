@@ -1,8 +1,8 @@
-import type { InsertUser } from '@olis/db/schema/core'
+import type { InsertUser } from '../../../../../db/dist/schema/platform'
 
 import { db } from '@olis/db'
 
-import { user } from '@olis/db/schema/core'
+import { user } from '../../../../../db/dist/schema/platform'
 import { eq } from 'drizzle-orm'
 
 export async function findAll() {

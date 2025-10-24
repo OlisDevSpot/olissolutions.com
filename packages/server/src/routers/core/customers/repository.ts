@@ -1,7 +1,7 @@
-import type { InsertCustomerSchema } from '@olis/db/schema/core'
+import type { InsertCustomerSchema } from '../../../../../db/dist/schema/platform'
 
 import { db } from '@olis/db'
-import { customers } from '@olis/db/schema/core'
+import { customers } from '../../../../../db/dist/schema/platform'
 import { fullAddress, x_projectCustomers } from '@olis/db/schema/one-stop-sales'
 import { eq, getTableColumns } from 'drizzle-orm'
 

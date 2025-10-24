@@ -1,5 +1,5 @@
 import { zValidator } from '@hono/zod-validator'
-import { insertCustomerSchema } from '@olis/db/schema/core'
+import { insertCustomerSchema } from '../../../../../db/dist/schema/platform'
 import { insertFinancialProfileSchema, insertJobsiteProfileSchema, insertJobsiteRoofSchema, insertProjectSchema, insertXProjectSolutionSchema } from '@olis/db/schema/one-stop-sales'
 
 import z from 'zod'
