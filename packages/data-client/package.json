@@ -7,6 +7,10 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./get-query-client": {
+      "types": "./dist/lib/get-query-client.d.ts",
+      "default": "./dist/lib/get-query-client.js"
+    },
     "./queries/*": {
       "types": "./dist/queries/*.d.ts",
       "default": "./dist/queries/*.js"
@@ -23,7 +27,7 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.90.5",
-    "hono": "^4.10.1"
+    "hono": "^4.9.0"
   },
   "dependencies": {
     "@olis/core": "workspace:*",
@@ -31,6 +35,7 @@
     "@olis/server": "workspace:*",
     "drizzle-orm": "^0.44.6",
     "drizzle-zod": "^0.8.3",
+    "superjson": "^2.2.3",
     "zod": "^4.1.11"
   },
   "devDependencies": {
@@ -40,7 +45,6 @@
     "@tanstack/react-query": "^5.90.5",
     "eslint": "^9.38.0",
     "eslint-plugin-format": "^1.0.2",
-    "hono": "^4.10.1",
     "typescript": "^5.9.2"
   }
 }

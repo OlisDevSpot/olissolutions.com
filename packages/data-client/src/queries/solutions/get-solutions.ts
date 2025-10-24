@@ -1,14 +1,14 @@
 import type { UseQueryOptions } from '@tanstack/react-query'
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { solutionQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['solutions']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['solutions']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api.solutions['$get']>
+export type Response = InferResponseType<typeof honoClient.api.solutions['$get'], 200>
 
 export function getSolutionsQueryOptions(
   options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
@@ -18,7 +18,7 @@ export function getSolutionsQueryOptions(
     ...options,
     queryKey: solutionQueryKeys.all,
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].solutions.$get()
+      const res = await honoClient.api.solutions.$get()
 
       if (!res.ok) {
         throw new Error('Trades not found')

@@ -13,7 +13,7 @@
     "@olis/db": "workspace:*",
     "@olis/server": "workspace:*",
     "@olis/core": "workspace:*",
-    "hono": "^4.9.9",
+    "hono": "^4.9.0",
     "stoker": "^2.0.1"
   },
   "devDependencies": {

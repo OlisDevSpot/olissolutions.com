@@ -1,7 +1,7 @@
-import * as customersRepository from '@olis/server/entities/core/customers/repository'
-
-import * as solutionsRepository from '@olis/server/entities/one-stop-sales/solutions/repository'
 import { factory } from '@olis/server/lib/create-app'
+
+import * as customersRepository from '@olis/server/routers/core/customers/repository'
+import * as solutionsRepository from '@olis/server/routers/one-stop-sales/solutions/repository'
 
 import * as repository from './repository'
 import * as validators from './validators'

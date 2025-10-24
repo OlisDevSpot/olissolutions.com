@@ -1,5 +1,5 @@
-import * as solutionsRespository from '@olis/server/entities/one-stop-sales/solutions/repository'
 import { factory } from '@olis/server/lib/create-app'
+import * as solutionsRespository from '@olis/server/routers/one-stop-sales/solutions/repository'
 
 import * as repository from './repository'
 import { accessorParam, createTradeValidator, idParam, updateTradeValidator } from './validators'

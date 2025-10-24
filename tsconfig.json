@@ -1,5 +1,11 @@
 {
   "extends": "@olis/typescript-config/base.json",
   "references": [{ "path": "./packages/db" }],
+  "compilerOptions": {
+    "paths": {
+      "hono": ["./node_modules/hono"],
+      "@hono/zod-validator": ["./node_modules/@hono/zod-validator"]
+    }
+  },
   "include": ["**/*.ts", "**/*.tsx"]
 }

@@ -11,3 +11,21 @@ export const TRADE_LOCATIONS_LABEL_MAP = {
   interior: 'Interior',
   lot: 'Lot',
 } as const satisfies Record<TradeLocation, string>
+
+export const BREADCRUMB_LABEL_MAP = {
+  'dashboard': 'Dashboard',
+  'projects': 'Projects',
+  'showroom': 'Showroom',
+  'trades': 'Trades',
+  'solutions': 'Solutions',
+  'addons': 'Addons',
+  'materials': 'Materials',
+  'calculator': 'Calculator',
+  'edit': 'Edit',
+  'customers': 'Customers',
+  'property': 'Property',
+  'home-situation': 'Home Situation',
+  'settings': 'Settings',
+  'pricing': 'Pricing',
+  'energy-efficiency': 'Energy Efficiency',
+}

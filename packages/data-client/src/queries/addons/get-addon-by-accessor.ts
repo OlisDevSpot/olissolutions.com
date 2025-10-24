@@ -3,13 +3,13 @@ import type { UseQueryOptions } from '@tanstack/react-query'
 
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { addonQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['addons'][':accessor']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['addons'][':accessor']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['addons'][':accessor']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['addons'][':accessor']['$get'], 200>
 
 export function getAddonByAccessorQueryOptions(
   addonAccessor: AddonAccessor,
@@ -20,7 +20,7 @@ export function getAddonByAccessorQueryOptions(
     ...options,
     queryKey: addonQueryKeys.byAccessor(addonAccessor),
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].addons[':accessor'].$get({ param: {
+      const res = await honoClient.api.addons[':accessor'].$get({ param: {
         accessor: addonAccessor,
       } })
 

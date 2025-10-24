@@ -3,13 +3,13 @@ import type { UseQueryOptions } from '@tanstack/react-query'
 
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { materialQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['materials'][':accessor']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['materials'][':accessor']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['materials'][':accessor']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['materials'][':accessor']['$get'], 200>
 
 export function getMaterialByAccessorQueryOptions(
   materialAccessor: MaterialAccessor,
@@ -20,7 +20,7 @@ export function getMaterialByAccessorQueryOptions(
     ...options,
     queryKey: materialQueryKeys.byAccessor(materialAccessor),
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].materials[':accessor'].$get({ param: {
+      const res = await honoClient.api.materials[':accessor'].$get({ param: {
         accessor: materialAccessor,
       } })
 

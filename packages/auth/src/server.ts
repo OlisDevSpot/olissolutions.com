@@ -61,23 +61,22 @@ export const auth = betterAuth({
   //     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
   //   },
   // },
-  // user: {
-  //   additionalFields: {
-  //     nickname: {
-  //       type: 'string',
-  //       required: false,
-  //     },
-  //     role: {
-  //       type: ['user', 'admin'] as const,
-  //       defaultValue: 'user',
-  //     },
-  //     companyId: {
-  //       type: 'string',
-  //       required: false,
-  //       input: false,
-  //     },
-  //   },
-  // },
+  user: {
+    additionalFields: {
+      nickname: {
+        type: 'string',
+        input: false,
+      },
+      role: {
+        type: ['user', 'admin', 'super-admin'] as const,
+        defaultValue: 'user',
+      },
+      companyId: {
+        type: 'string',
+        input: false,
+      },
+    },
+  },
   // session: {
   //   additionalFields: {
   //     coolField: {

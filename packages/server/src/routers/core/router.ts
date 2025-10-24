@@ -5,9 +5,9 @@ import customersRouter from './customers/router'
 import usersRouter from './users/users.router'
 
 const app = createRouter()
-  .route('/olis-auth/*', authRouter)
-  .route('/users/*', usersRouter)
-  .route('/account/*', accountRouter)
+  .route('/olis-auth', authRouter)
+  .route('/users', usersRouter)
+  .route('/account', accountRouter)
   .route('/customers', customersRouter)
 
 export default app

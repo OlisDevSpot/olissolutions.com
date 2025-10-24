@@ -1,43 +1,50 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import type { User } from '@olis/db/schema/core'
+import type { GeneralSettingsFormSchema } from '@/features/account-management/schemas/general-settings-schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { updateUser } from '@olis/auth/client'
 
-import type { GeneralSettingsFormSchema } from "@/features/account-management/schemas/general-settings-schema";
+import { Button } from '@olis/ui/components/button'
 
-import { generalSettingsFormSchema } from "@/features/account-management/schemas/general-settings-schema";
-import { updateUser, useSession } from "@/shared/clients/auth-client";
-import { Button } from "@/shared/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form";
-import { Input } from "@/shared/components/ui/input";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'
+import { Input } from '@olis/ui/components/input'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { generalSettingsFormSchema } from '@/features/account-management/schemas/general-settings-schema'
 
-export function GeneralSettingsForm() {
-  const session = useSession();
+interface Props {
+  user: User
+}
 
+export function GeneralSettingsForm({ user }: Props) {
   const form = useForm<GeneralSettingsFormSchema>({
     resolver: zodResolver(generalSettingsFormSchema),
     defaultValues: {
-      name: session.data?.user?.name ?? "",
-      nickname: session.data?.user?.nickname ?? "",
-      email: session.data?.user?.email ?? "",
+      name: user?.name ?? '',
+      nickname: user?.nickname ?? '',
+      email: user?.email ?? '',
     },
-  });
+  })
 
   useEffect(() => {
     form.reset({
-      name: session.data?.user?.name ?? "",
-      nickname: session.data?.user?.nickname ?? "",
-      email: session.data?.user?.email ?? "",
-    });
-  }, [session.data]);
+      name: user?.name ?? '',
+      nickname: user?.nickname ?? '',
+      email: user?.email ?? '',
+    })
+  }, [user, form])
 
   async function onSubmit(input: GeneralSettingsFormSchema) {
-    const { email, ...fields } = input;
-    await updateUser(fields, {
+    const data = {
+      name: input.name,
+      nickname: input.nickname ?? undefined,
+    }
+
+    await updateUser(data, {
       onSuccess: () => {
-        toast.success("Profile updated");
+        toast.success('Profile updated')
       },
-    });
+    })
   }
 
   return (
@@ -66,8 +73,8 @@ export function GeneralSettingsForm() {
                 <Input
                   placeholder="Johnny"
                   {...field}
-                  value={field.value ?? ""}
-                  onChange={e => field.onChange(e.target.value ?? "")}
+                  value={field.value ?? ''}
+                  onChange={e => field.onChange(e.target.value ?? '')}
                 />
               </FormControl>
               <FormMessage />
@@ -90,5 +97,5 @@ export function GeneralSettingsForm() {
         <Button type="submit">Save</Button>
       </form>
     </Form>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/core/client'
 import { useMutation } from '@tanstack/react-query'
 
 type UpdateCustomerRequest = InferRequestType<typeof honoClient.api['core']['customers'][':id']['$patch']>['json']

@@ -3,21 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": {
-      "types": "./dist/app.d.ts",
-      "default": "./dist/app.js"
-    },
-    "./hono-client": {
-      "types": "./dist/hono-client.d.ts",
-      "default": "./dist/hono-client.js"
-    },
+    "./routers/*": "./src/routers/*.ts",
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"
-    },
-    "./routes/*": {
-      "types": "./dist/routes/*.d.ts",
-      "default": "./dist/routes/*.js"
     },
     "./types": "./src/types/index.ts"
   },
@@ -32,7 +21,7 @@
     "@olis/core": "workspace:*",
     "@olis/db": "workspace:*",
     "drizzle-orm": "^0.44.6",
-    "hono": "^4.10.1",
+    "hono": "^4.9.0",
     "hono-pino": "^0.10.3",
     "pino": "^9.8.0",
     "pino-pretty": "^13.1.1",

@@ -1,7 +1,7 @@
-import type z from "zod";
+import type z from 'zod'
 
-import { insertPricingSchema } from "@/shared/schema";
+import { insertPricingSchema } from '@olis/db/schema/one-stop-sales'
 
-export const pricingSettingsFormSchema = insertPricingSchema;
+export const pricingSettingsFormSchema = insertPricingSchema
 
-export type PricingSettingsFormSchema = z.infer<typeof pricingSettingsFormSchema>;
+export type PricingSettingsFormSchema = z.infer<typeof pricingSettingsFormSchema>

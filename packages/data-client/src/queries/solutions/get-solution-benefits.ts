@@ -1,14 +1,14 @@
 import type { UseQueryOptions } from '@tanstack/react-query'
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { solutionQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['solutions'][':id']['benefits']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['solutions'][':id']['benefits']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['solutions'][':id']['benefits']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['solutions'][':id']['benefits']['$get'], 200>
 
 export function getSolutionBenefitsQueryOptions(
   solutionId: number,
@@ -19,7 +19,7 @@ export function getSolutionBenefitsQueryOptions(
     ...options,
     queryKey: solutionQueryKeys.withBenefits(solutionId),
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].solutions[':id'].benefits.$get({ param: {
+      const res = await honoClient.api.solutions[':id'].benefits.$get({ param: {
         id: String(solutionId),
       } })
 

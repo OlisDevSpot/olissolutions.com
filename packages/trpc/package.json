@@ -1,20 +1,49 @@
 {
   "name": "@olis/trpc",
+  "type": "module",
   "version": "0.0.1",
   "private": true,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+    "./app-router": {
+      "types": "./dist/routers/_app.d.ts",
+      "default": "./dist/routers/_app.js"
+    },
+    "./init": {
+      "types": "./dist/init.d.ts",
+      "default": "./dist/init.js"
     }
   },
-  "type": "module",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "dependencies": {
+    "@hono/trpc-server": "^0.4.0",
+    "@olis/auth": "workspace:*",
+    "@olis/data-client": "workspace:*",
+    "@olis/db": "workspace:*",
+    "@olis/server": "workspace:*",
+    "@tanstack/react-query": "^5.90.5",
+    "@trpc/client": "^11.6.0",
+    "@trpc/server": "^11.6.0",
+    "@trpc/tanstack-react-query": "^11.6.0",
+    "client-only": "^0.0.1",
+    "server-only": "^0.0.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
-    "@olis/typescript-config": "workspace:*"
+    "@antfu/eslint-config": "^6.0.0",
+    "@olis/types": "workspace:*",
+    "@olis/typescript-config": "workspace:*",
+    "@types/node": "^24.9.1",
+    "@types/react": "^19",
+    "eslint": "^9.37.0",
+    "eslint-plugin-format": "^1.0.2",
+    "react": "^19.0.0",
+    "typescript": "5.9.3"
   }
 }

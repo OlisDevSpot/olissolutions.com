@@ -197,7 +197,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-primary to-orange-500 bg-clip-text text-transparent;
   }
   .btn-primary {
     @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;

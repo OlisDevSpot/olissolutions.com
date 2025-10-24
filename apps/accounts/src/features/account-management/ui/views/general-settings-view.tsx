@@ -1,11 +1,23 @@
-"use client";
+'use client'
 
-import { GeneralSettingsForm } from "@/features/account-management/ui/components/forms/general-settings-form";
+import type { User } from '@olis/db/schema/core'
+import { useSession } from '@olis/auth/client'
+import { GeneralSettingsForm } from '@/features/account-management/ui/components/forms/general-settings-form'
 
 export function GeneralSettingsView() {
+  const { data: session, isPending } = useSession()
+
+  if (isPending) {
+    return <div>Loading...</div>
+  }
+
+  if (!session?.user) {
+    return <div>User not found</div>
+  }
+
   return (
     <div>
-      <GeneralSettingsForm />
+      <GeneralSettingsForm user={session.user as User} />
     </div>
-  );
+  )
 }

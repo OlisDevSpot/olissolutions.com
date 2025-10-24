@@ -1,14 +1,14 @@
 import type { UseQueryOptions } from '@tanstack/react-query'
 import type { InferRequestType, InferResponseType } from 'hono'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { materialQueryKeys } from './query-keys'
 
-export type Request = InferRequestType<typeof honoClient.api['one-stop-sales']['materials'][':id']['benefits']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['one-stop-sales']['materials'][':id']['benefits']['$get'], 200>
+export type Request = InferRequestType<typeof honoClient.api['materials'][':id']['benefits']['$get']>
+export type Response = InferResponseType<typeof honoClient.api['materials'][':id']['benefits']['$get'], 200>
 
 export function getMaterialBenefitsQueryOptions(
   materialId: number,
@@ -19,7 +19,7 @@ export function getMaterialBenefitsQueryOptions(
     ...options,
     queryKey: materialQueryKeys.withBenefits(materialId),
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].materials[':id'].benefits.$get({ param: {
+      const res = await honoClient.api.materials[':id'].benefits.$get({ param: {
         id: String(materialId),
       } })
 

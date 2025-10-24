@@ -2,7 +2,7 @@ import type { UseQueryOptions } from '@tanstack/react-query'
 
 import type { GetTradeSolutionsResponse } from './types'
 
-import { honoClient } from '@olis/server/hono-client'
+import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { tradeQueryKeys } from './query-keys'
@@ -16,7 +16,7 @@ export function getTradeSolutionsQueryOptions(
     ...options,
     queryKey: tradeQueryKeys.withSolutions(tradeId),
     queryFn: async () => {
-      const res = await honoClient.api['one-stop-sales'].trades[':id'].solutions.$get({ param: {
+      const res = await honoClient.api.trades[':id'].solutions.$get({ param: {
         id: String(tradeId),
       } })
 

@@ -1,55 +1,55 @@
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import type { Pricing, Trade } from '@olis/db/schema/one-stop-sales'
+import { Button } from '@olis/ui/components/button'
 
-import type { Pricing, Trade } from "@/shared/schema";
+import { Card, CardContent, CardHeader, CardTitle } from '@olis/ui/components/card'
 
-import { Button } from "@/shared/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form";
-import { Input } from "@/shared/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'
+import { Input } from '@olis/ui/components/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@olis/ui/components/select'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@olis/ui/components/tabs'
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 interface Props {
-  pricingVariables: (Pricing & { trade: Trade })[];
+  pricingVariables: (Pricing & { trade: Trade })[]
 }
 
 export function PricingSettingsForm({ pricingVariables }: Props) {
-  const [collapsed, setCollapsed] = useState(false);
-  const tabsRef = useRef<HTMLDivElement>(null);
+  const [collapsed, setCollapsed] = useState(false)
+  const tabsRef = useRef<HTMLDivElement>(null)
   const form = useForm({
     defaultValues: pricingVariables.reduce((acc, variable) => ({ ...acc, [variable.key]: variable.defaultValue }), {}) as Record<string, any>,
-  });
+  })
 
   useEffect(() => {
     if (tabsRef.current) {
-      const rect = tabsRef.current.getBoundingClientRect();
-      const container = tabsRef.current.closest(".main-container");
+      const rect = tabsRef.current.getBoundingClientRect()
+      const container = tabsRef.current.closest('.main-container')
       if (container) {
-        const containerRect = container.getBoundingClientRect();
-        setCollapsed(containerRect.width <= rect.width + 16);
+        const containerRect = container.getBoundingClientRect()
+        setCollapsed(containerRect.width <= rect.width + 16)
       }
     }
-  }, []);
+  }, [])
 
   const mappedPricingByTrade = pricingVariables.reduce((acc, pricingVariableEntry) => {
-    const { trade, ...pricingVariable } = pricingVariableEntry;
+    const { trade, ...pricingVariable } = pricingVariableEntry
 
     if (!(trade.id in acc)) {
       acc[trade.id] = {
         trade,
         pricingVariables: [],
-      };
+      }
     }
 
-    acc[trade.id]?.pricingVariables.push(pricingVariable);
-    return acc;
-  }, {} as { [id: number]: { trade: Trade; pricingVariables: Pricing[] } });
+    acc[trade.id]?.pricingVariables.push(pricingVariable)
+    return acc
+  }, {} as { [id: number]: { trade: Trade, pricingVariables: Pricing[] } })
 
-  const pricingVariablesGroups = Object.values(mappedPricingByTrade).sort((a, b) => a.trade.label.localeCompare(b.trade.label));
+  const pricingVariablesGroups = Object.values(mappedPricingByTrade).sort((a, b) => a.trade.label.localeCompare(b.trade.label))
 
   function onSubmit(input: any) {
-    console.log(input);
+    console.log(input)
   }
 
   return (
@@ -118,5 +118,5 @@ export function PricingSettingsForm({ pricingVariables }: Props) {
         <Button type="submit">Save changes</Button>
       </form>
     </Form>
-  );
+  )
 }

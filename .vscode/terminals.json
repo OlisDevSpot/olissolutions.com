@@ -7,57 +7,58 @@
       "focus": true
     },
     {
+      "name": "accounts",
+      "description": "This is accounts terminal",
+      "command": "cd apps/accounts && clear"
+    },
+    {
       "name": "one-stop-sales",
       "description": "This is one stop sales terminal",
-      "focus": true,
       "command": "cd apps/one-stop-sales && clear"
     },
     {
       "name": "landing",
       "description": "This is a description",
-      "focus": true,
       "command": "cd apps/landing && clear"
     },
     {
       "name": "auth",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/auth && clear"
     },
     {
       "name": "db",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/db && clear"
     },
     {
       "name": "ui",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/ui && clear"
     },
     {
       "name": "core",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/core && clear"
     },
     {
       "name": "server",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/server && clear"
+    },
+    {
+      "name": "trpc",
+      "description": "This is a description",
+      "command": "cd packages/trpc && clear"
     },
     {
       "name": "data-client",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/data-client && clear"
     },
     {
       "name": "types",
       "description": "This is a description",
-      "focus": true,
       "command": "cd packages/types && clear"
     }
   ]
