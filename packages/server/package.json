@@ -4,9 +4,17 @@
   "version": "1.0.0",
   "exports": {
     "./routers/*": "./src/routers/*.ts",
+    "./constants/*": {
+      "types": "./dist/constants/*.d.ts",
+      "default": "./dist/constants/*.js"
+    },
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"
+    },
+    "./middlewares/*": {
+      "types": "./dist/middlewares/*.d.ts",
+      "default": "./dist/middlewares/*.js"
     },
     "./types": "./src/types/index.ts"
   },

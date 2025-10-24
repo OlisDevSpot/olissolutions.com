@@ -45,9 +45,10 @@
     "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "db:push": "drizzle-kit push",
-    "db:seed": "tsx ./src/lib/seed.ts",
-    "db:init-schemas": "tsx ./src/lib/init-schemas.ts"
+    "db:push": "dotenv -e .env drizzle-kit push",
+    "db:seed:core": "dotenv -e .env tsx ./src/lib/db-seed.ts core",
+    "db:seed:oss": "dotenv -e .env tsx ./src/lib/db-seed.ts oneStopSales",
+    "db:init-schemas": "dotenv -e .env tsx ./src/lib/init-schemas.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

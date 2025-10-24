@@ -2,7 +2,6 @@ import type { AppBindings } from '@olis/server/types'
 import { auth } from '@olis/auth/server'
 
 import { origins } from '@olis/server/constants/origins'
-import coreRouter from '@olis/server/routers/core/router'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 
@@ -17,7 +16,6 @@ export function createRouter() {
 }
 
 export function createApp() {
-  console.log(Array.from(origins))
   const app = new Hono<AppBindings>()
     .basePath('/api')
     .use('*', cors({

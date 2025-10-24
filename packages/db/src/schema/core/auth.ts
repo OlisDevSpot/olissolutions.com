@@ -11,7 +11,7 @@ import {
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
-// export const userRoleEnum = pgEnum('user_role', userRoles)
+export const userRoleEnum = pgEnum('user_role', userRoles)
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -22,7 +22,7 @@ export const user = pgTable('user', {
     .$defaultFn(() => false)
     .notNull(),
   image: text('image'),
-  // role: userRoleEnum('role').notNull().default('user'),
+  role: userRoleEnum('role').notNull().default('user'),
   createdAt: timestamp('created_at')
     .defaultNow()
     .notNull(),

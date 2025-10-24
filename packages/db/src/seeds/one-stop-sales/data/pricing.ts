@@ -1,5 +1,5 @@
-import type { TradeAccessor } from '@olis/db/types/trades'
 import type { InsertPricing } from '@olis/db/schema/one-stop-sales'
+import type { TradeAccessor } from '@olis/db/types/trades'
 
 export const pricingData = {
   solar: [

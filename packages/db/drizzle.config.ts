@@ -1,10 +1,11 @@
 import { config } from 'dotenv'
 import { defineConfig } from 'drizzle-kit'
 
-config()
+config({ path: '.env' })
 
 export default defineConfig({
-  schema: ['./src/schema/core/index.ts', './src/schema/one-stop-sales/index.ts'],
+  schema: ['./src/schema/one-stop-sales/index.ts', './src/schema/core/index.ts'],
+  schemaFilter: ['one_stop_sales', 'public'],
   tablesFilter: ['*'],
   out: './src/migrations',
   dialect: 'postgresql',

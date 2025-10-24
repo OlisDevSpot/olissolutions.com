@@ -1,7 +1,7 @@
-import type { TradeAccessor } from '@olis/db/types/trades'
-
 import type { DB } from '@olis/db'
+
 import type { InsertSolution } from '@olis/db/schema/one-stop-sales'
+import type { TradeAccessor } from '@olis/db/types/trades'
 import { solutions, trades } from '@olis/db/schema/one-stop-sales'
 
 import { sql } from 'drizzle-orm'

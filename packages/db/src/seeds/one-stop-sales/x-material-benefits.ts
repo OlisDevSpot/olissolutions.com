@@ -1,7 +1,7 @@
-import type { MaterialAccessor } from '@olis/db/types/materials'
-
 import type { DB } from '@olis/db'
+
 import type { InsertXMaterialBenefit } from '@olis/db/schema/one-stop-sales/index'
+import type { MaterialAccessor } from '@olis/db/types/materials'
 
 import { benefits, materials, x_materialBenefits } from '@olis/db/schema/one-stop-sales/index'
 

@@ -5,7 +5,7 @@ export default defineConfig([
   ...baseConfig,
   {
     rules: {
-      "no-console": "error",
+      "no-console": "warn",
     },
   },
 ]);

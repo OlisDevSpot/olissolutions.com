@@ -1,7 +1,7 @@
-import type { SolutionAccessor } from '@olis/db/types/solutions'
-
 import type { DB } from '@olis/db'
+
 import type { InsertXSolutionBenefit } from '@olis/db/schema/one-stop-sales'
+import type { SolutionAccessor } from '@olis/db/types/solutions'
 import { benefits, solutions, x_solutionBenefits } from '@olis/db/schema/one-stop-sales'
 
 import { sql } from 'drizzle-orm'
