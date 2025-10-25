@@ -1,4 +1,4 @@
-import type { User } from '../../../../../../../../packages/db/dist/schema/platform'
+import type { User } from '@olis/db/schema/identity'
 import type { GeneralSettingsFormSchema } from '@/features/account-management/schemas/general-settings-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { updateUser } from '@olis/auth/client'

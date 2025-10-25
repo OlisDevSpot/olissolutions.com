@@ -4,7 +4,7 @@ import { getSolutionById } from '@/features/solutions/lib/api'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: number }> },
 ) {
   const { id } = await params
 

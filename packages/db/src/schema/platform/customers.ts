@@ -2,7 +2,7 @@ import type z from 'zod'
 
 import { platformSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-import { x_projectCustomers } from 'dist/schema/one-stop-sales/x-project-customers'
+import { x_projectCustomers } from '@olis/db/schema/one-stop-sales'
 import { relations } from 'drizzle-orm'
 import { varchar } from 'drizzle-orm/pg-core'
 

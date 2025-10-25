@@ -48,6 +48,7 @@ export function AddressInput({
         onPlaceChange?.(place) // run custom function to update associated RHF values
       }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placeAutocomplete, onChange])
 
   // Prevent dialog close on autocomplete click

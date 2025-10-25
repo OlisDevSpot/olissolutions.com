@@ -1,13 +1,13 @@
-import type { InsertCustomerSchema } from '../../../../../db/dist/schema/platform'
-import type { InsertFinancialProfileSchema, InsertJobsiteProfileSchema, InsertJobsiteRoofSchema, InsertProject, InsertXProjectSolutionSchema } from '@olis/db/schema/one-stop-sales'
+import type { InsertFinancialProfileSchema, InsertJobsiteProfileSchema, InsertJobsiteRoofSchema, InsertProject, InsertXProjectScopeSchema } from '@olis/db/schema/one-stop-sales'
+import type { InsertCustomerSchema } from '@olis/db/schema/platform'
 
 import type { JoinTables } from '@olis/server/routers/features/project-creator/types'
 import type { TableFilters } from '@olis/server/types'
 import type { Column, SQL } from 'drizzle-orm'
 
 import { db } from '@olis/db'
-import { customers } from '../../../../../db/dist/schema/platform'
-import { financialProfiles, fullAddress, jobsiteProfiles, jobsiteRoofs, projects, x_projectCustomers, x_projectSolutions } from '@olis/db/schema/one-stop-sales'
+import { financialProfiles, fullAddress, jobsiteProfiles, jobsiteRoofs, projects, x_projectCustomers, x_projectScopes } from '@olis/db/schema/one-stop-sales'
+import { customers } from '@olis/db/schema/platform'
 import { and, desc, eq, getTableColumns } from 'drizzle-orm'
 
 import { withJoins } from './helpers'
@@ -51,12 +51,12 @@ export async function findOneWithJoins(userId: string, projectId: string, joinTa
     return null
   }
 
-  const [projectCustomers, projectSolutions, jobsiteProfile, financialProfile] = await withJoins(project.id, joinTables)
+  const [projectCustomers, projectScopes, jobsiteProfile, financialProfile] = await withJoins(project.id, joinTables)
 
   return {
     ...project,
     customers: projectCustomers.map(x_projectCustomer => x_projectCustomer.customer),
-    solutions: projectSolutions.map(x_projectSolution => x_projectSolution.solution),
+    scopes: projectScopes.map(x_projectScope => x_projectScope.scope),
     jobsiteProfile,
     financialProfile,
   }
@@ -188,19 +188,19 @@ export async function findProjectFinancialProfile(projectId: string) {
   return financialProfile
 }
 
-export async function createProjectSolutions(projectId: string, solutionIds: number[]) {
-  await db.delete(x_projectSolutions).where(eq(x_projectSolutions.projectId, projectId))
+export async function createProjectScopes(projectId: string, scopeIds: number[]) {
+  await db.delete(x_projectScopes).where(eq(x_projectScopes.projectId, projectId))
 
-  if (solutionIds.length === 0) {
+  if (scopeIds.length === 0) {
     return []
   }
 
-  const projectSolutions = await db
-    .insert(x_projectSolutions)
-    .values(solutionIds.map(solutionId => ({ projectId, solutionId })))
+  const projectScopes = await db
+    .insert(x_projectScopes)
+    .values(scopeIds.map(scopeId => ({ projectId, scopeId })))
     .returning()
 
-  return projectSolutions
+  return projectScopes
 }
 
 export async function updateProjectJobsiteProfile(
@@ -241,11 +241,11 @@ export async function updateProjectFinancialProfile(projectId: string, data: Par
   return updateFinancialProfile
 }
 
-export async function updateProjectSolution(projectId: string, solutionId: number, data: Partial<InsertXProjectSolutionSchema>) {
-  const [updatedProjectSolution] = await db
-    .update(x_projectSolutions)
+export async function updateProjectScope(projectId: string, scopeId: number, data: Partial<InsertXProjectScopeSchema>) {
+  const [updatedProjectScope] = await db
+    .update(x_projectScopes)
     .set(data)
-    .where(and(eq(x_projectSolutions.projectId, projectId), eq(x_projectSolutions.solutionId, solutionId)))
+    .where(and(eq(x_projectScopes.projectId, projectId), eq(x_projectScopes.scopeId, scopeId)))
     .returning()
-  return updatedProjectSolution
+  return updatedProjectScope
 }

@@ -1,10 +1,11 @@
 import type { DB } from '@olis/db'
 
 import type { InsertPricing } from '@olis/db/schema/one-stop-sales'
-import { pricing, trades } from '@olis/db/schema/one-stop-sales'
+import { pricing } from '@olis/db/schema/one-stop-sales'
+
+import { trades } from '@olis/db/schema/platform'
 
 import { sql } from 'drizzle-orm'
-
 import { pricingData } from './data/pricing'
 
 export default async function seed(db: DB) {

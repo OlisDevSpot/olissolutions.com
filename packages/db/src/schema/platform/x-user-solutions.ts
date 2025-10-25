@@ -1,7 +1,7 @@
 import { platformSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-import { text, uuid } from 'drizzle-orm/pg-core'
+import { integer, text } from 'drizzle-orm/pg-core'
 import { user } from '../identity/auth'
 
 import { solutions } from './solutions'
@@ -11,7 +11,7 @@ export const xUserSolutions = platformSchema.table('x_user_solutions', {
   userId: text('user_id')
     .notNull()
     .references(() => user.id),
-  solutionId: uuid('solution_id')
+  solutionId: integer('solution_id')
     .notNull()
     .references(() => solutions.id),
   createdAt,

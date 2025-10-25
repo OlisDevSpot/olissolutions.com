@@ -1,6 +1,6 @@
 import type { AdapterFactory } from 'better-auth/adapters'
 import { db } from '@olis/db'
-import * as schema from '../../db/src/schema/identity/auth'
+import * as schema from '@olis/db/schema/identity'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 

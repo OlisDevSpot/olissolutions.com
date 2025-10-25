@@ -4,8 +4,16 @@ import { defineConfig } from 'drizzle-kit'
 config({ path: '.env' })
 
 export default defineConfig({
-  schema: ['./src/schema/one-stop-sales/index.ts', './src/schema/platform/index.ts', './src/schema/identity/index.ts'],
-  schemaFilter: ['one_stop_sales', 'platform', 'identity'],
+  schema: [
+    './src/schema/platform/index.ts',
+    './src/schema/identity/index.ts',
+    './src/schema/one-stop-sales/index.ts',
+  ],
+  schemaFilter: [
+    'platform',
+    'identity',
+    'one_stop_sales',
+  ],
   out: './src/migrations',
   dialect: 'postgresql',
   verbose: true,

@@ -4,4 +4,4 @@
 
 // export type CreateProjectWithCustomerResponse = InferResponseType<(typeof honoClient.api)['one-stop-sales']['projects']['init']['$post'], 200>
 
-export type JoinTables = 'customers' | 'solutions' | 'jobsite-profile' | 'financial-profile'
+export type JoinTables = 'customers' | 'scopes' | 'jobsite-profile' | 'financial-profile'

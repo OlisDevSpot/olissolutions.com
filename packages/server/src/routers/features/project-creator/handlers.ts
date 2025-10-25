@@ -1,7 +1,7 @@
 import { factory } from '@olis/server/lib/create-app'
 
-import * as customersRepository from '@olis/server/routers/core/customers/repository'
-import * as solutionsRepository from '@olis/server/routers/one-stop-sales/solutions/repository'
+import * as customersRepository from '@olis/server/routers/platform/customers/repository'
+import * as scopesRepository from '@olis/server/routers/platform/scopes/repository'
 
 import * as repository from './repository'
 import * as validators from './validators'
@@ -92,7 +92,7 @@ export const findAllProjectCustomers = factory.createHandlers(validators.idParam
   return c.json(customers)
 })
 
-export const findAllProjectSolutions = factory.createHandlers(validators.idParam, async (c) => {
+export const findAllProjectScopes = factory.createHandlers(validators.idParam, async (c) => {
   const userId = c.get('user').id
 
   if (!userId) {
@@ -100,9 +100,9 @@ export const findAllProjectSolutions = factory.createHandlers(validators.idParam
   }
 
   const { id } = c.req.valid('param')
-  const solutions = await solutionsRepository.findAllByProjectId(id)
+  const scopes = await scopesRepository.findAllByProjectId(id)
 
-  return c.json(solutions)
+  return c.json(scopes)
 })
 
 export const findProjectJobsite = factory.createHandlers(validators.idParam, async (c) => {
@@ -139,7 +139,7 @@ export const findProjectFinancialProfile = factory.createHandlers(validators.idP
   return c.json(financialProfile)
 })
 
-export const createProjectSolutions = factory.createHandlers(validators.idParam, validators.createProjectSolutionsValidator, async (c) => {
+export const createProjectScopes = factory.createHandlers(validators.idParam, validators.createProjectScopesValidator, async (c) => {
   const userId = c.get('user').id
 
   if (!userId) {
@@ -147,15 +147,15 @@ export const createProjectSolutions = factory.createHandlers(validators.idParam,
   }
 
   const { id } = c.req.valid('param')
-  const { solutionIds } = c.req.valid('json')
+  const { scopeIds } = c.req.valid('json')
 
-  const newProjectSolutions = await repository.createProjectSolutions(id, solutionIds)
+  const newProjectScopes = await repository.createProjectScopes(id, scopeIds)
 
-  if (!newProjectSolutions) {
+  if (!newProjectScopes) {
     return c.json({ error: 'Project not updated' }, 404)
   }
 
-  return c.json(newProjectSolutions)
+  return c.json(newProjectScopes)
 })
 
 export const updateProjectJobsite = factory.createHandlers(validators.idParam, validators.updateProjectJobsiteValidator, async (c) => {
@@ -204,7 +204,7 @@ export const updateProjectFinancialProfile = factory.createHandlers(validators.i
   return c.json(updatedFinancialProfile)
 })
 
-export const updateProjectSolution = factory.createHandlers(validators.updateProjectSolutionParams, validators.updateProjectSolutionJson, async (c) => {
+export const updateProjectScope = factory.createHandlers(validators.updateProjectScopeParams, validators.updateProjectScopeJson, async (c) => {
   const userId = c.get('user').id
 
   if (!userId) {
@@ -212,18 +212,18 @@ export const updateProjectSolution = factory.createHandlers(validators.updatePro
   }
 
   const { id } = c.req.valid('param')
-  const { solutionId } = c.req.valid('param')
+  const { scopeId } = c.req.valid('param')
   const { data } = c.req.valid('json')
 
   if (!data) {
     return c.json({ error: 'No data provided' }, 400)
   }
 
-  const updatedSolution = await repository.updateProjectSolution(id, solutionId, data)
+  const updatedScope = await repository.updateProjectScope(id, scopeId, data)
 
-  if (!updatedSolution) {
+  if (!updatedScope) {
     return c.json({ error: 'Project not updated' }, 404)
   }
 
-  return c.json(updatedSolution)
+  return c.json(updatedScope)
 })

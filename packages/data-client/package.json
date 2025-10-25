@@ -7,13 +7,9 @@
       "types": "./dist/lib/get-query-client.d.ts",
       "default": "./dist/lib/get-query-client.js"
     },
-    "./fetchers/core/*": {
-      "types": "./dist/fetchers/core/*.d.ts",
-      "default": "./dist/fetchers/core/*.js"
-    },
-    "./fetchers/one-stop-sales/*": {
-      "types": "./dist/fetchers/one-stop-sales/*.d.ts",
-      "default": "./dist/fetchers/one-stop-sales/*.js"
+    "./fetchers/*": {
+      "types": "./dist/fetchers/*.d.ts",
+      "default": "./dist/fetchers/*.js"
     }
   },
   "scripts": {

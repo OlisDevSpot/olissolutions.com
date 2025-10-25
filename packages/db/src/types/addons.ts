@@ -1,3 +1,3 @@
-import type { addonsData } from "@olis/db/seeds/one-stop-sales/data/addons";
+import type { addonsData } from "@olis/db/seeds/platform/data/addons";
 
 export type AddonAccessor = typeof addonsData[number]["accessor"];

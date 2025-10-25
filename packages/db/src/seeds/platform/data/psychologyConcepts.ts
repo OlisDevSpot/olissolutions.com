@@ -1,4 +1,4 @@
-import type { InsertPsychologyConcept } from 'dist/schema/platform'
+import type { InsertPsychologyConcept } from '@olis/db/schema/platform'
 
 export const psychologyConceptsData = [
   {

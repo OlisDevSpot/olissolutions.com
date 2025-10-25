@@ -2,7 +2,7 @@ import type z from 'zod'
 
 import { identitySchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-import { x_companyLicenses } from 'dist/schema/identity/x-company-licenses'
+import { x_companyLicenses } from '@olis/db/schema/identity'
 
 import { relations } from 'drizzle-orm'
 import { text, varchar } from 'drizzle-orm/pg-core'

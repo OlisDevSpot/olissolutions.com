@@ -35,6 +35,10 @@
       "types": "./dist/seeds/one-stop-sales/index.d.ts",
       "default": "./dist/seeds/one-stop-sales/index.js"
     },
+    "./seeds/*": {
+      "types": "./dist/seeds/*.d.ts",
+      "default": "./dist/seeds/*.js"
+    },
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"
@@ -45,8 +49,12 @@
     "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "db:push": "dotenv -e .env drizzle-kit push",
-    "db:seed:core": "dotenv -e .env tsx ./src/lib/db-seed.ts core",
+    "db:push": "drizzle-kit push",
+    "db:push:platform": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/platform/index.ts --schemaFilter=platform --dialect=postgresql --url=$DATABASE_URL",
+    "db:push:identity": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/identity/index.ts --schemaFilter=identity --dialect=postgresql --url=$DATABASE_URL",
+    "db:push:oss": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/one-stop-sales/index.ts --schemaFilter=one_stop_sales --dialect=postgresql --url=$DATABASE_URL",
+    "db:seed:platform": "dotenv -e .env tsx ./src/lib/db-seed.ts platform",
+    "db:seed:identity": "dotenv -e .env tsx ./src/lib/db-seed.ts identity",
     "db:seed:oss": "dotenv -e .env tsx ./src/lib/db-seed.ts oneStopSales",
     "db:init-schemas": "dotenv -e .env tsx ./src/lib/init-schemas.ts"
   },

@@ -5,7 +5,7 @@ import { honoClient } from '@olis/server/routers/one-stop-sales/client'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 
-import { pricingQueryKeys } from './query-keys'
+import { pricingQueryKeys } from '../query-keys'
 
 export type Request = InferRequestType<typeof honoClient.api['pricing']['$get']>
 export type Response = InferResponseType<typeof honoClient.api['pricing']['$get'], 200>

@@ -1,6 +1,6 @@
 // import { trpcServer } from '@hono/trpc-server'
 // import { auth } from '@olis/auth/server'
-import app from '@olis/server/routers/core/app'
+import app from '@olis/server/routers/identity/app'
 // import { appRouter } from '@olis/trpc/app-router'
 import { handle } from 'hono/vercel'
 

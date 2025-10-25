@@ -1,5 +1,5 @@
 export interface SolutionWithPsychologyConcepts {
-  id: string
+  id: number
   name: string
   description: string
   whatItDoes: string
@@ -18,7 +18,7 @@ export interface PsychologyConcept {
 }
 
 export interface Purchase {
-  id: string
+  id: number
   solutionId: string
   userId: string
   status: 'active' | 'trial' | 'cancelled'

@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator'
-import { insertCustomerSchema } from '../../../../../db/dist/schema/platform'
-import { insertFinancialProfileSchema, insertJobsiteProfileSchema, insertJobsiteRoofSchema, insertProjectSchema, insertXProjectSolutionSchema } from '@olis/db/schema/one-stop-sales'
+import { insertFinancialProfileSchema, insertJobsiteProfileSchema, insertJobsiteRoofSchema, insertProjectSchema, insertXProjectScopeSchema } from '@olis/db/schema/one-stop-sales'
+import { insertCustomerSchema } from '@olis/db/schema/platform'
 
 import z from 'zod'
 
@@ -26,7 +26,7 @@ export const initProjectValidator = zValidator('json', z.object({
   }),
 }))
 
-export const createProjectSolutionsValidator = zValidator('json', z.object({ solutionIds: z.array(z.number()) }), (result, c) => {
+export const createProjectScopesValidator = zValidator('json', z.object({ scopeIds: z.array(z.number()) }), (result, c) => {
   if (!result.success) {
     return c.json({ errors: result.error.issues.map(issue => ({ path: issue.path[0], message: issue.message })) }, 400)
   }
@@ -53,12 +53,12 @@ export const updateProjectFinancialProfileValidator = zValidator('json', insertF
   }
 })
 
-export const updateProjectSolutionParams = zValidator('param', z.object({ id: z.string(), solutionId: z.coerce.number() }), (result, c) => {
+export const updateProjectScopeParams = zValidator('param', z.object({ id: z.string(), scopeId: z.coerce.number() }), (result, c) => {
   if (!result.success) {
     return c.json({ errors: result.error.issues.map(issue => ({ path: issue.path[0], message: issue.message })) }, 400)
   }
 })
-export const updateProjectSolutionJson = zValidator('json', z.object({ data: insertXProjectSolutionSchema.partial().strict() }), (result, c) => {
+export const updateProjectScopeJson = zValidator('json', z.object({ data: insertXProjectScopeSchema.partial().strict() }), (result, c) => {
   if (!result.success) {
     return c.json({ errors: result.error.issues.map(issue => ({ path: issue.path[0], message: issue.message })) }, 400)
   }

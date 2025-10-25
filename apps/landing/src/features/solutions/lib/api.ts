@@ -3,8 +3,8 @@ import { db } from '@olis/db'
 import {
   psychologyConcepts,
   solutions,
-  xSolutionsPsychologyConcepts,
-} from '../../../../../../packages/db/dist/schema/platform'
+  xSolutionPsychologyConcepts,
+} from '@olis/db/schema/platform'
 import { eq, inArray } from 'drizzle-orm'
 
 export async function getAllSolutions(): Promise<
@@ -27,19 +27,19 @@ export async function getAllSolutions(): Promise<
     })
     .from(solutions)
     .leftJoin(
-      xSolutionsPsychologyConcepts,
-      eq(solutions.id, xSolutionsPsychologyConcepts.solutionId),
+      xSolutionPsychologyConcepts,
+      eq(solutions.id, xSolutionPsychologyConcepts.solutionId),
     )
     .leftJoin(
       psychologyConcepts,
       eq(
-        xSolutionsPsychologyConcepts.psychologyConceptId,
+        xSolutionPsychologyConcepts.psychologyConceptId,
         psychologyConcepts.id,
       ),
     )
 
   // Group by solution and aggregate psychology concepts
-  const solutionMap = new Map<string, SolutionWithPsychologyConcepts>()
+  const solutionMap = new Map<number, SolutionWithPsychologyConcepts>()
 
   result.forEach((row) => {
     if (!solutionMap.has(row.id)) {
@@ -76,7 +76,7 @@ export async function getAllSolutions(): Promise<
 }
 
 export async function getSolutionById(
-  id: string,
+  id: number,
 ): Promise<SolutionWithPsychologyConcepts | null> {
   const result = await db
     .select({
@@ -95,13 +95,13 @@ export async function getSolutionById(
     })
     .from(solutions)
     .leftJoin(
-      xSolutionsPsychologyConcepts,
-      eq(solutions.id, xSolutionsPsychologyConcepts.solutionId),
+      xSolutionPsychologyConcepts,
+      eq(solutions.id, xSolutionPsychologyConcepts.solutionId),
     )
     .leftJoin(
       psychologyConcepts,
       eq(
-        xSolutionsPsychologyConcepts.psychologyConceptId,
+        xSolutionPsychologyConcepts.psychologyConceptId,
         psychologyConcepts.id,
       ),
     )
@@ -161,11 +161,11 @@ export async function getSolutionsByPsychologyConcepts(
     return []
 
   const solutionIds = await db
-    .select({ solutionId: xSolutionsPsychologyConcepts.solutionId })
-    .from(xSolutionsPsychologyConcepts)
+    .select({ solutionId: xSolutionPsychologyConcepts.solutionId })
+    .from(xSolutionPsychologyConcepts)
     .where(
       inArray(
-        xSolutionsPsychologyConcepts.psychologyConceptId,
+        xSolutionPsychologyConcepts.psychologyConceptId,
         conceptIds.map(c => c.id),
       ),
     )
@@ -190,13 +190,13 @@ export async function getSolutionsByPsychologyConcepts(
     })
     .from(solutions)
     .leftJoin(
-      xSolutionsPsychologyConcepts,
-      eq(solutions.id, xSolutionsPsychologyConcepts.solutionId),
+      xSolutionPsychologyConcepts,
+      eq(solutions.id, xSolutionPsychologyConcepts.solutionId),
     )
     .leftJoin(
       psychologyConcepts,
       eq(
-        xSolutionsPsychologyConcepts.psychologyConceptId,
+        xSolutionPsychologyConcepts.psychologyConceptId,
         psychologyConcepts.id,
       ),
     )
@@ -208,7 +208,7 @@ export async function getSolutionsByPsychologyConcepts(
     )
 
   // Group by solution and aggregate psychology concepts
-  const solutionMap = new Map<string, SolutionWithPsychologyConcepts>()
+  const solutionMap = new Map<number, SolutionWithPsychologyConcepts>()
 
   result.forEach((row) => {
     if (!solutionMap.has(row.id)) {

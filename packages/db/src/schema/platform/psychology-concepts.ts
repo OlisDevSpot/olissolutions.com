@@ -1,7 +1,7 @@
 import type z from 'zod'
 import { platformSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-import { xSolutionPsychologyConcepts } from 'dist/schema/platform'
+import { xSolutionPsychologyConcepts } from '@olis/db/schema/platform'
 import { relations } from 'drizzle-orm'
 import { text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'

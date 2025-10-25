@@ -1,6 +1,7 @@
 import { db } from '@olis/db'
-import { pricing, trades } from '@olis/db/schema/one-stop-sales'
 
+import { pricing } from '@olis/db/schema/one-stop-sales'
+import { trades } from '@olis/db/schema/platform'
 import { eq, getTableColumns } from 'drizzle-orm'
 
 export async function findAllPricing() {

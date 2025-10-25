@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetPricing } from '../../../../../../../packages/data-client/dist/fetchers/one-stop-sales/pricing/get-pricing'
+import { useGetPricing } from '@olis/data-client/fetchers/one-stop-sales/pricing/queries/get-pricing'
 import { LoadingState } from '@olis/ui/components/global/loading-state'
 import { PricingSettingsForm } from '@/features/account-management/ui/components/forms/pricing-settings-form'
 

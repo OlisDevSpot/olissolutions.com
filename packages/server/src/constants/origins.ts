@@ -1,5 +1,5 @@
 export const origins = process.env.NODE_ENV === 'production'
-  ? new Set(['https://*.olissolutions.com'])
+  ? new Set(['https://*.olisscopes.com'])
   : new Set([
       'http://localhost:3000',
       'http://localhost:3001',

@@ -1,4 +1,4 @@
-import type { InsertSolution } from 'dist/schema/platform'
+import type { InsertSolution } from '@olis/db/schema/platform'
 import type { PsychologyConceptsAccessor } from './psychologyConcepts'
 
 export const solutionsData = [

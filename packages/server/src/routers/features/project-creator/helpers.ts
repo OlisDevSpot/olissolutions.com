@@ -2,7 +2,7 @@ import type { JoinTables } from './types'
 
 import { db } from '@olis/db'
 
-import { financialProfiles, jobsiteProfiles, x_projectCustomers, x_projectSolutions } from '@olis/db/schema/one-stop-sales'
+import { financialProfiles, jobsiteProfiles, x_projectCustomers, x_projectScopes } from '@olis/db/schema/one-stop-sales'
 import { eq } from 'drizzle-orm'
 
 export async function withJoins(projectId: string, joinTables: JoinTables[]) {
@@ -13,11 +13,11 @@ export async function withJoins(projectId: string, joinTables: JoinTables[]) {
           .x_projectCustomers
           .findMany({ where: eq(x_projectCustomers.projectId, projectId), with: { customer: true } })
       : [],
-    joinTables.includes('solutions')
+    joinTables.includes('scopes')
       ? db
           .query
-          .x_projectSolutions
-          .findMany({ where: eq(x_projectSolutions.projectId, projectId), with: { solution: { with: { trade: true } } } })
+          .x_projectScopes
+          .findMany({ where: eq(x_projectScopes.projectId, projectId), with: { scope: { with: { trade: true } } } })
       : [],
     joinTables.includes('jobsite-profile')
       ? db

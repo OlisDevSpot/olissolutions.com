@@ -1,5 +1,5 @@
 import { createTRPCRouter, publicProcedure } from '@olis/trpc/init'
-import { usersRouter } from './core/users.router'
+import { usersRouter } from './identity/users.router'
 
 export const appRouter = createTRPCRouter({
   'health-check': publicProcedure.query(() => 'yay!'),

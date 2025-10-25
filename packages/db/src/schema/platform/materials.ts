@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
+import { platformSchema } from '@olis/db/lib/constants'
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
 
@@ -10,7 +10,7 @@ import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { x_materialBenefits } from './x-material-benefits'
 import { x_scopeMaterials } from './x-scope-materials'
 
-export const materials = oneStopSalesSchema.table('material', {
+export const materials = platformSchema.table('material', {
   id: unsafeId,
   label,
   accessor: accessor.unique(),
