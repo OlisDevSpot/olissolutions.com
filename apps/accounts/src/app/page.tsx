@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import { Button } from "@olis/ui/components/button";
-import { toast } from "sonner";
-import { useSession } from "@olis/auth/client";
+import { useSession } from '@olis/auth/client'
+import { Button } from '@olis/ui/components/button'
+import { toast } from 'sonner'
 
 export default function Page() {
   async function handleClick() {
-    const data = await fetch("http://localhost:8787/api").then<{
-      msg: string;
-      cookie: string;
-    }>((res) => res.json());
-    toast.success(`msg: ${data.msg}, cookie: ${data.cookie}`);
+    const data = await fetch('http://localhost:8787/api').then<{
+      msg: string
+      cookie: string
+    }>(res => res.json())
+    toast.success(`msg: ${data.msg}, cookie: ${data.cookie}`)
   }
 
   const { data: session } = useSession()
 
-  console.log({session})
+  console.log({ session })
 
   return (
     <div className="flex items-center justify-center min-h-svh">
@@ -29,5 +29,5 @@ export default function Page() {
         </Button>
       </div>
     </div>
-  );
+  )
 }

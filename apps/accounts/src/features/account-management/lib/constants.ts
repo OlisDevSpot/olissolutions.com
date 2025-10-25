@@ -1,14 +1,14 @@
-import { DollarSign, Settings2 } from "lucide-react";
+import { DollarSign, Settings2 } from 'lucide-react'
 
 export const SETTINGS_MENU_ITEMS = [
   {
-    href: "/",
-    label: "General",
+    href: '/',
+    label: 'General',
     Icon: Settings2,
   },
   {
-    href: "/pricing",
-    label: "Pricing",
+    href: '/pricing',
+    label: 'Pricing',
     Icon: DollarSign,
   },
-];
+]
