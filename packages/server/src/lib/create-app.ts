@@ -25,7 +25,7 @@ export function createApp() {
       allowHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     }))
     .on(['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'], '/auth/*', c => auth.handler(c.req.raw))
-    .get('/', () => new Response('Hello from Olis Scopes!'))
+    .get('/', () => new Response('Hello from Olis Solutions!'))
 
   app.notFound(notFound)
   app.onError(onError)

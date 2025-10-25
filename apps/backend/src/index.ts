@@ -1,8 +1,4 @@
-import { createApp } from "@olis/server/lib/create-app";
-import indexRoute from "./routes/index.route";
-
-const app = createApp()
-  .route("/", indexRoute);
+import app from "@olis/server/routers/one-stop-sales/app";
 
 export default app;
 export type AppRouter = typeof app;

@@ -1,5 +1,3 @@
 packages:
-  - "apps/landing"
-  - "apps/accounts"
-  - "apps/one-stop-sales"
+  - "apps/*"
   - "packages/*"

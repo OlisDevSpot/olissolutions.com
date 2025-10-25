@@ -6,14 +6,12 @@
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext"],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@olis/*": ["../packages/*"]
     }
   },
-  "include": ["src/**/*", "worker-configuration.d.ts", "../../packages/server/src/routes/one-stop-sales/solutions.router.ts", "../../packages/server/src/routes/one-stop-sales/trades.router.ts"],
+  "include": ["src/**/*", "worker-configuration.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
