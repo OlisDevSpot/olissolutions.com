@@ -8,9 +8,9 @@
     "check-types": "tsc --noEmit"
   },
   "exports": {
-    "./resend": {
-      "types": "./dist/resend/index.d.ts",
-      "default": "./dist/resend/index.js"
+    "./emails": {
+      "types": "./dist/emails/resend.d.ts",
+      "default": "./dist/emails/resend.js"
     }
   },
   "devDependencies": {

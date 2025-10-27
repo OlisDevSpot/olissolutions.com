@@ -17,7 +17,7 @@ import {
   useScrollAnimation,
 } from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
-import { stats, values } from '@/features/landing/data'
+import { stats, values } from '@/features/marketplace/data'
 
 export default function AboutPage() {
   const statsRef = useScrollAnimation()

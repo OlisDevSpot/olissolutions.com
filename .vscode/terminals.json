@@ -17,9 +17,9 @@
       "command": "cd apps/one-stop-sales && clear"
     },
     {
-      "name": "landing",
+      "name": "marketplace",
       "description": "This is a description",
-      "command": "cd apps/landing && clear"
+      "command": "cd apps/marketplace && clear"
     },
     {
       "name": "features",

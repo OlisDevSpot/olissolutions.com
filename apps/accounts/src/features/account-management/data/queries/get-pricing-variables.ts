@@ -1,4 +1,4 @@
-import { honoClient } from '@olis/server/routers/identity/client'
+import { honoClient } from '@olis/server/apps/clients/identity'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { accountQueryKeys } from '@/features/account-management/data/query-keys'

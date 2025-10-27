@@ -1,11 +1,10 @@
 'use client'
 
 import type { VariantProps } from 'class-variance-authority'
-import { Slot } from '@radix-ui/react-slot'
 import { Button } from '@olis/ui/components/button'
 import { Input } from '@olis/ui/components/input'
-
 import { Separator } from '@olis/ui/components/separator'
+
 import {
   Sheet,
   SheetContent,
@@ -22,6 +21,7 @@ import {
 } from '@olis/ui/components/tooltip'
 import { useIsMobile } from '@olis/ui/hooks/use-mobile'
 import { cn } from '@olis/ui/lib/utils'
+import { Slot } from '@radix-ui/react-slot'
 import { cva } from 'class-variance-authority'
 import { PanelLeftIcon } from 'lucide-react'
 import * as React from 'react'
@@ -286,6 +286,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
 
   return (
     <button
+      type="button"
       data-sidebar="rail"
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
@@ -610,6 +611,7 @@ function SidebarMenuSkeleton({
 }) {
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
+    // eslint-disable-next-line react-hooks/purity
     return `${Math.floor(Math.random() * 40) + 50}%`
   }, [])
 

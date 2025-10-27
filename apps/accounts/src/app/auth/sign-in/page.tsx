@@ -11,7 +11,7 @@ interface Props {
 
 export default async function SigninPage({ searchParams }: Props) {
   const urlFromSearchParams = await searchParams
-  const redirectToUrl = decodeURIComponent(urlFromSearchParams.redirect_url || '') || `${process.env.NEXT_PUBLIC_LANDING_URL!}/dashboard` || '/'
+  const redirectToUrl = decodeURIComponent(urlFromSearchParams.redirect_url || '') || `${process.env.NEXT_PUBLIC_MARKETPLACE_URL!}/dashboard` || '/'
 
   await requireUnauth(await getHeaders(), () => {
     return redirect(`${redirectToUrl}`)

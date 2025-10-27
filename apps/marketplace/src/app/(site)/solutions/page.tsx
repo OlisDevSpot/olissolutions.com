@@ -10,7 +10,7 @@ import {
 } from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
 import SolutionCard from '@/components/solution-card'
-import { categories, solutions } from '@/features/landing/data'
+import { categories, solutions } from '@/features/marketplace/data'
 
 export default function SolutionsPage() {
   const categoriesRef = useScrollAnimation()

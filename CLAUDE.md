@@ -15,9 +15,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 From root directory, prefix with app name: `pnpm --filter [app-name] [command]`
 
-**Landing App** (`apps/landing`):
-- `pnpm --filter landing dev` - Development server (port from env $PORT)
-- `pnpm --filter landing types:check` - TypeScript checking
+**Marketplace App** (`apps/marketplace`):
+- `pnpm --filter marketplace dev` - Development server (port from env $PORT)
+- `pnpm --filter marketplace types:check` - TypeScript checking
 - Uses **Clerk** authentication (legacy dashboard protection)
 
 **Accounts App** (`apps/accounts`):
@@ -77,11 +77,11 @@ This monorepo uses **domain-driven separation** rather than technical separation
 
 ```
 Customer Journey: Marketing → Lead Capture → Sales Process → Account Management
-App Mapping:     landing → accounts → one-stop-sales → accounts
+App Mapping:     marketplace → accounts → one-stop-sales → accounts
 ```
 
 **Domain Boundaries**:
-1. **Marketing Domain** (`apps/landing`) - Lead generation and brand awareness
+1. **Marketing Domain** (`apps/marketplace`) - Lead generation and brand awareness
 2. **Identity Domain** (`apps/accounts`) - User management, company profiles, licensing
 3. **Sales Domain** (`apps/one-stop-sales`) - Core sales workflow and project management
 4. **Infrastructure Domain** (`apps/backend`) - Shared API services and data processing
@@ -99,7 +99,7 @@ App Mapping:     landing → accounts → one-stop-sales → accounts
 - **TypeScript 5.9** with strict mode for compile-time safety
 
 **Authentication Strategy - Dual Implementation**:
-- **Legacy**: Clerk for existing dashboard features (`apps/landing`)
+- **Legacy**: Clerk for existing dashboard features (`apps/marketplace`)
 - **Modern**: Better Auth for new applications (`apps/accounts`, `apps/one-stop-sales`)
 - **Migration Path**: Cross-subdomain cookie sharing for seamless UX
 - **Future Direction**: Complete migration to Better Auth
@@ -252,7 +252,7 @@ packages/ui/src/components/
 │   ├── navigation/        # App navigation (topbar, sidebar, breadcrumbs)
 │   └── providers/         # Context providers (theme, query-client)
 ├── inputs/                # Specialized inputs (address-input)
-└── landing/               # Marketing-specific components (footer, hero)
+└── marketplace/               # Marketing-specific components (footer, hero)
 ```
 
 ### Component Development Patterns
@@ -518,7 +518,7 @@ export const env = createEnv({
 ```typescript
 // Better Auth cross-subdomain configuration
 trustedOrigins: [
-  'https://landing.olissolutions.com',
+  'https://marketplace.olissolutions.com',
   'https://accounts.olissolutions.com', 
   'https://sales.olissolutions.com',
   'https://*.olissolutions.com'

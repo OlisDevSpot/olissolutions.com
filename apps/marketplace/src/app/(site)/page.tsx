@@ -25,8 +25,8 @@ import {
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { HeroSection } from '@/components/hero-section'
-import { eliteStats, eliteTestimonials, solutions } from '@/features/landing'
-import { MarketRealitySection } from '@/features/landing/ui/components/market-reality-section'
+import { eliteStats, eliteTestimonials, solutions } from '@/features/marketplace'
+import { MarketRealitySection } from '@/features/marketplace/ui/components/market-reality-section'
 
 export default function HomePage() {
   const solutionsRef = useScrollAnimation()

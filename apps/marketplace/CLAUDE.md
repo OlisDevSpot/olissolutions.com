@@ -126,7 +126,7 @@ Authentication patterns:
 
 ### Business Context
 
-This is the landing page and marketplace platform for "Olis Solutions" - a digital solutions provider for the Southern California construction industry, as indicated by the metadata description.
+This is the marketplace page and marketplace platform for "Olis Solutions" - a digital solutions provider for the Southern California construction industry, as indicated by the metadata description.
 
 Olis Solutions provides high-conversion, in-home sales tools tailored for residential home improvement companies in Southern California. Built to support 3–5 hour, one-sit meetings with deal sizes of $18k–$200k+. All tools tightly integrated with psychological buy triggers:
 
