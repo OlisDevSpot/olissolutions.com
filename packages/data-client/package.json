@@ -25,6 +25,7 @@
     "@olis/core": "workspace:*",
     "@olis/db": "workspace:*",
     "@olis/server": "workspace:*",
+    "@olis/trpc": "workspace:*",
     "drizzle-orm": "^0.44.6",
     "drizzle-zod": "^0.8.3",
     "superjson": "^2.2.3",

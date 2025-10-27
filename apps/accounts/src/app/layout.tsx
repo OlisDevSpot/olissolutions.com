@@ -1,7 +1,7 @@
 import { Toaster } from '@olis/ui/components/sonner'
 
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Providers } from '@/components/providers'
+import { Providers } from '@/components'
 import '@olis/ui/globals.css'
 
 const fontSans = Geist({
@@ -28,7 +28,9 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
         <Toaster />
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

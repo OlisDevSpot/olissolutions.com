@@ -8,6 +8,10 @@
       "types": "./dist/constants/*.d.ts",
       "default": "./dist/constants/*.js"
     },
+    "./apps/*": {
+      "types": "./dist/apps/*.d.ts",
+      "default": "./dist/apps/*.js"
+    },
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "default": "./dist/lib/*.js"

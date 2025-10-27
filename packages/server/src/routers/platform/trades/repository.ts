@@ -35,7 +35,7 @@ export async function createOne(data: InsertTrade) {
   return newTrade
 }
 
-export async function findOneAndUpdate(id: number, data: Partial<InsertTrade>) {
+export async function updateOne(id: number, data: Partial<InsertTrade>) {
   const [updatedTrade] = await db.update(trades).set(data).where(eq(trades.id, id)).returning()
   return updatedTrade
 }

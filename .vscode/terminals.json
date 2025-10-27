@@ -22,6 +22,11 @@
       "command": "cd apps/landing && clear"
     },
     {
+      "name": "features",
+      "description": "This is a description",
+      "command": "cd packages/features && clear"
+    },
+    {
       "name": "auth",
       "description": "This is a description",
       "command": "cd packages/auth && clear"

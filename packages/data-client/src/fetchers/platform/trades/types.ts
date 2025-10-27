@@ -1,4 +1,4 @@
-import type { honoClient } from '@olis/server/routers/one-stop-sales/client'
+import type { honoClient } from '@olis/server/apps/clients/one-stop-sales'
 import type { InferRequestType, InferResponseType } from 'hono'
 
 export type GetTradesResponse = InferResponseType<typeof honoClient.api['platform']['trades']['$get'], 200>

@@ -58,7 +58,7 @@ export const updateOne = factory.createHandlers(idParam, updateTradeValidator, a
     throw new Error('Trade not found')
   }
 
-  const updatedTrade = await repository.findOneAndUpdate(id, data)
+  const updatedTrade = await repository.updateOne(id, data)
   return c.json(updatedTrade)
 })
 

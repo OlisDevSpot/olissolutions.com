@@ -1,4 +1,4 @@
-import { honoClient } from '@olis/server/routers/one-stop-sales/client'
+import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
 
 export async function getTradesQueryFn() {
   const res = await honoClient.api.platform.trades.$get()

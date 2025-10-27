@@ -1,4 +1,4 @@
-import type { AppRouter } from './app'
+import type { AppRouter } from '../identity'
 
 import { hc } from 'hono/client'
 

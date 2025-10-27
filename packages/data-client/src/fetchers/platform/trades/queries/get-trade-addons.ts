@@ -2,7 +2,7 @@ import type { UseQueryOptions } from '@tanstack/react-query'
 
 import type { GetTradeAddonsResponse } from '../types'
 
-import { honoClient } from '@olis/server/routers/one-stop-sales/client'
+import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
 
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { tradeQueryKeys } from '../query-keys'

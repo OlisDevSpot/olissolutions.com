@@ -15,13 +15,13 @@ import { useForm } from 'react-hook-form'
 
 interface Props extends React.ComponentProps<'div'> {
   onSubmitCallback: (data: LoginFormSchema) => Promise<void>
-  isPending: boolean
+  isPending?: boolean
 }
 
 export function SignInForm({
   className,
   onSubmitCallback,
-  isPending,
+  isPending = false,
   ...props
 }: Props) {
   const form = useForm<LoginFormSchema>({

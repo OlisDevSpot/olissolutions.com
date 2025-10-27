@@ -30,6 +30,7 @@ export function SignupForm({
       name: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
     disabled: isPending,
   })
@@ -89,6 +90,19 @@ export function SignupForm({
                             Forgot your password?
                           </a>
                         </div>
+                        <FormControl>
+                          <Input type="password" placeholder="******" {...field} disabled={isPending} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="confirmPassword"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
                         <FormControl>
                           <Input type="password" placeholder="******" {...field} disabled={isPending} />
                         </FormControl>

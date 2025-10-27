@@ -4,13 +4,17 @@
   "version": "0.0.1",
   "private": true,
   "exports": {
-    "./app-router": {
-      "types": "./dist/routers/_app.d.ts",
-      "default": "./dist/routers/_app.js"
-    },
     "./init": {
       "types": "./dist/init.d.ts",
       "default": "./dist/init.js"
+    },
+    "./routers/*": {
+      "types": "./dist/routers/*.d.ts",
+      "default": "./dist/routers/*.js"
+    },
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./dist/lib/*.js"
     }
   },
   "scripts": {
@@ -24,7 +28,6 @@
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
     "@olis/auth": "workspace:*",
-    "@olis/data-client": "workspace:*",
     "@olis/db": "workspace:*",
     "@olis/server": "workspace:*",
     "@tanstack/react-query": "^5.90.5",

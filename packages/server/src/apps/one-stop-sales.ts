@@ -1,9 +1,9 @@
 import { createApp } from '@olis/server/lib/create-app'
 import projectsRouter from '@olis/server/routers/features/project-creator/router'
 import identityRouter from '@olis/server/routers/identity/router'
+import costCalculatorRouter from '@olis/server/routers/one-stop-sales/cost-calculator/cost-calculator.router'
+import pricingRouter from '@olis/server/routers/one-stop-sales/pricing/router'
 import platformRouter from '@olis/server/routers/platform/router'
-import costCalculatorRouter from './cost-calculator/cost-calculator.router'
-import pricingRouter from './pricing/router'
 
 const app = createApp()
   .route('/identity', identityRouter)

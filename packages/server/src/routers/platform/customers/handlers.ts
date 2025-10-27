@@ -46,7 +46,7 @@ export const updateOne = factory.createHandlers(idParam, updateCustomerValidator
   const { id } = c.req.valid('param')
   const data = c.req.valid('json')
 
-  const updatedCustomer = await repository.findOneAndUpdate(id, data)
+  const updatedCustomer = await repository.updateOne(id, data)
 
   if (!updatedCustomer) {
     return c.json({ error: 'Customer not updated' }, 404)

@@ -1,5 +1,5 @@
 {
   "extends": "@olis/typescript-config/base.json",
   "references": [{ "path": "./packages/db" }],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "packages/features/src/auth/sign-up/index.tsx"]
 }

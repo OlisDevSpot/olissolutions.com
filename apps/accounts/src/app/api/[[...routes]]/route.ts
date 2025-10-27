@@ -1,22 +1,15 @@
-// import { trpcServer } from '@hono/trpc-server'
-// import { auth } from '@olis/auth/server'
-import app from '@olis/server/routers/identity/app'
-// import { appRouter } from '@olis/trpc/app-router'
+import { trpcServer } from '@hono/trpc-server'
+import { auth } from '@olis/auth/server'
+import app from '@olis/server/apps/identity'
+import { createHonoTRPCContext } from '@olis/trpc/lib/create-context'
+import { identityAppRouter } from '@olis/trpc/routers/app/identity/index'
 import { handle } from 'hono/vercel'
 
-// app.use('/trpc/*', trpcServer({
-//   router: appRouter,
-//   createContext: async (ctx) => {
-//     const session = await auth.api.getSession({
-//       headers: ctx.req.headers,
-//     })
-
-//     return {
-//       ...session,
-//       req: ctx.req,
-//     }
-//   },
-// }))
+app.use('/trpc/*', trpcServer({
+  router: identityAppRouter,
+  endpoint: '/api/trpc',
+  createContext: createHonoTRPCContext,
+}))
 
 export const GET = handle(app)
 export const POST = handle(app)
