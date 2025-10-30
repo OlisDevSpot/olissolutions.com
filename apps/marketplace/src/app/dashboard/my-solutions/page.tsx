@@ -21,6 +21,7 @@ import {
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { solutions } from '@/features/dashboard'
+import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 export default function MySolutions() {
   const getStatusColor = (status: string) => {
@@ -281,7 +282,7 @@ export default function MySolutions() {
                 asChild
                 className="btn-primary"
               >
-                <Link href="/dashboard/marketplace">
+                <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
                   Browse Marketplace
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Link>

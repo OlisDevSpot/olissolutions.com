@@ -1,4 +1,4 @@
-import { useIsMobile } from '@/hooks/use-mobile'
+import { useIsMobile } from '@olis/ui/hooks/use-mobile'
 import { DashboardSidebar as DashboardSidebarDesktop } from './DashboardSidebar'
 import { DashboardSidebarMobile } from './DashboardSidebarMobile'
 

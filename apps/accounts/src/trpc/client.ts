@@ -1,4 +1,4 @@
-import type { IdentityAppRouter } from '@olis/trpc/routers/app/identity/index'
+import type { BaseAppRouter } from '@olis/trpc/routers/app/base/index'
 import { createTRPCContext } from '@trpc/tanstack-react-query'
 
-export const { useTRPC, TRPCProvider } = createTRPCContext<IdentityAppRouter>()
+export const { useTRPC, TRPCProvider } = createTRPCContext<BaseAppRouter>()

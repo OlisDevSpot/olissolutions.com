@@ -1,42 +1,25 @@
-'use client'
+import { requireUnauth } from '@olis/auth/lib/utils'
+import { SignUpView } from '@olis/features/auth'
+import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { headers as getHeaders } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 
-import type { SignupFormSchema } from '@olis/types/schemas/auth-forms'
-import { signUp } from '@olis/auth/client'
-import { SignupForm } from '@olis/ui/components/global/forms/sign-up-form'
-import { redirect, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
-import { toast } from 'sonner'
+interface Props {
+  searchParams: Promise<{ redirect_url: string | undefined }>
+}
 
-export default function SignupPage() {
-  const [isPending, setIsPending] = useState(false)
-  const searchParams = useSearchParams()
-  const redirectUrl = decodeURI(searchParams.get('redirect_to') ?? 'http://localhost:3000')
+export default async function SignupPage({ searchParams }: Props) {
+  const urlFromSearchParams = await searchParams
+  const redirectToUrl = decodeURIComponent(urlFromSearchParams.redirect_url || '') || `${process.env.NEXT_PUBLIC_MARKETPLACE_URL!}/dashboard` || '/'
 
-  async function onSubmit(data: SignupFormSchema) {
-    await signUp.email({
-      email: data.email,
-      password: data.password,
-      name: data.name,
-    }, {
-      onRequest: () => {
-        setIsPending(true)
-      },
-      onResponse: () => {
-        setIsPending(false)
-      },
-      onSuccess: () => {
-        toast.success('Sign up successful')
-        redirect(`${redirectUrl}`)
-      },
-      onError: () => {
-        toast.error('Sign up failed')
-      },
-    })
-  }
+  await requireUnauth(await getHeaders(), () => {
+    return redirect(`${redirectToUrl}`)
+  })
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <SignupForm onSubmitCallback={onSubmit} isPending={isPending} />
-    </div>
+    <Suspense fallback={<LoadingState title="Loading..." />}>
+      <SignUpView redirectToUrl={redirectToUrl} />
+    </Suspense>
   )
 }

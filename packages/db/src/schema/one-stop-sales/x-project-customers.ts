@@ -1,9 +1,9 @@
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
 import { projects } from '@olis/db/schema/one-stop-sales/project'
 import { customers } from '@olis/db/schema/platform'
 import { relations } from 'drizzle-orm'
 import { boolean, unique, uuid } from 'drizzle-orm/pg-core'
+import { oneStopSalesSchema } from './meta'
 
 export const x_projectCustomers = oneStopSalesSchema.table('x_project_customers', {
   id: unsafeId,

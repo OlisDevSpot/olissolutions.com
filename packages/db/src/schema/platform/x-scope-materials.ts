@@ -1,12 +1,12 @@
 import type z from 'zod'
 
-import { platformSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-
 import { boolean, integer, unique } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { materials } from './materials'
+import { platformSchema } from './meta'
 import { scopes } from './scopes'
 
 export const x_scopeMaterials = platformSchema.table('x_scope_materials', {

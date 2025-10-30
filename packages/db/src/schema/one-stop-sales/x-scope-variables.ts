@@ -1,10 +1,10 @@
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-
 import { scopes } from '@olis/db/schema/platform'
 
 import { relations } from 'drizzle-orm'
+
 import { integer, unique } from 'drizzle-orm/pg-core'
+import { oneStopSalesSchema } from './meta'
 import { variables } from './variable'
 
 export const x_scopeVariables = oneStopSalesSchema.table('x_scope_variables', {

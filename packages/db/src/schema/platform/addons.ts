@@ -1,11 +1,11 @@
 import type z from 'zod'
 
-import { platformSchema } from '@olis/db/lib/constants'
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-
 import { integer } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+import { platformSchema } from './meta'
 import { trades } from './trades'
 
 export const addons = platformSchema.table('addons', {

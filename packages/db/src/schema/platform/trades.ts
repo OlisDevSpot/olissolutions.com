@@ -1,18 +1,15 @@
 import type z from 'zod'
 
-import { tradeLocations } from '@olis/core/constants'
-import { platformSchema } from '@olis/db/lib/constants'
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
-
 import { relations } from 'drizzle-orm'
-import { varchar } from 'drizzle-orm/pg-core'
 
+import { varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+
 import { addons } from './addons'
+import { locationEnum, platformSchema } from './meta'
 import { scopes } from './scopes'
 import { x_tradeBenefits } from './x-trade-benefits'
-
-export const locationEnum = platformSchema.enum('location', tradeLocations)
 
 export const trades = platformSchema.table('trade', {
   id: unsafeId,

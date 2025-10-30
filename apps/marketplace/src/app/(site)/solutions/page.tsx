@@ -2,19 +2,23 @@
 
 import { Badge } from '@olis/ui/components/badge'
 import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
+import { LoadingState } from '@olis/ui/components/global/loading-state'
 import {
   fadeInUp,
   staggerContainer,
   staggerItem,
   useScrollAnimation,
 } from '@olis/ui/hooks/use-scroll-animation'
+import { useQuery } from '@tanstack/react-query'
 import { motion } from 'motion/react'
-import SolutionCard from '@/components/solution-card'
-import { categories, solutions } from '@/features/marketplace/data'
+import { SolutionCard } from '@/features/solutions'
+import { useTRPC } from '@/trpc/client'
 
 export default function SolutionsPage() {
   const categoriesRef = useScrollAnimation()
   const solutionsRef = useScrollAnimation()
+  const trpc = useTRPC()
+  const { data: solutions, isPending } = useQuery(trpc.solutions.findAll.queryOptions({ isActive: true }))
 
   return (
     <div className="flex flex-col">
@@ -58,11 +62,11 @@ export default function SolutionsPage() {
             variants={staggerContainer}
             className="flex flex-wrap gap-2 justify-center"
           >
-            {categories.map(category => (
+            {['CRM', 'Sales', 'Marketing', 'All'].map(category => (
               <motion.div
                 key={category}
                 variants={staggerItem}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Badge
@@ -80,38 +84,27 @@ export default function SolutionsPage() {
       {/* Solutions Grid */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            ref={solutionsRef?.ref}
-            initial="hidden"
-            animate={solutionsRef.isInView ? 'visible' : 'hidden'}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {solutions.map((solution, index) => (
-              <motion.div
-                key={solution.title}
-                variants={staggerItem}
-                whileHover={{
-                  scale: 1.02,
-                  y: -5,
-                  transition: { duration: 0.3 },
-                }}
-              >
-                <SolutionCard
-                  id={index + 1}
-                  name={solution.title}
-                  description={solution.description}
-                  whatItDoes={solution.description}
-                  howItHelps={solution.description}
-                  easeOfUse="moderate"
-                  pricePerMonth={0}
-                  isFeatured={false}
-                  psychologyConcepts={[]}
-                  showPsychologyConcepts={true}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          {isPending
+            ? <LoadingState title="Loading solutions..." />
+            : (
+                <motion.div
+                  ref={solutionsRef?.ref}
+                  initial="hidden"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  {solutions?.map(solution => (
+                    <motion.div
+                      key={solution.id}
+                      whileHover={{
+                        scale: 1.02,
+                        y: -5,
+                      }}
+                    >
+                      <SolutionCard solution={solution} psychologyConcepts={solution.psychologyConcepts} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
         </div>
       </section>
 

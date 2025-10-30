@@ -1,16 +1,13 @@
-import { variableDataTypes } from '@olis/core/constants'
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
-
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-import { relations } from 'drizzle-orm'
 
+import { relations } from 'drizzle-orm'
 import {
   jsonb,
   varchar,
 } from 'drizzle-orm/pg-core'
-import { x_scopeVariables } from './x-scope-variables'
 
-export const dataTypeEnum = oneStopSalesSchema.enum('data_type', variableDataTypes)
+import { dataTypeEnum, oneStopSalesSchema } from './meta'
+import { x_scopeVariables } from './x-scope-variables'
 
 export const variables = oneStopSalesSchema.table('variable', {
   id: unsafeId,

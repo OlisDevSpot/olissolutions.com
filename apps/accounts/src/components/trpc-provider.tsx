@@ -1,6 +1,6 @@
 'use client'
 
-import type { IdentityAppRouter } from '@olis/trpc/routers/app/identity/index'
+import type { BaseAppRouter } from '@olis/trpc/routers/app/base/index'
 import { getQueryClient } from '@olis/data-client/get-query-client'
 import { getUrl } from '@olis/trpc/lib/get-url'
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -16,7 +16,7 @@ export function TRPCReactProvider({ children }: Props) {
   const queryClient = getQueryClient()
 
   const [trpcClient] = useState(() =>
-    createTRPCProxyClient<IdentityAppRouter>({
+    createTRPCProxyClient<BaseAppRouter>({
       links: [
         httpBatchLink({
           // transformer: superjson,

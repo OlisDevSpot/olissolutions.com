@@ -11,7 +11,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { dashboardSidebarNavItems } from '@/data/nav-items'
+import { dashboardSidebarNavItems } from '@/shared/constants/nav-items'
 import { cn } from '@/shared/lib/utils'
 
 export function DashboardSidebar() {

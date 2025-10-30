@@ -1,8 +1,6 @@
 import type z from 'zod'
 
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-
 import { trades } from '@olis/db/schema/platform'
 
 import {
@@ -10,7 +8,9 @@ import {
   real,
   varchar,
 } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+import { oneStopSalesSchema } from './meta'
 
 export const pricing = oneStopSalesSchema.table('pricing', {
   id: unsafeId,

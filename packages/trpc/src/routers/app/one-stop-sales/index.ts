@@ -1,7 +1,13 @@
-import { mergeRouters } from '@olis/trpc/init'
+import { createTRPCRouter, mergeRouters, publicProcedure } from '@olis/trpc/init'
 import { baseAppRouter } from '@olis/trpc/routers/app/base'
-import { ossRouter } from './router'
 
-export const ossAppRouter = mergeRouters(baseAppRouter, ossRouter)
+export const ossAppRouter = mergeRouters(
+  baseAppRouter,
+  createTRPCRouter({
+    'oss-health-check': publicProcedure.query(() => {
+      return 'Hello, world!'
+    }),
+  }),
+)
 
 export type OSSAppRouter = typeof ossAppRouter

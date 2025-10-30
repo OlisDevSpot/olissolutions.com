@@ -1,13 +1,11 @@
 import type z from 'zod'
 
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { id } from '@olis/db/lib/schema-helpers'
 import { scopes, x_scopeMaterials } from '@olis/db/schema/platform'
-
 import { relations } from 'drizzle-orm'
 import { integer, jsonb, unique, uuid } from 'drizzle-orm/pg-core'
 import { createInsertSchema } from 'drizzle-zod'
-
+import { oneStopSalesSchema } from './meta'
 import { projects } from './project'
 
 export const x_projectScopes = oneStopSalesSchema.table('x_project_scopes', {

@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Link from 'next/link'
+import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 export function Footer() {
   return (
@@ -94,7 +95,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/dashboard"
+                  href={`${FEATURE_ROOTS.dashboard}`}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Dashboard

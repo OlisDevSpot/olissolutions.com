@@ -2,7 +2,7 @@
 
 import type {
   ContactForm,
-} from '@/features/marketplace/schemas/contact-us'
+} from '@/features/landing/schemas/contact-us'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Accordion,
@@ -29,10 +29,10 @@ import { motion } from 'motion/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { contactInfo, faqs } from '@/features/marketplace/data'
+import { contactInfo, faqs } from '@/features/landing/data'
 import {
   contactSchema,
-} from '@/features/marketplace/schemas/contact-us'
+} from '@/features/landing/schemas/contact-us'
 
 export default function ContactUsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)

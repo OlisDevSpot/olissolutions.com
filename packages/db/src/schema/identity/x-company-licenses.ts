@@ -1,11 +1,11 @@
-import { identitySchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-
 import { integer, uuid, varchar } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { companies } from './company'
+import { companies } from './companies'
 import { licenses } from './licenses'
+import { identitySchema } from './meta'
 
 export const x_companyLicenses = identitySchema.table('x-company-licenses', {
   id,

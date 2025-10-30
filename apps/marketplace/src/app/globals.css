@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@olis/ui/globals.css";
+
+.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
+.no-scrollbar-padding {
+  scrollbar-width: thin;
+}

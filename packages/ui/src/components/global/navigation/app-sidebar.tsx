@@ -5,7 +5,7 @@ import type { UseQueryOptions } from '@tanstack/react-query'
 import type { LucideIcon } from 'lucide-react'
 import { getTypedKeys } from '@olis/core/lib/utils'
 import { Logo } from '@olis/ui/components/global/logo'
-import { SidebarUserButton } from '@olis/ui/components/global/navigation/sidebar-user-button'
+import { SidebarUserButton } from '@olis/ui/components/global/navigation/sidebar-user-button-2'
 import {
   Sidebar,
   SidebarContent,
@@ -15,6 +15,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -24,7 +25,7 @@ import {
 } from '@olis/ui/components/sidebar'
 
 import { useQueryClient } from '@tanstack/react-query'
-import { LayoutDashboard, Settings } from 'lucide-react'
+import { HelpCircleIcon, LayoutDashboard, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -40,15 +41,37 @@ interface Item {
   title: string
   url: string
   icon: LucideIcon
+  badge?: string
   subItems?: SubItem[]
 }
 
 interface Props<T extends Record<keyof K, Item[]>, K extends Record<string, string>> {
   sidebarItems: T
   sidebarGroups: K
+  settingsUrl?: string
+  dashboardUrl?: string
+  onSettingsClick?: () => void
+  user?: {
+    name?: string
+    email?: string
+    image?: string
+  }
+  isIdentityPending?: boolean
+  logoColor?: 'primary' | 'green' | 'blue' | 'red'
+  logoProduct?: string
 }
 
-export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<string, string>>({ sidebarItems, sidebarGroups }: Props<T, K>) {
+export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<string, string>>({
+  sidebarItems,
+  sidebarGroups,
+  settingsUrl = '/dashboard/settings',
+  dashboardUrl = '/dashboard',
+  onSettingsClick,
+  user,
+  isIdentityPending = false,
+  logoColor,
+  logoProduct,
+}: Props<T, K>) {
   const pathname = usePathname()
   const queryClient = useQueryClient()
   const { setOpenMobile } = useSidebar()
@@ -62,9 +85,9 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
       <SidebarHeader className="border-b h-(--topnav-height) flex items-center pl-2">
         <SidebarMenu className="h-full flex justify-center">
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="p-0">
-              <Link href="/" className="w-full hover:bg-transparent active:bg-transparent">
-                <Logo />
+            <SidebarMenuButton asChild className="p-0 items-center">
+              <Link href="/" className="w-full hover:bg-transparent active:bg-transparent relative">
+                <Logo full color={logoColor || 'primary'} product={logoProduct || 'Dashboard'} />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -76,7 +99,7 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild className="transition-colors duration-200" isActive={pathname === '/dashboard'}>
-                  <Link href="/dashboard" onClick={() => setOpenMobile(false)}>
+                  <Link href={dashboardUrl} onClick={() => setOpenMobile(false)}>
                     <LayoutDashboard />
                     <span>Dashboard</span>
                   </Link>
@@ -98,6 +121,9 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
+                    {item.badge && (
+                      <SidebarMenuBadge className="border rounded-sm border-sidebar-foreground">{item.badge}</SidebarMenuBadge>
+                    )}
                     {'subItems' in item && (
                       <SidebarMenuSub className="mt-0.5 pr-0 mr-0">
                         {item.subItems?.map(subItem => (
@@ -121,18 +147,39 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="transition-colors duration-200 text-sidebar-foreground" isActive={pathname.startsWith('/dashboard/settings')}>
-              <Link href="/dashboard/settings">
-                <Settings />
-                <span>Settings</span>
-              </Link>
+            <SidebarMenuButton
+              asChild
+              className="transition-colors duration-200 text-sidebar-foreground"
+              isActive={pathname.startsWith(`${dashboardUrl}/settings`)}
+              onClick={onSettingsClick ?? undefined}
+            >
+              {!onSettingsClick
+                ? (
+                    <Link href={settingsUrl}>
+                      <Settings />
+                      <span>Settings</span>
+                    </Link>
+                  )
+                : (<>Open Settings</>)}
+
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <SidebarUserButton />
+            <SidebarMenuButton
+              asChild
+              className="transition-colors duration-200 text-sidebar-foreground"
+              isActive={pathname.startsWith(`${dashboardUrl}/support`)}
+              onClick={onSettingsClick ?? undefined}
+            >
+              <Link href={`${dashboardUrl}/support`}>
+                <HelpCircleIcon />
+                Support
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          {isIdentityPending
+            ? (null)
+            : (<SidebarUserButton user={user} />)}
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

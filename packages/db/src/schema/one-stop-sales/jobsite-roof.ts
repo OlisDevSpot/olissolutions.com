@@ -1,20 +1,16 @@
 import type z from 'zod'
 
-import { roofLocations, roofTypes } from '@olis/core/constants'
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-
 import { relations } from 'drizzle-orm'
+
 import {
   integer,
   uuid,
 } from 'drizzle-orm/pg-core'
-
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { jobsiteProfiles } from './jobsite-profile'
 
-export const roofLocationEnum = oneStopSalesSchema.enum('roof_location', roofLocations)
-export const roofTypeEnum = oneStopSalesSchema.enum('roof_type', roofTypes)
+import { jobsiteProfiles } from './jobsite-profile'
+import { oneStopSalesSchema, roofLocationEnum, roofTypeEnum } from './meta'
 
 export const jobsiteRoofs = oneStopSalesSchema.table('jobsite_roof', {
   id,

@@ -20,22 +20,13 @@ import {
 } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { PageHeader } from '@/components/page-header'
 import { featuredSolutions, purchases, stats } from '@/features/dashboard'
+import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 export default function Dashboard() {
   const { data: session, isPending } = useSession()
   const user = session?.user
-
-  console.log({ session })
-
-  // useEffect(() => {
-  //   if (!isPending && !session) {
-  //     const redirectTo = encodeURIComponent(window.location.href)
-  //     window.location.href = `${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in?redirect_to=${redirectTo}`
-  //   }
-  // }, [isPending, session])
 
   if (isPending || !session) {
     return <LoadingState title="Loading dashboard..." />
@@ -46,7 +37,7 @@ export default function Dashboard() {
       <div className="p-6 lg:p-8">
         {/* Header */}
         <PageHeader
-          label={`Welcome back, ${user?.name || 'User'}!`}
+          label={`Welcome back, ${user?.name.split(' ')[0] || 'User'} 👋`}
           description="Manage your solutions, track your progress, and discover new tools."
         />
 
@@ -86,7 +77,7 @@ export default function Dashboard() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     My Solutions
-                    <Link href="/dashboard/purchases">
+                    <Link href={`${FEATURE_ROOTS.dashboard}/purchases`}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -169,7 +160,7 @@ export default function Dashboard() {
                     variant="outline"
                     className="w-full justify-start"
                   >
-                    <Link href="/dashboard/marketplace">
+                    <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Browse Marketplace
                     </Link>
@@ -179,7 +170,7 @@ export default function Dashboard() {
                     variant="outline"
                     className="w-full justify-start"
                   >
-                    <Link href="/dashboard/purchases">
+                    <Link href={`${FEATURE_ROOTS.dashboard}/purchases`}>
                       <Package className="mr-2 h-4 w-4" />
                       Manage Solutions
                     </Link>
@@ -220,7 +211,7 @@ export default function Dashboard() {
                 asChild
                 variant="outline"
               >
-                <Link href="/dashboard/marketplace">
+                <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
                   View Marketplace
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

@@ -1,12 +1,12 @@
 import type z from 'zod'
 
-import { platformSchema } from '@olis/db/lib/constants'
 import { accessor, unsafeId } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-
 import { varchar } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { benefits } from './benefits'
+import { platformSchema } from './meta'
 
 export const benefitCategories = platformSchema.table('benefit_categories', {
   id: unsafeId,

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Toaster } from '@olis/ui/components/sonner'
 import { Nunito, Syne } from 'next/font/google'
-import { Providers } from '@/shared/components/providers'
+import { Providers } from '@/components/providers'
 
-import '@olis/ui/globals.css'
+import './globals.css'
 
 const nunito = Nunito({
   subsets: ['latin'],

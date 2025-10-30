@@ -1,14 +1,14 @@
 import type z from 'zod'
 
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { user } from '@olis/db/schema/identity'
-
 import { relations, sql } from 'drizzle-orm'
 
 import { text, varchar } from 'drizzle-orm/pg-core'
+
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
+import { oneStopSalesSchema } from './meta'
 import { x_projectCustomers } from './x-project-customers'
 import { x_projectScopes } from './x-project-scopes'
 

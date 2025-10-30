@@ -1,8 +1,8 @@
 import { auth } from '@olis/auth/server'
 import { Navbar } from '@olis/ui/components/global/nav-bar'
-import {Footer} from '@/components/footer'
 import { headers as getHeaders } from 'next/headers'
-import { navigationItems } from '@/data/nav-items'
+import { Footer } from '@/components/footer'
+import { navigationItems } from '@/shared/constants/nav-items'
 
 export default async function SiteLayout({
   children,

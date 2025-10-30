@@ -1,24 +1,28 @@
 'use client'
 
-import type { SolutionCardProps } from '../types'
+import type { PsychologyConcept, Solution } from '@olis/db/schema/marketplace'
 import { Badge } from '@olis/ui/components/badge'
 import { Button } from '@olis/ui/components/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@olis/ui/components/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@olis/ui/components/card'
 import { Brain, DollarSign, Star } from 'lucide-react'
 import Link from 'next/link'
+import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
+
+interface Props {
+  solution: Solution
+  showPsychologyConcepts?: boolean
+  psychologyConcepts?: PsychologyConcept[]
+  subscribed?: boolean
+}
 
 export default function SolutionCard({
-  id,
-  name,
-  description,
-  whatItDoes,
-  howItHelps,
-  easeOfUse,
-  pricePerMonth,
-  isFeatured,
-  psychologyConcepts,
+  solution,
   showPsychologyConcepts = true,
-}: SolutionCardProps) {
+  psychologyConcepts,
+  subscribed = false,
+}: Props) {
+  const solutionUrl = process.env.NODE_ENV === 'production' ? `${solution.subdomain}.olissolutions.com` : `http://localhost:${solution.devPort}`
+
   const getEaseOfUseColor = (ease: string) => {
     switch (ease) {
       case 'easy':
@@ -33,52 +37,54 @@ export default function SolutionCard({
   }
 
   return (
-    <Card className="h-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 border-border hover:border-primary/20 group">
+    <Card className="h-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 border-border hover:border-primary/20 group w-full">
       <CardHeader className="pb-4">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
             <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-              {name}
+              {solution.name}
             </CardTitle>
-            {isFeatured && (
+            {solution.isFeatured && (
               <Badge className="mt-1 bg-primary/20 text-primary border-primary/30">
                 <Star className="h-3 w-3 mr-1" />
                 Featured
               </Badge>
             )}
           </div>
-          <div className="text-right">
-            <div className="flex items-center text-2xl font-bold text-foreground">
-              <DollarSign className="h-5 w-5" />
-              {pricePerMonth}
+          {!subscribed && (
+            <div className="text-right flex items-center gap-2">
+              <div className="flex items-center text-2xl font-bold text-foreground">
+                <DollarSign className="h-5 w-5" />
+                {solution.pricePerMonth}
+              </div>
+              <div className="text-muted-foreground">/ mo</div>
             </div>
-            <div className="text-xs text-muted-foreground">per month</div>
-          </div>
+          )}
         </div>
 
-        <CardDescription className="text-muted-foreground leading-relaxed">
-          {description}
+        <CardDescription className="text-muted-foreground leading-relaxed w-full">
+          {solution.generalDescription.description}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 grow flex flex-col gap-4">
         {/* What it does */}
-        <div>
+        <div className="shrink-0">
           <h4 className="font-semibold text-foreground mb-2">What it does:</h4>
-          <p className="text-sm text-muted-foreground">{whatItDoes}</p>
+          <p className="text-sm text-muted-foreground">{solution.generalDescription.whatItDoes}</p>
         </div>
 
         {/* How it helps */}
-        <div>
+        <div className="grow">
           <h4 className="font-semibold text-foreground mb-2">How it helps:</h4>
-          <p className="text-sm text-muted-foreground">{howItHelps}</p>
+          <p className="text-sm text-muted-foreground">{solution.generalDescription.howItHelps}</p>
         </div>
 
         {/* Ease of Use */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-foreground">Ease of use:</span>
-          <Badge className={getEaseOfUseColor(easeOfUse)}>
-            {easeOfUse}
+          <Badge className={getEaseOfUseColor(solution.easeOfUse)}>
+            {solution.easeOfUse}
           </Badge>
         </div>
 
@@ -100,14 +106,36 @@ export default function SolutionCard({
             </div>
           </div>
         )}
-
-        {/* Action Button */}
-        <Button asChild className="w-full btn-primary mt-6">
-          <Link href={`/dashboard/marketplace/${id}`}>
-            View Details
-          </Link>
-        </Button>
       </CardContent>
+      <CardFooter>
+        <ActionButton id={solution.id} subscribed={subscribed} href={solutionUrl} />
+      </CardFooter>
     </Card>
+  )
+}
+
+interface ActionButtonProps {
+  id: number
+  subscribed: boolean
+  href: string
+}
+
+export function ActionButton({ id, subscribed, href }: ActionButtonProps) {
+  if (subscribed) {
+    return (
+      <Button asChild className="w-full btn-primary mt-6" variant="outline">
+        <Link href={href}>
+          Start Using
+        </Link>
+      </Button>
+    )
+  }
+
+  return (
+    <Button asChild className="w-full btn-primary mt-6">
+      <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}/${id}`}>
+        View Details
+      </Link>
+    </Button>
   )
 }

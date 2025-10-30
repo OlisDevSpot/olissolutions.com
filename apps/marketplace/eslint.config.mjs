@@ -10,5 +10,6 @@ export default antfu({
     'react/no-array-index-key': 'off',
     'react/no-nested-component-definitions': 'off',
     'node/prefer-global/process': 'off',
+    'no-console': 'warn',
   },
 })

@@ -1,12 +1,12 @@
 import type z from 'zod'
 
-import { platformSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-
 import { relations } from 'drizzle-orm'
+
 import { integer, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { benefitCategories } from './benefit-categories'
+import { platformSchema } from './meta'
 import { x_materialBenefits } from './x-material-benefits'
 import { x_tradeBenefits } from './x-trade-benefits'
 

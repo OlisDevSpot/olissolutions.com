@@ -7,6 +7,7 @@ import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 const transitionVariants: { [key: string]: Variants } = {
   item: {
@@ -88,7 +89,7 @@ export function HeroSection() {
                   size="lg"
                   className="text-base"
                 >
-                  <Link href="/dashboard">
+                  <Link href={`${FEATURE_ROOTS.dashboard}`}>
                     <span className="text-nowrap">Start Building</span>
                   </Link>
                 </Button>

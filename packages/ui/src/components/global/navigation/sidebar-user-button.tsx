@@ -54,7 +54,7 @@ export function SidebarUserButton() {
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut({ fetchOptions: { onSuccess: () => router.push('/auth/login') } })}>
+        <DropdownMenuItem onClick={() => signOut({ fetchOptions: { onSuccess: () => router.push(process.env.NEXT_PUBLIC_ACCOUNTS_URL ? `${process.env.NEXT_PUBLIC_ACCOUNTS_URL}/auth/sign-in` : '/') } })}>
           <div className="w-full flex items-center gap-1">
             <LogOut className="mr-2 h-4 w-4" />
             Sign out

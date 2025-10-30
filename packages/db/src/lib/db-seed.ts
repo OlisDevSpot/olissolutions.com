@@ -6,6 +6,7 @@ import * as seeds from '@olis/db/seeds'
 export async function seedOneStopSalesDb() {
   await seeds.oneStopSales.variables(db)
   await seeds.oneStopSales.pricing(db)
+  await seeds.oneStopSales.x_scopeVariables(db)
 }
 
 export async function seedIdentityDb() {
@@ -13,7 +14,6 @@ export async function seedIdentityDb() {
 }
 
 export async function seedPlatformDb() {
-  await seeds.platform.solutions(db)
   await seeds.platform.trades(db)
   await seeds.platform.scopes(db)
   await seeds.platform.addons(db)
@@ -23,6 +23,12 @@ export async function seedPlatformDb() {
   await seeds.platform.x_materialBenefits(db)
   await seeds.platform.x_scopeBenefits(db)
   await seeds.platform.x_scopeMaterials(db)
+}
+
+export async function seedMarketplaceDb() {
+  await seeds.marketplace.solutions(db)
+  await seeds.marketplace.psychologyConcepts(db)
+  await seeds.marketplace.xSolutionPsychologyConcepts(db)
 }
 
 (async () => {
@@ -35,6 +41,9 @@ export async function seedPlatformDb() {
       break
     case 'platform':
       await seedPlatformDb()
+      break
+    case 'marketplace':
+      await seedMarketplaceDb()
       break
     default:
       throw new Error('Invalid schema')

@@ -1,26 +1,18 @@
 import type z from 'zod'
 
-import { electricProviders, foundationTypes, hvacComponents, hvacTypes, insulationLevels, windowsTypes } from '@olis/core/constants'
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-
 import { relations } from 'drizzle-orm'
+
 import {
   boolean,
   integer,
   uuid,
 } from 'drizzle-orm/pg-core'
-
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { jobsiteRoofs } from './jobsite-roof'
-import { projects } from './project'
 
-export const hvacTypeEnum = oneStopSalesSchema.enum('hvac_type', hvacTypes)
-export const hvacComponentsEnum = oneStopSalesSchema.enum('hvac_components', hvacComponents)
-export const windowsTypeEnum = oneStopSalesSchema.enum('windows_type', windowsTypes)
-export const insulationLevelEnum = oneStopSalesSchema.enum('insulation_level', insulationLevels)
-export const foundationTypeEnum = oneStopSalesSchema.enum('foundation_type', foundationTypes)
-export const electricProviderEnum = oneStopSalesSchema.enum('electric_provider', electricProviders)
+import { jobsiteRoofs } from './jobsite-roof'
+import { electricProviderEnum, foundationTypeEnum, hvacComponentsEnum, hvacTypeEnum, insulationLevelEnum, oneStopSalesSchema, windowsTypeEnum } from './meta'
+import { projects } from './project'
 
 export const jobsiteProfiles = oneStopSalesSchema.table('jobsite_profile', {
   id,

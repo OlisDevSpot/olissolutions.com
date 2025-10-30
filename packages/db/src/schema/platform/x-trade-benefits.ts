@@ -1,9 +1,9 @@
-import { platformSchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-
 import { relations } from 'drizzle-orm'
+
 import { integer, unique } from 'drizzle-orm/pg-core'
 import { benefits } from './benefits'
+import { platformSchema } from './meta'
 import { trades } from './trades'
 
 export const x_tradeBenefits = platformSchema.table('x_trade_benefits', {

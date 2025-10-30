@@ -1,5 +1,7 @@
 /* eslint-disable perfectionist/sort-exports */
-export { oneStopSalesSchema } from '@olis/db/lib/constants'
+
+// meta
+export * from './meta'
 
 // dynamic
 export * from './project'

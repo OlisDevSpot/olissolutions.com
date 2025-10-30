@@ -1,6 +1,6 @@
 import { auth } from '@olis/auth/server'
 import { getQueryClient } from '@olis/data-client/get-query-client'
-import { identityAppRouter } from '@olis/trpc/routers/app/identity/index'
+import { baseAppRouter } from '@olis/trpc/routers/app/base/index'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import { headers } from 'next/headers'
 import { cache } from 'react'
@@ -17,6 +17,6 @@ export const trpc = createTRPCOptionsProxy({
       ...session,
     }
   },
-  router: identityAppRouter,
+  router: baseAppRouter,
   queryClient,
 })

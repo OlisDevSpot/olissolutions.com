@@ -1,12 +1,11 @@
 import { trpcServer } from '@hono/trpc-server'
-import { auth } from '@olis/auth/server'
-import app from '@olis/server/apps/identity'
+import app from '@olis/server/apps/base'
 import { createHonoTRPCContext } from '@olis/trpc/lib/create-context'
-import { identityAppRouter } from '@olis/trpc/routers/app/identity/index'
+import { baseAppRouter } from '@olis/trpc/routers/app/base/index'
 import { handle } from 'hono/vercel'
 
 app.use('/trpc/*', trpcServer({
-  router: identityAppRouter,
+  router: baseAppRouter,
   endpoint: '/api/trpc',
   createContext: createHonoTRPCContext,
 }))

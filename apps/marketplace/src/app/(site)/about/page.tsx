@@ -17,7 +17,7 @@ import {
   useScrollAnimation,
 } from '@olis/ui/hooks/use-scroll-animation'
 import { motion } from 'motion/react'
-import { stats, values } from '@/features/marketplace/data'
+import { stats, values } from '@/features/landing/data'
 
 export default function AboutPage() {
   const statsRef = useScrollAnimation()
@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-background to-muted/50">
+      <section className="py-20 lg:py-32 bg-linear-to-br from-background to-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div

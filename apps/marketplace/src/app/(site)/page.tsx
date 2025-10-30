@@ -7,6 +7,7 @@ import ContentSection from '@olis/ui/components/content-7'
 import { FeaturesSection } from '@olis/ui/components/features-7'
 import { KanbanFeaturesSection } from '@olis/ui/components/features-8'
 import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
+import { LoadingState } from '@olis/ui/components/global/loading-state'
 import {
   fadeInUp,
   scaleIn,
@@ -14,6 +15,7 @@ import {
   staggerItem,
   useScrollAnimation,
 } from '@olis/ui/hooks/use-scroll-animation'
+import { useQuery } from '@tanstack/react-query'
 import {
   ArrowRight,
   CheckCircle,
@@ -25,12 +27,15 @@ import {
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { HeroSection } from '@/components/hero-section'
-import { eliteStats, eliteTestimonials, solutions } from '@/features/marketplace'
-import { MarketRealitySection } from '@/features/marketplace/ui/components/market-reality-section'
+import { eliteStats, eliteTestimonials } from '@/features/landing'
+import { MarketRealitySection } from '@/features/landing/ui/components/market-reality-section'
+import { useTRPC } from '@/trpc/client'
 
 export default function HomePage() {
   const solutionsRef = useScrollAnimation()
   const testimonialsRef = useScrollAnimation()
+  const trpc = useTRPC()
+  const { data: solutions, isPending } = useQuery(trpc.solutions.findAll.queryOptions({ isActive: true }))
 
   return (
     <div className="flex flex-col">
@@ -75,81 +80,50 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {solutions.map(solution => (
-              <motion.div
-                key={solution.title}
-                variants={staggerItem}
-                whileHover={{
-                  scale: 1.02,
-                  y: -5,
-                  transition: { duration: 0.3 },
-                }}
-              >
-                <Card
-                  className={`h-full hover:shadow-xl transition-all duration-300 group cursor-pointer ${
-                    solution.tag === 'FLAGSHIP'
-                      ? 'ring-1 ring-orange-500/50 bg-orange-500/5'
-                      : ''
-                  }`}
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge
-                        variant="secondary"
-                        className={
-                          solution.tag === 'FLAGSHIP'
-                            ? 'bg-orange-500/20 text-orange-600 border-orange-500/30'
-                            : ''
-                        }
-                      >
-                        {solution.tag}
-                      </Badge>
-                      <motion.div
-                        className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors"
-                        whileHover={{
-                          rotate: 360,
-                          scale: 1.1,
-                          transition: { duration: 0.6 },
-                        }}
-                      >
-                        <solution.icon className="h-6 w-6 text-primary" />
-                      </motion.div>
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {solution.title}
-                    </CardTitle>
-                    <CardDescription className="font-semibold text-orange-600">
-                      {solution.subtitle}
-                    </CardDescription>
-                    <CardDescription className="text-base mt-2">
-                      {solution.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        {solution.features.map(feature => (
-                          <div
-                            key={feature}
-                            className="flex items-center text-sm"
-                          >
-                            <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
-                            {feature}
+            {isPending
+              ? <LoadingState title="Loading solutions..." />
+              : solutions?.map(solution => (
+                  <motion.div
+                    key={solution.id}
+                    variants={staggerItem}
+                    whileHover={{
+                      scale: 1.02,
+                      y: -5,
+                      transition: { duration: 0.3 },
+                    }}
+                  >
+                    <Card
+                      className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                    >
+                      <CardHeader>
+                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                          {solution.name}
+                        </CardTitle>
+                        <CardDescription className="font-semibold text-orange-600">
+                          {solution.generalDescription.description}
+                        </CardDescription>
+                        <CardDescription className="text-base mt-2">
+                          {solution.generalDescription.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            {solution.psychologyConcepts.map(psychologyConcept => (
+                              <div
+                                key={psychologyConcept.id}
+                                className="flex items-center text-sm"
+                              >
+                                <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
+                                {psychologyConcept.label}
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                      <div className="bg-primary/5 rounded-lg p-3 border-l-4 border-primary">
-                        <p className="text-sm font-semibold text-primary italic">
-                          &quot;
-                          {solution.impact}
-                          &quot;
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
           </motion.div>
         </div>
       </section>

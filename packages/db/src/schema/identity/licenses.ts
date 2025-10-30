@@ -1,9 +1,9 @@
-import { identitySchema } from '@olis/db/lib/constants'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
 import { x_companyLicenses } from '@olis/db/schema/identity'
-
 import { relations } from 'drizzle-orm'
+
 import { varchar } from 'drizzle-orm/pg-core'
+import { identitySchema } from './meta'
 
 export const licenses = identitySchema.table('license', {
   id: unsafeId,

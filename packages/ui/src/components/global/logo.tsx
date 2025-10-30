@@ -1,26 +1,39 @@
+import { cn } from '@olis/ui/lib/utils'
 import { motion } from 'motion/react'
-import Link from 'next/link'
 
-interface LogoProps {
-  long?: boolean
-}
+type LogoProps = {
+  color?: 'primary' | 'green' | 'blue' | 'red'
+} & ({
+  full?: false
+  product?: never
+} | {
+  full: true
+  product: string
+})
 
-export function Logo({ long = false }: LogoProps) {
+export function Logo({ color = 'primary', full, product }: LogoProps) {
+  const colorMap: Record<'primary' | 'green' | 'blue' | 'red', string> = {
+    primary: 'bg-primary',
+    green: 'bg-green-700',
+    blue: 'bg-blue-700',
+    red: 'bg-red-700',
+  }
+
   return (
-    <Link href="/" className="flex items-center space-x-2">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className="flex items-center space-x-2"
-      >
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <span className="text-primary-foreground font-bold text-xl">O</span>
-        </div>
-        <span className="text-2xl font-bold text-foreground font-(family-name:--font-syne)">
-          {long ? 'Olis Solutions' : 'Olis'}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.1 }}
+      className="flex items-center space-x-1.5"
+    >
+      <div className={cn('w-fit px-2 h-8 bg-primary rounded-lg flex items-center justify-center', colorMap[color])}>
+        <span className="text-primary-foreground font-bold text-xl font-(family-name:--font-syne)">Olis</span>
+      </div>
+      {full && (
+        <span className="text-lg font-medium text-foreground">
+          {product}
         </span>
-      </motion.div>
-    </Link>
+      )}
+    </motion.div>
   )
 }

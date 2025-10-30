@@ -3,9 +3,14 @@
 import { signOut } from '@olis/auth/client'
 
 import { Button } from '@olis/ui/components/button'
+import { LogOutIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-export function LogoutButton() {
+interface Props {
+  asMenuItem?: boolean
+}
+
+export function LogoutButton({ asMenuItem = false }: Props) {
   const router = useRouter()
 
   async function handleLogout() {
@@ -14,8 +19,20 @@ export function LogoutButton() {
   }
 
   return (
-    <Button variant="destructive" onClick={handleLogout}>
-      Log-out
-    </Button>
+    <>
+      { asMenuItem
+        ? (
+            <div onClick={handleLogout} className="flex items-center gap-2 w-full h-full p-2">
+              <LogOutIcon />
+              Logout
+            </div>
+          )
+        : (
+            <Button variant="destructive" onClick={handleLogout}>
+              <LogOutIcon />
+              Log-out
+            </Button>
+          )}
+    </>
   )
 }

@@ -1,9 +1,7 @@
 import type z from 'zod'
 
-import { oneStopSalesSchema } from '@olis/db/lib/constants'
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
-
 import {
   boolean,
   real,
@@ -11,6 +9,8 @@ import {
 } from 'drizzle-orm/pg-core'
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+
+import { oneStopSalesSchema } from './meta'
 import { projects } from './project'
 
 export const financialProfiles = oneStopSalesSchema.table('financial_profile', {

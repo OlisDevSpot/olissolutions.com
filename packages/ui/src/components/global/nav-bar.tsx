@@ -1,10 +1,12 @@
 'use client'
 
+import { ROOTS } from '@olis/core/constants'
 import { Button } from '@olis/ui/components/button'
 import { cn } from '@olis/ui/lib/utils'
 import { Menu, X } from 'lucide-react'
 import { useScroll } from 'motion/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Logo } from './logo'
 import { ModeToggle } from './theme-toggle'
@@ -17,12 +19,12 @@ interface NavigationItem {
 interface Props {
   navigationItems: NavigationItem[]
   isSignedIn?: boolean
-  dashboardUrl?: string
 }
 
-export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/dashboard' }: Props) {
+export function Navbar({ navigationItems, isSignedIn = false }: Props) {
   const [menuState, setMenuState] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
   const { scrollYProgress } = useScroll()
   const [redirectTo] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -30,6 +32,13 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
     }
     return false as const
   })
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === `${href}`
+    }
+    return pathname.startsWith(href)
+  }
 
   useEffect(() => {
     const signInAnchor = document.getElementById('sign-in-button') as HTMLAnchorElement
@@ -59,7 +68,9 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
         <div className="mx-auto container px-6 transition-all duration-300">
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-              <Logo />
+              <Link href="/">
+                <Logo color="primary" full product="Solutions" />
+              </Link>
               <button
                 type="button"
                 onClick={() => setMenuState(!menuState)}
@@ -75,8 +86,9 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                   {navigationItems.map(item => (
                     <li key={item.name}>
                       <Link
+                        data-active={isActive(item.href)}
                         href={item.href}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        className="text-muted-foreground hover:text-accent-foreground block duration-150 data-[active=true]:text-accent-foreground transition"
                       >
                         <span>{item.name}</span>
                       </Link>
@@ -94,7 +106,8 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        data-active={isActive(item.href)}
+                        className={cn('text-muted-foreground hover:text-accent-foreground block duration-150 data-active:bg-red-500')}
                       >
                         <span>{item.name}</span>
                       </Link>
@@ -109,7 +122,7 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                       <div className="flex items-center space-x-4">
                         <Button asChild size="sm">
                           <Link
-                            href={dashboardUrl}
+                            href={ROOTS.marketplace.dashboard}
                             className="text-muted-foreground hover:text-accent-foreground block duration-150"
                           >
                             <span>Dashboard</span>
@@ -124,7 +137,7 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                           size="sm"
                           asChild
                         >
-                          <a id="sign-in-button" href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-in`}>
+                          <a id="sign-in-button" href={`${ROOTS.identity.getSignInUrl({ absolute: true })}`}>
                             <span>Sign In</span>
                           </a>
                         </Button>
@@ -133,7 +146,7 @@ export function Navbar({ navigationItems, isSignedIn = false, dashboardUrl = '/d
                           size="sm"
                           asChild
                         >
-                          <a id="sign-up-button" href={`${process.env.NEXT_PUBLIC_ACCOUNTS_URL!}/auth/sign-up`}>
+                          <a id="sign-up-button" href={`${ROOTS.identity.getSignUpUrl({ absolute: true })}`}>
                             <span>Sign Up</span>
                           </a>
                         </Button>

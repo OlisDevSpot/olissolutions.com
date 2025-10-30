@@ -177,9 +177,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply text-2xl font-bold;
   }
 
   h1,
@@ -194,6 +198,7 @@
     cursor: pointer;
   }
 }
+
 
 @layer utilities {
   .text-gradient {
