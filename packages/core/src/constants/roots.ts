@@ -19,18 +19,24 @@ export const ROOTS = {
     getSignUpUrl: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.identity, absolute, basePath: ROOTS.identity.auth })}/sign-up` as const,
   },
   saleos: {
-    name: 'SaleOS',
-    prodOrigin: 'https://scopeio.olissolutions.com',
+    name: 'Remodel-X',
+    prodOrigin: 'https://remodelx.olissolutions.com',
     devOrigin: 'http://localhost:3001',
-    dashboard: '/' as const,
+    dashboard: '/dashboard' as const,
     getProjectsRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/projects` as const,
     getShowroomRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/showroom` as const,
+    getEnergyEfficiencyRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/energy-efficiency` as const,
   },
 } as const
 
-function generateUrl({ absolute = false, devOrigin, prodOrigin, basePath }: { absolute?: boolean, devOrigin: string, prodOrigin: string, basePath: string }) {
+function generateUrl({
+  absolute = false,
+  devOrigin,
+  prodOrigin,
+  basePath = '/',
+}: { absolute?: boolean, devOrigin: string, prodOrigin: string, basePath?: string }) {
   const dev = process.env.NODE_ENV !== 'production'
   const origin = dev ? devOrigin : prodOrigin
-  const path = basePath === '/' ? '' : `${basePath}`
+  const path = basePath === '/' ? '' : basePath
   return absolute ? `${origin}${path}` : path
 }

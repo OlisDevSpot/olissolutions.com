@@ -306,7 +306,7 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  apps/one-stop-sales:
+  apps/remodel-x:
     dependencies:
       '@hono/trpc-server':
         specifier: ^0.4.0
@@ -614,6 +614,9 @@ importers:
       '@olis/trpc':
         specifier: workspace:*
         version: link:../trpc
+      '@trpc/tanstack-react-query':
+        specifier: ^11.6.0
+        version: 11.6.0(@tanstack/react-query@5.90.5(react@19.2.0))(@trpc/client@11.6.0(@trpc/server@11.6.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.6.0(typescript@5.9.3))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
       drizzle-orm:
         specifier: ^0.44.6
         version: 0.44.7(@neondatabase/serverless@1.0.2)(@types/pg@8.15.5)(kysely@0.28.8)(pg@8.16.3)
@@ -8804,7 +8807,7 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 24.9.1
+      '@types/node': 24.9.2
 
   '@types/google.maps@3.58.1': {}
 
@@ -8845,7 +8848,7 @@ snapshots:
 
   '@types/pg@8.15.5':
     dependencies:
-      '@types/node': 24.9.1
+      '@types/node': 24.9.2
       pg-protocol: 1.10.3
       pg-types: 2.2.0
 
@@ -8859,7 +8862,7 @@ snapshots:
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 24.9.1
+      '@types/node': 24.9.2
 
   '@types/tinycolor2@1.4.6': {}
 

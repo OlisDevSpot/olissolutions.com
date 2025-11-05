@@ -98,7 +98,7 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild className="transition-colors duration-200" isActive={pathname === '/dashboard'}>
+                <SidebarMenuButton asChild className="transition-colors duration-200" isActive={pathname === `${dashboardUrl}`}>
                   <Link href={dashboardUrl} onClick={() => setOpenMobile(false)}>
                     <LayoutDashboard />
                     <span>Dashboard</span>

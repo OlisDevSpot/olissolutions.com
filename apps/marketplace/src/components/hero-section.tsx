@@ -1,4 +1,5 @@
 import type { Variants } from 'motion/react'
+import { ROOTS } from '@olis/core/constants'
 import { Button } from '@olis/ui/components/button'
 import { AnimatedGroup } from '@olis/ui/components/global/animated-group'
 import { LandingSection } from '@olis/ui/components/global/landing-section'
@@ -7,7 +8,6 @@ import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 const transitionVariants: { [key: string]: Variants } = {
   item: {
@@ -89,7 +89,7 @@ export function HeroSection() {
                   size="lg"
                   className="text-base"
                 >
-                  <Link href={`${FEATURE_ROOTS.dashboard}`}>
+                  <Link href={`${ROOTS.marketplace.dashboard}`}>
                     <span className="text-nowrap">Start Building</span>
                   </Link>
                 </Button>

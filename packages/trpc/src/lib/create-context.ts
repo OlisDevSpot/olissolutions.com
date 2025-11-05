@@ -1,9 +1,9 @@
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch'
 import { auth } from '@olis/auth/server'
 
-export async function createHonoTRPCContext(_opts: FetchCreateContextFnOptions) {
+export async function createHonoTRPCContext(opts: FetchCreateContextFnOptions) {
   const session = await auth.api.getSession({
-    headers: _opts.req.headers,
+    headers: opts.req.headers,
   })
 
   return {

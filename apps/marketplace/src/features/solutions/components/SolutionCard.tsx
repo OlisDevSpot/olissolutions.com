@@ -1,12 +1,12 @@
 'use client'
 
 import type { PsychologyConcept, Solution } from '@olis/db/schema/marketplace'
+import { ROOTS } from '@olis/core/constants'
 import { Badge } from '@olis/ui/components/badge'
 import { Button } from '@olis/ui/components/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@olis/ui/components/card'
-import { Brain, DollarSign, Star } from 'lucide-react'
+import { ArrowRightIcon, Brain, DollarSign, Star } from 'lucide-react'
 import Link from 'next/link'
-import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 interface Props {
   solution: Solution
@@ -125,7 +125,8 @@ export function ActionButton({ id, subscribed, href }: ActionButtonProps) {
     return (
       <Button asChild className="w-full btn-primary mt-6" variant="outline">
         <Link href={href}>
-          Start Using
+          Go to dashboard
+          <ArrowRightIcon />
         </Link>
       </Button>
     )
@@ -133,7 +134,7 @@ export function ActionButton({ id, subscribed, href }: ActionButtonProps) {
 
   return (
     <Button asChild className="w-full btn-primary mt-6">
-      <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}/${id}`}>
+      <Link href={`${ROOTS.marketplace.getMarketplaceRoot()}/${id}`}>
         View Details
       </Link>
     </Button>

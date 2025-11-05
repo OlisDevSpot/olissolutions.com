@@ -1,0 +1,44 @@
+{
+  "extends": "@olis/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "incremental": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@olis/ui/*": ["../../packages/ui/src/*"],
+      "@olis/db/*": ["../../packages/db/src/*"],
+      "@olis/auth/*": ["../../packages/auth/src/*"],
+      "@olis/core/*": ["../../packages/core/src/*"]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "react",
+      "google.maps"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

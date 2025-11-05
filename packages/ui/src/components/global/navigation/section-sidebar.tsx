@@ -38,7 +38,7 @@ export function SectionSidebar({ baseUrl, menuItems }: Props) {
             asChild
           >
             <Link
-              href={`${baseUrl}/${step.href}`}
+              href={baseUrl ? `${baseUrl}/${step.href}` : `${step.href}`}
               className="flex items-center gap-2"
             >
               <step.Icon className="h-4 w-4" />

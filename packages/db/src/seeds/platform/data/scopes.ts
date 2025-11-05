@@ -64,6 +64,14 @@ export const scopesData = {
   ],
   atticBasement: [
     {
+      label: 'Repair foundation',
+      accessor: 'foundationRepair',
+      description: 'Repair damaged foundation',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755057305/foundation-repair_vytinc.jpg',
+      constructionType: 'energy-efficient',
+      scopeOfWorkBase: null,
+    },
+    {
       label: 'Replace attic insulation',
       accessor: 'rnrAttic',
       description: 'Remove & replace attic insulation',
@@ -188,6 +196,14 @@ export const scopesData = {
       imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755105918/sliding-door-replacement_dzlpmm.jpg',
       constructionType: 'energy-efficient',
       scopeOfWorkBase: 'Phase I: Site Preparation - Accurately measure the size of each door opening. - Fabricate & provide new energy-efficient double pane doors.  Phase II: Demo - Remove existing doors. - Clean up and haul away debris. - Prepare the door opening, ensuring it is clean and level.  Phase III: Installation - Install new doors according to manufacturer instructions and industry best practices. - Apply 50 years caulking, all around frame by city code to properly insulate around the door frame and prevent air and water leakage. - Install trim and finish around the door frame to enhance aesthetics.  Quality Assurance - Conduct thorough inspections of each door installation to ensure proper functionality and appearance. - Test doors for smooth operation, proper sealing, security and no leaks. - Clean up the work area and remove any debris or construction waste.  Notes - Doors will be without grids  - Doors will have self-lock mechanism - No alteration to existing structure - all doors remain the size - Provide warranty information for the installed doors.',
+    },
+    {
+      label: 'Replace french doors',
+      accessor: 'replaceFrenchDoors',
+      description: 'Replace old french doors',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1762305348/replace-french-doors_jvglc8.jpg',
+      constructionType: 'energy-efficient',
+      scopeOfWorkBase: 'Phase I: Site Preparation - Accurately measure the size of each door opening. - Fabricate & provide new energy-efficient double pane french doors.  Phase II: Demo - Remove existing doors. - Clean up and haul away debris. - Prepare the door opening, ensuring it is clean and level.  Phase III: Installation - Install new doors according to manufacturer instructions and industry best practices. - Apply 50 years caulking, all around frame by city code to properly insulate around the door frame and prevent air and water leakage. - Install trim and finish around the door frame to enhance aesthetics.  Quality Assurance - Conduct thorough inspections of each door installation to ensure proper functionality and appearance. - Test doors for smooth operation, proper sealing, security and no leaks. - Clean up the work area and remove any debris or construction waste.  Notes - Doors will be without grids  - Doors will have self-lock mechanism - No alteration to existing structure - all doors remain the size - Provide warranty information for the installed doors.',
     },
   ],
   exteriorPaintSiding: [

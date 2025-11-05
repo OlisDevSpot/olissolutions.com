@@ -12,9 +12,9 @@
       "command": "cd apps/accounts && clear"
     },
     {
-      "name": "one-stop-sales",
+      "name": "remodel-x",
       "description": "This is one stop sales terminal",
-      "command": "cd apps/one-stop-sales && clear"
+      "command": "cd apps/remodel-x && clear"
     },
     {
       "name": "marketplace",

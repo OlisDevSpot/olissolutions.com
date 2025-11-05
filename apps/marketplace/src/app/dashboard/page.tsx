@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from '@olis/auth/client'
+import { ROOTS } from '@olis/core/constants'
 import { Badge } from '@olis/ui/components/badge'
 import { Button } from '@olis/ui/components/button'
 import {
@@ -22,7 +23,6 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { PageHeader } from '@/components/page-header'
 import { featuredSolutions, purchases, stats } from '@/features/dashboard'
-import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 export default function Dashboard() {
   const { data: session, isPending } = useSession()
@@ -77,7 +77,7 @@ export default function Dashboard() {
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     My Solutions
-                    <Link href={`${FEATURE_ROOTS.dashboard}/purchases`}>
+                    <Link href={`${ROOTS.marketplace.dashboard}/purchases`}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -160,7 +160,7 @@ export default function Dashboard() {
                     variant="outline"
                     className="w-full justify-start"
                   >
-                    <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
+                    <Link href={`${ROOTS.marketplace.getMarketplaceRoot()}`}>
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Browse Marketplace
                     </Link>
@@ -170,7 +170,7 @@ export default function Dashboard() {
                     variant="outline"
                     className="w-full justify-start"
                   >
-                    <Link href={`${FEATURE_ROOTS.dashboard}/purchases`}>
+                    <Link href={`${ROOTS.marketplace.dashboard}/purchases`}>
                       <Package className="mr-2 h-4 w-4" />
                       Manage Solutions
                     </Link>
@@ -211,7 +211,7 @@ export default function Dashboard() {
                 asChild
                 variant="outline"
               >
-                <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
+                <Link href={`${ROOTS.marketplace.getMarketplaceRoot()}`}>
                   View Marketplace
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

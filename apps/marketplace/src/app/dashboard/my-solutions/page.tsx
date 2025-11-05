@@ -1,5 +1,6 @@
 'use client'
 
+import { ROOTS } from '@olis/core/constants'
 import { Badge } from '@olis/ui/components/badge'
 import { Button } from '@olis/ui/components/button'
 import {
@@ -21,7 +22,6 @@ import {
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { solutions } from '@/features/dashboard'
-import { FEATURE_ROOTS } from '@/shared/constants/feature-roots'
 
 export default function MySolutions() {
   const getStatusColor = (status: string) => {
@@ -282,7 +282,7 @@ export default function MySolutions() {
                 asChild
                 className="btn-primary"
               >
-                <Link href={`${FEATURE_ROOTS.getMarketplaceRoot()}`}>
+                <Link href={`${ROOTS.marketplace.getMarketplaceRoot()}`}>
                   Browse Marketplace
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Link>

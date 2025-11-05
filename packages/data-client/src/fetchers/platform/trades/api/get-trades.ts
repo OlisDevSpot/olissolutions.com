@@ -1,7 +1,7 @@
-import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
+// import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
 
 export async function getTradesQueryFn() {
-  const res = await honoClient.api.platform.trades.$get()
+  // const res = await honoClient.api.platform.trades.$get()
 
   if (!res.ok) {
     throw new Error('Trades not found')
