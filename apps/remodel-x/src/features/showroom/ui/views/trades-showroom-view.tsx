@@ -19,6 +19,7 @@ export function TradesShowroomView() {
   // const { data: trades, isLoading } = useGetTrades();
   const trpc = useTRPC();
   const { data: trades, isLoading } = useQuery(trpc.platform.trades.findAll.queryOptions());
+  
   const locationParam = useSearchParams().get("location") as TradeLocation | undefined;
   const [searchTerm, setSearchTerm] = useState("");
 

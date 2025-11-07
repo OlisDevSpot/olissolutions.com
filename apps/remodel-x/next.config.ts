@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: `${ROOTS.saleos.dashboard}`,
+        destination: `${ROOTS.remodelX.dashboard}`,
         permanent: false,
       },
     ];

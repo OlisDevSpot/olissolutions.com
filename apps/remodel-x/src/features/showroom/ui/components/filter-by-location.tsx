@@ -24,12 +24,12 @@ export function FilterByLocation() {
     if (location === "all") {
       newParams.delete("location");
       setSelectedFilters(prev => [...prev.filter(filter => filter.id !== "location")]);
-      return router.push(`${ROOTS.saleos.getShowroomRoot()}/trades?${newParams.toString()}`);
+      return router.push(`${ROOTS.remodelX.getShowroomRoot()}/trades?${newParams.toString()}`);
     }
   
     newParams.set("location", location);
     setSelectedFilters(prev => [...prev.filter(filter => filter.id !== "location"), { id: "location", value: location }]);
-    router.push(`${ROOTS.saleos.getShowroomRoot()}/trades?${newParams.toString()}`);
+    router.push(`${ROOTS.remodelX.getShowroomRoot()}/trades?${newParams.toString()}`);
   }
   
   const currentLocation = searchParams.get("location") || ""

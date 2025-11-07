@@ -265,7 +265,7 @@ export function DataTable<TData extends { id: string }, TValue>({
                     <TableRow
                       key={row.id}
                       className="cursor-pointer"
-                      onClick={() => router.push(`${ROOTS.saleos.getProjectsRoot()}/${row.original.id}`)}
+                      onClick={() => router.push(`${ROOTS.remodelX.getProjectsRoot()}/${row.original.id}`)}
                       data-state={row.getIsSelected() && "selected"}
                     >
                       {row.getVisibleCells().map(cell => (

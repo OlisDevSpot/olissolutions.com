@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
-import { ROOTS } from "@olis/core/constants";
+import { Nunito } from "next/font/google";
 
 import "./globals.css"
 
-import { Nunito } from "next/font/google";
-
 import { Providers } from "@/shared/components/providers";
+import { ROOTS } from "@olis/core/constants";
 import { Toaster } from "@olis/ui/components/sonner";
 
 const nunito = Nunito({
@@ -15,7 +14,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: `${ROOTS.saleos.name} | Olis Solutions`,
+  title: `${ROOTS.remodelX.name} | Olis Solutions`,
   description: "The one-stop shop for all your construction sales needs",
 };
 

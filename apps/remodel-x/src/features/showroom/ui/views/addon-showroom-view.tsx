@@ -34,7 +34,7 @@ export function AddonShowroomView() {
         </div>
         <h1 className="text-2xl font-bold">Addon not found</h1>
         <p className="text-muted-foreground">The addon you're looking for doesn't exist</p>
-        <Button onClick={() => router.push(`${ROOTS.saleos.getShowroomRoot()}/addons`)} variant="outline">
+        <Button onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/addons`)} variant="outline">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Addons
         </Button>

@@ -47,7 +47,7 @@ export function FilterByTrade() {
       setSelectedFilters(prev => [...prev.filter(filter => filter.id !== "trade-id"), { id: "trade-id", value: tradeId }]);
     }
 
-    router.push(`${ROOTS.saleos.getShowroomRoot()}/scopes?${newParams.toString()}`);
+    router.push(`${ROOTS.remodelX.getShowroomRoot()}/scopes?${newParams.toString()}`);
   }
 
   const currentTradeId = searchParams.get("trade-id") || "all"

@@ -18,14 +18,14 @@ export const ROOTS = {
     getSignInUrl: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.identity, absolute, basePath: ROOTS.identity.auth })}/sign-in` as const,
     getSignUpUrl: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.identity, absolute, basePath: ROOTS.identity.auth })}/sign-up` as const,
   },
-  saleos: {
+  remodelX: {
     name: 'Remodel-X',
     prodOrigin: 'https://remodelx.olissolutions.com',
     devOrigin: 'http://localhost:3001',
     dashboard: '/dashboard' as const,
-    getProjectsRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/projects` as const,
-    getShowroomRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/showroom` as const,
-    getEnergyEfficiencyRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.saleos, absolute, basePath: ROOTS.saleos.dashboard })}/energy-efficiency` as const,
+    getProjectsRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/projects` as const,
+    getShowroomRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/showroom` as const,
+    getEnergyEfficiencyRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/energy-efficiency` as const,
   },
 } as const
 

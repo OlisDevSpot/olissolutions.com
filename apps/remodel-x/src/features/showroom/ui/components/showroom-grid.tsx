@@ -46,7 +46,7 @@ export function ShowroomGrid<T extends ShowroomItemType>({ type, items, title, i
                     {...showroomCardProps}
                     key={item.accessor}
                     item={item}
-                    onClick={() => router.push(`${ROOTS.saleos.getShowroomRoot()}/${type}s/${item.accessor}`)}
+                    onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/${type}s/${item.accessor}`)}
                     showHeader
                   />
                 ))}

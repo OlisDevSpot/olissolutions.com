@@ -108,7 +108,7 @@ function ShowroomItemHeroHeader({ badge }: ShowroomItemHeroHeaderProps) {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <Button className="rounded-full" variant="outline" asChild>
-          <Link href={`${ROOTS.saleos.getShowroomRoot()}/${type}s`} scroll={false}>
+          <Link href={`${ROOTS.remodelX.getShowroomRoot()}/${type}s`} scroll={false}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
         </Button>

@@ -3,8 +3,8 @@ import type { PsychologyConceptsAccessor } from '@olis/db/types/marketplace/psyc
 
 export const solutionsData = [
   {
-    name: 'SaleOS',
-    slug: 'saleos',
+    name: 'Remodel-X',
+    slug: 'remodel-x',
     generalDescription: {
       description: 'A project design and sales management tool that helps salespeople close more profitable deals.',
       whatItDoes: 'Automates the sales process, streamlining the sales cycle and increasing sales success.',
@@ -13,7 +13,7 @@ export const solutionsData = [
     easeOfUse: 'easy',
     pricePerMonth: 99,
     devPort: 3001,
-    subdomain: 'saleos',
+    subdomain: 'remodel-x',
     salesPsychologyConcepts: [
       'authority',
       'socialProof',

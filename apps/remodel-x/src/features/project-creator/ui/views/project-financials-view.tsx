@@ -70,7 +70,7 @@ export function ProjectFinancialsView() {
         <div className="flex flex-col items-center gap-2">
           <p>Project jobsite not configured!</p>
           <Button>
-            <Link href={`${ROOTS.saleos.getProjectsRoot()}/${projectId}/property`}>Configure jobsite</Link>
+            <Link href={`${ROOTS.remodelX.getProjectsRoot()}/${projectId}/property`}>Configure jobsite</Link>
           </Button>
         </div>
       </div>
@@ -83,7 +83,7 @@ export function ProjectFinancialsView() {
         <div className="flex flex-col items-center gap-2">
           <p>Project scopes not set!</p>
           <Button>
-            <Link href={`${ROOTS.saleos.getProjectsRoot()}/${projectId}/scopes`}>Set scopes</Link>
+            <Link href={`${ROOTS.remodelX.getProjectsRoot()}/${projectId}/scopes`}>Set scopes</Link>
           </Button>
         </div>
       </div>

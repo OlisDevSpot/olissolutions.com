@@ -74,7 +74,7 @@ export function InitProjectForm() {
   // using mutateAsync to reduce flicker as react batches the re-renders instead of re-rendering with `isPending=false` like in the onSuccess case
   async function onSubmit(data: InitProjectFormSchema) {
     const result = await mutation.mutateAsync(data);
-    router.push(`${ROOTS.saleos.getProjectsRoot()}/${result.project.id}`);
+    router.push(`${ROOTS.remodelX.getProjectsRoot()}/${result.project.id}`);
   }
 
   return (

@@ -16,7 +16,7 @@ export function AppSidebar() {
         sidebarItems={sidebarItems} 
         user={user} 
         isIdentityPending={isPending}
-        logoProduct={`${ROOTS.saleos.name}`}
+        logoProduct={`${ROOTS.remodelX.name}`}
         logoColor="green"
         dashboardUrl="/dashboard"
       />

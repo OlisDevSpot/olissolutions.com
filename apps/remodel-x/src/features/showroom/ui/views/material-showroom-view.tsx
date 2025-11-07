@@ -36,7 +36,7 @@ export function MaterialShowroomView() {
         </div>
         <h1 className="text-2xl font-bold">Material not found</h1>
         <p className="text-muted-foreground">The material you're looking for doesn't exist</p>
-        <Button onClick={() => router.push(`${ROOTS.saleos.getShowroomRoot()}/materials`)} variant="outline">
+        <Button onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/materials`)} variant="outline">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Materials
         </Button>

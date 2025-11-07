@@ -37,7 +37,7 @@ function ShowroomNavCard({ showroomItemType, queryOptions }: ShowroomNavCardProp
   return (
     <div 
       className="w-full h-full flex items-center justify-center border rounded-2xl hover:bg-muted transition-colors cursor-pointer"
-      onClick={() => router.push(`${ROOTS.saleos.getShowroomRoot()}/${showroomItemType}s`)}
+      onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/${showroomItemType}s`)}
     >
       <h1 className="text-2xl font-extrabold uppercase">
         { showroomItemType }

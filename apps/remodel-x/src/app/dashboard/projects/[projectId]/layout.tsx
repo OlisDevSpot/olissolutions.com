@@ -20,8 +20,8 @@ export default function ProjectLayout({ children }: { children: React.ReactNode 
       <div className={cn("h-full w-full flex", isMobile ? "flex-col" : "flex-row")}>
         <div className="shrink-0">
           { isMobile 
-            ? <SectionTopbar steps={PROJECT_STEPS} baseUrl={`${ROOTS.saleos.getProjectsRoot()}/${projectId}`} />
-            : <SectionSidebar menuItems={PROJECT_STEPS} baseUrl={`${ROOTS.saleos.getProjectsRoot()}/${projectId}`} />}
+            ? <SectionTopbar steps={PROJECT_STEPS} baseUrl={`${ROOTS.remodelX.getProjectsRoot()}/${projectId}`} />
+            : <SectionSidebar menuItems={PROJECT_STEPS} baseUrl={`${ROOTS.remodelX.getProjectsRoot()}/${projectId}`} />}
         </div>
         <div className={cn("p-4 w-full", isMobile && "grow")}>
           {children}

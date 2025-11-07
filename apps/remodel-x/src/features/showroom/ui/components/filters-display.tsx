@@ -22,7 +22,7 @@ export function FiltersDisplay() {
   function removeFilter(id: string) {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.delete(id);
-    router.push(`${ROOTS.saleos.getShowroomRoot()}/${type}s?${newParams.toString()}`);
+    router.push(`${ROOTS.remodelX.getShowroomRoot()}/${type}s?${newParams.toString()}`);
 
     const newFilters = selectedFilters.filter(f => f.id !== id);
     setSelectedFilters(newFilters);

@@ -36,7 +36,7 @@ export function ScopeShowroomView() {
         </div>
         <h1 className="text-2xl font-bold">Scope not found</h1>
         <p className="text-muted-foreground">The scope you're looking for doesn't exist</p>
-        <Button onClick={() => router.push(`${ROOTS.saleos.getShowroomRoot()}/scopes`)} variant="outline">
+        <Button onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/scopes`)} variant="outline">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Scopes
         </Button>

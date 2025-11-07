@@ -19,14 +19,19 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.90.5",
-    "hono": "^4.9.0"
+    "hono": "^4.9.0",
+    "next": "^15.5.6",
+    "react": "^19.0.0"
   },
   "dependencies": {
+    "@olis/auth": "workspace:*",
     "@olis/core": "workspace:*",
     "@olis/db": "workspace:*",
     "@olis/server": "workspace:*",
     "@olis/trpc": "workspace:*",
+    "@trpc/client": "^11.6.0",
     "@trpc/tanstack-react-query": "^11.6.0",
+    "@types/react": "^19",
     "drizzle-orm": "^0.44.6",
     "drizzle-zod": "^0.8.3",
     "superjson": "^2.2.3",

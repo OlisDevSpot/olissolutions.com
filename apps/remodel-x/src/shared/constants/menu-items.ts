@@ -15,41 +15,41 @@ export const sidebarItems = {
   build: [
     {
       title: "Projects",
-      url: `${ROOTS.saleos.getProjectsRoot()}`,
+      url: `${ROOTS.remodelX.getProjectsRoot()}`,
       icon: HousePlus,
     },
   ],
   education: [
     {
       title: "About Us",
-      url: `${ROOTS.saleos.dashboard}/about-us`,
+      url: `${ROOTS.remodelX.dashboard}/about-us`,
       icon: Building2,
     },
     {
       title: "Energy Efficiency",
-      url: `${ROOTS.saleos.dashboard}/energy-efficiency`,
+      url: `${ROOTS.remodelX.dashboard}/energy-efficiency`,
       icon: Leaf,
     },
     {
       title: "Savings Calculator",
-      url: `${ROOTS.saleos.dashboard}/calculator`,
+      url: `${ROOTS.remodelX.dashboard}/calculator`,
       icon: Calculator,
     },
     {
       title: "Showroom",
-      url: `${ROOTS.saleos.getShowroomRoot()}`,
+      url: `${ROOTS.remodelX.getShowroomRoot()}`,
       icon: Hammer,
       subItems: [
         {
           title: "Trades",
-          url: `${ROOTS.saleos.getShowroomRoot()}/trades`,
+          url: `${ROOTS.remodelX.getShowroomRoot()}/trades`,
           icon: Drill,
           enablePrefetch: true,
           queryOptions: getTradesQueryOptions,
         },
         {
           title: "Scopes",
-          url: `${ROOTS.saleos.getShowroomRoot()}/scopes`,
+          url: `${ROOTS.remodelX.getShowroomRoot()}/scopes`,
           icon: AirVent,
           enablePrefetch: true,
           queryOptions: getScopesQueryOptions,
@@ -57,14 +57,14 @@ export const sidebarItems = {
         },
         {
           title: "Addons",
-          url: `${ROOTS.saleos.getShowroomRoot()}/addons`,
+          url: `${ROOTS.remodelX.getShowroomRoot()}/addons`,
           icon: Fence,
           enablePrefetch: true,
           queryOptions: getAddonsQueryOptions,
         },
         {
           title: "Materials",
-          url: `${ROOTS.saleos.getShowroomRoot()}/materials`,
+          url: `${ROOTS.remodelX.getShowroomRoot()}/materials`,
           icon: Paintbrush,
           enablePrefetch: true,
           queryOptions: getMaterialsQueryOptions,
