@@ -1,7 +1,9 @@
 'use client'
 
-import type { MarketplaceAppRouter } from '@olis/trpc/routers/app/marketplace/index'
+import type { BaseAppRouter } from '@olis/server/routers/base'
+import type { MarketplaceAppRouter } from '@/trpc/routers'
 import { getQueryClient } from '@olis/data-client/get-query-client'
+import { TRPCProvider as BaseTRPCProvider } from '@olis/data-client/trpc/client'
 import { getUrl } from '@olis/trpc/lib/get-url'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
@@ -14,6 +16,17 @@ interface Props {
 
 export function TRPCReactProvider({ children }: Props) {
   const queryClient = getQueryClient()
+
+  const [baseTrpcClient] = useState(() =>
+    createTRPCProxyClient<BaseAppRouter>({
+      links: [
+        httpBatchLink({
+          // transformer: superjson,
+          url: getUrl(),
+        }),
+      ],
+    }),
+  )
 
   const [trpcClient] = useState(() =>
     createTRPCProxyClient<MarketplaceAppRouter>({
@@ -28,9 +41,11 @@ export function TRPCReactProvider({ children }: Props) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-        {children}
-      </TRPCProvider>
+      <BaseTRPCProvider trpcClient={baseTrpcClient} queryClient={queryClient}>
+        <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+          {children}
+        </TRPCProvider>
+      </BaseTRPCProvider>
     </QueryClientProvider>
   )
 }

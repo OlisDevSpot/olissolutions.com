@@ -1,6 +1,7 @@
 'use client'
 
 import { signOut } from '@olis/auth/client'
+import { ROOTS } from '@olis/core/constants'
 
 import { Button } from '@olis/ui/components/button'
 import { LogOutIcon } from 'lucide-react'
@@ -15,7 +16,7 @@ export function LogoutButton({ asMenuItem = false }: Props) {
 
   async function handleLogout() {
     await signOut()
-    router.push('/')
+    router.push(`${ROOTS.identity.getSignInUrl({ absolute: true })}`)
   }
 
   return (
