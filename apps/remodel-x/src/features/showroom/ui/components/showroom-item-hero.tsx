@@ -1,12 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 
-import { ROOTS } from "@olis/core/constants";
 import { ArrowLeft, Star } from "lucide-react";
 import Link from "next/link";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
 
+import { ROOTS } from "@olis/core/constants";
 import { Badge } from "@olis/ui/components/badge";
 import { Button } from "@olis/ui/components/button";
 import { cn } from "@olis/ui/lib/utils";
@@ -178,26 +178,28 @@ export function ShowroomItemHeroStatCard({ Icon, title, value, description }: Sh
   );
 }
 
-interface ShowroomItemHeroSubItemsProps {
-  subItems: ShowroomItem[];
+interface ShowroomItemHeroSubItemsProps<T extends ShowroomItemType> {
+  subItems: ShowroomItem<T>[];
+  onClick?: (item: ShowroomItem<T>) => void;
 }
 
-export function ShowroomItemHeroSubItems({ subItems }: ShowroomItemHeroSubItemsProps) {
+export function ShowroomItemHeroSubItems<T extends ShowroomItemType>({ subItems, onClick }: ShowroomItemHeroSubItemsProps<T>) {
   return (
     <div className="flex flex-col gap-4">
       {subItems && subItems.length > 0 && (
-        <div className="relative rounded-lg w-full x-scrollable">
+        <div className={cn(`relative rounded-lg w-full x-scrollable`)}>
           <div className="w-full inline-flex gap-4 overflow-x-scroll bottom-scrollbar">
-            {subItems.map(option => (
+            {subItems.map(subItem => (
               <div
-                key={option.label}
+                key={subItem.label}
+                onClick={() => onClick?.(subItem)}
                 style={{ 
-                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${option.imageUrl})`
+                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${subItem.imageUrl})`
                 }} 
-                className="flex flex-col gap-2items-center justify-center border-b px-4 py-2 shrink-0 h-40 border rounded-lg w-[400px]"
+                className={cn("flex flex-col gap-2items-center justify-center border-b px-4 py-2 shrink-0 h-40 border rounded-lg w-[400px]", onClick ? "cursor-pointer" : "")}
               >
-                <p className="font-medium">{option.label}</p>
-                <p className="text-muted-foreground">{option.description}</p>
+                <p className="font-medium">{subItem.label}</p>
+                <p className="text-muted-foreground">{subItem.description}</p>
               </div>
             ))}
           </div>

@@ -55,7 +55,7 @@ export function TradeShowroomView() {
           <ShowroomItemHero.Stats>
             <ShowroomItemHeroStatCard Icon={TrendingUp} title="ROI" value="10%" description="Return on investment is a lot!" />
           </ShowroomItemHero.Stats>
-          <ShowroomItemHeroSubItems subItems={tradeScopes} />
+          <ShowroomItemHeroSubItems subItems={tradeScopes} onClick={item => router.push(`${ROOTS.remodelX.getShowroomRoot()}/scopes/${item.accessor}`)} />
         </div>
       </ShowroomItemHero.Content>
     </ShowroomItemHero>
