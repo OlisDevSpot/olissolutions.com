@@ -1,6 +1,6 @@
 import { Package } from "lucide-react";
 
-import type { Project } from "@olis/db/schema/one-stop-sales";
+import type { Project } from "@olis/db/schema/remodel-x";
 
 import { useGetProjectScopes } from "@/features/project-creator/data/queries/get-project-scopes";
 import { Button } from "@olis/ui/components/button";

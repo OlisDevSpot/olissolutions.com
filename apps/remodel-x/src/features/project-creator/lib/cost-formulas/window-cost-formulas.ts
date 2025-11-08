@@ -31,5 +31,8 @@ export default function createCostFormulas(
         return costStandardSliders + costSpecialSliders;
       },
     ),
+    replaceFrenchDoors: defineFormula(({ numFrenchDoors = 0 }) => {
+      return numFrenchDoors * prices.frenchDoor;
+    })
   });
 }

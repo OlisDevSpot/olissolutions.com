@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 
 import type { PricingVars, ProjectVars } from "@/features/project-creator/cost-calculation-types";
-import type { Variable } from "@olis/db/schema/one-stop-sales";
 import type { Scope } from "@olis/db/schema/platform";
+import type { Variable } from "@olis/db/schema/remodel-x";
 import type { ScopeAccessor } from "@olis/db/types"
 
 import { useUpdateProjectScope } from "@/features/project-creator/data/mutations/update-project-scope";
@@ -24,7 +24,7 @@ interface Props {
 export function UpdateProjectScopeForm({ pricingVars, projectVars, scope, scopeVariables }: Props) {
   const { updateScopePricing } = useProjectScopesStore();
   const projectId = useCurrentProjectId();
-  const mutation = useUpdateProjectScope(projectId, scope.id);
+  const mutation = useUpdateProjectScope();
   const form = useForm({
     defaultValues: scopeVariables.reduce((acc, variable) => ({ ...acc, [variable.key]: "" }), {}) as Record<string, any>,
   });
@@ -32,9 +32,9 @@ export function UpdateProjectScopeForm({ pricingVars, projectVars, scope, scopeV
   function onSubmit(values: Record<string, any>) {
     const calculations = calculateScopeCost(pricingVars, projectVars, scope.accessor as ScopeAccessor, values);
     mutation.mutate({
-      data: {
-        variablesData: values,
-      },
+      projectId,
+      scopeId: scope.id,
+      variablesData: values,
     });
     updateScopePricing(scope.id, {
       cost: calculations.cost,

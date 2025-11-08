@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { flattenObject } from "@olis/core/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -11,6 +10,8 @@ import { useUpdateProjectJobsite } from "@/features/project-creator/data/mutatio
 import { useGetProjectJobsite } from "@/features/project-creator/data/queries/get-project-jobsite-profile";
 import { updateJobsiteProfileSchema } from "@/features/project-creator/ui/components/forms/update-jobsite-profile-form/schema";
 import { ProjectFlowSection } from "@/features/project-creator/ui/components/project-flow-section";
+import { useTRPC } from "@/trpc/client";
+import { flattenObject } from "@olis/core/lib/utils";
 import { Button } from "@olis/ui/components/button";
 import { Form } from "@olis/ui/components/form";
 
@@ -24,11 +25,13 @@ interface Props {
 export function JobsiteForm({ projectId }: Props) {
   const jobsite = useGetProjectJobsite(projectId || "");
 
-  const mutation = useUpdateProjectJobsite(projectId);
+  const updateProjectJobsiteProfile = useUpdateProjectJobsite();
   const queryClient = useQueryClient();
+  const trpc = useTRPC()
+
   const form = useForm<UpdateJobsiteProfileSchema>({
     resolver: zodResolver(updateJobsiteProfileSchema),
-    disabled: jobsite.isPending || mutation.isPending,
+    disabled: jobsite.isPending || updateProjectJobsiteProfile.isPending,
     defaultValues: {
       general: {
         numStories: jobsite.data?.numStories || 1,
@@ -125,10 +128,10 @@ export function JobsiteForm({ projectId }: Props) {
       jobsiteData,
     };
 
-    mutation.mutate(data, {
+    updateProjectJobsiteProfile.mutate({ projectId, ...data }, {
       onSuccess: () => {
         toast.success("Jobsite profile updated");
-        queryClient.invalidateQueries({ queryKey: ["projects"] });
+        queryClient.invalidateQueries(trpc.projects.findProjectJobsite.queryOptions({ projectId }));
       },
     });
   }
@@ -152,7 +155,7 @@ export function JobsiteForm({ projectId }: Props) {
             </ProjectFlowSection>
           </div>
         </div>
-        <Button type="submit" disabled={mutation.isPending} className="w-fit">Save</Button>
+        <Button type="submit" disabled={updateProjectJobsiteProfile.isPending} className="w-fit">Save</Button>
       </form>
     </Form>
   );

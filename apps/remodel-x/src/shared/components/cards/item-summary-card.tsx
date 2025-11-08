@@ -11,31 +11,31 @@ import { cn } from "@olis/ui/lib/utils";
 
 interface ItemCardProps<T extends ShowroomItem> extends React.ComponentProps<typeof Card> {
   item: T;
+  variant?: "default" | "compact";
+  showQuickActions?: boolean;
+  isFavorited?: boolean;
   onClick: () => void;
+  onFavoriteToggle?: () => void;
+  onQuickView?: () => void;
   children?: React.ReactNode;
-  variant?: "default" | "compact" | "presentation";
-  showQuickActions?: boolean;
-  estimatedPrice?: string;
-  roiPercentage?: string;
-  isFavorited?: boolean;
-  onFavoriteToggle?: () => void;
-  onQuickView?: () => void;
-  presentationMode?: boolean;
 }
 
-interface ItemCardContextType {
+interface ItemCardContext {
   item: ShowroomItem;
-  variant?: "default" | "compact" | "presentation";
+  variant?: "default" | "compact";
   estimatedPrice?: string;
   roiPercentage?: string;
   showQuickActions?: boolean;
   isFavorited?: boolean;
   onFavoriteToggle?: () => void;
   onQuickView?: () => void;
-  presentationMode?: boolean;
 }
 
-const itemCardContext = createContext<ItemCardContextType | null>(null);
+type ItemCardProviderProps = {
+  children: React.ReactNode;
+} & ItemCardContext;
+
+const itemCardContext = createContext<ItemCardContext | null>(null);
 
 export function useItemCardContext() {
   const context = useContext(itemCardContext);
@@ -45,10 +45,7 @@ export function useItemCardContext() {
   return context;
 }
 
-export function ItemCardProvider({ children, item, ...contextProps }: { 
-  children: React.ReactNode; 
-  item: ShowroomItem;
-} & Omit<ItemCardContextType, "item">) {
+export function ItemCardProvider({ children, item, ...contextProps }: ItemCardProviderProps) {
   return (
     <itemCardContext.Provider value={{ item, ...contextProps }}>
       {children}
@@ -58,39 +55,32 @@ export function ItemCardProvider({ children, item, ...contextProps }: {
 
 export function ItemCard<T extends ShowroomItem>({
   item,
-  onClick,
-  children,
-  className,
   variant = "default",
   showQuickActions = false,
-  estimatedPrice,
-  roiPercentage,
   isFavorited = false,
+  onClick,
   onFavoriteToggle,
   onQuickView,
-  presentationMode = false,
+  className,
+  children,
   ...props
 }: ItemCardProps<T>) {
   const cardVariants = {
     default: "group cursor-pointer hover:shadow-lg transition-all duration-300 border-0 bg-card rounded-lg overflow-hidden p-0",
     compact: "group cursor-pointer hover:shadow-md transition-all duration-200 border border-border bg-card rounded-md overflow-hidden p-0 h-32",
-    presentation: "group cursor-pointer hover:shadow-xl transition-all duration-500 border-2 border-primary/20 bg-gradient-to-br from-card to-card/50 rounded-xl overflow-hidden p-0 backdrop-blur-sm"
   };
 
   return (
     <ItemCardProvider 
       item={item} 
       variant={variant}
-      estimatedPrice={estimatedPrice}
-      roiPercentage={roiPercentage}
       showQuickActions={showQuickActions}
       isFavorited={isFavorited}
       onFavoriteToggle={onFavoriteToggle}
       onQuickView={onQuickView}
-      presentationMode={presentationMode}
     >
       <Card
-        className={cn(cardVariants[variant], presentationMode && "ring-2 ring-primary/10", className)}
+        className={cn(cardVariants[variant], className)}
         onClick={onClick}
         {...props}
       >
@@ -113,9 +103,9 @@ export function ItemImage({
   showPricing?: boolean;
   showROI?: boolean;
 }) {
-  const { item, variant, estimatedPrice, roiPercentage, showQuickActions, presentationMode } = useItemCardContext();
+  const { item, variant, estimatedPrice, roiPercentage, showQuickActions } = useItemCardContext();
 
-  const imageHeight = variant === "compact" ? "h-32" : variant === "presentation" ? "h-56" : "h-48";
+  const imageHeight = variant === "compact" ? "h-32" : "h-56";
 
   return (
     <div className={cn("relative overflow-hidden", imageHeight)}>
@@ -154,16 +144,11 @@ export function ItemImage({
       <div className="absolute bottom-3 left-3 right-3 text-white">
         <h3 className={cn(
           "font-semibold group-hover:text-primary-foreground transition-colors line-clamp-2",
-          variant === "compact" ? "text-sm" : variant === "presentation" ? "text-xl" : "text-lg"
+          variant === "compact" ? "text-sm" : "text-lg"
         )}
         >
           {item.label}
         </h3>
-        {presentationMode && (
-          <p className="text-xs text-white/80 mt-1 line-clamp-1">
-            {item.description}
-          </p>
-        )}
       </div>
     </div>
   );
@@ -339,9 +324,9 @@ export function ItemQuickActions() {
 }
 
 export function ItemFooter() {
-  const { estimatedPrice, roiPercentage, variant, presentationMode } = useItemCardContext();
+  const { estimatedPrice, roiPercentage, variant } = useItemCardContext();
   
-  if (variant === "compact" || !presentationMode) 
+  if (variant === "compact") 
     return null;
   
   return (

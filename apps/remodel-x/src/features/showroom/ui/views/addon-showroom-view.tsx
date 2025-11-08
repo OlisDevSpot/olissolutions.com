@@ -1,6 +1,5 @@
 "use client";
 
-import { ROOTS } from "@olis/core/constants";
 import { useGetAddonByAccessor } from "@olis/data-client/fetchers/platform/addons/queries/get-addon-by-accessor";
 import { ArrowLeft, Building, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import type { AddonAccessor } from "@olis/db/types";
 
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
+import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import { LoadingState } from "@olis/ui/components/global/loading-state";
 

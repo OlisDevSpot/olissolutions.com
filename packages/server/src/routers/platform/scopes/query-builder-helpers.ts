@@ -3,8 +3,8 @@ import type { ScopesTableOptions } from '@olis/db/types'
 import type { PgSelectQueryBuilder } from 'drizzle-orm/pg-core'
 import { db } from '@olis/db'
 
-import { scopes, benefitCategories, benefits, x_scopeBenefits } from '@olis/db/schema/platform'
-import {  variables, x_scopeVariables } from '@olis/db/schema/one-stop-sales'
+import { benefitCategories, benefits, scopes, x_scopeBenefits } from '@olis/db/schema/platform'
+import { variables, x_scopeVariables } from '@olis/db/schema/remodel-x'
 import { eq } from 'drizzle-orm'
 
 import { QueryBuilder } from 'drizzle-orm/pg-core'

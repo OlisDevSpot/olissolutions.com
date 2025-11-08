@@ -1,6 +1,6 @@
 'use client'
 
-import type { BaseAppRouter } from '@olis/trpc/routers/app/base/index'
+import type { BaseAppRouter } from '@olis/server/routers/base'
 import { getQueryClient } from '@olis/data-client/get-query-client'
 import { getUrl } from '@olis/trpc/lib/get-url'
 import { QueryClientProvider } from '@tanstack/react-query'

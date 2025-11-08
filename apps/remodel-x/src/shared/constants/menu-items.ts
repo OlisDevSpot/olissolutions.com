@@ -1,8 +1,6 @@
-import { getAddonsQueryOptions } from "@olis/data-client/fetchers/platform/addons/queries/get-addons";
-import { getMaterialsQueryOptions } from "@olis/data-client/fetchers/platform/materials/queries/get-materials";
-import { getScopesQueryOptions } from "@olis/data-client/fetchers/platform/scopes/queries/get-scopes";
-import { getTradesQueryOptions } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { AirVent, Building2, Calculator, Drill, Fence, Hammer, HousePlus, Leaf, Paintbrush } from "lucide-react";
+
+import type { useTRPC } from "@/trpc/client";
 
 import { ROOTS } from "@olis/core/constants";
 
@@ -45,29 +43,36 @@ export const sidebarItems = {
           url: `${ROOTS.remodelX.getShowroomRoot()}/trades`,
           icon: Drill,
           enablePrefetch: true,
-          queryOptions: getTradesQueryOptions,
+          handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
+            return trpc.platform.trades.findAll.queryOptions()
+          }
         },
         {
           title: "Scopes",
           url: `${ROOTS.remodelX.getShowroomRoot()}/scopes`,
           icon: AirVent,
           enablePrefetch: true,
-          queryOptions: getScopesQueryOptions,
-
+          handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
+            return trpc.platform.scopes.findAll.queryOptions()
+          }
         },
         {
           title: "Addons",
           url: `${ROOTS.remodelX.getShowroomRoot()}/addons`,
           icon: Fence,
           enablePrefetch: true,
-          queryOptions: getAddonsQueryOptions,
+          handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
+            return trpc.platform.addons.findAll.queryOptions()
+          }
         },
         {
           title: "Materials",
           url: `${ROOTS.remodelX.getShowroomRoot()}/materials`,
           icon: Paintbrush,
           enablePrefetch: true,
-          queryOptions: getMaterialsQueryOptions,
+          handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
+            return trpc.platform.materials.findAll.queryOptions()
+          }
         },
       ],
     },

@@ -1,30 +1,13 @@
-import type { UseMutationOptions } from "@tanstack/react-query";
-
-import { honoClient } from "@olis/server/apps/clients/one-stop-sales";
-import { mutationOptions, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-export function deleteProjectMutationOptions(
-  options?: Omit<UseMutationOptions<{ success: boolean }, Error, string>, "mutationFn">,
-) {
-  return mutationOptions({
-    ...options,
-    mutationFn: async (id: string) => {
-      const res = await honoClient.api.projects[":id"].$delete({ param: { id } });
-
-      if (!res.ok) {
-        throw new Error("Error deleting project");
-      }
-
-      return await res.json();
-    },
-  });
-}
+import { useTRPC } from "@/trpc/client";
 
 export function useDeleteProject() {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteProjectMutationOptions({
+  const trpc = useTRPC();
+  return useMutation(trpc.projects.deleteOne.mutationOptions({
     onError: () => {
       toast.error("Error deleting project");
     },

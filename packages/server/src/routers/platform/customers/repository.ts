@@ -1,8 +1,8 @@
 import type { InsertCustomerSchema } from '@olis/db/schema/platform'
 
 import { db } from '@olis/db'
-import { fullAddress, x_projectCustomers } from '@olis/db/schema/one-stop-sales'
 import { customers } from '@olis/db/schema/platform'
+import { fullAddress, x_projectCustomers } from '@olis/db/schema/remodel-x'
 import { eq, getTableColumns } from 'drizzle-orm'
 
 export async function findAll(_userId: string) {
@@ -29,7 +29,7 @@ export async function findAllByProjectId(projectId: string) {
     .select({ customer: customers, isPrimary: x_projectCustomers.isPrimary })
     .from(x_projectCustomers)
     .where(eq(x_projectCustomers.projectId, projectId))
-    .leftJoin(customers, eq(customers.id, x_projectCustomers.customerId))
+    .innerJoin(customers, eq(customers.id, x_projectCustomers.customerId))
 
   return foundCustomers
 }

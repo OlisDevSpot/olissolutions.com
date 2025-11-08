@@ -23,5 +23,9 @@ export default function createCostFormulas(
     installCrawlSpaceInsulation: defineFormula(({ sqft }) => {
       return sqft * prices.dollarPerSqFtCrawlSpace;
     }),
+    foundationRepair: defineFormula(({ sqft }) => {
+      console.log(sqft);
+      return 555;
+    })
   });
 }

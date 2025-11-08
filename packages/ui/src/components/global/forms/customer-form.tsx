@@ -9,18 +9,17 @@ import { customerFormSchema } from '@olis/types/schemas/customers-forms'
 import { Button } from '@olis/ui/components/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'
 import { Input } from '@olis/ui/components/input'
-import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 interface Props {
   customer: Customer
+  onSuccess?: () => void
 }
 
-export function UpdateCustomerForm({ customer }: Props) {
-  const mutation = useUpdateCustomer(customer.id || '')
-  const queryClient = useQueryClient()
+export function UpdateCustomerForm({ customer, onSuccess }: Props) {
+  const mutation = useUpdateCustomer()
   const form = useForm<CustomerFormSchema>({
     resolver: zodResolver(customerFormSchema),
     defaultValues: {
@@ -39,10 +38,10 @@ export function UpdateCustomerForm({ customer }: Props) {
   }, [form, customer])
 
   function onSubmit(data: CustomerFormSchema) {
-    mutation.mutate(data, {
+    mutation.mutate({ id: customer.id, ...data }, {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['project'] })
         toast.success('Customer updated')
+        onSuccess?.()
       },
     })
   }

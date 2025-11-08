@@ -1,9 +1,8 @@
-import { getTradeAddonsQueryOptions } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-addons";
-import { getTradeScopesQueryOptions } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-scopes";
 import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
+import { useTRPC } from "@/trpc/client";
 import { Card } from "@olis/ui/components/card";
 import { LoadingState } from "@olis/ui/components/global/loading-state";
 import { cn } from "@olis/ui/lib/utils";
@@ -15,6 +14,7 @@ interface Props {
 
 export function TradeSelector({ currentTradeId, setCurrentTradeId }: Props) {
   const queryClient = useQueryClient();
+  const trpc = useTRPC();
   const { selectedScopes } = useProjectScopesStore();
   const { data: trades, isLoading } = useGetTrades();
 
@@ -32,8 +32,8 @@ export function TradeSelector({ currentTradeId, setCurrentTradeId }: Props) {
   }
 
   function prefetch(tradeId: number) {
-    queryClient.prefetchQuery(getTradeScopesQueryOptions(tradeId));
-    queryClient.prefetchQuery(getTradeAddonsQueryOptions(tradeId));
+    queryClient.prefetchQuery(trpc.platform.trades.findScopes.queryOptions({ id: tradeId }));
+    queryClient.prefetchQuery(trpc.platform.trades.findAddons.queryOptions({ id: tradeId }));
   }
 
   return (

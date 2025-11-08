@@ -1,5 +1,5 @@
-import type { pricingData } from '@olis/db/seeds/one-stop-sales/data/pricing'
-import type { variablesData } from '@olis/db/seeds/one-stop-sales/data/variables'
+import type { pricingData } from '@olis/db/seeds/remodel-x/data/pricing'
+import type { variablesData } from '@olis/db/seeds/remodel-x/data/variables'
 import type { TradeAccessor } from './trades'
 
 export type VariablesData = typeof variablesData

@@ -1,8 +1,25 @@
 import { trpcServer } from "@hono/trpc-server"
-import app from "@olis/server/apps/one-stop-sales"
+import { createApp } from "@olis/server/lib/create-app"
+import { baseAppRouter } from "@olis/server/routers/base"
+import { createTRPCRouter, mergeRouters, publicProcedure } from "@olis/trpc/init"
 import { createHonoTRPCContext } from "@olis/trpc/lib/create-context"
-import { remodelXAppRouter } from "@olis/trpc/routers/app/remodel-x/index"
 import { handle } from "hono/vercel"
+
+import { projectsRouter } from "@/trpc/routers/projects.router"
+
+export const remodelXAppRouter = mergeRouters(
+  baseAppRouter,
+  createTRPCRouter({
+    "oss-health-check": publicProcedure.query(() => {
+      return "Hello, world!"
+    }),
+    "projects": projectsRouter,
+  }),
+)
+
+export type RemodelXAppRouter = typeof remodelXAppRouter
+
+const app = createApp()
 
 app.use("/trpc/*", trpcServer({
   router: remodelXAppRouter,

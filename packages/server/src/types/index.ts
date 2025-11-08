@@ -1,6 +1,6 @@
 import type { auth } from '@olis/auth/server'
 import type { Prettify } from '@olis/core/types'
-import type { Project } from '@olis/db/schema/one-stop-sales'
+import type { Project } from '../../../db/dist/schema/remodel-x'
 
 import type { PgTable } from 'drizzle-orm/pg-core'
 import type { Handler, Input, MiddlewareHandler } from 'hono'

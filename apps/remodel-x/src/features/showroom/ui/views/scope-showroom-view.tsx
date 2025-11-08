@@ -1,7 +1,5 @@
 "use client";
 
-import { ROOTS } from "@olis/core/constants";
-import { getScopeBenefitsQueryOptions } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-benefits";
 import { useGetScopeByAccessor } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-by-accessor";
 import { ArrowLeft, Building, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,6 +8,7 @@ import type { ScopeAccessor } from "@olis/db/types"
 
 import { ShowroomItemBenefits } from "@/features/showroom/ui/components/showroom-item-benefits";
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
+import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import { LoadingState } from "@olis/ui/components/global/loading-state";
 
@@ -53,7 +52,7 @@ export function ScopeShowroomView() {
         <ShowroomItemHero.Stats>
           <ShowroomItemHeroStatCard Icon={TrendingUp} title="ROI" value="10%" description="Return on investment is a lot!" />
         </ShowroomItemHero.Stats>
-        <ShowroomItemBenefits queryOptions={getScopeBenefitsQueryOptions(scope.data.id)} />
+        <ShowroomItemBenefits item={scope.data} type="scope" />
       </ShowroomItemHero.Content>
     </ShowroomItemHero>
   );

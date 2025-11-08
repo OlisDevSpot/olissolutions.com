@@ -1,42 +1,7 @@
-import type { UseQueryOptions } from '@tanstack/react-query'
-import type { InferRequestType, InferResponseType } from 'hono'
+import { useTRPC } from '@olis/data-client/trpc/client'
+import { useQuery } from '@tanstack/react-query'
 
-import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
-
-import { queryOptions, useQuery } from '@tanstack/react-query'
-
-import { materialQueryKeys } from '../query-keys'
-
-export type Request = InferRequestType<typeof honoClient.api['platform']['materials'][':id']['benefits']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['platform']['materials'][':id']['benefits']['$get'], 200>
-
-export function getMaterialBenefitsQueryOptions(
-  materialId: number,
-  options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
-) {
-  return queryOptions({
-    staleTime: Infinity,
-    ...options,
-    queryKey: materialQueryKeys.withBenefits(materialId),
-    queryFn: async () => {
-      const res = await honoClient.api.platform.materials[':id'].benefits.$get({ param: {
-        id: String(materialId),
-      } })
-
-      if (!res.ok) {
-        throw new Error('Trades not found')
-      }
-
-      const benefits = await res.json()
-      return benefits
-    },
-
-  })
-}
-
-export function useGetMaterialBenefits(
-  materialId: number,
-  options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
-) {
-  return useQuery(getMaterialBenefitsQueryOptions(materialId, options))
+export function useGetMaterialBenefits(materialId: number) {
+  const trpc = useTRPC()
+  return useQuery(trpc.platform.materials.findMaterialBenefits.queryOptions({ id: materialId }))
 }

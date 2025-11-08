@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { flattenObject } from "@olis/core/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -8,6 +7,8 @@ import { toast } from "sonner";
 import { useUpdateProjectFinancialProfile } from "@/features/project-creator/data/mutations/update-project-financial-profile";
 import { useGetProjectFinancialProfile } from "@/features/project-creator/data/queries/get-project-financial-profile";
 import { ProjectFlowSection } from "@/features/project-creator/ui/components/project-flow-section";
+import { useTRPC } from "@/trpc/client";
+import { flattenObject } from "@olis/core/lib/utils";
 import { Button } from "@olis/ui/components/button";
 import { Form } from "@olis/ui/components/form";
 
@@ -25,10 +26,11 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
   const financialProfile = useGetProjectFinancialProfile(projectId);
 
   const queryClient = useQueryClient();
-  const mutation = useUpdateProjectFinancialProfile(projectId || "");
+  const trpc = useTRPC();
+  const updateProjectFinancialProfile = useUpdateProjectFinancialProfile();
   const form = useForm<UpdateFinancialProfileSchema>({
     resolver: zodResolver(updateFinancialProfileSchema),
-    disabled: financialProfile.isPending || mutation.isPending,
+    disabled: financialProfile.isPending || updateProjectFinancialProfile.isPending,
     defaultValues: {
       disadvantages: {
         isSenior: financialProfile.data?.isSenior || false,
@@ -63,10 +65,10 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
   function onSubmit(input: UpdateFinancialProfileSchema) {
     const data = flattenObject(input);
 
-    mutation.mutate(data, {
+    updateProjectFinancialProfile.mutate({ projectId, ...data }, {
       onSuccess: () => {
         toast.success("Financial profile updated");
-        queryClient.invalidateQueries({ queryKey: ["projects"] });
+        queryClient.invalidateQueries(trpc.projects.findProjectFinancialProfile.queryOptions({ projectId }));
       },
     });
   }
@@ -90,7 +92,7 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
             </ProjectFlowSection>
           </div>
         </div>
-        <Button type="submit" disabled={mutation.isPending} className="w-fit">Save</Button>
+        <Button type="submit" disabled={updateProjectFinancialProfile.isPending} className="w-fit">Save</Button>
       </form>
     </Form>
   );

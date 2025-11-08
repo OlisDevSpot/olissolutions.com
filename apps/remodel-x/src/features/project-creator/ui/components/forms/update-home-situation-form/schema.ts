@@ -1,6 +1,6 @@
 import z from "zod";
 
-import { insertFinancialProfileSchema } from "@olis/db/schema/one-stop-sales";
+import { insertFinancialProfileSchema } from "../../../../../../../../../packages/db/dist/schema/remodel-x";
 
 export const updateFinancialProfileSchema = z.object({
   disadvantages: insertFinancialProfileSchema.pick({

@@ -1,10 +1,12 @@
 export type ShowroomItemType = "trade" | "scope" | "addon" | "material";
 
-export interface ShowroomItem {
+export interface ShowroomItem<T extends ShowroomItemType = ShowroomItemType> {
   label: string;
   accessor: string;
   description: string;
   imageUrl: string;
+  estimatedROI?: T extends "addon" | "material" ? number : never;
+  estimatedPrice?: T extends "addon" | "material" ? number : never;
 }
 
 export interface ShowroomItemSubItemMap {

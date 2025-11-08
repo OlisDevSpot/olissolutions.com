@@ -5,26 +5,24 @@ import { Loader2 } from "lucide-react";
 import { useCallback, useEffect } from "react";
 
 import { useGetProject } from "@/features/project-creator/data/queries/get-project";
-import { getProjectCustomersQueryOptions } from "@/features/project-creator/data/queries/get-project-customers";
-import { getProjectFinancialProfileQueryOptions } from "@/features/project-creator/data/queries/get-project-financial-profile";
-import { getProjectJobsiteProfileQueryOptions } from "@/features/project-creator/data/queries/get-project-jobsite-profile";
-import { getProjectScopesQueryOptions } from "@/features/project-creator/data/queries/get-project-scopes";
 import { useCurrentProjectId } from "@/features/project-creator/hooks/use-current-project-id";
 import { ProjectProgress } from "@/features/project-creator/ui/components/info-cards/project-progress";
 import { ProjectSummary } from "@/features/project-creator/ui/components/info-cards/project-summary";
 import { PropertyInfo } from "@/features/project-creator/ui/components/info-cards/property-info";
 import { SimpleMap } from "@/features/project-creator/ui/components/simple-map";
+import { useTRPC } from "@/trpc/client";
 
 export function ProjectView() {
   const projectId = useCurrentProjectId();
   const queryClient = useQueryClient();
+  const trpc = useTRPC()
   const { data: project, isLoading } = useGetProject(projectId);
 
   const prefetch = useCallback(() => {
-    queryClient.prefetchQuery(getProjectCustomersQueryOptions(projectId));
-    queryClient.prefetchQuery(getProjectScopesQueryOptions(projectId));
-    queryClient.prefetchQuery(getProjectJobsiteProfileQueryOptions(projectId));
-    queryClient.prefetchQuery(getProjectFinancialProfileQueryOptions(projectId));
+    queryClient.prefetchQuery(trpc.projects.findProjectCustomers.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.findProjectScopes.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.findProjectJobsite.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.findProjectFinancialProfile.queryOptions({ projectId }));
   }, [projectId, queryClient]);
 
   useEffect(() => {

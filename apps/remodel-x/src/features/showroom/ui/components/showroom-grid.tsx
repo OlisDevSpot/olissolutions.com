@@ -1,9 +1,9 @@
-import { ROOTS } from "@olis/core/constants";
 import { Home } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
 
+import { ROOTS } from "@olis/core/constants";
 import { Badge } from "@olis/ui/components/badge";
 import { useSidebar } from "@olis/ui/components/sidebar";
 import { Skeleton } from "@olis/ui/components/skeleton";
@@ -84,5 +84,35 @@ export function EmptyShowroomGrid<T extends ShowroomItemType>({ type }: { type: 
       </h3>
       <p className="text-muted-foreground">Try adjusting your search terms</p>
     </div>
+  )
+}
+
+interface ShowroomGridsProps {
+  items: ShowroomItem[];
+  title?: string;
+  isLoading?: boolean;
+}
+
+export function TradeShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
+  return (
+    <ShowroomGrid type="trade" items={items} title={title} isLoading={isLoading} estimatedPrice="25000" roiPercentage="50" />
+  )
+}
+
+export function ScopeShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
+  return (
+    <ShowroomGrid type="scope" items={items} title={title} isLoading={isLoading} />
+  )
+}
+
+export function AddonShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
+  return (
+    <ShowroomGrid type="addon" items={items} title={title} isLoading={isLoading} />
+  )
+}
+
+export function MaterialShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
+  return (
+    <ShowroomGrid type="material" items={items} title={title} isLoading={isLoading} />
   )
 }

@@ -1,4 +1,4 @@
-import type { BaseAppRouter } from '@olis/trpc/routers/app/base/index'
+import type { BaseAppRouter } from '@olis/server/routers/base'
 
 import { createTRPCContext } from '@trpc/tanstack-react-query'
 

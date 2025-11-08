@@ -1,8 +1,27 @@
 import { trpcServer } from '@hono/trpc-server'
-import app from '@olis/server/apps/base'
+import { createApp } from '@olis/server/lib/create-app'
+import { baseAppRouter } from '@olis/server/routers/base'
+import { createTRPCRouter, mergeRouters, publicProcedure } from '@olis/trpc/init'
+
 import { createHonoTRPCContext } from '@olis/trpc/lib/create-context'
-import { marketplaceAppRouter } from '@olis/trpc/routers/app/marketplace/index'
 import { handle } from 'hono/vercel'
+import { solutionsRouter } from '@/trpc/routers/solutions.router'
+import { xSubscriptionsRouter } from '@/trpc/routers/x-subscriptions.router'
+
+export const marketplaceAppRouter = mergeRouters(
+  baseAppRouter,
+  createTRPCRouter({
+    'marketplace-health-check': publicProcedure.query(() => {
+      return 'Hello, world!'
+    }),
+    'solutions': solutionsRouter,
+    'x-subscriptions': xSubscriptionsRouter,
+  }),
+)
+
+export type MarketplaceAppRouter = typeof marketplaceAppRouter
+
+const app = createApp()
 
 app.use('/trpc/*', trpcServer({
   router: marketplaceAppRouter,

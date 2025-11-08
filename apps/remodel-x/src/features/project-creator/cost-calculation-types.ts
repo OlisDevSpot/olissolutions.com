@@ -1,6 +1,5 @@
 import type { RoofType } from "@olis/core/types";
-
-import type { variablesData } from "@olis/db/seeds/one-stop-sales/data/variables";
+import type { variablesData } from "@olis/db/seeds/remodel-x/data/variables";
 import type { PricingVariablesOfTrade, ScopeAccessorOfTrade, TradeAccessor } from "@olis/db/types";
 
 type TradeVariables = typeof variablesData;

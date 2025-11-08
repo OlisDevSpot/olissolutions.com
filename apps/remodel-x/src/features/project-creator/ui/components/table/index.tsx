@@ -1,11 +1,10 @@
-import type { honoClient } from "@olis/server/apps/clients/one-stop-sales";
-import type { InferResponseType } from "hono";
+import type { AllProjects } from "@/features/project-creator/data/queries/get-projects";
 
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
 interface Props {
-  projects: InferResponseType<typeof honoClient.api["projects"]["$get"], 200>;
+  projects: AllProjects;
 }
 
 export function ProjectsTable({ projects }: Props) {

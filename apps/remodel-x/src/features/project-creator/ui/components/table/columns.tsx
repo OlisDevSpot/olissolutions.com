@@ -4,7 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 
-import type { Response } from "@/features/project-creator/data/queries/get-projects";
+import type { AllProjects } from "@/features/project-creator/data/queries/get-projects";
 
 import { Button } from "@olis/ui/components/button";
 import {
@@ -18,7 +18,7 @@ import {
 
 import { DeleteProjectButton } from "../delete-project-button";
 
-export const columns: ColumnDef<Response[number]>[] = [
+export const columns: ColumnDef<AllProjects[number]>[] = [
   {
     accessorKey: "address",
     header: () => <div>Address</div>,

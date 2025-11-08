@@ -9,7 +9,7 @@ import { FilterByConstructionType } from "@/features/showroom/ui/components/filt
 import { FilterByTrade } from "@/features/showroom/ui/components/filter-by-trade";
 import { Filters, FiltersProvider } from "@/features/showroom/ui/components/filters";
 import { ShowroomHeader } from "@/features/showroom/ui/components/header";
-import { EmptyShowroomGrid, ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { EmptyShowroomGrid, ScopeShowroomGrid, ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
 
 export function ScopesShowroomView() {
   const { data: scopes, isLoading } = useGetScopes();
@@ -46,7 +46,7 @@ export function ScopesShowroomView() {
 
   const GridDisplay = () => filteredScopes.length === 0 && !isLoading
     ? <EmptyShowroomGrid type="scope" />
-    : <ShowroomGrid type="scope" items={filteredScopes} isLoading={isLoading} />;
+    : <ScopeShowroomGrid items={filteredScopes} isLoading={isLoading} title="Scopes" />;
   
   return (
     <div className="scrollbar-gutter-stable min-h-full flex flex-col gap-8">

@@ -1,5 +1,5 @@
-import type { Pricing } from '@olis/db/schema/one-stop-sales'
 import type { Trade } from '@olis/db/schema/platform'
+import type { Pricing } from '@olis/db/schema/remodel-x'
 import { Button } from '@olis/ui/components/button'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@olis/ui/components/card'

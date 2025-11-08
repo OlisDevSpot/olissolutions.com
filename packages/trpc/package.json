@@ -29,7 +29,6 @@
     "@hono/trpc-server": "^0.4.0",
     "@olis/auth": "workspace:*",
     "@olis/db": "workspace:*",
-    "@olis/server": "workspace:*",
     "@tanstack/react-query": "^5.90.5",
     "@trpc/client": "^11.6.0",
     "@trpc/server": "^11.6.0",

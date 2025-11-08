@@ -1,7 +1,6 @@
 "use client";
 
-// import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
-import { useQuery } from "@tanstack/react-query";
+import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -11,14 +10,11 @@ import { FilterByLocation } from "@/features/showroom/ui/components/filter-by-lo
 import { Filters, FiltersProvider } from "@/features/showroom/ui/components/filters";
 import { ShowroomHeader } from "@/features/showroom/ui/components/header";
 import { EmptyShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
-import { useTRPC } from "@/trpc/client";
 
-import { TradeShowroomGrid } from "../components/trades/trade-showroom-grid";
+import { TradeShowroomGrid } from "../components/showroom-grid";
 
 export function TradesShowroomView() {
-  // const { data: trades, isLoading } = useGetTrades();
-  const trpc = useTRPC();
-  const { data: trades, isLoading } = useQuery(trpc.platform.trades.findAll.queryOptions());
+  const { data: trades, isLoading } = useGetTrades();
   
   const locationParam = useSearchParams().get("location") as TradeLocation | undefined;
   const [searchTerm, setSearchTerm] = useState("");

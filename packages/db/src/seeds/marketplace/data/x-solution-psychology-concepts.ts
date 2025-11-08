@@ -3,7 +3,7 @@ import type { SolutionSlug } from '@olis/db/types/marketplace/solutions'
 
 export const xSolutionPsychologyConceptsData = [
   {
-    solutionSlug: 'one-stop-sales',
+    solutionSlug: 'remodel-x',
     psychologyConcepts: [
       'authority',
     ],

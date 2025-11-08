@@ -1,8 +1,8 @@
-import { capitalize } from "@olis/core/lib/formatters";
 import { Home } from "lucide-react";
 
 import { useGetProject } from "@/features/project-creator/data/queries/get-project";
 import { useGetProjectJobsite } from "@/features/project-creator/data/queries/get-project-jobsite-profile";
+import { capitalize } from "@olis/core/lib/formatters";
 import { Card, CardContent, CardHeader, CardTitle } from "@olis/ui/components/card";
 
 interface Props {

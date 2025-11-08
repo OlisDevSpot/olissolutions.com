@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ROOTS } from "@olis/core/constants";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -8,9 +7,9 @@ import { toast } from "sonner";
 import type { InitProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
 
 import { useInitProject } from "@/features/project-creator/data/mutations/init-project";
-import { getProjectsQueryOptions } from "@/features/project-creator/data/queries/get-projects";
 import { useCreateDialogStore } from "@/features/project-creator/hooks/dialogs/use-create-dialog-store";
 import { initProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
+import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import { Form } from "@olis/ui/components/form";
 import { useMultistepForm } from "@olis/ui/hooks/use-multistep-form";

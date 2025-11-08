@@ -17,7 +17,6 @@ export function TradeShowroomView() {
 
   const { data: trades } = useGetTrades();
 
-  console.log({ trades })
   const currentTrade = trades?.find(trade => trade.accessor === tradeAccessor);
   const { data: tradeScopes, isLoading } = useGetTradeScopes(currentTrade?.id || -1, { enabled: !!currentTrade });
 

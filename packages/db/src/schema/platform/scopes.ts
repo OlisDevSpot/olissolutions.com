@@ -2,7 +2,7 @@ import type z from 'zod'
 
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 
-import { x_projectScopes, x_scopeVariables } from '@olis/db/schema/one-stop-sales'
+import { x_projectScopes, x_scopeVariables } from '../remodel-x'
 
 import { relations } from 'drizzle-orm'
 import { integer, text } from 'drizzle-orm/pg-core'

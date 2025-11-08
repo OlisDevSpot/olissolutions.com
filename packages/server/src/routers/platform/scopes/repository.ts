@@ -5,8 +5,8 @@ import type { TableFilters } from '@olis/server/types'
 import type { Column, SQL } from 'drizzle-orm'
 import { db } from '@olis/db'
 
-import { variables, x_projectScopes, x_scopeVariables } from '@olis/db/schema/one-stop-sales'
 import { benefitCategories, benefits, scopes, trades, x_scopeBenefits } from '@olis/db/schema/platform'
+import { variables, x_projectScopes, x_scopeVariables } from '@olis/db/schema/remodel-x'
 import { and, asc, eq, getTableColumns } from 'drizzle-orm'
 
 export async function findAll() {

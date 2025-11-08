@@ -1,6 +1,6 @@
 import { db } from '@olis/db'
 
-import { pricing } from '@olis/db/schema/one-stop-sales'
+import { pricing } from '../../../../../db/dist/schema/remodel-x'
 import { trades } from '@olis/db/schema/platform'
 import { eq, getTableColumns } from 'drizzle-orm'
 

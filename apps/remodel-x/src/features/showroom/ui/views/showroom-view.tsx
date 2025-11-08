@@ -1,39 +1,42 @@
 "use client";
 
-import type { UseQueryOptions } from "@tanstack/react-query";
-
-import { ROOTS } from "@olis/core/constants";
-import { getAddonsQueryOptions } from "@olis/data-client/fetchers/platform/addons/queries/get-addons";
-import { getMaterialsQueryOptions } from "@olis/data-client/fetchers/platform/materials/queries/get-materials";
-import { getScopesQueryOptions } from "@olis/data-client/fetchers/platform/scopes/queries/get-scopes";
-import { getTradesQueryOptions } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import type { ShowroomItemType } from "@/features/showroom/types";
 
+import { useTRPC } from "@/trpc/client";
+import { ROOTS } from "@olis/core/constants";
+
 export function ShowroommView() {
+  const queryClient = useQueryClient();
+  const trpc = useTRPC();
+
+  useEffect(() => {
+    queryClient.prefetchQuery(trpc.platform.trades.findAll.queryOptions());
+    queryClient.prefetchQuery(trpc.platform.scopes.findAll.queryOptions());
+    queryClient.prefetchQuery(trpc.platform.materials.findAll.queryOptions());
+    queryClient.prefetchQuery(trpc.platform.addons.findAll.queryOptions());
+  }, [])
+
   return (
     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <ShowroomNavCard showroomItemType="trade" queryOptions={getTradesQueryOptions()} />
-      <ShowroomNavCard showroomItemType="scope" queryOptions={getScopesQueryOptions()} />
-      <ShowroomNavCard showroomItemType="addon" queryOptions={getAddonsQueryOptions()} />
-      <ShowroomNavCard showroomItemType="material" queryOptions={getMaterialsQueryOptions()} />
+      <ShowroomNavCard showroomItemType="trade" />
+      <ShowroomNavCard showroomItemType="scope" />
+      <ShowroomNavCard showroomItemType="addon" />
+      <ShowroomNavCard showroomItemType="material" />
     </div>
   );
 }
 
 interface ShowroomNavCardProps {
   showroomItemType: ShowroomItemType;
-  queryOptions: UseQueryOptions<any>;
 }
 
-function ShowroomNavCard({ showroomItemType, queryOptions }: ShowroomNavCardProps) {
-  const queryClient = useQueryClient();
-  const router = useRouter();
+function ShowroomNavCard({ showroomItemType }: ShowroomNavCardProps) {
+  const router = useRouter()
 
-  queryClient.prefetchQuery(queryOptions);
-  
   return (
     <div 
       className="w-full h-full flex items-center justify-center border rounded-2xl hover:bg-muted transition-colors cursor-pointer"

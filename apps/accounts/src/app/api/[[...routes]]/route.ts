@@ -1,8 +1,10 @@
 import { trpcServer } from '@hono/trpc-server'
-import app from '@olis/server/apps/base'
+import { createApp } from '@olis/server/lib/create-app'
+import { baseAppRouter } from '@olis/server/routers/base'
 import { createHonoTRPCContext } from '@olis/trpc/lib/create-context'
-import { baseAppRouter } from '@olis/trpc/routers/app/base/index'
 import { handle } from 'hono/vercel'
+
+const app = createApp()
 
 app.use('/trpc/*', trpcServer({
   router: baseAppRouter,

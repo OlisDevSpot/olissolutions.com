@@ -10,7 +10,7 @@ export function DeleteProjectButton({ projectId }: { projectId: string }) {
     <div
       onClick={(e) => {
         e.stopPropagation();
-        mutation.mutate(projectId);
+        mutation.mutate({ projectId });
       }}
       className={cn("text-destructive hover:text-destructive/80 cursor-pointer", mutation.isPending && "cursor-not-allowed opacity-50")}
     >

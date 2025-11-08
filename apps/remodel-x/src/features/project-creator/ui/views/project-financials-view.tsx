@@ -1,6 +1,6 @@
 "use client";
 
-import { getScopeVariablesQueryOptions, useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
+import { useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
 import { useGetPricing } from "@olis/data-client/fetchers/remodel-x/pricing/queries/get-pricing";
 import { useQueryClient } from "@tanstack/react-query";
 import { Info, Trash } from "lucide-react";
@@ -16,6 +16,7 @@ import { useProjectScopesStore } from "@/features/project-creator/hooks/use-proj
 import { UpdateProjectScopeForm } from "@/features/project-creator/ui/components/forms/update-project-scope-form";
 import { aggregatePricingByTrade } from "@/shared/entities/pricing/mappers";
 import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scope-info-dialog-store";
+import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
 import { numberToUSD } from "@olis/core/lib/formatters";
 import { Button } from "@olis/ui/components/button";
@@ -27,6 +28,7 @@ import { ProjectFinancialsColumn } from "../components/project-financials/projec
 
 export function ProjectFinancialsView() {
   const queryClient = useQueryClient();
+  const trpc = useTRPC()
 
   const projectId = useCurrentProjectId();
   const pricing = useGetPricing();
@@ -91,7 +93,7 @@ export function ProjectFinancialsView() {
   }
 
   function prefetch(scopeId: number) {
-    queryClient.prefetchQuery(getScopeVariablesQueryOptions(scopeId));
+    queryClient.prefetchQuery(trpc.platform.scopes.findScopeVariables.queryOptions({ id: scopeId }));
   }
 
   function showInfo(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, scope: Scope) {

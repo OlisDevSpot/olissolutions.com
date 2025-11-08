@@ -32,6 +32,8 @@
     "@olis/auth": "workspace:*",
     "@olis/core": "workspace:*",
     "@olis/db": "workspace:*",
+    "@olis/trpc": "workspace:*",
+    "@trpc/server": "^11.6.0",
     "drizzle-orm": "^0.44.6",
     "hono": "^4.9.0",
     "hono-pino": "^0.10.3",

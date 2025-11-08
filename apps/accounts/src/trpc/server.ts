@@ -1,6 +1,6 @@
 import { auth } from '@olis/auth/server'
 import { getQueryClient } from '@olis/data-client/get-query-client'
-import { baseAppRouter } from '@olis/trpc/routers/app/base/index'
+import { baseAppRouter } from '@olis/server/routers/base'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import { headers } from 'next/headers'
 import { cache } from 'react'

@@ -1,39 +1,7 @@
-import type { UseQueryOptions } from '@tanstack/react-query'
-import type { InferRequestType, InferResponseType } from 'hono'
+import { useTRPC } from '@olis/data-client/trpc/client'
+import { useQuery } from '@tanstack/react-query'
 
-import { honoClient } from '@olis/server/apps/clients/one-stop-sales'
-
-import { queryOptions, useQuery } from '@tanstack/react-query'
-
-import { benefitQueryKeys } from '../query-keys'
-
-export type Request = InferRequestType<typeof honoClient.api['platform']['benefits']['$get']>
-export type Response = InferResponseType<typeof honoClient.api['platform']['benefits']['$get'], 200>
-
-export function getBenefitsQueryOptions(
-  options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
-) {
-  return queryOptions({
-    staleTime: Infinity,
-    ...options,
-    queryKey: benefitQueryKeys.all,
-    queryFn: async () => {
-      const res = await honoClient.api.platform.benefits.$get()
-
-      if (!res.ok) {
-        throw new Error('Trades not found')
-      }
-
-      const benefits = await res.json()
-
-      return benefits
-    },
-
-  })
-}
-
-export function useGetBenefits(
-  options?: Omit<UseQueryOptions<Response>, 'queryKey' | 'queryFn'>,
-) {
-  return useQuery(getBenefitsQueryOptions(options))
+export function useGetBenefits() {
+  const trpc = useTRPC()
+  return useQuery(trpc.platform.benefits.findAll.queryOptions())
 }

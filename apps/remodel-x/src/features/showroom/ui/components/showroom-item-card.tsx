@@ -9,7 +9,6 @@ interface Props extends React.ComponentProps<typeof ItemCard>, React.ComponentPr
   onClick: () => void;
   showHeader?: boolean;
   type?: ShowroomItemType;
-  presentationMode?: boolean;
   estimatedPrice?: string;
   roiPercentage?: string;
   showPricing?: boolean;
@@ -18,7 +17,7 @@ interface Props extends React.ComponentProps<typeof ItemCard>, React.ComponentPr
   onFavoriteToggle?: () => void;
   onQuickView?: () => void;
   status?: "available" | "popular" | "recommended" | "new" | "limited";
-  variant?: "default" | "compact" | "presentation";
+  variant?: "default" | "compact";
 }
 
 export function ShowroomCard({ 
@@ -28,7 +27,6 @@ export function ShowroomCard({
   showStars, 
   compareGoogle,
   type,
-  presentationMode = false,
   estimatedPrice,
   roiPercentage,
   showPricing = false,
@@ -52,17 +50,14 @@ export function ShowroomCard({
   const shouldShowROI = showROI || (type === "trade" && !!roiPercentage);
   
   // Auto-determine presentation features based on variant
-  const enhancedShowQuickActions = showQuickActions || variant === "presentation";
-  const enhancedShowStars = showStars || variant === "presentation";
+  const enhancedShowQuickActions = showQuickActions;
+  const enhancedShowStars = showStars;
   
   return (
     <ItemCard 
       item={item} 
       onClick={onClick}
       variant={variant}
-      presentationMode={presentationMode}
-      estimatedPrice={estimatedPrice}
-      roiPercentage={roiPercentage}
       showQuickActions={enhancedShowQuickActions}
       isFavorited={isFavorited}
       onFavoriteToggle={handleFavoriteToggle}
@@ -78,50 +73,14 @@ export function ShowroomCard({
       
       {showHeader && <ItemCard.Header />}
       
-      {/* Enhanced content area for presentation mode */}
-      {(presentationMode || variant === "presentation") && (
-        <ItemCard.Content>
-          <div className="space-y-2">
-            {status && <ItemCard.StatusIndicator status={status} />}
-            
-            {type === "trade" && (
-              <div className="text-xs text-muted-foreground">
-                Complete home improvement solution
-              </div>
-            )}
-            
-            {type === "material" && (
-              <div className="text-xs text-muted-foreground">
-                Premium quality materials
-              </div>
-            )}
-            
-            {type === "scope" && (
-              <div className="text-xs text-muted-foreground">
-                Detailed work specification
-              </div>
-            )}
-            
-            {type === "addon" && (
-              <div className="text-xs text-muted-foreground">
-                Optional enhancement
-              </div>
-            )}
-          </div>
-        </ItemCard.Content>
-      )}
-      
-      {/* Footer for presentation mode */}
-      {(presentationMode || variant === "presentation") && <ItemCard.Footer />}
-      
       {/* Default explore more for standard cards */}
-      {variant === "default" && !presentationMode && <ItemCard.ExploreMore />}
+      {variant === "default" && <ItemCard.ExploreMore />}
     </ItemCard>
   );
 }
 
 // Convenience components for specific showroom contexts
-export function TradeShowroomCard(props: Omit<Props, 'type'>) {
+export function TradeShowroomCard(props: Omit<Props, "type">) {
   return (
     <ShowroomCard 
       {...props} 
@@ -132,7 +91,7 @@ export function TradeShowroomCard(props: Omit<Props, 'type'>) {
   );
 }
 
-export function MaterialShowroomCard(props: Omit<Props, 'type'>) {
+export function MaterialShowroomCard(props: Omit<Props, "type">) {
   return (
     <ShowroomCard 
       {...props} 
@@ -143,7 +102,7 @@ export function MaterialShowroomCard(props: Omit<Props, 'type'>) {
   );
 }
 
-export function ScopeShowroomCard(props: Omit<Props, 'type'>) {
+export function ScopeShowroomCard(props: Omit<Props, "type">) {
   return (
     <ShowroomCard 
       {...props} 
@@ -153,7 +112,7 @@ export function ScopeShowroomCard(props: Omit<Props, 'type'>) {
   );
 }
 
-export function AddonShowroomCard(props: Omit<Props, 'type'>) {
+export function AddonShowroomCard(props: Omit<Props, "type">) {
   return (
     <ShowroomCard 
       {...props} 
@@ -168,8 +127,7 @@ export function PresentationShowroomCard(props: Props) {
   return (
     <ShowroomCard 
       {...props}
-      variant="presentation"
-      presentationMode={true}
+      variant="default"
       showQuickActions={true}
       showStars={true}
     />

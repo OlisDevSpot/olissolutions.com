@@ -1,7 +1,7 @@
 import type z from 'zod'
 
 import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
-import { x_projectCustomers } from '@olis/db/schema/one-stop-sales'
+import { x_projectCustomers } from '../remodel-x'
 import { relations } from 'drizzle-orm'
 import { varchar } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'

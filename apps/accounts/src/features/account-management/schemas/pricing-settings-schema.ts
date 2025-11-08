@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-import { insertPricingSchema } from '@olis/db/schema/one-stop-sales'
+import { insertPricingSchema } from '@olis/db/schema/remodel-x'
 
 export const pricingSettingsFormSchema = insertPricingSchema
 

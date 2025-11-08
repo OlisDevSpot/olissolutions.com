@@ -1,6 +1,6 @@
 import z from "zod";
 
-import { insertJobsiteProfileSchema, insertJobsiteRoofSchema } from "@olis/db/schema/one-stop-sales";
+import { insertJobsiteProfileSchema, insertJobsiteRoofSchema } from "../../../../../../../../../packages/db/dist/schema/remodel-x";
 
 export const updateJobsiteProfileSchema = z.object({
   general: insertJobsiteProfileSchema

@@ -1,10 +1,10 @@
 'use client'
 
-import type { UseQueryOptions } from '@tanstack/react-query'
-
 import type { LucideIcon } from 'lucide-react'
 import { getTypedKeys } from '@olis/core/lib/utils'
+import { useTRPC } from '@olis/data-client/trpc/client'
 import { Logo } from '@olis/ui/components/global/logo'
+
 import { SidebarUserButton } from '@olis/ui/components/global/navigation/sidebar-user-button-2'
 import {
   Sidebar,
@@ -23,8 +23,6 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@olis/ui/components/sidebar'
-
-import { useQueryClient } from '@tanstack/react-query'
 import { HelpCircleIcon, LayoutDashboard, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -34,7 +32,7 @@ interface SubItem {
   url: string
   icon: LucideIcon
   enablePrefetch?: boolean
-  queryOptions?: (options?: UseQueryOptions<any>) => UseQueryOptions<any>
+  handleMouseEnter?: (trpc: ReturnType<typeof useTRPC>) => void
 }
 
 interface Item {
@@ -73,12 +71,8 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
   logoProduct,
 }: Props<T, K>) {
   const pathname = usePathname()
-  const queryClient = useQueryClient()
   const { setOpenMobile } = useSidebar()
-
-  function prefetchSubitem(queryOptions: (options?: UseQueryOptions<any>) => UseQueryOptions<any>) {
-    queryClient.prefetchQuery(queryOptions())
-  }
+  const trpc = useTRPC()
 
   return (
     <Sidebar collapsible="icon">
@@ -129,7 +123,7 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
                         {item.subItems?.map(subItem => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton asChild className="transition-colors duration-200 text-sidebar-foreground" isActive={pathname.startsWith(subItem.url)}>
-                              <Link href={subItem.url} onClick={() => setOpenMobile(false)} onMouseEnter={() => subItem.enablePrefetch && subItem.queryOptions ? prefetchSubitem(subItem.queryOptions) : null}>
+                              <Link href={subItem.url} onClick={() => setOpenMobile(false)} onMouseEnter={() => subItem.handleMouseEnter?.(trpc)}>
                                 <span>{subItem.title}</span>
                               </Link>
                             </SidebarMenuSubButton>

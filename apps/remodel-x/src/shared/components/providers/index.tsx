@@ -10,7 +10,6 @@ import { TRPCReactProvider } from "./trpc-provider";
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <TRPCReactProvider>
-
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import type { Scope } from "@olis/db/schema/platform";
 
 import { useCreateProjectScopes } from "@/features/project-creator/data/mutations/create-project-scopes";
-import { getProjectScopesQueryOptions, useGetProjectScopes } from "@/features/project-creator/data/queries/get-project-scopes";
+import { useGetProjectScopes } from "@/features/project-creator/data/queries/get-project-scopes";
 import { useCurrentProjectId } from "@/features/project-creator/hooks/use-current-project-id";
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { ProjectFlowSection } from "@/features/project-creator/ui/components/project-flow-section";

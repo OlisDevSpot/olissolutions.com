@@ -1,7 +1,7 @@
 import { capitalize } from "@olis/core/lib/formatters";
 import { useFormContext } from "react-hook-form";
 
-import type { Variable } from "@olis/db/schema/one-stop-sales";
+import type { Variable } from "../../../../../../../../../packages/db/dist/schema/remodel-x";
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { Input } from "@olis/ui/components/input";

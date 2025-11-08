@@ -1,17 +1,19 @@
-import type { UseQueryOptions } from "@tanstack/react-query";
+import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
 
-import { useQuery } from "@tanstack/react-query";
-
-import type { Benefit } from "@olis/db/schema/platform";
-
+import { useGetItemsBenefits } from "@/features/showroom/hooks/use-get-items-benefits";
 import { iconMap } from "@olis/ui/lib/benefits-icons-map";
 
-interface Props {
-  queryOptions: UseQueryOptions<any>;
+interface Props<T extends ShowroomItemType> {
+  type: T;
+  item: ShowroomItem & { id: number };
 }
 
-export function ShowroomItemBenefits({ queryOptions }: Props) {
-  const itemBenefits = useQuery<(Benefit & { category: { accessor: string; label: string } })[]>(queryOptions)
+export function ShowroomItemBenefits<T extends ShowroomItemType>({ item, type }: Props<T>) {
+  const itemBenefits = useGetItemsBenefits({ item, type });
+
+  if (!itemBenefits) {
+    return null;
+  }
   
   const benefitsByCategory = itemBenefits.data
     ? itemBenefits.data.reduce((acc, benefit) => {
