@@ -9,7 +9,7 @@ import { FilterByConstructionType } from "@/features/showroom/ui/components/filt
 import { FilterByTrade } from "@/features/showroom/ui/components/filter-by-trade";
 import { Filters, FiltersProvider } from "@/features/showroom/ui/components/filters";
 import { ShowroomHeader } from "@/features/showroom/ui/components/header";
-import { EmptyShowroomGrid, ScopeShowroomGrid, ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { EmptyShowroomGrid, ScopeShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
 
 export function ScopesShowroomView() {
   const { data: scopes, isLoading } = useGetScopes();

@@ -1,8 +1,8 @@
-import { formatDate } from "@olis/core/lib/formatters";
 import { Calendar, Clock, TrendingUp } from "lucide-react";
 
-import type { Project } from "../../../../../../../../packages/db/dist/schema/remodel-x";
+import type { Project } from "@olis/db/schema/remodel-x";
 
+import { formatDate } from "@olis/core/lib/formatters";
 import { Card, CardContent, CardHeader, CardTitle } from "@olis/ui/components/card";
 import { Progress } from "@olis/ui/components/progress";
 

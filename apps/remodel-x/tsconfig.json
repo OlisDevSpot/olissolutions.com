@@ -12,7 +12,8 @@
       "@olis/ui/*": ["../../packages/ui/src/*"],
       "@olis/db/*": ["../../packages/db/src/*"],
       "@olis/auth/*": ["../../packages/auth/src/*"],
-      "@olis/core/*": ["../../packages/core/src/*"]
+      "@olis/core/*": ["../../packages/core/src/*"],
+      "@olis/trpc/*": ["../../packages/trpc/src/*"]
     },
     "resolveJsonModule": true,
     "types": [

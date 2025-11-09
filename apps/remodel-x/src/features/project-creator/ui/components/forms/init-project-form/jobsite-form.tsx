@@ -1,9 +1,9 @@
-import { electricProviders } from "@olis/core/constants";
-import { capitalize } from "@olis/core/lib/formatters";
 import { useFormContext } from "react-hook-form";
 
 import type { InitProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
 
+import { electricProviders } from "@olis/core/constants";
+import { capitalize } from "@olis/core/lib/formatters";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { Input } from "@olis/ui/components/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@olis/ui/components/select";

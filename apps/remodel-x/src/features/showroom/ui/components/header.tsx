@@ -1,10 +1,10 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { capitalize } from "@olis/core/lib/formatters";
 import { createContext, useContext } from "react";
 
 import type { ShowroomItemType } from "@/features/showroom/types";
 
+import { capitalize } from "@olis/core/lib/formatters";
 import { PageHeaderSection } from "@olis/ui/components/global/page-header";
 
 import { SearchInput } from "./search-input";

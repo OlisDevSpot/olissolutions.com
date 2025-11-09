@@ -1,7 +1,7 @@
 import z from "zod";
 
 import { insertCustomerSchema } from "@olis/db/schema/platform";
-import { insertJobsiteProfileSchema } from "../../../../../../../../../packages/db/dist/schema/remodel-x";
+import { insertJobsiteProfileSchema } from "@olis/db/schema/remodel-x";
 
 export const projectInfoFormSchema = z.object({
   address: z.string().min(1, { message: "Address is required" }),

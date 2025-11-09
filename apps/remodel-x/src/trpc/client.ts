@@ -1,5 +1,5 @@
-import type { RemodelXAppRouter } from "@olis/trpc/routers/app/remodel-x/index"
-
 import { createTRPCContext } from "@trpc/tanstack-react-query"
+
+import type { RemodelXAppRouter } from "./routers"
 
 export const { useTRPC, TRPCProvider } = createTRPCContext<RemodelXAppRouter>()

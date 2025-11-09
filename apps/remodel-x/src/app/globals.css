@@ -169,7 +169,9 @@
 *::-webkit-scrollbar {
   @apply w-[22px];
 }
-*::-webkit-scrollbar-track, *::-webkit-scrollbar-thumb {
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb {
   @apply border-l-16 border-transparent rounded-full shadow-[inset_0_0_10px_10px] shadow-neutral-700;
 }
 

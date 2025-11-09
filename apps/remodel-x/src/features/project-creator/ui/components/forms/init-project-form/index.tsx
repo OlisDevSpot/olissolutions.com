@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import type { InitProjectInput } from "@/features/project-creator/data/mutations/init-project";
 import type { InitProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
 
 import { useInitProject } from "@/features/project-creator/data/mutations/init-project";
 import { useCreateDialogStore } from "@/features/project-creator/hooks/dialogs/use-create-dialog-store";
 import { initProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
+import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import { Form } from "@olis/ui/components/form";
@@ -20,6 +22,7 @@ export function InitProjectForm() {
   const router = useRouter();
   const { close } = useCreateDialogStore();
   const queryClient = useQueryClient();
+  const trpc = useTRPC();
 
   const form = useForm<InitProjectFormSchema>({
     resolver: zodResolver(initProjectFormSchema),
@@ -27,6 +30,17 @@ export function InitProjectForm() {
       project: { address: "", city: "", state: "CA", zipCode: "" },
       customer: { firstName: "", lastName: "" },
       jobsite: { numStories: 1, yearBuilt: 1980, electricProvider: "ladwp" },
+    },
+  });
+  
+  const mutation = useInitProject({
+    onSuccess: (_data) => {
+      toast.success("Project created");
+      queryClient.invalidateQueries(trpc.projects.findAll.queryOptions());
+    },
+    onSettled: () => {
+      form.reset();
+      close();
     },
   });
 
@@ -59,20 +73,13 @@ export function InitProjectForm() {
     }
   }
 
-  const mutation = useInitProject({
-    onSuccess: (_data) => {
-      toast.success("Project created");
-      queryClient.invalidateQueries({ queryKey: getProjectsQueryOptions().queryKey });
-    },
-    onSettled: () => {
-      form.reset();
-      close();
-    },
-  });
-
   // using mutateAsync to reduce flicker as react batches the re-renders instead of re-rendering with `isPending=false` like in the onSuccess case
-  async function onSubmit(data: InitProjectFormSchema) {
+  async function onSubmit(data: InitProjectInput) {
     const result = await mutation.mutateAsync(data);
+    if (!result?.project.id) {
+      toast.error("Failed to create project");
+      return;
+    }
     router.push(`${ROOTS.remodelX.getProjectsRoot()}/${result.project.id}`);
   }
 

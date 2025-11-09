@@ -1,7 +1,7 @@
-import { ROOTS } from "@olis/core/constants";
 import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { ROOTS } from "@olis/core/constants";
 import { 
   Select, 
   SelectContent, 

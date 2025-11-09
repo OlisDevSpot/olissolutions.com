@@ -1,10 +1,10 @@
-import { ROOTS } from "@olis/core/constants";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { AppBreadcrumbs } from "@/shared/components/app-breadcrumbs";
 import { AppSidebar } from "@/shared/components/app-sidebar-provider";
 import { requireAuth } from "@olis/auth/lib/utils";
+import { ROOTS } from "@olis/core/constants";
 import { AppTopbar } from "@olis/ui/components/global/navigation/app-topbar";
 import {
   SidebarProvider,

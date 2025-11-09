@@ -1,8 +1,7 @@
+import type { ShowroomFilter } from "@/features/showroom/types";
 import type { ConstructionType, TradeLocation } from "@olis/core/types";
 
 import { CONSTRUCTION_TYPES_LABEL_MAP, TRADE_LOCATIONS_LABEL_MAP } from "@olis/core/constants";
-
-import type { ShowroomFilter } from "@/features/showroom/types";
 
 export const scopeFiltersDef = [
   {

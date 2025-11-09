@@ -1,9 +1,9 @@
-import { ROOTS } from "@olis/core/constants";
 import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { Loader2, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { scopeFiltersDef } from "@/features/showroom/constants/filters";
+import { ROOTS } from "@olis/core/constants";
 
 import { useFiltersContext } from "./filters";
 import { useShowroomContext } from "./header";

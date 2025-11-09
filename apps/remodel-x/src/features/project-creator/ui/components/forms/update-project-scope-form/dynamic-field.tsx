@@ -1,8 +1,8 @@
-import { capitalize } from "@olis/core/lib/formatters";
 import { useFormContext } from "react-hook-form";
 
-import type { Variable } from "../../../../../../../../../packages/db/dist/schema/remodel-x";
+import type { Variable } from "@olis/db/schema/remodel-x";
 
+import { capitalize } from "@olis/core/lib/formatters";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { Input } from "@olis/ui/components/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@olis/ui/components/select";

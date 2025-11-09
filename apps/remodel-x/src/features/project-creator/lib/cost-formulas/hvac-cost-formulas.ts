@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type {
   ProjectVars,
 } from "@/features/project-creator/cost-calculation-types";

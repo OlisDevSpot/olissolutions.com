@@ -5,7 +5,6 @@ import type {
   SortingState,
 } from "@tanstack/react-table";
 
-import { ROOTS } from "@olis/core/constants";
 import {
   flexRender,
   getCoreRowModel,
@@ -16,6 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import {
   Table,

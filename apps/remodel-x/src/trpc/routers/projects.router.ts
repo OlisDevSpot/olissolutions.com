@@ -1,11 +1,11 @@
 import * as customersRepository from "@olis/server/routers/platform/customers/repository"
 import * as scopesRepository from "@olis/server/routers/platform/scopes/repository"
 import * as repository from "@olis/server/routers/remodel-x/project-creator/repository"
-import { createTRPCRouter, protectedProcedure } from "@olis/trpc/init"
 import z from "zod"
 
 import { insertCustomerSchema } from "@olis/db/schema/platform"
 import { insertFinancialProfileSchema, insertJobsiteProfileSchema, insertJobsiteRoofSchema, insertProjectSchema, insertXProjectScopeSchema } from "@olis/db/schema/remodel-x"
+import { createTRPCRouter, protectedProcedure } from "@olis/trpc/init"
 
 export const projectsRouter = createTRPCRouter({
   findAll: protectedProcedure
@@ -53,9 +53,9 @@ export const projectsRouter = createTRPCRouter({
     }),
   init: protectedProcedure
     .input(z.object({
-      projectData: insertProjectSchema,
-      customerData: insertCustomerSchema,
-      jobsiteData: insertJobsiteProfileSchema.pick({
+      project: insertProjectSchema,
+      customer: insertCustomerSchema,
+      jobsite: insertJobsiteProfileSchema.pick({
         numStories: true,
         yearBuilt: true,
         electricProvider: true,

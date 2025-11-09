@@ -19,8 +19,6 @@ export function ProjectsView() {
   const { open } = useCreateDialogStore();
   const { data: projects, isLoading, isSuccess } = useGetProjects();
 
-  console.log({ projects });
-
   function prefetch() {
     queryClient.prefetchQuery(trpc.projects.findOne.queryOptions({ projectId: projects?.[0]?.id ?? "" }));
   }
