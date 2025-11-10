@@ -12,18 +12,20 @@ import { ProjectFlowSection } from "@/features/project-creator/ui/components/pro
 import { ScopeSelector } from "@/shared/entities/scopes/ui/components/scope-selector";
 import { AddonSelector } from "@/shared/entities/trades/ui/components/addon-selector";
 import { TradeSelector } from "@/shared/entities/trades/ui/components/trade-selector";
+import { useTRPC } from "@/trpc/client";
 import { Button } from "@olis/ui/components/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@olis/ui/components/tooltip";
 
 export function ProjectScopesSelector() {
   const queryClient = useQueryClient();
+  const trpc = useTRPC();
   const [currentTradeId, setCurrentTradeId] = useState<number | null>(null);
 
   const projectId = useCurrentProjectId();
   const projectScopes = useGetProjectScopes(projectId);
-  const mutation = useCreateProjectScopes(projectId, {
+  const mutation = useCreateProjectScopes({
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getProjectScopesQueryOptions(projectId).queryKey });
+      queryClient.invalidateQueries(trpc.projects.findProjectScopes.queryOptions({ projectId }));
     },
   });
 
@@ -47,6 +49,7 @@ export function ProjectScopesSelector() {
 
   function handleSave() {
     mutation.mutate({
+      projectId,
       scopeIds: selectedScopes.map(scope => scope.id),
     }, {
       onSuccess: () => {
@@ -57,6 +60,7 @@ export function ProjectScopesSelector() {
 
   function handleReset() {
     mutation.mutate({
+      projectId,
       scopeIds: [],
     }, {
       onSuccess: () => {

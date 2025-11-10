@@ -14,8 +14,6 @@ export default function Marketplace() {
   const trpc = useTRPC()
   const { data: solutions, isPending } = useQuery(trpc.solutions.findAll.queryOptions({ isActive: true }))
 
-  console.log({ solutions })
-
   const { data: subscriptions } = useQuery(trpc['x-subscriptions'].findAll.queryOptions())
 
   if (isPending) {

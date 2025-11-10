@@ -15,6 +15,8 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import type { AllProjectsOutput } from "@/features/project-creator/data/queries/get-projects";
+
 import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
 import {
@@ -214,7 +216,7 @@ interface DataTableProps<TData, TValue> {
 //   },
 // ];
 
-export function DataTable<TData extends { id: string }, TValue>({
+export function DataTable<TData extends AllProjectsOutput[number], TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {

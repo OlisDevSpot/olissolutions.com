@@ -23,8 +23,6 @@ export function ShowroomGrid<T extends ShowroomItemType>({ type, items, title, i
   const router = useRouter();
   const { open: sidebarOpen } = useSidebar();
 
-  console.log({ isLoading })
-  
   return (
     <section className="space-y-4">
       {isLoading

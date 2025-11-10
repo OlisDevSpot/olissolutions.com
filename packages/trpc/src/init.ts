@@ -6,6 +6,21 @@ const t = initTRPC.context<Context>().create({
    * @see https://trpc.io/docs/server/data-transformers
    */
   // transformer: superjson,
+
+  /**
+   * Format the error object before it's sent to the client.
+   */
+  errorFormatter({ shape, error }) {
+    return {
+      ...shape,
+      data: {
+        ...shape.data,
+        code: error.code,
+        // you can include cause or strip stack traces here
+        cause: error.cause instanceof Error ? error.cause.message : error.cause,
+      },
+    }
+  },
 })
 
 export function createTRPCContext() {

@@ -17,9 +17,9 @@ export const createProjectValidator = zValidator('json', insertProjectSchema.str
 })
 
 export const initProjectValidator = zValidator('json', z.object({
-  projectData: insertProjectSchema,
-  customerData: insertCustomerSchema,
-  jobsiteData: insertJobsiteProfileSchema.pick({
+  project: insertProjectSchema,
+  customer: insertCustomerSchema,
+  jobsite: insertJobsiteProfileSchema.pick({
     numStories: true,
     yearBuilt: true,
     electricProvider: true,

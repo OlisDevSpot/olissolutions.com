@@ -1,9 +1,9 @@
 import { auth } from '@olis/auth/server'
 import { getQueryClient } from '@olis/data-client/get-query-client'
-import { marketplaceAppRouter } from '@olis/trpc/routers/app/marketplace/index'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import { headers } from 'next/headers'
 import { cache } from 'react'
+import { marketplaceAppRouter } from './routers'
 import 'server-only'
 
 export const queryClient = cache(getQueryClient)

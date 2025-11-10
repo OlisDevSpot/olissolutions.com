@@ -39,7 +39,10 @@ export async function findAll(userId: string) {
     return foundProjects
   }
   catch (error) {
-    console.error(error)
+    if (error instanceof Error) {
+      throw new Error('Failed to find projects', { cause: error })
+    }
+    throw new Error(`Failed to find projects: ${String(error)}`)
   }
 }
 
@@ -82,12 +85,12 @@ export async function createOne(userId: string, data: InsertProject) {
   return newProject
 }
 
-export async function initProject(userId: string, data: { projectData: InsertProject, customerData: InsertCustomerSchema, jobsiteData: Omit<InsertJobsiteProfileSchema, 'projectId'> }) {
+export async function initProject(userId: string, data: { project: InsertProject, customer: InsertCustomerSchema, jobsite: Omit<InsertJobsiteProfileSchema, 'projectId'> }) {
   const output = await db.transaction(async (tx) => {
     const [project] = await tx
       .insert(projects)
       .values({
-        ...data.projectData,
+        ...data.project,
         ownerId: userId,
       })
       .returning()
@@ -99,7 +102,7 @@ export async function initProject(userId: string, data: { projectData: InsertPro
     const [customer] = await tx
       .insert(customers)
       .values({
-        ...data.customerData,
+        ...data.customer,
       })
       .returning()
 
@@ -116,7 +119,7 @@ export async function initProject(userId: string, data: { projectData: InsertPro
     const [jobsite] = await tx
       .insert(jobsiteProfiles)
       .values({
-        ...data.jobsiteData,
+        ...data.jobsite,
         projectId: project.id,
       })
       .returning()

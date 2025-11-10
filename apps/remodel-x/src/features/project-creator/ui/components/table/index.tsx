@@ -1,10 +1,10 @@
-import type { AllProjects } from "@/features/project-creator/data/queries/get-projects";
+import type { AllProjectsOutput } from "@/features/project-creator/data/queries/get-projects";
 
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
 interface Props {
-  projects: AllProjects;
+  projects: AllProjectsOutput;
 }
 
 export function ProjectsTable({ projects }: Props) {
