@@ -6,10 +6,10 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core'
 
-import { dataTypeEnum, oneStopSalesSchema } from './meta'
+import { dataTypeEnum, remodelXSchema } from './meta'
 import { x_scopeVariables } from './x-scope-variables'
 
-export const variables = oneStopSalesSchema.table('variable', {
+export const variables = remodelXSchema.table('variable', {
   id: unsafeId,
   key: varchar('key', { length: 80 }).notNull().unique(),
   label: varchar('label', { length: 80 }).notNull(),

@@ -5,7 +5,6 @@ import { psychologyConcepts, solutions, xSolutionPsychologyConcepts } from '@oli
 import { and, eq } from 'drizzle-orm'
 
 export async function findAll(options: { isActive?: boolean } = {}) {
-  console.log('running db...')
   const filters: SQL[] = []
 
   if (options.isActive) {
@@ -35,8 +34,6 @@ export async function findAll(options: { isActive?: boolean } = {}) {
       ),
 
     )
-
-  console.log({ foundSolutions })
 
   const mappedSolutions = foundSolutions.reduce((acc, cur) => {
     const solutionId = cur.solution.id

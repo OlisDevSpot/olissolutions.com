@@ -10,9 +10,9 @@ import {
 } from 'drizzle-orm/pg-core'
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { oneStopSalesSchema } from './meta'
+import { remodelXSchema } from './meta'
 
-export const pricing = oneStopSalesSchema.table('pricing', {
+export const pricing = remodelXSchema.table('pricing', {
   id: unsafeId,
   key: varchar('key', { length: 80 }).notNull().unique(),
   label: varchar('label', { length: 80 }).notNull(),

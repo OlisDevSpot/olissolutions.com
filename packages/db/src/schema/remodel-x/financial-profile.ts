@@ -10,10 +10,10 @@ import {
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
-import { oneStopSalesSchema } from './meta'
+import { remodelXSchema } from './meta'
 import { projects } from './project'
 
-export const financialProfiles = oneStopSalesSchema.table('financial_profile', {
+export const financialProfiles = remodelXSchema.table('financial_profile', {
   id,
 
   // disadvantages info

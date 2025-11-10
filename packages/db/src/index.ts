@@ -11,7 +11,7 @@ const db = drizzle(pool, {
   logger: process.env.npm_config_logger === 'true',
   schema: {
     ...schema.platformSchema,
-    ...schema.oneStopSalesSchema,
+    ...schema.remodelXSchema,
   },
 })
 

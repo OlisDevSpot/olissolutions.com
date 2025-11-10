@@ -11,10 +11,10 @@ import {
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
 import { jobsiteRoofs } from './jobsite-roof'
-import { electricProviderEnum, foundationTypeEnum, hvacComponentsEnum, hvacTypeEnum, insulationLevelEnum, oneStopSalesSchema, windowsTypeEnum } from './meta'
+import { electricProviderEnum, foundationTypeEnum, hvacComponentsEnum, hvacTypeEnum, insulationLevelEnum, remodelXSchema, windowsTypeEnum } from './meta'
 import { projects } from './project'
 
-export const jobsiteProfiles = oneStopSalesSchema.table('jobsite_profile', {
+export const jobsiteProfiles = remodelXSchema.table('jobsite_profile', {
   id,
 
   // general property

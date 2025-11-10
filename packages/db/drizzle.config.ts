@@ -14,7 +14,7 @@ export default defineConfig({
     'platform',
     'identity',
     'marketplace',
-    'remodel-x',
+    'remodel_x',
   ],
   out: './src/migrations',
   dialect: 'postgresql',

@@ -35,7 +35,7 @@ export type UserRole = (typeof userRoles)[number]
 export type EaseOfUse = (typeof easeOfUse)[number]
 export type UserSolutionStatus = (typeof userSolutionStatuses)[number]
 
-// ONE STOP SALES
+// REMODEL-X
 export type ElectricProvider = (typeof electricProviders)[number]
 export type VariableDataType = (typeof variableDataTypes)[number]
 export type VariableGroup = (typeof variableGroups)[number]

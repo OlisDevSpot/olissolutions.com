@@ -3,9 +3,9 @@ import { projects } from '@olis/db/schema/remodel-x/project'
 import { customers } from '@olis/db/schema/platform'
 import { relations } from 'drizzle-orm'
 import { boolean, unique, uuid } from 'drizzle-orm/pg-core'
-import { oneStopSalesSchema } from './meta'
+import { remodelXSchema } from './meta'
 
-export const x_projectCustomers = oneStopSalesSchema.table('x_project_customers', {
+export const x_projectCustomers = remodelXSchema.table('x_project_customers', {
   id: unsafeId,
   projectId: uuid('project_id')
     .notNull()

@@ -142,10 +142,10 @@ export const benefits = platformSchema.table('benefits', { ... })   // Psycholog
 **One-Stop-Sales Schema** (`packages/db/src/schema/one-stop-sales/`):
 ```typescript
 // Sales workflow entities
-export const projects = oneStopSalesSchema.table('projects', { ... })
-export const jobsiteProfiles = oneStopSalesSchema.table('jobsite_profiles', { ... })
-export const financialProfiles = oneStopSalesSchema.table('financial_profiles', { ... })
-export const pricing = oneStopSalesSchema.table('pricing', { ... })
+export const projects = remodelXSchema.table('projects', { ... })
+export const jobsiteProfiles = remodelXSchema.table('jobsite_profiles', { ... })
+export const financialProfiles = remodelXSchema.table('financial_profiles', { ... })
+export const pricing = remodelXSchema.table('pricing', { ... })
 ```
 *Purpose*: Customer-specific project data, dynamic pricing calculations, sales workflow state
 

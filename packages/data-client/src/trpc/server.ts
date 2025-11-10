@@ -1,10 +1,11 @@
 import { auth } from '@olis/auth/server'
 import { getQueryClient } from '@olis/data-client/get-query-client'
-import { remodelXAppRouter } from '@olis/trpc/routers/app/remodel-x/index'
+import { baseAppRouter } from '@olis/server/routers/base'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import { headers } from 'next/headers'
 
 import { cache } from 'react'
+
 import 'server-only'
 
 export const queryClient = cache(getQueryClient)
@@ -18,6 +19,6 @@ export const trpc = createTRPCOptionsProxy({
       ...session,
     }
   },
-  router: remodelXAppRouter,
+  router: baseAppRouter,
   queryClient,
 })

@@ -4,7 +4,7 @@ import type { Customer } from '@olis/db/schema/platform'
 import type { CustomerFormSchema } from '@olis/types/schemas/customers-forms'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useUpdateCustomer } from '@olis/data-client/fetchers/platform/customers/mutations/use-update-customer'
+import { useUpdateCustomer } from '@olis/data-client/fetchers/platform/customers/mutations/update-customer'
 import { customerFormSchema } from '@olis/types/schemas/customers-forms'
 import { Button } from '@olis/ui/components/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@olis/ui/components/form'

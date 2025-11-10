@@ -36,7 +36,7 @@ async function resetDb() {
       await resetSchema(schema.marketplaceSchema, schema.marketplaceSchema.marketplaceSchema)
       break
     case 'oneStopSales':
-      await resetSchema(schema.oneStopSalesSchema, schema.oneStopSalesSchema.oneStopSalesSchema)
+      await resetSchema(schema.remodelXSchema, schema.remodelXSchema.remodelXSchema)
       break
     default:
       throw new Error('Invalid schema')

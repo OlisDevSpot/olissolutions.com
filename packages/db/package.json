@@ -68,9 +68,9 @@
     "db:push:marketplace": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/marketplace/index.ts --schemaFilter=marketplace --dialect=postgresql --url=$DATABASE_URL",
     "db:reset:marketplace": "dotenv -e .env tsx ./src/lib/db-reset.ts marketplace",
     "db:seed:marketplace": "dotenv -e .env tsx ./src/lib/db-seed.ts marketplace",
-    "db:push:oss": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/remodel-x/index.ts --schemaFilter=one_stop_sales --dialect=postgresql --url=$DATABASE_URL",
-    "db:reset:oss": "dotenv -e .env tsx ./src/lib/db-reset.ts oneStopSales",
-    "db:seed:oss": "dotenv -e .env tsx ./src/lib/db-seed.ts oneStopSales"
+    "db:push:remodel-x": "dotenv -e .env drizzle-kit push --strict --verbose --schema=./src/schema/remodel-x/index.ts --schemaFilter=remodel_x --dialect=postgresql --url=$DATABASE_URL",
+    "db:reset:remodel-x": "dotenv -e .env tsx ./src/lib/db-reset.ts oneStopSales",
+    "db:seed:remodel-x": "dotenv -e .env tsx ./src/lib/db-seed.ts oneStopSales"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

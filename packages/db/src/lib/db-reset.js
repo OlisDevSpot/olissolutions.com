@@ -105,7 +105,7 @@ function resetDb() {
                 case 6:
                     _b.sent();
                     return [3 /*break*/, 10];
-                case 7: return [4 /*yield*/, resetSchema(schema.oneStopSalesSchema)];
+                case 7: return [4 /*yield*/, resetSchema(schema.remodelXSchema)];
                 case 8:
                     _b.sent();
                     return [3 /*break*/, 10];

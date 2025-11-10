@@ -8,11 +8,11 @@ import { text, varchar } from 'drizzle-orm/pg-core'
 
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { jobsiteProfiles } from './jobsite-profile'
-import { oneStopSalesSchema } from './meta'
+import { remodelXSchema } from './meta'
 import { x_projectCustomers } from './x-project-customers'
 import { x_projectScopes } from './x-project-scopes'
 
-export const projects = oneStopSalesSchema.table('project', {
+export const projects = remodelXSchema.table('project', {
   id,
   ownerId: text('owner_id')
     .notNull()

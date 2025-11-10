@@ -12,7 +12,7 @@ type SchemaName = keyof typeof schema | null
 function getDb(schemaName: SchemaName) {
   return drizzle(pool, {
     logger: process.env.npm_config_logger === 'true',
-    schema: schemaName === 'platformSchema' ? schema.platformSchema : schema.oneStopSalesSchema,
+    schema: schemaName === 'platformSchema' ? schema.platformSchema : schema.remodelXSchema,
   })
 }
 

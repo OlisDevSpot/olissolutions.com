@@ -10,9 +10,9 @@ import {
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
 import { jobsiteProfiles } from './jobsite-profile'
-import { oneStopSalesSchema, roofLocationEnum, roofTypeEnum } from './meta'
+import { remodelXSchema, roofLocationEnum, roofTypeEnum } from './meta'
 
-export const jobsiteRoofs = oneStopSalesSchema.table('jobsite_roof', {
+export const jobsiteRoofs = remodelXSchema.table('jobsite_roof', {
   id,
   roofLocation: roofLocationEnum('roof_location').default('main home'),
   roofType: roofTypeEnum('roof_type'),

@@ -4,10 +4,10 @@ import { scopes } from '@olis/db/schema/platform'
 import { relations } from 'drizzle-orm'
 
 import { integer, unique } from 'drizzle-orm/pg-core'
-import { oneStopSalesSchema } from './meta'
+import { remodelXSchema } from './meta'
 import { variables } from './variable'
 
-export const x_scopeVariables = oneStopSalesSchema.table('x_scope_variables', {
+export const x_scopeVariables = remodelXSchema.table('x_scope_variables', {
   id: unsafeId,
   scopeId: integer('scope_id')
     .notNull()
