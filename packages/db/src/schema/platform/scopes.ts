@@ -2,11 +2,11 @@ import type z from 'zod'
 
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 
-import { x_projectScopes, x_scopeVariables } from '../remodel-x'
-
 import { relations } from 'drizzle-orm'
+
 import { integer, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+import { x_projectScopes, x_scopeVariables } from '../remodel-x'
 import { constructionTypeEnum, platformSchema } from './meta'
 import { trades } from './trades'
 
@@ -20,7 +20,7 @@ export const scopes = platformSchema.table('scopes', {
   description,
   imageUrl,
   scopeOfWorkBase: text('scope_of_work_base'),
-  constructionType: constructionTypeEnum('construction_type'),
+  constructionType: constructionTypeEnum('construction_type').notNull(),
   tradeId: integer('trade_id')
     .notNull()
     .references(() => trades.id, { onDelete: 'cascade' }),

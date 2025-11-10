@@ -23,7 +23,7 @@ interface Props extends React.ComponentProps<typeof ItemCard>, React.ComponentPr
 export function ShowroomCard({ 
   item, 
   onClick, 
-  showHeader, 
+  showHeader = true, 
   showStars, 
   compareGoogle,
   type,
@@ -70,11 +70,9 @@ export function ShowroomCard({
         showPricing={shouldShowPricing}
         showROI={shouldShowROI}
       />
-      
-      {showHeader && <ItemCard.Header />}
-      
-      {/* Default explore more for standard cards */}
-      {variant === "default" && <ItemCard.ExploreMore />}
+      <div className="">
+        {showHeader && <ItemCard.Header />}
+      </div>
     </ItemCard>
   );
 }

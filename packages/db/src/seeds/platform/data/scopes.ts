@@ -187,7 +187,20 @@ export const scopesData = {
       description: 'Replace existing windows',
       imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755057322/windows-replacement_oalcrd.webp',
       constructionType: 'energy-efficient',
-      scopeOfWorkBase: 'Phase I: Site Preparation - Accurately measure the size of each window opening. - Fabricate & provide new energy-efficient double pane windows.  Phase II: Demo - Remove existing windows - Clean up and haul away debris - Prepare the window opening, ensuring it is clean and level.  Phase III: Installation - Install new windows according to manufacturer instructions and industry best practices. - Apply 50 years caulking, all around frame by city code to properly insulate around the window frame and prevent air and water leakage. - Install trim and finish around the window frame to enhance aesthetics.  Quality Assurance - Conduct thorough inspections of each window installation to ensure proper functionality and appearance. - Test windows for smooth operation, proper sealing, security and no leaks. - Clean up the work area and remove any debris or construction waste.  Notes - Windows will be without grids  - Windows will have self-lock mechanism - No alteration to existing structure - all windows remain the size - Provide warranty information for the installed windows.',
+      scopeOfWorkBase: `Phase I: Site Preparation - Accurately measure the size of each window opening. - Fabricate & provide new energy-efficient double pane windows.  Phase II: Demo - Remove existing windows - Clean up and haul away debris - Prepare the window opening, ensuring it is clean and level.  Phase III: Installation - Install new windows according to manufacturer instructions and industry best practices. - Apply 50 years caulking, all around frame by city code to properly insulate around the window frame and prevent air and water leakage. - Install trim and finish around the window frame to enhance aesthetics.  Quality Assurance - Conduct thorough inspections of each window installation to ensure proper functionality and appearance. - Test windows for smooth operation, proper sealing, security and no leaks. - Clean up the work area and remove any debris or construction waste.  Notes - Windows will be without grids  - Windows will have self-lock mechanism - No alteration to existing structure - all windows remain the size - Provide warranty information for the installed windows.\n\n\nRemove existing 13 single pane windows
+      clean up and haul away debris
+      Prepare and fix frame  for installation
+      Install 13 new Retro fitted Vinyl Double Pane energy efficient windows
+      Windows will be by Value or Premium pro series contractor’s edition or similar – white color
+      Windows will be without grids with self - lock mechanism 
+      Windows will be matching the existing windows opening method(sliding window will be replaced to sliding window and single hung will be replaced to single hung)
+      replace 2 sliding doors to  new Double Pane energy efficient vinyl sliding doors – white color
+      Install new coil wrap around the windows if interested - optional
+      Apply 50 years caulking, all around frame by city code
+      Install flat trim all around the windows
+      Test for water proofing
+      Clean up and haul away debris
+`,
     },
     {
       label: 'Replace sliding door',

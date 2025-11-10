@@ -11,7 +11,7 @@ interface Props<T extends ShowroomItemType> {
 export function ShowroomItemBenefits<T extends ShowroomItemType>({ item, type }: Props<T>) {
   const itemBenefits = useGetItemsBenefits({ item, type });
 
-  if (!itemBenefits) {
+  if (!itemBenefits?.data && !itemBenefits?.isLoading) {
     return null;
   }
   

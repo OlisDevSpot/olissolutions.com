@@ -22,6 +22,8 @@ interface Props<T extends ShowroomItemType> extends Omit<React.ComponentProps<ty
 export function ShowroomGrid<T extends ShowroomItemType>({ type, items, title, isLoading = false, className, ...showroomCardProps }: Props<T>) {
   const router = useRouter();
   const { open: sidebarOpen } = useSidebar();
+
+  console.log({ isLoading })
   
   return (
     <section className="space-y-4">
@@ -30,7 +32,7 @@ export function ShowroomGrid<T extends ShowroomItemType>({ type, items, title, i
         : (
             <>
               <div className="flex items-center gap-2">
-                <Home className="h-5 w-5 text-primary" />
+                {/* <Home className="h-5 w-5 text-primary" /> */}
                 <h2 className="text-2xl font-semibold">
                   {title || `All ${type.charAt(0).toUpperCase() + type.slice(1)}s`}
                 </h2>

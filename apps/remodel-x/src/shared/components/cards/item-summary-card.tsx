@@ -5,7 +5,7 @@ import type { ShowroomItem } from "@/features/showroom/types";
 
 import { Badge } from "@olis/ui/components/badge";
 import { Button } from "@olis/ui/components/button";
-import { Card, CardContent, CardDescription, CardHeader } from "@olis/ui/components/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@olis/ui/components/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@olis/ui/components/tooltip";
 import { cn } from "@olis/ui/lib/utils";
 
@@ -66,7 +66,7 @@ export function ItemCard<T extends ShowroomItem>({
   ...props
 }: ItemCardProps<T>) {
   const cardVariants = {
-    default: "group cursor-pointer hover:shadow-lg transition-all duration-300 border-0 bg-card rounded-lg overflow-hidden p-0",
+    default: "group cursor-pointer hover:shadow-lg transition-all duration-300 border-0 bg-card rounded-xl overflow-hidden p-2",
     compact: "group cursor-pointer hover:shadow-md transition-all duration-200 border border-border bg-card rounded-md overflow-hidden p-0 h-32",
   };
 
@@ -108,7 +108,7 @@ export function ItemImage({
   const imageHeight = variant === "compact" ? "h-32" : "h-56";
 
   return (
-    <div className={cn("relative overflow-hidden", imageHeight)}>
+    <div className={cn("relative overflow-hidden rounded-md", imageHeight)}>
       <img
         src={item.imageUrl || undefined}
         alt={item.label}
@@ -138,17 +138,6 @@ export function ItemImage({
             </div>
           )}
         </div>
-      </div>
-
-      {/* Bottom title */}
-      <div className="absolute bottom-3 left-3 right-3 text-white">
-        <h3 className={cn(
-          "font-semibold group-hover:text-primary-foreground transition-colors line-clamp-2",
-          variant === "compact" ? "text-sm" : "text-lg"
-        )}
-        >
-          {item.label}
-        </h3>
       </div>
     </div>
   );
@@ -188,7 +177,10 @@ export function ItemHeader() {
   const { item } = useItemCardContext();
 
   return (
-    <CardHeader className="pb-3">
+    <CardHeader className="p-1 pt-0">
+      <CardTitle className="group-hover:text-foreground/80 transition-colors text-lg">
+        {item.label}
+      </CardTitle>
       <CardDescription className="text-sm line-clamp-2 group-hover:text-foreground/80 transition-colors">
         {item.description}
       </CardDescription>
