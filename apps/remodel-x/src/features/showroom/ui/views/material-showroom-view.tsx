@@ -10,7 +10,7 @@ import { ShowroomItemBenefits } from "@/features/showroom/ui/components/showroom
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
 import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 export function MaterialShowroomView() {
   const pathname = usePathname();

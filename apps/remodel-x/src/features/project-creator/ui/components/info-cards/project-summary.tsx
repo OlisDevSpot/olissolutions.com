@@ -5,8 +5,8 @@ import type { Project } from "@olis/db/schema/remodel-x";
 import { useGetProjectScopes } from "@/features/project-creator/data/queries/get-project-scopes";
 import { Button } from "@olis/ui/components/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@olis/ui/components/card";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
 import { useSidebar } from "@olis/ui/components/sidebar";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@olis/ui/components/tooltip";
 import { cn } from "@olis/ui/lib/utils";
 

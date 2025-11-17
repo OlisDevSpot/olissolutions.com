@@ -1,6 +1,6 @@
 import { requireAuth } from '@olis/auth/lib/utils'
 import { ROOTS } from '@olis/core/constants'
-import { AppTopbar } from '@olis/ui/components/global/navigation/app-topbar'
+import { AppTopbar } from '@olis/ui/components/navigation/app-topbar'
 import { SidebarProvider } from '@olis/ui/components/sidebar'
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'

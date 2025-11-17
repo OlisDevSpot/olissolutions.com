@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import type { Scope } from "@olis/db/schema/platform";
+import type { ScopeAccessor } from "@olis/db/types";
 
 import { useGetProjectJobsite } from "@/features/project-creator/data/queries/get-project-jobsite-profile";
 import { useGetProjectScopes } from "@/features/project-creator/data/queries/get-project-scopes";
@@ -21,9 +22,10 @@ import { ROOTS } from "@olis/core/constants";
 import { numberToUSD } from "@olis/core/lib/formatters";
 import { Button } from "@olis/ui/components/button";
 import { Card } from "@olis/ui/components/card";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
 import { Separator } from "@olis/ui/components/separator";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
+import { calculateScopeCost } from "../../lib/calculate";
 import { ProjectFinancialsColumn } from "../components/project-financials/project-financials-column";
 
 export function ProjectFinancialsView() {
@@ -113,7 +115,7 @@ export function ProjectFinancialsView() {
   return (
     <div className="h-full overflow-y-auto">
       <div className="h-full flex gap-6">
-        <ProjectFinancialsColumn title="Scopes" className="max-w-[250px]">
+        <ProjectFinancialsColumn className="max-w-[250px]">
           {projectScopes.data.map(({ scope }) => (
             <Card
               key={scope.id}
@@ -154,16 +156,33 @@ export function ProjectFinancialsView() {
             </Card>
           ))}
         </ProjectFinancialsColumn>
-        <ProjectFinancialsColumn title="Variables" className="w-full">
+        <ProjectFinancialsColumn className="w-full">
           {currentScope && scopeVariables.data && pricing.data && (
             <UpdateProjectScopeForm
-              pricingVars={aggregatePricingByTrade(pricing.data)}
               projectVars={{
                 numStories: jobsite.data.numStories || 1,
                 roofType: jobsite.data.roofs?.roofType || "shingle",
               }}
               scope={currentScope}
               scopeVariables={scopeVariables.data}
+              onUpdateProjectScope={(values) => {
+                const calculations = calculateScopeCost(
+                  aggregatePricingByTrade(pricing.data), 
+                  {
+                    numStories: jobsite.data.numStories || 1,
+                    roofType: jobsite.data.roofs?.roofType || "shingle",
+                  }, 
+                  currentScope.accessor as ScopeAccessor,
+                  values
+                );
+                updateScopePricing(currentScope.id, {
+                  cost: calculations.cost,
+                  price: calculations.price,
+                  tax: calculations.tax,
+                  priceBase: calculations.priceBase,
+                  variables: values,
+                }) 
+              }}
             />
           )}
         </ProjectFinancialsColumn>

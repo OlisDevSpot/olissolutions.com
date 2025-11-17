@@ -1,7 +1,7 @@
 'use client'
 
-import { SectionSidebar } from '@olis/ui/components/global/navigation/section-sidebar'
-import { SectionTopbar } from '@olis/ui/components/global/navigation/section-topbar'
+import { SectionSidebar } from '@olis/ui/components/navigation/section-sidebar'
+import { SectionTopbar } from '@olis/ui/components/navigation/section-topbar'
 import { useIsMobile } from '@olis/ui/hooks/use-mobile'
 import { cn } from '@olis/ui/lib/utils'
 import { SETTINGS_MENU_ITEMS } from '@/features/account-management/lib/constants'

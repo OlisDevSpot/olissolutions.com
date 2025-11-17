@@ -7,7 +7,7 @@ import { useProjectScopesStore } from "@/features/project-creator/hooks/use-proj
 import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scope-info-dialog-store";
 import { Button } from "@olis/ui/components/button";
 import { Card } from "@olis/ui/components/card";
-import { EmptyState } from "@olis/ui/components/global/empty-state";
+import { EmptyState } from "@olis/ui/components/states/empty-state";
 
 interface Props {
   currentTradeId?: number | null;
@@ -43,7 +43,7 @@ export function ScopeSelector({ currentTradeId }: Props) {
   }
 
   return (
-    <div className="w-full gap-4 h-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] auto-rows-[minmax(250px,1fr)]">
+    <div className="w-full gap-4 h-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] auto-rows-[minmax(450px,1fr)]">
       {scopes.data.map(scope => (
         <Card
           key={scope.id}

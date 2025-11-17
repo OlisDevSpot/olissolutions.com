@@ -19,10 +19,10 @@ export function ProjectView() {
   const { data: project, isLoading } = useGetProject(projectId);
 
   const prefetch = useCallback(() => {
-    queryClient.prefetchQuery(trpc.projects.findProjectCustomers.queryOptions({ projectId }));
-    queryClient.prefetchQuery(trpc.projects.findProjectScopes.queryOptions({ projectId }));
-    queryClient.prefetchQuery(trpc.projects.findProjectJobsite.queryOptions({ projectId }));
-    queryClient.prefetchQuery(trpc.projects.findProjectFinancialProfile.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.customers.findProjectCustomers.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.scopes.findProjectScopes.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.jobsite.findProjectJobsite.queryOptions({ projectId }));
+    queryClient.prefetchQuery(trpc.projects.financialProfile.findProjectFinancialProfile.queryOptions({ projectId }));
   }, [projectId, queryClient]);
 
   useEffect(() => {

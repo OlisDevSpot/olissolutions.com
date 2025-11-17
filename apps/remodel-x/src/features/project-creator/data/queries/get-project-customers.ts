@@ -4,5 +4,5 @@ import { useTRPC } from "@/trpc/client";
 
 export function useGetProjectCustomers(projectId: string) {
   const trpc = useTRPC()
-  return useQuery(trpc.projects.findProjectCustomers.queryOptions({ projectId }));
+  return useQuery(trpc.projects.customers.findProjectCustomers.queryOptions({ projectId }));
 }

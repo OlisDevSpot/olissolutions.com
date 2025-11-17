@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@olis/ui/components/card'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import {
   ArrowRight,
   Calendar,

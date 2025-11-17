@@ -14,9 +14,10 @@ export function ExteriorInfoForm() {
 
   useEffect(() => {
     if (trades && !isLoading) {
+      console.log({ trades })
       setSelectedTrade(trades[0] || null);
     }
-  }, [trades]);
+  }, [trades, isLoading]);
 
   const isActive = (id: number) => {
     if (!selectedTrade) {

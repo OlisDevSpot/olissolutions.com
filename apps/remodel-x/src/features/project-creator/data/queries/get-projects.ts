@@ -6,7 +6,7 @@ import type { trpc } from "@/trpc/server";
 
 import { useTRPC } from "@/trpc/client";
 
-export type AllProjectsOutput = inferOutput<typeof trpc.projects.findAll>
+export type GetProjectsOutput = inferOutput<typeof trpc.projects.findAll>
 
 export function useGetProjects() {
   const trpc = useTRPC()

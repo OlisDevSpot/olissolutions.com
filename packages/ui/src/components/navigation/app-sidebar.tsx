@@ -5,7 +5,7 @@ import { getTypedKeys } from '@olis/core/lib/utils'
 import { useTRPC } from '@olis/data-client/trpc/client'
 import { Logo } from '@olis/ui/components/global/logo'
 
-import { SidebarUserButton } from '@olis/ui/components/global/navigation/sidebar-user-button-2'
+import { SidebarUserButton } from '@olis/ui/components/navigation/sidebar-user-button-2'
 import {
   Sidebar,
   SidebarContent,
@@ -73,6 +73,8 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
   const pathname = usePathname()
   const { setOpenMobile } = useSidebar()
   const trpc = useTRPC()
+
+  console.log({ user })
 
   return (
     <Sidebar collapsible="icon">

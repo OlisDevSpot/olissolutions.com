@@ -12,9 +12,9 @@
       "types": "./dist/server.d.ts",
       "default": "./dist/server.js"
     },
-    "./schemas": {
-      "types": "./dist/schemas/index.d.ts",
-      "default": "./dist/schemas/index.js"
+    "./schemas/*": {
+      "types": "./dist/schemas/*.d.ts",
+      "default": "./dist/schemas/*.js"
     }
   },
   "scripts": {
@@ -28,6 +28,8 @@
     "sonner": "^2.0.7"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.3",
+    "@casl/react": "^5.0.0",
     "@hookform/resolvers": "^5.1.1",
     "@olis/db": "workspace:*",
     "@olis/services": "workspace:*",
@@ -45,6 +47,7 @@
     "next": "15.5.6",
     "react-hook-form": "^7.60.0",
     "sonner": "^2.0.7",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.2"
   }
 }

@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { useTRPC } from "@/trpc/client";
 import { Card } from "@olis/ui/components/card";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 import { cn } from "@olis/ui/lib/utils";
 
 interface Props {

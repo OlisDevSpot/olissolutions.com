@@ -7,7 +7,7 @@ import ContentSection from '@olis/ui/components/content-7'
 import { FeaturesSection } from '@olis/ui/components/features-7'
 import { KanbanFeaturesSection } from '@olis/ui/components/features-8'
 import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import {
   fadeInUp,
   scaleIn,

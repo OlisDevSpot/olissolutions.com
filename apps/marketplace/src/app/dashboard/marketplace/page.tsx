@@ -1,7 +1,7 @@
 'use client'
 
-import { EmptyState } from '@olis/ui/components/global/empty-state'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { EmptyState } from '@olis/ui/components/states/empty-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'motion/react'
 import { PageHeader } from '@/components/page-header'

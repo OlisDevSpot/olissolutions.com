@@ -3,7 +3,7 @@
 
 import type { SignupFormSchema } from '@olis/types/schemas/auth-forms'
 import { signUp } from '@olis/auth/client'
-import { SignupForm } from '@olis/ui/components/global/forms/sign-up-form'
+import { SignupForm } from '@olis/ui/components/forms/sign-up-form'
 import { Logo } from '@olis/ui/components/global/logo'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'

@@ -240,11 +240,19 @@ export const scopesData = {
   interiorPaint: [],
   electricals: [
     {
-      label: 'Main Panel Trade',
+      label: 'Main panel upgrade',
       accessor: 'mpu',
-      description: 'Main Panel Trade to 200A',
+      description: 'Main panel upgrade (MPU) to 200A new panel',
       imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755029298/electricals_xjbtdn.jpg',
       constructionType: 'rough-construction',
+      scopeOfWorkBase: null,
+    },
+    {
+      label: 'Add recess lights',
+      accessor: 'recessLights',
+      description: 'Add decorative & energy efficient LED recess lights',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1763197031/recess_lights_sy9p6e.jpg',
+      constructionType: 'finish-construction',
       scopeOfWorkBase: null,
     },
     {

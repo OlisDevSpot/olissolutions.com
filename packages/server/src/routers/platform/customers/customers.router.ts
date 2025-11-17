@@ -18,6 +18,7 @@ export const customersRouter = createTRPCRouter({
   updateOne: protectedProcedure
     .input(z.object({ id: z.string(), ...insertCustomerSchema.strict().partial().shape }))
     .mutation(async ({ input }) => {
+      console.log('mutation called')
       const customer = await repository.updateOne(input.id, input)
       return customer
     }),

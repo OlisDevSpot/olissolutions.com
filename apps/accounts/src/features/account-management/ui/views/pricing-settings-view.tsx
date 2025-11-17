@@ -1,7 +1,7 @@
 'use client'
 
 import { useGetPricing } from '@olis/data-client/fetchers/remodel-x/pricing/queries/get-pricing'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import { PricingSettingsForm } from '@/features/account-management/ui/components/forms/pricing-settings-form'
 
 export function PricingSettingsView() {

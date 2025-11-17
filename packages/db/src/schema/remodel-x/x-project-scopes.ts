@@ -4,7 +4,7 @@ import { id } from '@olis/db/lib/schema-helpers'
 import { scopes, x_scopeMaterials } from '@olis/db/schema/platform'
 import { relations } from 'drizzle-orm'
 import { integer, jsonb, unique, uuid } from 'drizzle-orm/pg-core'
-import { createInsertSchema } from 'drizzle-zod'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { remodelXSchema } from './meta'
 import { projects } from './project'
 
@@ -46,7 +46,7 @@ export const projectScopeRelations = relations(
   }),
 )
 
-export const selectXProjectScopeSchema = createInsertSchema(x_projectScopes)
+export const selectXProjectScopeSchema = createSelectSchema(x_projectScopes)
 export type SelectXProjectScopeSchema = z.infer<typeof selectXProjectScopeSchema>
 
 export const insertXProjectScopeSchema = createInsertSchema(x_projectScopes).omit({

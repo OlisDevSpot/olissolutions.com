@@ -28,4 +28,5 @@ export const BREADCRUMB_LABEL_MAP = {
   'settings': 'Settings',
   'pricing': 'Pricing',
   'energy-efficiency': 'Energy Efficiency',
+  'project-roi-calculator': 'Project ROI Calculator',
 }

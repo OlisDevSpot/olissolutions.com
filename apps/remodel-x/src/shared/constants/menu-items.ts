@@ -29,8 +29,8 @@ export const sidebarItems = {
       icon: Leaf,
     },
     {
-      title: "Savings Calculator",
-      url: `${ROOTS.remodelX.dashboard}/calculator`,
+      title: "Project ROI Calculator",
+      url: `${ROOTS.remodelX.dashboard}/project-roi-calculator`,
       icon: Calculator,
     },
     {
@@ -44,7 +44,7 @@ export const sidebarItems = {
           icon: Drill,
           enablePrefetch: true,
           handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
-            return trpc.platform.trades.findAll.queryOptions()
+            trpc.platform.trades.findAll.queryOptions()
           }
         },
         {
@@ -53,7 +53,7 @@ export const sidebarItems = {
           icon: AirVent,
           enablePrefetch: true,
           handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
-            return trpc.platform.scopes.findAll.queryOptions()
+            trpc.platform.scopes.findAll.queryOptions()
           }
         },
         {
@@ -62,7 +62,7 @@ export const sidebarItems = {
           icon: Fence,
           enablePrefetch: true,
           handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
-            return trpc.platform.addons.findAll.queryOptions()
+            trpc.platform.addons.findAll.queryOptions()
           }
         },
         {
@@ -71,7 +71,7 @@ export const sidebarItems = {
           icon: Paintbrush,
           enablePrefetch: true,
           handleMouseEnter: (trpc: ReturnType<typeof useTRPC>) => {
-            return trpc.platform.materials.findAll.queryOptions()
+            trpc.platform.materials.findAll.queryOptions()
           }
         },
       ],

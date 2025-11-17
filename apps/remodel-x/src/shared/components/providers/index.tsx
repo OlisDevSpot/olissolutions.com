@@ -2,7 +2,7 @@
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { ThemeProvider } from "@olis/ui/components/global/providers/theme-provider";
+import { ThemeProvider } from "@olis/ui/components/providers/theme-provider";
 import { TooltipProvider } from "@olis/ui/components/tooltip";
 
 import { TRPCReactProvider } from "./trpc-provider";

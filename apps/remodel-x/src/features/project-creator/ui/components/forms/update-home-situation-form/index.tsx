@@ -16,6 +16,7 @@ import type { UpdateFinancialProfileSchema } from "./schema";
 
 import { DisadvantagesForm } from "./disadvantages-form";
 import { FinancialObligationsForm } from "./financial-obligations-form";
+import { HomeValueForm } from "./home-value-form";
 import { updateFinancialProfileSchema } from "./schema";
 
 interface Props {
@@ -46,6 +47,11 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
         currentWaterPayment: financialProfile.data?.currentWaterPayment || null,
         currentGardeningPayment: financialProfile.data?.currentGardeningPayment || null,
       },
+      homeValue: {
+        approxHomeValue: financialProfile.data?.approxHomeValue || null,
+        mortgageBalance: financialProfile.data?.mortgageBalance || null,
+        mortgagePayment: financialProfile.data?.mortgagePayment || null,
+      },
     },
   });
 
@@ -58,6 +64,9 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
         financialObligations: {
           ...financialProfile.data,
         },
+        homeValue: {
+          ...financialProfile.data,
+        },
       });
     }
   }, [financialProfile.data, form]);
@@ -68,7 +77,7 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
     updateProjectFinancialProfile.mutate({ projectId, ...data }, {
       onSuccess: () => {
         toast.success("Financial profile updated");
-        queryClient.invalidateQueries(trpc.projects.findProjectFinancialProfile.queryOptions({ projectId }));
+        queryClient.invalidateQueries(trpc.projects.financialProfile.findProjectFinancialProfile.queryOptions({ projectId }));
       },
     });
   }
@@ -85,9 +94,15 @@ export function ProjectHomeSituationForm({ projectId }: Props) {
               </ProjectFlowSection.Content>
             </ProjectFlowSection>
             <ProjectFlowSection>
-              <ProjectFlowSection.Header title="Current Financial Obligations" description="Estimating your current monthly financial obligations" />
+              <ProjectFlowSection.Header title="Current Financial Obligations" description="Estimating your current monthly payments" />
               <ProjectFlowSection.Content>
                 <FinancialObligationsForm />
+              </ProjectFlowSection.Content>
+            </ProjectFlowSection>
+            <ProjectFlowSection>
+              <ProjectFlowSection.Header title="Home Value & Obligations" description="Estimating your home's value & obligations" />
+              <ProjectFlowSection.Content>
+                <HomeValueForm />
               </ProjectFlowSection.Content>
             </ProjectFlowSection>
           </div>

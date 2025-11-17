@@ -4,5 +4,5 @@ import { useTRPC } from "@/trpc/client";
 
 export function useUpdateProjectJobsite() {
   const trpc = useTRPC()
-  return useMutation(trpc.projects.updateJobsite.mutationOptions());
+  return useMutation(trpc.projects.jobsite.updateJobsite.mutationOptions());
 }

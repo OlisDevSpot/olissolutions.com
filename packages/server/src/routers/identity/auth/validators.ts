@@ -2,7 +2,7 @@ import type { InferInput } from '@olis/server/types'
 
 import { zValidator } from '@hono/zod-validator'
 
-import { loginFormSchema, signupFormSchema } from '@olis/types/schemas/auth-forms'
+import { loginFormSchema, signupFormSchema } from '@olis/auth/schemas/auth-schemas'
 
 export const signUpEmailValidator = zValidator('json', signupFormSchema, (result, c) => {
   if (!result.success) {

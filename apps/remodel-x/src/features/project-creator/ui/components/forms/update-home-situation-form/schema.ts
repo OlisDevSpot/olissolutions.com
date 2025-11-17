@@ -17,6 +17,11 @@ export const updateFinancialProfileSchema = z.object({
     currentWaterPayment: true,
     currentGardeningPayment: true,
   }),
+  homeValue: insertFinancialProfileSchema.pick({
+    approxHomeValue: true,
+    mortgageBalance: true,
+    mortgagePayment: true,
+  }),
 });
 
 export type UpdateFinancialProfileSchema = z.infer<typeof updateFinancialProfileSchema>;

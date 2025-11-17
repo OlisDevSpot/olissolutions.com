@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
 import { Button } from "@olis/ui/components/button";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 import { BenefitsList } from "../components/benefits-list";
 

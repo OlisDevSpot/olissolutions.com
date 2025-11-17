@@ -1,5 +1,5 @@
-import type { InsertCustomerSchema } from '@olis/db/schema/platform'
-import type { InsertFinancialProfileSchema, InsertJobsiteProfileSchema, InsertJobsiteRoofSchema, InsertProject, InsertXProjectScopeSchema } from '@olis/db/schema/remodel-x'
+import type { Customer, InsertCustomerSchema } from '@olis/db/schema/platform'
+import type { InsertFinancialProfileSchema, InsertJobsiteProfileSchema, InsertJobsiteRoofSchema, InsertProject, InsertXProjectScopeSchema, Project } from '@olis/db/schema/remodel-x'
 
 import type { JoinTables } from '@olis/server/routers/remodel-x/project-creator/types'
 import type { TableFilters } from '@olis/server/types'
@@ -29,14 +29,38 @@ export async function findOne(userId: string, projectId: string) {
 export async function findAll(userId: string) {
   try {
     const foundProjects = await db
-      .select({ ...getTableColumns(projects), fullAddress, customers })
+      .select({ project: { ...getTableColumns(projects) }, fullAddress, customer: customers })
       .from(projects)
       .where(eq(projects.ownerId, userId))
       .orderBy(desc(projects.createdAt))
       .leftJoin(x_projectCustomers, eq(x_projectCustomers.projectId, projects.id))
       .leftJoin(customers, eq(customers.id, x_projectCustomers.customerId))
 
-    return foundProjects
+    if (!foundProjects) {
+      return []
+    }
+
+    const projectsWithCustomers: { project: Project, fullAddress: string, customers: Customer[] }[] = []
+
+    for (const foundProject of foundProjects) {
+      if (!foundProject.customer)
+        continue
+
+      const existingProject = projectsWithCustomers.find(({ project }) => project.id === foundProject.project.id)
+
+      if (existingProject) {
+        existingProject.customers.push(foundProject.customer)
+      }
+      else {
+        projectsWithCustomers.push({
+          project: foundProject.project,
+          fullAddress: foundProject.fullAddress,
+          customers: [foundProject.customer],
+        })
+      }
+    }
+
+    return projectsWithCustomers
   }
   catch (error) {
     if (error instanceof Error) {
@@ -258,4 +282,15 @@ export async function updateProjectScope(projectId: string, scopeId: number, dat
     .where(and(eq(x_projectScopes.projectId, projectId), eq(x_projectScopes.scopeId, scopeId)))
     .returning()
   return updatedProjectScope
+}
+
+export async function createProjectCustomer(projectId: string, customerId: string) {
+  const [projectCustomer] = await db
+    .insert(x_projectCustomers)
+    .values({
+      projectId,
+      customerId,
+    })
+    .returning()
+  return projectCustomer
 }

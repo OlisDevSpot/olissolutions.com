@@ -2,8 +2,8 @@ import { useGetTradeAddons } from "@olis/data-client/fetchers/platform/trades/qu
 
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { Card } from "@olis/ui/components/card";
-import { EmptyState } from "@olis/ui/components/global/empty-state";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { EmptyState } from "@olis/ui/components/states/empty-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 import { cn } from "@olis/ui/lib/utils";
 
 interface Props {

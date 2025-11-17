@@ -2,7 +2,7 @@
 
 import { Badge } from '@olis/ui/components/badge'
 import { AnimateOnScroll } from '@olis/ui/components/global/animate-on-scroll'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import {
   fadeInUp,
   staggerContainer,

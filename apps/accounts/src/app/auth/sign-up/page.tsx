@@ -1,6 +1,6 @@
 import { requireUnauth } from '@olis/auth/lib/utils'
 import { SignUpView } from '@olis/features/auth'
-import { LoadingState } from '@olis/ui/components/global/loading-state'
+import { LoadingState } from '@olis/ui/components/states/loading-state'
 import { headers as getHeaders } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'

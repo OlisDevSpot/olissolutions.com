@@ -22,5 +22,8 @@ export default function createCostFormulas(
     rewire: defineFormula(() => {
       return 0;
     }),
+    recessLights: defineFormula(() => {
+      return 0;
+    })
   });
 }

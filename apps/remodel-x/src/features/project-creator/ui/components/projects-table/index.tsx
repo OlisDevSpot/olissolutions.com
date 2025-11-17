@@ -8,6 +8,8 @@ interface Props {
 }
 
 export function ProjectsTable({ projects }: Props) {
+  console.log({ projects })
+  
   return (
     <section className="h-full w-full overflow-auto">
       <div className="overflow-hidden rounded-md border">

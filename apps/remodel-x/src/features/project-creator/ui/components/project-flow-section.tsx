@@ -21,17 +21,19 @@ interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function Header({ title, description, children, className, ...props }: HeaderProps) {
   return (
-    <CardHeader>
+    <CardHeader className="">
       <CardTitle className={cn("flex items-center gap-4", className)} {...props}>
-        <div className="flex flex-col gap-1">
-          <h3 className="text-lg font-medium">{title}</h3>
-          {description && (
-            <CardDescription>
-              {description}
-            </CardDescription>
-          )}
+        <div className="w-full flex justify-between items-center">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-lg font-medium">{title}</h3>
+            {description && (
+              <CardDescription>
+                {description}
+              </CardDescription>
+            )}
+          </div>
+          {children}
         </div>
-        {children}
       </CardTitle>
     </CardHeader>
   );

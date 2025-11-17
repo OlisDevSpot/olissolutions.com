@@ -4,6 +4,7 @@ import { createdAt, id, updatedAt } from '@olis/db/lib/schema-helpers'
 import { relations } from 'drizzle-orm'
 import {
   boolean,
+  integer,
   real,
   uuid,
 } from 'drizzle-orm/pg-core'
@@ -31,6 +32,11 @@ export const financialProfiles = remodelXSchema.table('financial_profile', {
   currentGasPayment: real('current_gas_payment'),
   currentWaterPayment: real('current_water_payment'),
   currentGardeningPayment: real('current_gardening_payment'),
+
+  // home value
+  approxHomeValue: integer('approx_home_value'),
+  mortgageBalance: integer('mortgage_balance'),
+  mortgagePayment: integer('mortgage_payment'),
 
   // foreign keys
   projectId: uuid('project_id')

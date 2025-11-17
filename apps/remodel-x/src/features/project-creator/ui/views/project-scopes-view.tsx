@@ -1,8 +1,8 @@
 "use client";
 
 import { useCurrentProject } from "@/features/project-creator/hooks/use-current-project";
-import { ProjectScopesSelector } from "@/features/project-creator/ui/components/project-scopes/project-scopes-selector";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { ProjectScopes } from "@/features/project-creator/ui/components/project-scopes";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 export function ProjectScopesView() {
   const { data: project, isLoading } = useCurrentProject();
@@ -23,7 +23,7 @@ export function ProjectScopesView() {
   return (
     <div className="h-full">
       <div className="h-full flex flex-col gap-6">
-        <ProjectScopesSelector />
+        <ProjectScopes />
       </div>
     </div>
   );

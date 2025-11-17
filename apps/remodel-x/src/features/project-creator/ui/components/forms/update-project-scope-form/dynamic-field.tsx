@@ -9,17 +9,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@olis/ui/components/switch";
 
 interface Props {
+  scopeAccessor: string;
   variable: Variable;
 }
 
-export function DynamicField({ variable }: Props) {
+export function DynamicField({ scopeAccessor, variable }: Props) {
   const form = useFormContext();
 
   switch (variable.dataType) {
     case "text":
       return (
         <FormField
-          key={variable.id}
+          key={`{{${scopeAccessor}}-${variable.id}}`}
           control={form.control}
           name={variable.key}
           render={({ field }) => (

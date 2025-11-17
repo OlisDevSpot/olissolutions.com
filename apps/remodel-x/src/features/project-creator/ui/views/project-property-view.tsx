@@ -2,7 +2,7 @@
 
 import { useCurrentProject } from "@/features/project-creator/hooks/use-current-project";
 import { JobsiteForm } from "@/features/project-creator/ui/components/forms/update-jobsite-profile-form";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 export function ProjectPropertyView() {
   const { data: project, isLoading } = useCurrentProject();

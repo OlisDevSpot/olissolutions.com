@@ -1,7 +1,7 @@
 'use client'
 import { useSession } from '@olis/auth/client'
 import { ROOTS } from '@olis/core/constants'
-import { AppSidebar as BaseAppSidebar } from '@olis/ui/components/global/navigation/app-sidebar'
+import { AppSidebar as BaseAppSidebar } from '@olis/ui/components/navigation/app-sidebar'
 import { sidebarGroups, sidebarItems } from '@/shared/constants/dashboard-menu-items'
 
 export function AppSidebar() {

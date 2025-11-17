@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { ShowroomItemHero, ShowroomItemHeroStatCard, ShowroomItemHeroSubItems } from "@/features/showroom/ui/components/showroom-item-hero";
 import { ROOTS } from "@olis/core/constants";
 import { Button } from "@olis/ui/components/button";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 export function TradeShowroomView() {
   const pathname = usePathname();

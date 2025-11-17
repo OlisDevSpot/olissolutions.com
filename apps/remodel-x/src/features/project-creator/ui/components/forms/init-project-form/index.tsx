@@ -8,7 +8,6 @@ import type { InitProjectInput } from "@/features/project-creator/data/mutations
 import type { InitProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
 
 import { useInitProject } from "@/features/project-creator/data/mutations/init-project";
-import { useCreateDialogStore } from "@/features/project-creator/hooks/dialogs/use-create-dialog-store";
 import { initProjectFormSchema } from "@/features/project-creator/ui/components/forms/init-project-form/schemas";
 import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
@@ -18,9 +17,12 @@ import { useMultistepForm } from "@olis/ui/hooks/use-multistep-form";
 
 import { NEW_PROJECT_FORM_STEPS } from "./constants";
 
-export function InitProjectForm() {
+interface Props {
+  onSettled?: () => void;
+}
+
+export function InitProjectForm({ onSettled }: Props) {
   const router = useRouter();
-  const { close } = useCreateDialogStore();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
 
@@ -40,7 +42,7 @@ export function InitProjectForm() {
     },
     onSettled: () => {
       form.reset();
-      close();
+      onSettled?.();
     },
   });
 

@@ -2,8 +2,8 @@
 
 import { ENERGY_EFFICIENCY_MENU_ITEMS } from "@/features/education/lib/constants";
 import { PROJECT_STEPS } from "@/features/project-creator/lib/project-menu";
-import { SectionSidebar } from "@olis/ui/components/global/navigation/section-sidebar";
-import { SectionTopbar } from "@olis/ui/components/global/navigation/section-topbar";
+import { SectionSidebar } from "../../../../../../packages/ui/dist/components/navigation/section-sidebar";
+import { SectionTopbar } from "../../../../../../packages/ui/dist/components/navigation/section-topbar";
 import { useIsMobile } from "@olis/ui/hooks/use-mobile";
 import { cn } from "@olis/ui/lib/utils";
 

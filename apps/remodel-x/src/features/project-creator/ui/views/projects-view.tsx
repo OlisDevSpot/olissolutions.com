@@ -5,28 +5,34 @@ import { PlusIcon } from "lucide-react";
 import { useEffect } from "react";
 
 import { useGetProjects } from "@/features/project-creator/data/queries/get-projects";
-import { useCreateDialogStore } from "@/features/project-creator/hooks/dialogs/use-create-dialog-store";
-import { ProjectsTable } from "@/features/project-creator/ui/components/table";
+import { useModalStore } from "@/features/project-creator/hooks/dialogs/use-modal-store";
+import { ProjectsTable } from "@/features/project-creator/ui/components/projects-table";
 import { useTRPC } from "@/trpc/client";
 import { Button } from "@olis/ui/components/button";
-import { ErrorState } from "@olis/ui/components/global/error-state";
-import { LoadingState } from "@olis/ui/components/global/loading-state";
 import { PageHeaderSection } from "@olis/ui/components/global/page-header";
+import { ErrorState } from "@olis/ui/components/states/error-state";
+import { LoadingState } from "@olis/ui/components/states/loading-state";
+
+import { NewProjectModal } from "../components/dialogs/new-project-modal";
 
 export function ProjectsView() {
   const queryClient = useQueryClient();
   const trpc = useTRPC()
-  const { open } = useCreateDialogStore();
+  const { open, setModal } = useModalStore();
   const { data: projects, isLoading, isSuccess } = useGetProjects();
 
   function prefetch() {
-    queryClient.prefetchQuery(trpc.projects.findOne.queryOptions({ projectId: projects?.[0]?.id ?? "" }));
+    queryClient.prefetchQuery(trpc.projects.findOne.queryOptions({ projectId: projects?.[0]?.project.id ?? "" }));
   }
 
   useEffect(() => {
     if (projects?.length) {
       prefetch();
     }
+    setModal({ 
+      Element: <NewProjectModal />, 
+      accessor: "new-project-modal"
+    });
   }, [projects]);
 
   return (

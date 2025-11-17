@@ -3,7 +3,7 @@
 
 import type { LoginFormSchema } from '@olis/types/schemas/auth-forms'
 import { signIn } from '@olis/auth/client'
-import { SignInForm } from '@olis/ui/components/global/forms/sign-in-form'
+import { SignInForm } from '@olis/ui/components/forms/sign-in-form'
 import { Logo } from '@olis/ui/components/global/logo'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'

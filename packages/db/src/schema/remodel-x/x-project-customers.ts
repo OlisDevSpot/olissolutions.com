@@ -1,8 +1,10 @@
+import type z from 'zod'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
-import { projects } from '@olis/db/schema/remodel-x/project'
 import { customers } from '@olis/db/schema/platform'
+import { projects } from '@olis/db/schema/remodel-x/project'
 import { relations } from 'drizzle-orm'
 import { boolean, unique, uuid } from 'drizzle-orm/pg-core'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { remodelXSchema } from './meta'
 
 export const x_projectCustomers = remodelXSchema.table('x_project_customers', {
@@ -35,5 +37,12 @@ export const projectCustomerRelations = relations(
   }),
 )
 
-export type X_ProjectCustomer = typeof x_projectCustomers.$inferSelect
-export type X_ProjectCustomerInsert = typeof x_projectCustomers.$inferInsert
+export const selectXProjectCustomerSchema = createSelectSchema(x_projectCustomers)
+export type SelectXProjectCustomerSchema = z.infer<typeof selectXProjectCustomerSchema>
+
+export const insertXProjectCustomerSchema = createInsertSchema(x_projectCustomers).omit({
+  id: true,
+  projectId: true,
+  customerId: true,
+})
+export type InsertXProjectCustomerSchema = z.infer<typeof insertXProjectCustomerSchema>

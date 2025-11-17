@@ -2,7 +2,7 @@
 import { sidebarGroups, sidebarItems } from "@/shared/constants/menu-items"
 import { useSession } from "@olis/auth/client"
 import { ROOTS } from "@olis/core/constants"
-import { AppSidebar as BaseAppSidebar } from "@olis/ui/components/global/navigation/app-sidebar"
+import { AppSidebar as BaseAppSidebar } from "@olis/ui/components/navigation/app-sidebar"
 
 export function AppSidebar() {
   const { data: rawSession, isPending } = useSession()

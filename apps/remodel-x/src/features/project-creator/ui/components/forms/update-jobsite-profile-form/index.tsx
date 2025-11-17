@@ -131,7 +131,7 @@ export function JobsiteForm({ projectId }: Props) {
     updateProjectJobsiteProfile.mutate({ projectId, ...data }, {
       onSuccess: () => {
         toast.success("Jobsite profile updated");
-        queryClient.invalidateQueries(trpc.projects.findProjectJobsite.queryOptions({ projectId }));
+        queryClient.invalidateQueries(trpc.projects.jobsite.findProjectJobsite.queryOptions({ projectId }));
       },
     });
   }
