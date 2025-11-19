@@ -1,45 +1,60 @@
 import z from "zod";
 
+const financialSnapshotSchema = z.object({
+  netWorth: z.object({}),
+  payments: z.object({}),
+})
+
 export const projectROICalculatorSchema = z.object({
   currentNetWorth: z.object({
-    homeValue: z.number().min(200000),
-    mortgageBalance: z.number().min(0).optional(),
-    carBalance: z.number().optional(),
-    creditCardBalance: z.number().optional(),
-    constructionDebt: z.number().optional(),
+    homeValue: z.number().optional(),
+    otherLoans: z.array(z.object({
+      label: z.string().min(1),
+      balance: z.number(),
+      payment: z.number(),
+    })).optional(),
   }),
   afterNetWorth: z.object({
     homeValue: z.number().optional(),
-    mortgageBalance: z.number().optional(),
-    carBalance: z.number().optional(),
-    creditCardBalance: z.number().optional(),
-    constructionDebt: z.number().optional(),
-    jobCost: z.number().optional(),
+    otherLoans: z.array(z.object({
+      label: z.string().min(1),
+      balance: z.number(),
+      payment: z.number(),
+    })).optional(),
   }),
-  currentPayment: {
+  currentPayment: z.object({
     electricPayment: z.number().optional(),
     gasPayment: z.number().optional(),
     waterPayment: z.number().optional(),
     gardeningPayment: z.number().optional(),
-    mortgagePayment: z.number().optional(),
-    creditCardPayment: z.number().optional(),
-    carPayment: z.number().optional(),
-  },
-  afterPayment: {
+    misc: z.number().optional(),
+  }),
+  afterPayment: z.object({
     electricPayment: z.number().optional(),
     gasPayment: z.number().optional(),
     waterPayment: z.number().optional(),
     gardeningPayment: z.number().optional(),
-    mortgagePayment: z.number().optional(),
-    creditCardPayment: z.number().optional(),
-    carPayment: z.number().optional(),
-    loanPayment: z.number().optional(),
-  },
-  financialOption: {
+  }),
+  financialOption: z.object({
     financialOptionInterestRate: z.number().optional(),
     downPayment: z.number().optional(),
     loanTermMonths: z.number().optional(),
-  }
+  }),
+  futureProjection: z.object({
+    years: z.number().optional(),
+    houseAppreciationRate: z.number().optional(),
+  })
 })
 
 export type ProjectROICalculatorSchema = z.infer<typeof projectROICalculatorSchema>
+
+export type FinancialSnapshotCategory = keyof ProjectROICalculatorSchema
+
+export const defaultFormValues: ProjectROICalculatorSchema = {
+  afterNetWorth: { },
+  afterPayment: { },
+  currentNetWorth: { },
+  currentPayment: { },
+  financialOption: { },
+  futureProjection: { }
+}
