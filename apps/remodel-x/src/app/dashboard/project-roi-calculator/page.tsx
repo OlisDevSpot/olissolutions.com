@@ -27,7 +27,7 @@ export default function ProjectROICalculatorPage() {
         })}
       >
         <div className="h-full flex gap-4 min-h-0">
-          <div className="grow w-[300px] border-muted-foreground/30 border p-4 rounded-lg min-h-0"> 
+          <div className="min-w-[300px] w-[300px] border-muted-foreground/30 border p-4 rounded-lg min-h-0"> 
             <h2 className="p-4 text-2xl font-bold">Assumptions</h2>
             <FutureAssumptionsForm />
           </div>
