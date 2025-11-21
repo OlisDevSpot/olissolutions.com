@@ -1,54 +1,51 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import type { ProjectROICalculatorSchema } from "@/features/project-roi-calculator/schemas";
 
 import { ProjectFlowSection } from "@/features/project-creator/ui/components/project-flow-section";
-import { defaultFormValues } from "@/features/project-roi-calculator/schemas";
-import { Button } from "@olis/ui/components/button";
-import { Form } from "@olis/ui/components/form";
 
-import { CurrentFinancialSituationFields } from "./fields/current-financial-situation";
-import { FinancialSnapshot } from "./fields/financial-snapshot-fields";
+import { FinancialSnapshot } from "./fields/financial-snapshot";
+import { HomeValueField } from "./fields/financial-snapshot/home-value-field";
 
 export function NetWorthForm() {
-  const form = useForm<ProjectROICalculatorSchema>({
-    defaultValues: defaultFormValues
-  })
-
-  const calculate = (data: ProjectROICalculatorSchema) => {
-    console.log(data);
-  };
+  const form = useFormContext<ProjectROICalculatorSchema>();
   
   return (
-    <Form {...form}>
-      <form
-        className="gap-4 flex flex-col [&>div_input]:flex-1 [&>div_input[type=number]]:max-w-[200px]"
-        onSubmit={form.handleSubmit((data: ProjectROICalculatorSchema) => {
-          calculate(data)
-        })}
-      >
+    <div>
+      <div className="flex gap-4 [&>div]:flex-1">
         <ProjectFlowSection>
-          <ProjectFlowSection.Header title="Current Monthly Payments" description="Your current monthly recurring expenses" />
+          <ProjectFlowSection.Header title="Current Financial Snapshot" description="Your current financial snapshot, before construction">
+            <HomeValueField snapshotTime="beforeProjectNetWorth" />
+          </ProjectFlowSection.Header>
           <ProjectFlowSection.Content>
-            <CurrentFinancialSituationFields />
+            <FinancialSnapshot snapshotTime="beforeProjectNetWorth" />
           </ProjectFlowSection.Content>
         </ProjectFlowSection>
         <ProjectFlowSection>
-          <ProjectFlowSection.Header title="Current Financial Snapshot" description="Your current financial snapshot, before construction" />
+          <ProjectFlowSection.Header title="Post-Construction Financial Snapshot" description="Potential financial snapshot, after construction">
+            <HomeValueField snapshotTime="afterProjectNetWorth" />
+          </ProjectFlowSection.Header>
           <ProjectFlowSection.Content>
-            <FinancialSnapshot snapshotTime="currentNetWorth" />
+            <FinancialSnapshot snapshotTime="afterProjectNetWorth" />
+          </ProjectFlowSection.Content>
+        </ProjectFlowSection>
+      </div>
+      <div className="flex gap-4 [&>div]:flex-1">
+        <ProjectFlowSection>
+          <ProjectFlowSection.Header title={`${form.getValues("futureAssumptions.years")} Year Projection`} description="Your projected future financial snapshot" />
+          <ProjectFlowSection.Content>
+            <FinancialSnapshot snapshotTime="beforeProjectNetWorth" years={form.getValues("futureAssumptions.years")} />
           </ProjectFlowSection.Content>
         </ProjectFlowSection>
         <ProjectFlowSection>
-          <ProjectFlowSection.Header title="Post-Construction Financial Snapshot" description="Potential financial snapshot, after construction" />
+          <ProjectFlowSection.Header title={`${form.getValues("futureAssumptions.years")} Year Projection`} description="Your projected future financial snapshot" />
           <ProjectFlowSection.Content>
-            <FinancialSnapshot snapshotTime="afterNetWorth" />
+            <FinancialSnapshot snapshotTime="afterProjectNetWorth" years={form.getValues("futureAssumptions.years")} />
           </ProjectFlowSection.Content>
         </ProjectFlowSection>
-        <Button type="submit" className="w-fit">Calculate</Button>
-      </form>
-    </Form>
+      </div>
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import { useFormContext } from "react-hook-form"
 
 import type { ProjectROICalculatorSchema } from "@/features/project-roi-calculator/schemas"
 
+import { convertToNumber, formatAsDollars } from "@olis/core/lib/formatters";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { Input } from "@olis/ui/components/input";
 
@@ -19,12 +20,14 @@ export function CurrentFinancialSituationFields() {
               <FormLabel>Electric Payment</FormLabel>
               <FormControl className="w-full">
                 <Input
-                  placeholder="e.g. 250"
-                  type="number"
+                  placeholder="e.g. $250"
+                  type="text"
                   {...field}
-                  value={field.value ?? ""} // null → ""
-                  onChange={e =>
-                    field.onChange(e.target.value === "" ? null : e.target.valueAsNumber)}
+                  value={field.value ? `${formatAsDollars(field.value)}` : ""} // null → ""
+                  onChange={(e) => {
+                    const valueAsNumber = convertToNumber(e.target.value);
+                    field.onChange(e.target.value === "" ? null : valueAsNumber);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -39,12 +42,14 @@ export function CurrentFinancialSituationFields() {
               <FormLabel>Water Payment</FormLabel>
               <FormControl className="w-full">
                 <Input
-                  placeholder="e.g. 200"
-                  type="number"
+                  placeholder="e.g. $200"
+                  type="text"
                   {...field}
-                  value={field.value ?? ""} // null → ""
-                  onChange={e =>
-                    field.onChange(e.target.value === "" ? null : e.target.valueAsNumber)}
+                  value={field.value ? `${formatAsDollars(field.value)}` : ""} // null → ""
+                  onChange={(e) => {
+                    const valueAsNumber = convertToNumber(e.target.value);
+                    field.onChange(e.target.value === "" ? null : valueAsNumber);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -59,12 +64,14 @@ export function CurrentFinancialSituationFields() {
               <FormLabel>Gas Payment</FormLabel>
               <FormControl className="w-full">
                 <Input
-                  placeholder="e.g. 150"
-                  type="number"
+                  placeholder="e.g. $100"
+                  type="text"
                   {...field}
-                  value={field.value ?? ""} // null → ""
-                  onChange={e =>
-                    field.onChange(e.target.value === "" ? null : e.target.valueAsNumber)}
+                  value={field.value ? `${formatAsDollars(field.value)}` : ""} // null → ""
+                  onChange={(e) => {
+                    const valueAsNumber = convertToNumber(e.target.value);
+                    field.onChange(e.target.value === "" ? null : valueAsNumber);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -81,12 +88,14 @@ export function CurrentFinancialSituationFields() {
               <FormLabel>Gardener</FormLabel>
               <FormControl className="w-full">
                 <Input
-                  placeholder="e.g. 100"
-                  type="number"
+                  placeholder="e.g. $100"
+                  type="text"
                   {...field}
-                  value={field.value ?? ""} // null → ""
-                  onChange={e =>
-                    field.onChange(e.target.value === "" ? null : e.target.valueAsNumber)}
+                  value={field.value ? `${formatAsDollars(field.value)}` : ""} // null → ""
+                  onChange={(e) => {
+                    const valueAsNumber = convertToNumber(e.target.value);
+                    field.onChange(e.target.value === "" ? null : valueAsNumber);
+                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -101,12 +110,14 @@ export function CurrentFinancialSituationFields() {
               <FormLabel>Misc.</FormLabel>
               <FormControl className="w-full">
                 <Input
-                  placeholder="e.g. 100"
-                  type="number"
+                  placeholder="e.g. $100"
+                  type="text"
                   {...field}
-                  value={field.value ?? ""} // null → ""
-                  onChange={e =>
-                    field.onChange(e.target.value === "" ? null : e.target.valueAsNumber)}
+                  value={field.value ? `${formatAsDollars(field.value)}` : ""} // null → ""
+                  onChange={(e) => {
+                    const valueAsNumber = convertToNumber(e.target.value);
+                    field.onChange(e.target.value === "" ? null : valueAsNumber);
+                  }}
                 />
               </FormControl>
               <FormMessage />

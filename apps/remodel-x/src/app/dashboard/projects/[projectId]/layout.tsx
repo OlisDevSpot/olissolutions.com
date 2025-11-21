@@ -4,8 +4,8 @@ import { useCurrentProjectId } from "@/features/project-creator/hooks/use-curren
 import { PROJECT_STEPS } from "@/features/project-creator/lib/project-menu";
 import { ScopeInfoDialog } from "@/shared/entities/scopes/ui/components/dialogs/scope-info-dialog";
 import { ROOTS } from "@olis/core/constants";
-import { SectionSidebar } from "../../../../../../../packages/ui/dist/components/navigation/section-sidebar";
-import { SectionTopbar } from "../../../../../../../packages/ui/dist/components/navigation/section-topbar";
+import { SectionSidebar } from "@olis/ui/components/navigation/section-sidebar";
+import { SectionTopbar } from "@olis/ui/components/navigation/section-topbar";
 import { useIsMobile } from "@olis/ui/hooks/use-mobile";
 import { cn } from "@olis/ui/lib/utils";
 

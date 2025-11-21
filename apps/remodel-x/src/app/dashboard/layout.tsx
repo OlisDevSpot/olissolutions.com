@@ -6,7 +6,7 @@ import { AppSidebar } from "@/shared/components/app-sidebar-provider";
 import { DashboardModals } from "@/shared/components/modals/dashboard-modals";
 import { requireAuth } from "@olis/auth/lib/utils";
 import { ROOTS } from "@olis/core/constants";
-import { AppTopbar } from "../../../../../packages/ui/dist/components/navigation/app-topbar";
+import { AppTopbar } from "@olis/ui/components/navigation/app-topbar";
 import {
   SidebarProvider,
 } from "@olis/ui/components/sidebar";

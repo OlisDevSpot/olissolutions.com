@@ -24,7 +24,7 @@ function Header({ title, description, children, className, ...props }: HeaderPro
     <CardHeader className="">
       <CardTitle className={cn("flex items-center gap-4", className)} {...props}>
         <div className="w-full flex justify-between items-center">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 grow w-full">
             <h3 className="text-lg font-medium">{title}</h3>
             {description && (
               <CardDescription>
@@ -33,6 +33,7 @@ function Header({ title, description, children, className, ...props }: HeaderPro
             )}
           </div>
           {children}
+            
         </div>
       </CardTitle>
     </CardHeader>
