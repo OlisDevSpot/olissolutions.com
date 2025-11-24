@@ -1,3 +1,5 @@
+"use client";
+
 import type { Dispatch, SetStateAction } from "react";
 
 import { createContext, useContext } from "react";
@@ -6,11 +8,13 @@ import type { ShowroomItemType } from "@/features/showroom/types";
 
 import { capitalize } from "@olis/core/lib/formatters";
 import { PageHeaderSection } from "@olis/ui/components/global/page-header";
+import { cn } from "@olis/ui/lib/utils";
 
 import { SearchInput } from "./search-input";
 
-interface Props {
+interface Props extends React.HTMLProps<HTMLDivElement> {
   type: ShowroomItemType;
+  scrolled?: boolean;
   children: React.ReactNode;
 }
 
@@ -32,12 +36,14 @@ function ShowroomHeaderProvider({ children, type }: { children: React.ReactNode;
   )
 }
 
-export function ShowroomHeader({ type, children }: Props) {
+export function ShowroomHeader({ type, children, scrolled, ...props }: Props) {
+  // const [scrolled, setScrolled] = useState(false)
+  
   return (
     <ShowroomHeaderProvider type={type}>
       <PageHeaderSection>
-        <PageHeaderSection.Frame>
-          <PageHeaderSection.Header title={`${capitalize(type)} Catalog`} description={`Transform your home with our comprehensive selection of premium ${type}s.`} />
+        <PageHeaderSection.Frame className={cn("sticky top-0 z-10 bg-background", props.className)} scrolled={scrolled} {...props}>
+          <PageHeaderSection.Header title={`${capitalize(type)} Catalog`} description={`Transform your home with our comprehensive selection of premium ${type}s.`} sticky />
           {children}
         </PageHeaderSection.Frame>
       </PageHeaderSection>

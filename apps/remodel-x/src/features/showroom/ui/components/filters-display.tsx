@@ -6,7 +6,7 @@ import { scopeFiltersDef } from "@/features/showroom/constants/filters";
 import { ROOTS } from "@olis/core/constants";
 
 import { useFiltersContext } from "./filters";
-import { useShowroomContext } from "./header";
+import { useShowroomContext } from "./showroom-header";
 
 export function FiltersDisplay() {
   const { type } = useShowroomContext();

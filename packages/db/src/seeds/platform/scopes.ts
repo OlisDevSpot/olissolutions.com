@@ -37,6 +37,7 @@ export default async function seed(db: DB) {
         imageUrl: sql`EXCLUDED.image_url`,
         constructionType: sql`EXCLUDED.construction_type`,
         scopeOfWorkBase: sql`EXCLUDED.scope_of_work_base`,
+        homeArea: sql`EXCLUDED.home_areas`,
       },
     })
 }

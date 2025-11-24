@@ -25,6 +25,7 @@ export const ROOTS = {
     dashboard: '/dashboard' as const,
     getProjectsRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/projects` as const,
     getShowroomRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/showroom` as const,
+    getProjectsROICalculatorRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/project-roi-calculator` as const,
     getEnergyEfficiencyRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/energy-efficiency` as const,
   },
 } as const

@@ -58,14 +58,14 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
   });
 
   return (
-    <div>
+    <div className="bg-card h-full flex flex-col justify-between">
       <div className="overflow-hidden rounded-md border">
-        <Table>
-          <TableHeader>
+        <Table className="">
+          <TableHeader className="[&_th:first-child]:w-[250px]">
             {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="p-4">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -77,18 +77,18 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="">
             {table.getRowModel().rows?.length
               ? (
                   table.getRowModel().rows.map(row => (
                     <TableRow
                       key={row.id}
-                      className="cursor-pointer"
+                      className="cursor-pointer bg-background hover:bg-background/80"
                       onClick={() => router.push(`${ROOTS.remodelX.getProjectsRoot()}/${row.original.project.id}`)}
                       data-state={row.getIsSelected() && "selected"}
                     >
                       {row.getVisibleCells().map(cell => (
-                        <TableCell key={cell.id}>
+                        <TableCell key={cell.id} className="p-4">
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </TableCell>
                       ))}

@@ -1,15 +1,16 @@
+import type { HomeArea } from '@olis/core/types'
+
 import type z from 'zod'
 
 import { accessor, description, imageUrl, label, unsafeId } from '@olis/db/lib/schema-helpers'
 
 import { relations } from 'drizzle-orm'
-
-import { integer, text } from 'drizzle-orm/pg-core'
+import { integer, jsonb, text } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { x_projectScopes, x_scopeVariables } from '../remodel-x'
 import { constructionTypeEnum, platformSchema } from './meta'
-import { trades } from './trades'
 
+import { trades } from './trades'
 import { x_scopeBenefits } from './x-scope-benefits'
 import { x_scopeMaterials } from './x-scope-materials'
 
@@ -20,6 +21,7 @@ export const scopes = platformSchema.table('scopes', {
   description,
   imageUrl,
   scopeOfWorkBase: text('scope_of_work_base'),
+  homeArea: jsonb('home_areas').$type<HomeArea[]>().notNull(),
   constructionType: constructionTypeEnum('construction_type').notNull(),
   tradeId: integer('trade_id')
     .notNull()

@@ -1,15 +1,15 @@
 "use client";
 
-import { useGetScopes } from "@olis/data-client/fetchers/platform/scopes/queries/get-scopes";
-import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { FilterByConstructionType } from "@/features/showroom/ui/components/filter-by-construction-type";
 import { FilterByTrade } from "@/features/showroom/ui/components/filter-by-trade";
 import { Filters, FiltersProvider } from "@/features/showroom/ui/components/filters";
-import { ShowroomHeader } from "@/features/showroom/ui/components/header";
 import { EmptyShowroomGrid, ScopeShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { ShowroomHeader } from "@/features/showroom/ui/components/showroom-header";
+import { useGetScopes } from "@olis/data-client/fetchers/platform/scopes/queries/get-scopes";
+import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 
 export function ScopesShowroomView() {
   const { data: scopes, isLoading } = useGetScopes();
@@ -19,6 +19,7 @@ export function ScopesShowroomView() {
   const searchParams = useSearchParams()
   const tradeId = searchParams.get("trade-id")
   const constructionType = searchParams.get("construction-type")
+  const scrollableDivRef = useRef<HTMLDivElement>(null);
   
   if (!scopes && !isLoading) {
     return (
@@ -49,7 +50,7 @@ export function ScopesShowroomView() {
     : <ScopeShowroomGrid items={filteredScopes} isLoading={isLoading} title="Scopes" />;
   
   return (
-    <div className="scrollbar-gutter-stable min-h-full flex flex-col gap-8">
+    <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
       <ShowroomHeader type="scope">
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading}>
           <FiltersProvider>
@@ -60,7 +61,9 @@ export function ScopesShowroomView() {
           </FiltersProvider>
         </ShowroomHeader.Filters>
       </ShowroomHeader>
-      <GridDisplay />
+      <div className="grow min-h-0 overflow-auto" ref={scrollableDivRef}>
+        <GridDisplay />
+      </div>
     </div>
   );
 }

@@ -74,8 +74,6 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
   const { setOpenMobile } = useSidebar()
   const trpc = useTRPC()
 
-  console.log({ user })
-
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b h-(--topnav-height) flex items-center pl-2">

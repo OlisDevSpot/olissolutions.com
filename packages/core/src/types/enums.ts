@@ -3,6 +3,7 @@ import type {
   easeOfUse,
   electricProviders,
   foundationTypes,
+  homeAreas,
   hvacComponents,
   hvacTypes,
   insulationLevels,
@@ -19,6 +20,7 @@ import type {
 // PLATFORM
 export type TradeLocation = (typeof tradeLocations)[number]
 export type ConstructionType = (typeof constructionTypes)[number]
+export type HomeArea = (typeof homeAreas)[number]
 
 export type RoofLocation = (typeof roofLocations)[number]
 export type RoofType = (typeof roofTypes)[number]

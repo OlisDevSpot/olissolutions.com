@@ -3,58 +3,21 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./schema": {
-      "types": "./dist/schema/index.d.ts",
-      "default": "./dist/schema/index.js"
-    },
-    "./schema/platform": {
-      "types": "./dist/schema/platform/index.d.ts",
-      "default": "./dist/schema/platform/index.js"
-    },
-    "./schema/identity": {
-      "types": "./dist/schema/identity/index.d.ts",
-      "default": "./dist/schema/identity/index.js"
-    },
-    "./schema/marketplace": {
-      "types": "./dist/schema/marketplace/index.d.ts",
-      "default": "./dist/schema/marketplace/index.js"
-    },
-    "./schema/remodel-x": {
-      "types": "./dist/schema/remodel-x/index.d.ts",
-      "default": "./dist/schema/remodel-x/index.js"
-    },
-    "./seeds/platform": {
-      "types": "./dist/seeds/platform/index.d.ts",
-      "default": "./dist/seeds/platform/index.js"
-    },
-    "./seeds/identity": {
-      "types": "./dist/seeds/identity/index.d.ts",
-      "default": "./dist/seeds/identity/index.js"
-    },
-    "./seeds/marketplace": {
-      "types": "./dist/seeds/marketplace/index.d.ts",
-      "default": "./dist/seeds/marketplace/index.js"
-    },
-    "./seeds/remodel-x": {
-      "types": "./dist/seeds/remodel-x/index.d.ts",
-      "default": "./dist/seeds/remodel-x/index.js"
-    },
-    "./seeds/*": {
-      "types": "./dist/seeds/*.d.ts",
-      "default": "./dist/seeds/*.js"
-    },
-    "./lib/*": {
-      "types": "./dist/lib/*.d.ts",
-      "default": "./dist/lib/*.js"
-    },
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts",
+    "./schema/platform": "./src/schema/platform/index.ts",
+    "./schema/identity": "./src/schema/identity/index.ts",
+    "./schema/marketplace": "./src/schema/marketplace/index.ts",
+    "./schema/remodel-x": "./src/schema/remodel-x/index.ts",
+    "./seeds/platform": "./src/seeds/platform/index.ts",
+    "./seeds/identity": "./src/seeds/identity/index.ts",
+    "./seeds/marketplace": "./src/seeds/marketplace/index.ts",
+    "./seeds/remodel-x": "./src/seeds/remodel-x/index.ts",
+    "./seeds/*": "./src/seeds/*.ts",
+    "./lib/*": "./src/lib/*.ts",
     "./types": "./src/types/index.ts"
   },
   "scripts": {
-    "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "db:push": "drizzle-kit push",

@@ -7,5 +7,6 @@ export default antfu({
     'react-refresh/only-export-components': 'off', // For shadcn/ui Button.tsx exporting non-react components
     'node/prefer-global/process': 'off',
     'react/no-context-provider': 'off',
+    'react/no-use-context': 'off',
   },
 })

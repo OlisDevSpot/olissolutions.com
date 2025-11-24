@@ -54,12 +54,12 @@ export const projectROICalculatorSchema = z.object({
     loanTermMonths: z.number().optional(),
   }),
   futureAssumptions: z.object({
-    years: z.number().optional(),
+    years: z.number(),
     homeAppreciationRate: z.number(),
-    electricIncreaseRate: z.number().optional(),
-    gasIncreaseRate: z.number().optional(),
-    waterIncreaseRate: z.number().optional(),
-    gardeningIncreaseRate: z.number().optional(),
+    electricIncreaseRate: z.number(),
+    gasIncreaseRate: z.number(),
+    waterIncreaseRate: z.number(),
+    gardeningIncreaseRate: z.number(),
   })
 })
 

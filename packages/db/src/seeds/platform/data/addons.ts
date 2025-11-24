@@ -3,6 +3,13 @@ import type { TradeAccessor } from '@olis/db/types/trades'
 
 export const addonsData = [
   {
+    label: 'Attic air sealing',
+    accessor: 'atticAirSealing',
+    description: 'Prevent draft, dust, and heat from entering your home from the attic',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764005941/air-sealing_bctbmk.jpg',
+    tradeAccessor: 'atticBasement',
+  },
+  {
     label: 'Install attic fan',
     accessor: 'atticFan',
     description: 'Improve your home\'s ventilation and energy efficiency by installing an attic fan to keep your space cooler and more comfortable',
@@ -17,10 +24,10 @@ export const addonsData = [
     tradeAccessor: 'atticBasement',
   },
   {
-    label: 'Install retaining wall',
-    accessor: 'retainingWall',
-    description: 'Boost yard appeal with new retaining wall',
-    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1756346660/retaining-wall_tuovew.jpg',
+    label: 'Install drip system',
+    accessor: 'installDripSystem',
+    description: 'Low maintenence, low cost watering system',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764006767/drip-system_nhtveo.jpg',
     tradeAccessor: 'dryscapingHardscaping',
   },
   {

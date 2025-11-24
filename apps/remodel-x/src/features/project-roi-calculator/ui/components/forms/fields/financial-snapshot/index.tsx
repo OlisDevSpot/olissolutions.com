@@ -12,7 +12,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/
 import { Input } from "@olis/ui/components/input";
 import { cn } from "@olis/ui/lib/utils";
 
-import { CurrentFinancialSituationFields } from "../current-financial-situation";
+import { CurrentFinancialSituationFields } from "./current-financial-situation";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   snapshotTime: Extract<FinancialSnapshotCategory, "beforeProjectNetWorth" | "afterProjectNetWorth">;
@@ -31,19 +31,23 @@ export function FinancialSnapshot({
 }: Props) {
   const form = useFormContext<ProjectROICalculatorSchema>()
 
-  const { 
-    afterProjectNetWorth: { otherLoans: afterProjectOtherLoans = [] }, 
-    futureAssumptions: { homeAppreciationRate }
-  } = form.getValues();
-
   const { fields, append, remove, update } = useFieldArray({
     control: form.control,
     name: `${snapshotTime}.otherLoans`,
   });
 
+  const {
+    afterProjectNetWorth: { otherLoans: afterProjectOtherLoans = [] },
+  } = form.getValues();
+
   const homeValue = useWatch({
     control: form.control,
     name: `${snapshotTime}.homeValue`,
+  })
+
+  const futureAssumptions = useWatch({
+    control: form.control,
+    name: "futureAssumptions",
   })
 
   function addOrUpdateLoan(index: number) {
@@ -100,7 +104,7 @@ export function FinancialSnapshot({
                     placeholder="e.g. $1,000,000"
                     type="text"
                     {...field}
-                    value={field.value && homeValue && years > 0 ? `${formatAsDollars(calcAppreciation(homeValue, homeAppreciationRate, years))}` : field.value && homeValue && years === 0 ? `${formatAsDollars(homeValue)}` : ""}
+                    value={field.value && homeValue && years > 0 ? `${formatAsDollars(calcAppreciation(homeValue, futureAssumptions.homeAppreciationRate, futureAssumptions.years))}` : field.value && homeValue && years === 0 ? `${formatAsDollars(homeValue)}` : ""}
                     onChange={(e) => {
                       const valueAsNumber = convertToNumber(e.target.value);
                       console.log({ valueAsNumber })

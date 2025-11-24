@@ -1,14 +1,17 @@
 "use client";
 
-import { useGetMaterials } from "@olis/data-client/fetchers/platform/materials/queries/get-materials";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import { ShowroomHeader } from "@/features/showroom/ui/components/header";
+import { useContainerScroll } from "@/features/showroom/hooks/use-container-scroll";
 import { EmptyShowroomGrid, ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { ShowroomHeader } from "@/features/showroom/ui/components/showroom-header";
+import { useGetMaterials } from "@olis/data-client/fetchers/platform/materials/queries/get-materials";
 
 export function MaterialsShowroomView() {
   const { data: materials, isLoading } = useGetMaterials();
   const [searchTerm, setSearchTerm] = useState("");
+  const scrollableDivRef = useRef<HTMLDivElement>(null);
+  const { scrolled } = useContainerScroll({ containerRef: scrollableDivRef });
 
   if (!materials && !isLoading) {
     return (
@@ -29,11 +32,13 @@ export function MaterialsShowroomView() {
     : <ShowroomGrid type="material" items={filteredMaterials} isLoading={isLoading} />;
 
   return (
-    <div className="scrollbar-gutter-stable min-h-full flex flex-col gap-8">
+    <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
       <ShowroomHeader type="material">
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading} />
       </ShowroomHeader>
-      <GridDisplay />
+      <div className="grow min-h-0 overflow-auto" ref={scrollableDivRef}>
+        <GridDisplay />
+      </div>
     </div>
   );
 }

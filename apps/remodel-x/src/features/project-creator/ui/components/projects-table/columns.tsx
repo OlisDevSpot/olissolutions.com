@@ -8,6 +8,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import type { GetProjectsOutput } from "@/features/project-creator/data/queries/get-projects";
 
 import { capitalize } from "@olis/core/lib/formatters";
+import { Badge } from "@olis/ui/components/badge";
 import { Button } from "@olis/ui/components/button";
 import {
   DropdownMenu,
@@ -21,42 +22,6 @@ import {
 import { DeleteProjectButton } from "../delete-project-button";
 
 export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
-  {
-    accessorKey: "address",
-    header: () => <div>Address</div>,
-    cell: ({ row }) => {
-      const address = row.original.fullAddress;
-
-      return <div>{address}</div>;
-    },
-  },
-  {
-    accessorKey: "customers",
-    header: ({ column }) => {
-      return (
-        <div
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="cursor-pointer flex items-center"
-        >
-          Customers
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </div>
-      );
-    },
-    cell: ({ row }) => {
-      const fullNames = row.original.customers.map(customer => `${capitalize(customer.firstName)} ${capitalize(customer.lastName)}`);
-
-      return (
-        <div className="flex flex-col gap-2">
-          {fullNames.map((fullName, index) => (
-            <div key={`lastName-${index}`} className="p-2 border-muted-foreground/30 border rounded-lg gap-2">
-              <div className="text-left font-medium">{fullName}</div>
-            </div>
-          ))}
-        </div>
-      )
-    },
-  },
   {
     accessorKey: "date",
     header: ({ column }) => {
@@ -76,6 +41,49 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
       return <div>{formattedDate}</div>;
     },
   },
+  {
+    accessorKey: "address",
+    header: () => <div className="">Address</div>,
+    cell: ({ row }) => {
+      const address = row.original.fullAddress;
+      const addressComponents = address.split(", ");
+
+      return (
+        <div className="">
+          <p className="font-bold">{addressComponents[0]}</p>
+          <p className="text-muted-foreground">{`${addressComponents[1]}, ${addressComponents[2]}`}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "customers",
+    header: ({ column }) => {
+      return (
+        <div
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="cursor-pointer flex items-center"
+        >
+          Customers
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const fullNames = row.original.customers.map(customer => `${capitalize(customer.firstName)} ${capitalize(customer.lastName)}`);
+
+      return (
+        <div className="flex gap-2">
+          {fullNames.map((fullName, index) => (
+            <Badge key={`lastName-${index}`} className="border-muted-foreground/30 border rounded-lg gap-2">
+              <div className="text-left font-medium">{fullName}</div>
+            </Badge>
+          ))}
+        </div>
+      )
+    },
+  },
+  
   {
     id: "actions",
     header: () => <div>Actions</div>,

@@ -1,54 +1,56 @@
-import { createContext, useContext } from "react";
+import { cn } from '@olis/ui/lib/utils'
+import { createContext, use } from 'react'
 
 interface PageHeaderSectionContext {}
 
-export const pageHeaderContext = createContext<PageHeaderSectionContext | null>(null);
-
-interface PageHeaderSectionProps {
-  value?: PageHeaderSectionContext;
-  children: React.ReactNode;
-}
+export const pageHeaderContext = createContext<PageHeaderSectionContext | null>(null)
 
 export function usePageHeaderSectionContext() {
-  const context = useContext(pageHeaderContext);
+  const context = use(pageHeaderContext)
 
   if (!context) {
-    throw new Error("usePageHeaderSectionContext must be used within a PageHeaderProvider");
+    throw new Error('usePageHeaderSectionContext must be used within a PageHeaderProvider')
   }
-  
+
   return context
 }
 
-export function PageHeaderSection({ children, value }: PageHeaderSectionProps) {
+interface PageHeaderSectionProps extends React.HTMLProps<HTMLDivElement> {
+  values?: PageHeaderSectionContext
+  children: React.ReactNode
+}
+
+export function PageHeaderSection({ children, values }: PageHeaderSectionProps) {
   return (
-    <pageHeaderContext.Provider value={value || {}}>
+    <pageHeaderContext.Provider value={values || {}}>
       {children}
     </pageHeaderContext.Provider>
   )
 }
 
 interface FrameProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
-function Frame({ children, ...props }: FrameProps) {
+function Frame({ children, className, ...props }: FrameProps) {
   return (
-    <header className="flex flex-col gap-6 flex-shrink-0" {...props}>
+    <header className={cn('flex flex-col gap-6 shrink-0', className)} {...props}>
       {children}
     </header>
   )
 }
 
-interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
-  description?: string;
-  children?: React.ReactNode;
+interface HeaderProps extends React.HTMLProps<HTMLDivElement> {
+  title: string
+  description?: string
+  sticky?: boolean
+  children?: React.ReactNode
 }
 
-function Header({ title, description, children, ...props }: HeaderProps) {
+function Header({ title, description, sticky = false, children, ...props }: HeaderProps) {
   return (
     <div className="flex" {...props}>
-      <div className="flex flex-col gap-2">
+      <div className={cn('flex flex-col gap-2', sticky && 'sticky top-0')}>
         <h1 className="text-2xl font-semibold">{title}</h1>
         {description && <p className="text-muted-foreground text-sm">{description}</p>}
       </div>
@@ -73,7 +75,7 @@ function Filters({ children }: { children?: React.ReactNode }) {
   )
 }
 
-PageHeaderSection.Frame = Frame;
-PageHeaderSection.Header = Header;
-PageHeaderSection.ActionButtons = ActionButtons;
-PageHeaderSection.Filters = Filters;
+PageHeaderSection.Frame = Frame
+PageHeaderSection.Header = Header
+PageHeaderSection.ActionButtons = ActionButtons
+PageHeaderSection.Filters = Filters

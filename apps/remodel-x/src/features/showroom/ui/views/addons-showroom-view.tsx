@@ -1,14 +1,18 @@
 "use client";
 
-import { useGetAddons } from "@olis/data-client/fetchers/platform/addons/queries/get-addons";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import { ShowroomHeader } from "@/features/showroom/ui/components/header";
 import { EmptyShowroomGrid, ShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { ShowroomHeader } from "@/features/showroom/ui/components/showroom-header";
+import { useGetAddons } from "@olis/data-client/fetchers/platform/addons/queries/get-addons";
+
+import { useContainerScroll } from "../../hooks/use-container-scroll";
 
 export function AddonsShowroomView() {
   const { data: addons, isLoading } = useGetAddons();
   const [searchTerm, setSearchTerm] = useState("");
+  const scrollableDivRef = useRef<HTMLDivElement>(null);
+  const { scrolled } = useContainerScroll({ containerRef: scrollableDivRef });
 
   if (!addons && !isLoading) {
     return (
@@ -29,11 +33,13 @@ export function AddonsShowroomView() {
     : <ShowroomGrid type="addon" items={filteredAddons} isLoading={isLoading} />;
 
   return (
-    <div className="scrollbar-gutter-stable min-h-full flex flex-col gap-8">
-      <ShowroomHeader type="addon">
+    <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
+      <ShowroomHeader type="addon" className={scrolled ? "bg-white" : ""}>
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading} />
       </ShowroomHeader>
-      <GridDisplay />
+      <div className="grow min-h-0 overflow-auto" ref={scrollableDivRef}>
+        <GridDisplay />
+      </div>
     </div>
   );
 }

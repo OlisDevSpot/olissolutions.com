@@ -1,15 +1,15 @@
 "use client";
 
-import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import type { TradeLocation } from "@olis/core/types";
 
 import { FilterByLocation } from "@/features/showroom/ui/components/filter-by-location";
 import { Filters, FiltersProvider } from "@/features/showroom/ui/components/filters";
-import { ShowroomHeader } from "@/features/showroom/ui/components/header";
 import { EmptyShowroomGrid } from "@/features/showroom/ui/components/showroom-grid";
+import { ShowroomHeader } from "@/features/showroom/ui/components/showroom-header";
+import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 
 import { TradeShowroomGrid } from "../components/showroom-grid";
 
@@ -18,6 +18,7 @@ export function TradesShowroomView() {
   
   const locationParam = useSearchParams().get("location") as TradeLocation | undefined;
   const [searchTerm, setSearchTerm] = useState("");
+  const scrollableDivRef = useRef<HTMLDivElement>(null);
 
   if (!trades && !isLoading) {
     return (
@@ -55,7 +56,7 @@ export function TradesShowroomView() {
       )
 
   return (
-    <div className="scrollbar-gutter-stable min-h-full flex flex-col gap-8">
+    <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
       <ShowroomHeader type="trade">
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading}>
           <FiltersProvider>
@@ -65,7 +66,9 @@ export function TradesShowroomView() {
           </FiltersProvider>
         </ShowroomHeader.Filters>
       </ShowroomHeader>
-      <GridDisplay />
+      <div className="grow min-h-0 overflow-auto space-y-12" ref={scrollableDivRef}>
+        <GridDisplay />
+      </div>
     </div>
   );
 }

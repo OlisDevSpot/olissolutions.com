@@ -65,7 +65,7 @@ export function Filters({ children }: { children: React.ReactNode }) {
           <ListFilter className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent sideOffset={8} align="start" className="min-w-[400px] space-y-2">
+      <PopoverContent sideOffset={8} align="start" className="min-w-[400px] space-y-2 bg-card">
         {children}
       </PopoverContent>
     </Popover>

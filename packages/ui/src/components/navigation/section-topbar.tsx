@@ -20,7 +20,7 @@ export function SectionTopbar({ baseUrl = '/dashboard/projects', steps }: Props)
   const pathname = usePathname()
 
   return (
-    <div className="min-w-max p-2 h-auto border-r no-layout-padding">
+    <div className="min-w-max p-2 h-auto no-layout-padding">
       <div className="flex flex-col gap-1 w-full">
         <Select
           value={pathname.endsWith('/') ? '/' : steps.find(step => pathname.endsWith(step.href))?.href || '/'}
@@ -28,15 +28,15 @@ export function SectionTopbar({ baseUrl = '/dashboard/projects', steps }: Props)
             if (value === '/') {
               router.push(`${baseUrl}/${projectId}`)
             }
-            router.push(`${baseUrl}/${projectId}${value}`)
+            router.push(`${baseUrl}/${value}`)
           }}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full dark:bg-card dark:hover:bg-card/80">
             <SelectValue placeholder="Step" />
           </SelectTrigger>
-          <SelectContent className="w-full">
+          <SelectContent className="w-full bg-card">
             {steps.map(step => (
-              <SelectItem key={step.href} value={step.href} className="h-10 flex items-center p-2">
+              <SelectItem key={step.href} value={step.href} className="h-10 flex items-center p-2 dark:hover:bg-muted/50 data-[state=checked]:bg-accent/20">
                 <div
                   className="flex items-center gap-2"
                 >

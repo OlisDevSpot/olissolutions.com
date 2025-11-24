@@ -13,7 +13,10 @@
       "@olis/db/*": ["../../packages/db/src/*"],
       "@olis/auth/*": ["../../packages/auth/src/*"],
       "@olis/core/*": ["../../packages/core/src/*"],
-      "@olis/trpc/*": ["../../packages/trpc/src/*"]
+      "@olis/trpc/*": ["../../packages/trpc/src/*"],
+      "@olis/data-client/*": ["../../packages/data-client/src/*"],
+      "@olis/server/*": ["../../packages/server/src/*"],
+      "@olis/types/*": ["../../packages/types/src/*"]
     },
     "resolveJsonModule": true,
     "types": [

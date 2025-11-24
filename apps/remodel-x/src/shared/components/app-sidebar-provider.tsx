@@ -11,9 +11,9 @@ export function AppSidebar() {
   return (
     <div className="hidden md:block">
       <BaseAppSidebar 
-        sidebarGroups={sidebarGroups} 
         sidebarItems={sidebarItems} 
-        user={user} 
+        sidebarGroups={sidebarGroups} 
+        user={user}
         isIdentityPending={isPending}
         logoProduct={`${ROOTS.remodelX.name}`}
         logoColor="green"

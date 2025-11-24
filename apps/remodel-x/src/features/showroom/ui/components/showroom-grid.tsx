@@ -1,4 +1,3 @@
-import { Home } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
@@ -11,15 +10,15 @@ import { cn } from "@olis/ui/lib/utils";
 
 import { ShowroomCard } from "./showroom-item-card";
 
-interface Props<T extends ShowroomItemType> extends Omit<React.ComponentProps<typeof ShowroomCard>, "item" | "onClick"> {
-  type: T;
+interface Props extends React.HTMLProps<HTMLDivElement> {
+  type: ShowroomItemType;
   items: ShowroomItem[];
   title?: string;
   isLoading?: boolean;
   className?: string;
 }
 
-export function ShowroomGrid<T extends ShowroomItemType>({ type, items, title, isLoading = false, className, ...showroomCardProps }: Props<T>) {
+export function ShowroomGrid({ type, items, title, isLoading = false, className, ...showroomCardProps }: Props) {
   const router = useRouter();
   const { open: sidebarOpen } = useSidebar();
 
@@ -95,7 +94,7 @@ interface ShowroomGridsProps {
 
 export function TradeShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
   return (
-    <ShowroomGrid type="trade" items={items} title={title} isLoading={isLoading} estimatedPrice="25000" roiPercentage="50" />
+    <ShowroomGrid type="trade" items={items} title={title} isLoading={isLoading} />
   )
 }
 

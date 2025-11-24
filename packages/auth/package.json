@@ -4,21 +4,11 @@
   "version": "1.0.0",
   "private": true,
   "exports": {
-    "./client": {
-      "types": "./dist/client.d.ts",
-      "default": "./dist/client.js"
-    },
-    "./server": {
-      "types": "./dist/server.d.ts",
-      "default": "./dist/server.js"
-    },
-    "./schemas/*": {
-      "types": "./dist/schemas/*.d.ts",
-      "default": "./dist/schemas/*.js"
-    }
+    "./client": "./src/client.ts",
+    "./server": "./src/server.ts",
+    "./schemas/*": "./src/schemas/*.ts"
   },
   "scripts": {
-    "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit"
   },

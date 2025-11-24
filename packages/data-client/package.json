@@ -3,21 +3,11 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./get-query-client": {
-      "types": "./dist/lib/get-query-client.d.ts",
-      "default": "./dist/lib/get-query-client.js"
-    },
-    "./fetchers/*": {
-      "types": "./dist/fetchers/*.d.ts",
-      "default": "./dist/fetchers/*.js"
-    },
-    "./trpc/*": {
-      "types": "./dist/trpc/*.d.ts",
-      "default": "./dist/trpc/*.js"
-    }
+    "./get-query-client": "./src/lib/get-query-client.ts",
+    "./fetchers/*": "./src/fetchers/*.ts",
+    "./trpc/*": "./src/trpc/*.ts"
   },
   "scripts": {
-    "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit"
   },

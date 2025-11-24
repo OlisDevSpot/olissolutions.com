@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsc --watch",
     "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "exports": {
-    "./emails": {
-      "types": "./dist/emails/resend.d.ts",
-      "default": "./dist/emails/resend.js"
-    }
+    "./resend": "./src/email/resend.ts"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",

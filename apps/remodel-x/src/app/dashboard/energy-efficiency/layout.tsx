@@ -2,6 +2,7 @@
 
 import { ENERGY_EFFICIENCY_MENU_ITEMS } from "@/features/education/lib/constants";
 import { PROJECT_STEPS } from "@/features/project-creator/lib/project-menu";
+import { ROOTS } from "@olis/core/constants";
 import { SectionSidebar } from "@olis/ui/components/navigation/section-sidebar";
 import { SectionTopbar } from "@olis/ui/components/navigation/section-topbar";
 import { useIsMobile } from "@olis/ui/hooks/use-mobile";
@@ -15,7 +16,7 @@ export default function EnergyEfficiencyLayout({ children }: { children: React.R
       <div className="shrink-0">
         { isMobile 
           ? <SectionTopbar steps={PROJECT_STEPS} />
-          : <SectionSidebar menuItems={ENERGY_EFFICIENCY_MENU_ITEMS} />}
+          : <SectionSidebar baseUrl={ROOTS.remodelX.getEnergyEfficiencyRoot()} menuItems={ENERGY_EFFICIENCY_MENU_ITEMS} />}
       </div>
       <div className={cn("p-4 grow overflow-auto main-container")}>
         {children}

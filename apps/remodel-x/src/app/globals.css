@@ -166,7 +166,7 @@
   }
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   @apply w-[22px];
 }
 
@@ -199,7 +199,7 @@
   &::-webkit-scrollbar-thumb {
     @apply border-t-16 border-l-0 border-transparent rounded-full shadow-[inset_0_0_10px_10px] shadow-neutral-400;
   }
-}
+} */
 
 .scrollbar-gutter-stable {
   scrollbar-gutter: stable;

@@ -6,35 +6,14 @@ import { convertToNumber } from "@olis/core/lib/formatters";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { Input } from "@olis/ui/components/input";
 
-const expenseFields = [
-  {
-    name: "futureAssumptions.electricIncreaseRate",
-    label: "Electric rate increase",
-    placeholder: "6",
-  },
-  {
-    name: "futureAssumptions.waterIncreaseRate",
-    label: "Water rate increase",
-    placeholder: "6",
-  },
-  {
-    name: "futureAssumptions.gasIncreaseRate",
-    label: "Gas rate increase",
-    placeholder: "6",
-  },
-  {
-    name: "futureAssumptions.gardeningIncreaseRate",
-    label: "Gardening rate increase",
-    placeholder: "6",
-  },
-] as const satisfies { name: `futureAssumptions.${keyof ProjectROICalculatorSchema["futureAssumptions"]}`; label: string; placeholder: string }[]
+import { monthlyExpenseFields } from "./monthly-expense-fields";
 
 export function FutureAssumptionsForm() {
-  const form = useFormContext<ProjectROICalculatorSchema>();
+  const form = useFormContext<Pick<ProjectROICalculatorSchema, "futureAssumptions">>();
   
   return (
     <div className="space-y-4">
-      {expenseFields.map(({ name, label, placeholder }) => (
+      {monthlyExpenseFields.map(({ name, label, placeholder }) => (
         <FormField
           key={name}
           control={form.control}
