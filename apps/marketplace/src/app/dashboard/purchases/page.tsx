@@ -108,239 +108,237 @@ export default function Purchases() {
 
   return (
     <div className="bg-background">
-      <div className="p-6 lg:p-8">
-        {/* Header */}
-        <div className="mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-3xl font-bold text-foreground mb-2">
-              Purchase History
-            </h1>
-            <p className="text-muted-foreground">
-              Manage your subscriptions, billing, and solution access.
-            </p>
-          </motion.div>
-        </div>
+      {/* Header */}
+      <div className="mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            Purchase History
+          </h1>
+          <p className="text-muted-foreground">
+            Manage your subscriptions, billing, and solution access.
+          </p>
+        </motion.div>
+      </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">
+                Active Solutions
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">2</div>
+              <p className="text-xs text-muted-foreground">Subscriptions</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">
+                Monthly Cost
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">$88</div>
+              <p className="text-xs text-muted-foreground">Per month</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">
+                Trial Ending
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">14</div>
+              <p className="text-xs text-muted-foreground">Days remaining</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+
+      {/* Purchases List */}
+      <div className="space-y-6">
+        {purchases.map((purchase, index) => (
           <motion.div
+            key={purchase.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
           >
             <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Active Solutions
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">2</div>
-                <p className="text-xs text-muted-foreground">Subscriptions</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Monthly Cost
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">$88</div>
-                <p className="text-xs text-muted-foreground">Per month</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Trial Ending
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">14</div>
-                <p className="text-xs text-muted-foreground">Days remaining</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-
-        {/* Purchases List */}
-        <div className="space-y-6">
-          {purchases.map((purchase, index) => (
-            <motion.div
-              key={purchase.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-            >
-              <Card>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <CardTitle className="text-xl">
-                          {purchase.name}
-                        </CardTitle>
-                        <Badge variant={getStatusColor(purchase.status)}>
-                          {getStatusText(purchase.status)}
-                        </Badge>
-                        <Badge variant="outline">{purchase.category}</Badge>
-                      </div>
-                      <CardDescription className="text-base">
-                        {purchase.description}
-                      </CardDescription>
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <CardTitle className="text-xl">
+                        {purchase.name}
+                      </CardTitle>
+                      <Badge variant={getStatusColor(purchase.status)}>
+                        {getStatusText(purchase.status)}
+                      </Badge>
+                      <Badge variant="outline">{purchase.category}</Badge>
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-foreground">
-                        $
-                        {purchase.price}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        per month
-                      </div>
+                    <CardDescription className="text-base">
+                      {purchase.description}
+                    </CardDescription>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-foreground">
+                      $
+                      {purchase.price}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      per month
                     </div>
                   </div>
-                </CardHeader>
+                </div>
+              </CardHeader>
 
-                <CardContent>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Features */}
-                    <div className="lg:col-span-2">
-                      <h4 className="font-semibold text-foreground mb-3">
-                        Features included:
-                      </h4>
-                      <ul className="space-y-1">
-                        {purchase.features.map((feature, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center text-sm text-muted-foreground"
-                          >
-                            <Star className="h-3 w-3 mr-2 text-primary" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {/* Features */}
+                  <div className="lg:col-span-2">
+                    <h4 className="font-semibold text-foreground mb-3">
+                      Features included:
+                    </h4>
+                    <ul className="space-y-1">
+                      {purchase.features.map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-sm text-muted-foreground"
+                        >
+                          <Star className="h-3 w-3 mr-2 text-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                    {/* Actions and Details */}
-                    <div className="space-y-4">
-                      <div className="space-y-2 text-sm">
+                  {/* Actions and Details */}
+                  <div className="space-y-4">
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center text-muted-foreground">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        Purchased:
+                        {' '}
+                        {purchase.purchaseDate}
+                      </div>
+                      {purchase.status === 'active' && (
+                        <div className="flex items-center text-muted-foreground">
+                          <CreditCard className="h-4 w-4 mr-2" />
+                          Next billing:
+                          {' '}
+                          {purchase.nextBilling}
+                        </div>
+                      )}
+                      {purchase.status === 'trial' && (
                         <div className="flex items-center text-muted-foreground">
                           <Calendar className="h-4 w-4 mr-2" />
-                          Purchased:
+                          Trial ends:
                           {' '}
-                          {purchase.purchaseDate}
+                          {purchase.trialEnds}
                         </div>
-                        {purchase.status === 'active' && (
-                          <div className="flex items-center text-muted-foreground">
-                            <CreditCard className="h-4 w-4 mr-2" />
-                            Next billing:
-                            {' '}
-                            {purchase.nextBilling}
-                          </div>
-                        )}
-                        {purchase.status === 'trial' && (
-                          <div className="flex items-center text-muted-foreground">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            Trial ends:
-                            {' '}
-                            {purchase.trialEnds}
-                          </div>
-                        )}
-                        {purchase.status === 'cancelled' && (
-                          <div className="flex items-center text-muted-foreground">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            Cancelled:
-                            {' '}
-                            {purchase.cancelDate}
-                          </div>
-                        )}
-                      </div>
+                      )}
+                      {purchase.status === 'cancelled' && (
+                        <div className="flex items-center text-muted-foreground">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          Cancelled:
+                          {' '}
+                          {purchase.cancelDate}
+                        </div>
+                      )}
+                    </div>
 
-                      <Separator />
+                    <Separator />
 
-                      <div className="space-y-2">
-                        {purchase.status === 'active' && (
-                          <>
-                            <Button
-                              asChild
-                              className="w-full btn-primary"
-                              size="sm"
-                            >
-                              <Link href={`/solutions/${purchase.id}`}>
-                                <Download className="mr-2 h-4 w-4" />
-                                Access Solution
-                              </Link>
-                            </Button>
-                            <Button
-                              variant="outline"
-                              className="w-full"
-                              size="sm"
-                            >
-                              <Settings className="mr-2 h-4 w-4" />
-                              Manage Subscription
-                            </Button>
-                          </>
-                        )}
-                        {purchase.status === 'trial' && (
-                          <>
-                            <Button
-                              asChild
-                              className="w-full btn-primary"
-                              size="sm"
-                            >
-                              <Link href={`/solutions/${purchase.id}`}>
-                                <Download className="mr-2 h-4 w-4" />
-                                Access Trial
-                              </Link>
-                            </Button>
-                            <Button
-                              variant="outline"
-                              className="w-full"
-                              size="sm"
-                            >
-                              Trade to Full Version
-                            </Button>
-                          </>
-                        )}
-                        {purchase.status === 'cancelled' && (
+                    <div className="space-y-2">
+                      {purchase.status === 'active' && (
+                        <>
                           <Button
                             asChild
+                            className="w-full btn-primary"
+                            size="sm"
+                          >
+                            <Link href={`/solutions/${purchase.id}`}>
+                              <Download className="mr-2 h-4 w-4" />
+                              Access Solution
+                            </Link>
+                          </Button>
+                          <Button
                             variant="outline"
                             className="w-full"
                             size="sm"
                           >
+                            <Settings className="mr-2 h-4 w-4" />
+                            Manage Subscription
+                          </Button>
+                        </>
+                      )}
+                      {purchase.status === 'trial' && (
+                        <>
+                          <Button
+                            asChild
+                            className="w-full btn-primary"
+                            size="sm"
+                          >
                             <Link href={`/solutions/${purchase.id}`}>
-                              Reactivate Solution
+                              <Download className="mr-2 h-4 w-4" />
+                              Access Trial
                             </Link>
                           </Button>
-                        )}
-                      </div>
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                            size="sm"
+                          >
+                            Trade to Full Version
+                          </Button>
+                        </>
+                      )}
+                      {purchase.status === 'cancelled' && (
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="w-full"
+                          size="sm"
+                        >
+                          <Link href={`/solutions/${purchase.id}`}>
+                            Reactivate Solution
+                          </Link>
+                        </Button>
+                      )}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
     </div>
   )

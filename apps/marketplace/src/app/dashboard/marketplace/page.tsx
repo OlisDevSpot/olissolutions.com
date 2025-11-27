@@ -1,5 +1,6 @@
 'use client'
 
+import { useSession } from '@olis/auth/client'
 import { EmptyState } from '@olis/ui/components/states/empty-state'
 import { LoadingState } from '@olis/ui/components/states/loading-state'
 import { useQuery } from '@tanstack/react-query'
@@ -11,6 +12,7 @@ import {
 import { useTRPC } from '@/trpc/client'
 
 export default function Marketplace() {
+  const { data: session } = useSession()
   const trpc = useTRPC()
   const { data: solutions, isPending } = useQuery(trpc.solutions.findAll.queryOptions({ isActive: true }))
 
@@ -25,13 +27,13 @@ export default function Marketplace() {
   }
 
   return (
-    <div className="p-6 lg:p-8 h-full flex flex-col">
+    <div className="h-full flex flex-col w-full">
       {/* Header */}
       <PageHeader
         label="Solution Marketplace"
         description="Browse and purchase construction sales tools to grow your business."
       />
-      <div className="w-full h-full grow overflow-y-auto ">
+      <div className="w-full h-full grow overflow-y-clip">
         {solutions.length === 0
           ? (<EmptyState title="No solutions found" />)
           : (
@@ -43,7 +45,7 @@ export default function Marketplace() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <SolutionCard solution={solution} subscribed={subscriptions?.some(sub => sub.solutionId === solution.id) || false} psychologyConcepts={'psychologyConcepts' in solution ? solution.psychologyConcepts : undefined} />
+                    <SolutionCard solution={solution} subscribed={session?.user?.role === 'super-admin' || subscriptions?.some(sub => sub.solutionId === solution.id) || false} psychologyConcepts={'psychologyConcepts' in solution ? solution.psychologyConcepts : undefined} />
                   </motion.div>
                 ))}
               </div>

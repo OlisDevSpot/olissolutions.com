@@ -59,112 +59,110 @@ export default function Support() {
 
   return (
     <div className="bg-background">
-      <div className="p-6 lg:p-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Support Center</h1>
+          <p className="text-muted-foreground">
+            Get help with your Olis Solutions account and tools.
+          </p>
+        </div>
+
+        {/* Support Options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {supportOptions.map((option, index) => (
+            <motion.div
+              key={option.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <option.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">{option.title}</CardTitle>
+                      <CardDescription>{option.description}</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full btn-primary">
+                    <Link href={option.href}>
+                      {option.action}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* FAQ Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Support Center</h1>
-            <p className="text-muted-foreground">
-              Get help with your Olis Solutions account and tools.
-            </p>
-          </div>
-
-          {/* Support Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {supportOptions.map((option, index) => (
-              <motion.div
-                key={option.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <option.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg">{option.title}</CardTitle>
-                        <CardDescription>{option.description}</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <Button asChild className="w-full btn-primary">
-                      <Link href={option.href}>
-                        {option.action}
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* FAQ Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <HelpCircle className="mr-2 h-5 w-5" />
-                  Frequently Asked Questions
-                </CardTitle>
-                <CardDescription>
-                  Quick answers to common questions.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  {faqs.map((faq, index) => (
-                    <div key={index}>
-                      <h3 className="font-semibold text-foreground mb-2">{faq.question}</h3>
-                      <p className="text-muted-foreground">{faq.answer}</p>
-                      {index < faqs.length - 1 && <hr className="mt-6 border-border" />}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Emergency Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-8"
-          >
-            <Card className="border-amber-200 bg-amber-50/50 dark:border-amber-800 dark:bg-amber-950/50">
-              <CardContent className="pt-6">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <HelpCircle className="mr-2 h-5 w-5" />
+                Frequently Asked Questions
+              </CardTitle>
+              <CardDescription>
+                Quick answers to common questions.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {faqs.map((faq, index) => (
+                  <div key={index}>
+                    <h3 className="font-semibold text-foreground mb-2">{faq.question}</h3>
+                    <p className="text-muted-foreground">{faq.answer}</p>
+                    {index < faqs.length - 1 && <hr className="mt-6 border-border" />}
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Priority Support</h3>
-                    <p className="text-sm text-muted-foreground">
-                      For urgent issues affecting your sales presentations, call us directly at
-                      {' '}
-                      <a href="tel:+1555987654" className="text-primary hover:underline">
-                        (555) 987-6544
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
-      </div>
+
+        {/* Emergency Contact */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-8"
+        >
+          <Card className="border-amber-200 bg-amber-50/50 dark:border-amber-800 dark:bg-amber-950/50">
+            <CardContent className="pt-6">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center">
+                  <Phone className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Priority Support</h3>
+                  <p className="text-sm text-muted-foreground">
+                    For urgent issues affecting your sales presentations, call us directly at
+                    {' '}
+                    <a href="tel:+1555987654" className="text-primary hover:underline">
+                      (555) 987-6544
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

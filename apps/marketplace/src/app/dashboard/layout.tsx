@@ -23,8 +23,8 @@ export default async function DashboardLayout({ children}: { children: React.Rea
       <AppSidebar />
       <main className="grow min-w-0 h-dvh">
         <AppTopbar />
-        <div className="[&:has(.no-layout-padding)]:p-0 h-full">
-          <div className="overflow-auto h-full rounded-lg main-container">
+        <div className="p-6 lg:p-8 h-[calc(100%-var(--topnav-height))] [&:has(.no-layout-padding)]:p-0">
+          <div className="overflow-auto h-full rounded-lg main-container scrollbar-gutter-stable">
             {children}
           </div>
         </div>

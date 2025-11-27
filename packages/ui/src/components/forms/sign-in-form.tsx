@@ -12,6 +12,7 @@ import { Input } from '@olis/ui/components/input'
 import { cn } from '@olis/ui/lib/utils'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { PasswordInput } from '../password-input'
 
 interface Props extends React.ComponentProps<'div'> {
   onSubmitCallback: (data: LoginFormSchema) => Promise<void>
@@ -75,7 +76,11 @@ export function SignInForm({
                           </a>
                         </div>
                         <FormControl>
-                          <Input type="password" placeholder="******" disabled={isPending} {...field} />
+                          <PasswordInput
+                            disabled={isPending}
+                            {...field}
+                            placeholder="********"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

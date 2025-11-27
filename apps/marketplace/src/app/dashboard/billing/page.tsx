@@ -33,81 +33,79 @@ export default function Billing() {
 
   return (
     <div className="bg-background">
-      <div className="p-6 lg:p-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Billing & Invoices</h1>
-            <p className="text-muted-foreground">
-              Manage your payment methods and download invoices.
-            </p>
-          </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Billing & Invoices</h1>
+          <p className="text-muted-foreground">
+            Manage your payment methods and download invoices.
+          </p>
+        </div>
 
-          {/* Current Plan */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <CreditCard className="mr-2 h-5 w-5" />
-                Current Plan
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold">Premium Plan</p>
-                  <p className="text-sm text-muted-foreground">2 active solutions</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold">$88</p>
-                  <p className="text-sm text-muted-foreground">per month</p>
-                </div>
+        {/* Current Plan */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <CreditCard className="mr-2 h-5 w-5" />
+              Current Plan
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-semibold">Premium Plan</p>
+                <p className="text-sm text-muted-foreground">2 active solutions</p>
               </div>
-              <div className="mt-4 flex items-center text-sm text-muted-foreground">
-                <Calendar className="mr-2 h-4 w-4" />
-                Next billing date: March 1, 2024
+              <div className="text-right">
+                <p className="text-2xl font-bold">$88</p>
+                <p className="text-sm text-muted-foreground">per month</p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+            <div className="mt-4 flex items-center text-sm text-muted-foreground">
+              <Calendar className="mr-2 h-4 w-4" />
+              Next billing date: March 1, 2024
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Invoices */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Invoice History</CardTitle>
-              <CardDescription>
-                Download your past invoices and payment receipts.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {invoices.map(invoice => (
-                  <div key={invoice.id} className="flex items-center justify-between p-4 border rounded-lg">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3">
-                        <p className="font-semibold">{invoice.id}</p>
-                        <Badge variant="secondary">
-                          {invoice.status}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{invoice.description}</p>
-                      <p className="text-xs text-muted-foreground">{invoice.date}</p>
+        {/* Invoices */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Invoice History</CardTitle>
+            <CardDescription>
+              Download your past invoices and payment receipts.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {invoices.map(invoice => (
+                <div key={invoice.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <p className="font-semibold">{invoice.id}</p>
+                      <Badge variant="secondary">
+                        {invoice.status}
+                      </Badge>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <p className="font-semibold">{invoice.amount}</p>
-                      <Button variant="outline" size="sm">
-                        <Download className="mr-2 h-4 w-4" />
-                        Download
-                      </Button>
-                    </div>
+                    <p className="text-sm text-muted-foreground">{invoice.description}</p>
+                    <p className="text-xs text-muted-foreground">{invoice.date}</p>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div>
+                  <div className="flex items-center gap-4">
+                    <p className="font-semibold">{invoice.amount}</p>
+                    <Button variant="outline" size="sm">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   )
 }
