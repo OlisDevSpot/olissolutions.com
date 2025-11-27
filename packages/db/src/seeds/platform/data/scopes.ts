@@ -1,9 +1,47 @@
 import type { InsertScope } from '@olis/db/schema/platform'
-import type { TradeAccessor } from '@olis/db/types/trades'
+import type { TradeAccessor } from '@olis/db/types'
 
 export const scopesData = {
-  addition: [],
-  adu: [],
+  addition: [
+    {
+      label: 'Room addition',
+      accessor: 'roomAddition',
+      description: 'Add one extra room to your floor plan!',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764023582/room-addition_gq2vms.jpg',
+      constructionType: 'finish-construction',
+      homeArea: ['interior-space'],
+      scopeOfWorkBase: null,
+    },
+    {
+      label: 'Extension',
+      accessor: 'extension',
+      description: 'Add more space to your existing living area!',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755057317/room-addition_rwahyr.jpg',
+      constructionType: 'finish-construction',
+      homeArea: ['interior-space'],
+      scopeOfWorkBase: null,
+    },
+  ],
+  adu: [
+    {
+      label: 'Garage conversion',
+      accessor: 'garageConversion',
+      description: 'Convert an existing garage into a monthly income stream',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755057306/garage-conversion_n5mo25.jpg',
+      constructionType: 'finish-construction',
+      homeArea: ['garage'],
+      scopeOfWorkBase: null,
+    },
+    {
+      label: 'New construction',
+      accessor: 'newConstruction',
+      description: 'New construction build, often in the backyard',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755057312/new-construction-adu_kvwryh.png',
+      constructionType: 'finish-construction',
+      homeArea: ['back-yard'],
+      scopeOfWorkBase: null,
+    },
+  ],
   atticBasement: [
     {
       label: 'Repair foundation',
@@ -253,6 +291,15 @@ export const scopesData = {
       homeArea: ['interior-space', 'exterior-shell'],
       scopeOfWorkBase: null,
     },
+    {
+      label: 'Termite abatement',
+      accessor: 'termiteAbatement',
+      description: 'Termite abatement is crucial',
+      imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764019715/termite_x6cny7.webp',
+      constructionType: 'rough-construction',
+      homeArea: ['interior-space', 'exterior-shell'],
+      scopeOfWorkBase: null,
+    },
   ],
   hvac: [
     {
@@ -418,7 +465,6 @@ export const scopesData = {
       scopeOfWorkBase: null,
     },
   ],
-  weatherization: [],
   windows: [
     {
       label: 'Window replacement',

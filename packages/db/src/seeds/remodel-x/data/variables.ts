@@ -1,38 +1,109 @@
 import type { InsertVariable } from '@olis/db/schema/remodel-x'
-import type { TradeAccessor } from '@olis/db/types/trades'
+import type { TradeAccessor } from '@olis/db/types'
 
 export const variablesData = {
-  solar: [
+  addition: [],
+  adu: [],
+  atticBasement: [
     {
-      key: 'numPanels',
-      label: 'Number of panels',
+      key: 'sqft',
+      label: 'Square feet of insulation',
       dataType: 'number',
     },
     {
-      key: 'wattsPerPanel',
-      label: 'Watts per panel',
-      dataType: 'number',
+      key: 'existingInsulationType',
+      label: 'Starting insulation type',
+      dataType: 'select',
+      options: ['fiberglass batts', 'fiberglass blown', 'cellulose blown'],
     },
     {
-      key: 'numBatteries',
-      label: 'Number of batteries',
+      key: 'desiredInsulationType',
+      label: 'Finish insulation type',
       dataType: 'select',
-      options: [0, 1, 2, 3],
-    },
-    {
-      key: 'kWhPerBattery',
-      label: 'kWh per battery',
-      dataType: 'select',
-      options: [5, 10],
-    },
-    {
-      key: 'inverterType',
-      label: 'Inverter type',
-      dataType: 'select',
-      options: ['microinverter', 'solar-edge'],
+      options: ['fiberglass batts', 'fiberglass blown', 'cellulose blown'],
     },
   ],
-
+  bathroom: [],
+  blueprintsEngineering: [],
+  dryscapingHardscaping: [
+    {
+      key: 'installSqFt',
+      label: 'Square feet of installation',
+      dataType: 'number',
+    },
+    {
+      key: 'demoSqFt',
+      label: 'Square feet of demo / removal',
+      dataType: 'number',
+    },
+  ],
+  electricals: [
+    {
+      key: 'relocationRequired',
+      label: 'Relocation required?',
+      dataType: 'boolean',
+    },
+  ],
+  exteriorFeatures: [],
+  exteriorPaintSiding: [
+    {
+      key: 'paintType',
+      label: 'Paint type',
+      dataType: 'select',
+      options: ['coolLife', 'water'],
+    },
+    {
+      key: 'homeSqFt',
+      label: 'Home square footage',
+      dataType: 'number',
+    },
+    {
+      key: 'garageSqFt',
+      label: 'Garage square footage',
+      dataType: 'number',
+    },
+  ],
+  flooring: [],
+  hazardousMaterials: [],
+  hvac: [
+    {
+      key: 'systemTonnage',
+      label: 'System tonnage',
+      dataType: 'select',
+      options: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
+    },
+    {
+      key: 'numMiniSplits',
+      label: 'Number of mini splits',
+      dataType: 'select',
+      options: [1, 2, 3, 4, 5, 6, 7, 8],
+    },
+    {
+      key: 'replaceDucts',
+      label: 'Duct replacement',
+      dataType: 'boolean',
+    },
+  ],
+  interiorPaint: [
+    {
+      key: 'numBedrooms',
+      label: 'Number of bedrooms',
+      dataType: 'number',
+    },
+    {
+      key: 'numBathrooms',
+      label: 'Number of bathrooms',
+      dataType: 'number',
+    },
+    {
+      key: 'extent',
+      label: 'What is being painted?',
+      dataType: 'select',
+      options: ['all', 'partial'],
+    },
+  ],
+  kitchen: [],
+  plumbing: [],
   roof: [
     {
       key: 'numFlatBSQ',
@@ -69,6 +140,36 @@ export const variablesData = {
       options: [15, 20, 25],
     },
   ],
+  solar: [
+    {
+      key: 'numPanels',
+      label: 'Number of panels',
+      dataType: 'number',
+    },
+    {
+      key: 'wattsPerPanel',
+      label: 'Watts per panel',
+      dataType: 'number',
+    },
+    {
+      key: 'numBatteries',
+      label: 'Number of batteries',
+      dataType: 'select',
+      options: [0, 1, 2, 3],
+    },
+    {
+      key: 'kWhPerBattery',
+      label: 'kWh per battery',
+      dataType: 'select',
+      options: [5, 10],
+    },
+    {
+      key: 'inverterType',
+      label: 'Inverter type',
+      dataType: 'select',
+      options: ['microinverter', 'solar-edge'],
+    },
+  ],
 
   windows: [
     {
@@ -97,109 +198,4 @@ export const variablesData = {
       dataType: 'number',
     },
   ],
-
-  hvac: [
-    {
-      key: 'systemTonnage',
-      label: 'System tonnage',
-      dataType: 'select',
-      options: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
-    },
-    {
-      key: 'numMiniSplits',
-      label: 'Number of mini splits',
-      dataType: 'select',
-      options: [1, 2, 3, 4, 5, 6, 7, 8],
-    },
-    {
-      key: 'replaceDucts',
-      label: 'Duct replacement',
-      dataType: 'boolean',
-    },
-  ],
-
-  atticBasement: [
-    {
-      key: 'sqft',
-      label: 'Square feet of insulation',
-      dataType: 'number',
-    },
-    {
-      key: 'existingInsulationType',
-      label: 'Starting insulation type',
-      dataType: 'select',
-      options: ['fiberglass batts', 'fiberglass blown', 'cellulose blown'],
-    },
-    {
-      key: 'desiredInsulationType',
-      label: 'Finish insulation type',
-      dataType: 'select',
-      options: ['fiberglass batts', 'fiberglass blown', 'cellulose blown'],
-    },
-  ],
-
-  dryscapingHardscaping: [
-    {
-      key: 'installSqFt',
-      label: 'Square feet of installation',
-      dataType: 'number',
-    },
-    {
-      key: 'demoSqFt',
-      label: 'Square feet of demo / removal',
-      dataType: 'number',
-    },
-  ],
-
-  exteriorPaintSiding: [
-    {
-      key: 'paintType',
-      label: 'Paint type',
-      dataType: 'select',
-      options: ['coolLife', 'water'],
-    },
-    {
-      key: 'homeSqFt',
-      label: 'Home square footage',
-      dataType: 'number',
-    },
-    {
-      key: 'garageSqFt',
-      label: 'Garage square footage',
-      dataType: 'number',
-    },
-  ],
-
-  interiorPaint: [
-    {
-      key: 'numBedrooms',
-      label: 'Number of bedrooms',
-      dataType: 'number',
-    },
-    {
-      key: 'numBathrooms',
-      label: 'Number of bathrooms',
-      dataType: 'number',
-    },
-    {
-      key: 'extent',
-      label: 'What is being painted?',
-      dataType: 'select',
-      options: ['all', 'partial'],
-    },
-  ],
-
-  electricals: [
-    {
-      key: 'relocationRequired',
-      label: 'Relocation required?',
-      dataType: 'boolean',
-    },
-  ],
-  bathroomRemodel: [],
-  kitchenRemodel: [],
-  plumbing: [],
-  addition: [],
-  flooring: [],
-  adu: [],
-} as const satisfies Partial<Record<TradeAccessor, InsertVariable[]>>
+} as const satisfies Record<TradeAccessor, InsertVariable[]>

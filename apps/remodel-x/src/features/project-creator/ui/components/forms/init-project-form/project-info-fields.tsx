@@ -7,7 +7,7 @@ import { extractPart } from "@/features/project-creator/lib/google-maps-helpers"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@olis/ui/components/form";
 import { AddressInput } from "@olis/ui/components/inputs/address-input";
 
-export function ProjectInfoForm() {
+export function ProjectInfoFields() {
   const { control, setValue } = useFormContext<InitProjectFormSchema>();
 
   return (
@@ -23,7 +23,7 @@ export function ProjectInfoForm() {
               {/* eslint-disable-next-line node/no-process-env */}
               <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
                 <AddressInput
-                  value={field.value}
+                  // value={field.value}
                   onChange={field.onChange}
                   onPlaceChange={(place) => {
                     const street = place.name ?? "";
@@ -35,6 +35,8 @@ export function ProjectInfoForm() {
                     setValue("project.city", city);
                     setValue("project.state", state);
                     setValue("project.zipCode", zip);
+
+                    field.value = `${street}, ${city}, ${state} ${zip}`
                   }}
                 />
               </APIProvider>

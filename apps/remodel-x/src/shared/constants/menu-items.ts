@@ -1,4 +1,4 @@
-import { AirVent, Building2, Calculator, Drill, Fence, Hammer, HousePlus, Leaf, Paintbrush } from "lucide-react";
+import { AirVent, Building2, Calculator, Drill, Fence, Hammer, HousePlus, Leaf, Paintbrush, UploadIcon } from "lucide-react";
 
 import type { useTRPC } from "@/trpc/client";
 
@@ -7,7 +7,7 @@ import { ROOTS } from "@olis/core/constants";
 export const sidebarGroups = {
   build: "Build",
   education: "Education",
-} as const;
+};
 
 export const sidebarItems = {
   build: [
@@ -78,3 +78,17 @@ export const sidebarItems = {
     },
   ],
 };
+
+export const adminSidebarGroups = {
+  fileManagement: "File Management",
+}
+
+export const adminSidebarItems = {
+  fileManagement: [
+    {
+      title: "Upload Project Files",
+      url: `${ROOTS.remodelX.admin}/upload`,
+      icon: UploadIcon,
+    }
+  ]
+}

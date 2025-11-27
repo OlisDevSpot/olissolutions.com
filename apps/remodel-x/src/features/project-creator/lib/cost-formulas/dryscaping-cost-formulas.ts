@@ -29,5 +29,8 @@ export default function createCostFormulas(
     installPavers: defineFormula(({ installSqFt }) => {
       return installSqFt * prices.dollarPerSqFtPavers;
     }),
+    installDg: defineFormula(({ installSqFt }) => {
+      return installSqFt * prices.dollarPerSqFtDg;
+    })
   });
 }

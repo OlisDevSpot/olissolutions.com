@@ -3,7 +3,6 @@ import { useMapsLibrary } from '@vis.gl/react-google-maps'
 import { useEffect, useRef, useState } from 'react'
 
 interface AddressInputProps {
-  value: string
   onChange: (value: string) => void
   disabled?: boolean
   placeholder?: string
@@ -11,7 +10,6 @@ interface AddressInputProps {
 }
 
 export function AddressInput({
-  value,
   onChange,
   disabled = false,
   placeholder = 'Select an address',
@@ -65,7 +63,6 @@ export function AddressInput({
   return (
     <Input
       ref={inputRef}
-      value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       disabled={disabled}

@@ -1,5 +1,5 @@
 import type { InsertBenefit } from '@olis/db/schema/platform'
-import type { BenefitCategoryAccessor } from '@olis/db/types/benefits'
+import type { BenefitCategoryAccessor } from '@olis/db/types'
 
 export const benefitsData = {
   reduceBills: [

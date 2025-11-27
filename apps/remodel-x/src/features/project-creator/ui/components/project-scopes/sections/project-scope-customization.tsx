@@ -1,4 +1,3 @@
-import { useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
 import { useQueryClient } from "@tanstack/react-query";
 import { Info } from "lucide-react";
 import Link from "next/link";
@@ -11,10 +10,11 @@ import { useGetProjectScopes } from "@/features/project-creator/data/queries/get
 import { useCurrentProjectId } from "@/features/project-creator/hooks/use-current-project-id";
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { UpdateProjectScopeForm } from "@/features/project-creator/ui/components/forms/update-project-scope-form";
-import { ProjectFinancialsColumn } from "@/features/project-creator/ui/components/project-financials/project-financials-column";
+import { ProjectCustomizationColumn } from "@/features/project-creator/ui/components/project-customization-column";
 import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scope-info-dialog-store";
 import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
+import { useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
 import { Button } from "@olis/ui/components/button";
 import { Card } from "@olis/ui/components/card";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
@@ -93,7 +93,7 @@ export function ProjectScopeCustomization() {
   
   return (
     <div className="flex gap-8 h-full">
-      <ProjectFinancialsColumn title="Scopes" className="max-w-[250px]">
+      <ProjectCustomizationColumn title="Scopes" className="max-w-[250px]">
         {projectScopes.data?.map(({ scope }) => (
           <Card
             key={scope.id}
@@ -133,9 +133,9 @@ export function ProjectScopeCustomization() {
             </div>
           </Card>
         ))}
-      </ProjectFinancialsColumn>
+      </ProjectCustomizationColumn>
       {scopeVariables.data && currentScope && (
-        <ProjectFinancialsColumn className="w-full h-full">
+        <ProjectCustomizationColumn className="w-full h-full">
           {currentScope && scopeVariables.data && (
             <UpdateProjectScopeForm
               projectVars={{
@@ -146,7 +146,7 @@ export function ProjectScopeCustomization() {
               scopeVariables={scopeVariables.data}
             />
           )}
-        </ProjectFinancialsColumn>
+        </ProjectCustomizationColumn>
       )}
     </div>
   )

@@ -6,9 +6,14 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
 
+import { useModalStore } from "@/features/project-creator/hooks/dialogs/use-modal-store";
+import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scope-info-dialog-store";
+import { ScopeInfoDialog } from "@/shared/entities/scopes/ui/components/dialogs/scope-info-dialog";
 import { ROOTS } from "@olis/core/constants";
 import { Badge } from "@olis/ui/components/badge";
 import { Button } from "@olis/ui/components/button";
+import { ScopeInfoModal } from "@olis/ui/components/dialogs/scope-info-modal";
+import { useBaseModalStore } from "@olis/ui/hooks/use-base-modal-store";
 import { cn } from "@olis/ui/lib/utils";
 
 interface ShowroomItemHeroProps extends React.ComponentProps<"div"> {
@@ -69,13 +74,6 @@ export function ShowroomItemHero({ item, className, children, type, ...props }: 
           <div className="grow min-h-0 w-full lg:col-span-7 ">
             {children}
           </div>
-
-          {/* CTA Section */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-2 z-10">
-            <Button variant="outline" size="lg" className="px-8 py-6 text-base font-medium border-2 hover:bg-muted/50 transition-all">
-              View Gallery
-            </Button>
-          </div>
         </div>
       </div>
     </ShowroomItemHeroProvider>
@@ -103,6 +101,7 @@ interface ShowroomItemHeroHeaderProps {
 
 function ShowroomItemHeroHeader({ badge }: ShowroomItemHeroHeaderProps) {
   const { item, type } = useShowroomItemHeroContext();
+  const { open: openScopeInfoModal, setModal } = useBaseModalStore()
   
   return (
     <div className="space-y-4">
@@ -141,6 +140,25 @@ function ShowroomItemHeroHeader({ badge }: ShowroomItemHeroHeaderProps) {
         <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl text-[clamp(1rem,1vw+0.5rem,1.5rem)]">
           {item.description}
         </p>
+      </div>
+      <div className="flex items-center gap-4">
+        <Button
+          size="lg"
+          onClick={() => {
+            setModal({
+              Element: <ScopeInfoModal scope={item} />,
+              accessor: "scope-info-modal"
+            }); 
+            openScopeInfoModal() 
+          }}
+        >
+          {item.label}
+          {" "}
+          101
+        </Button>
+        <Button variant="outline" size="lg">
+          View Gallery
+        </Button> 
       </div>
     </div>
   )
@@ -187,19 +205,22 @@ export function ShowroomItemHeroSubItems<T extends ShowroomItemType>({ subItems,
   return (
     <div className="flex flex-col gap-4">
       {subItems && subItems.length > 0 && (
-        <div className={cn(`relative rounded-lg w-full x-scrollable`)}>
+        <div className={cn(`relative rounded-lg w-full`)}>
           <div className="w-full inline-flex gap-4 overflow-x-scroll bottom-scrollbar">
             {subItems.map(subItem => (
               <div
-                key={subItem.label}
+                key={subItem.accessor}
                 onClick={() => onClick?.(subItem)}
                 style={{ 
-                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${subItem.imageUrl})`
+                  backgroundImage: `url(${subItem.imageUrl})`,
                 }} 
-                className={cn("flex flex-col gap-2items-center justify-center border-b px-4 py-2 shrink-0 h-40 border rounded-lg w-[400px]", onClick ? "cursor-pointer" : "")}
+                className={cn("group relative flex flex-col gap-2items-center justify-center items-center border-b px-4 py-2 shrink-0 h-50 border rounded-lg w-[400px] bg-center bg-cover", onClick ? "cursor-pointer" : "")}
               >
-                <p className="font-medium">{subItem.label}</p>
-                <p className="text-muted-foreground">{subItem.description}</p>
+                <div className={cn("absolute inset-0 bg-radial from-background/80 to-background/40 hover:from-background/60 hover:to-background/20 transition")} />
+                <div className="ring-1 ring-transparent group-hover:shadow-2xl group-hover:ring-1 group-hover:ring-muted-foreground/30 px-6 py-4 rounded-lg group-hover:backdrop-blur-sm transition">
+                  <p className="z-10 relative font-medium transition ">{subItem.label}</p>
+                  <p className="z-10 relative text-muted-foreground">{subItem.description}</p>
+                </div>
               </div>
             ))}
           </div>

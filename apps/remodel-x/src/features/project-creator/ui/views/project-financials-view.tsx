@@ -1,7 +1,5 @@
 "use client";
 
-import { useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
-import { useGetPricing } from "@olis/data-client/fetchers/remodel-x/pricing/queries/get-pricing";
 import { useQueryClient } from "@tanstack/react-query";
 import { Info, Trash } from "lucide-react";
 import Link from "next/link";
@@ -20,13 +18,15 @@ import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scop
 import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
 import { numberToUSD } from "@olis/core/lib/formatters";
+import { useGetScopeVariables } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-variables";
+import { useGetPricing } from "@olis/data-client/fetchers/remodel-x/pricing/queries/get-pricing";
 import { Button } from "@olis/ui/components/button";
 import { Card } from "@olis/ui/components/card";
 import { Separator } from "@olis/ui/components/separator";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
 
 import { calculateScopeCost } from "../../lib/calculate";
-import { ProjectFinancialsColumn } from "../components/project-financials/project-financials-column";
+import { ProjectCustomizationColumn } from "../components/project-customization-column";
 
 export function ProjectFinancialsView() {
   const queryClient = useQueryClient();
@@ -115,7 +115,7 @@ export function ProjectFinancialsView() {
   return (
     <div className="h-full overflow-y-auto">
       <div className="h-full flex gap-6">
-        <ProjectFinancialsColumn className="max-w-[250px]">
+        <ProjectCustomizationColumn className="max-w-[250px]">
           {projectScopes.data.map(({ scope }) => (
             <Card
               key={scope.id}
@@ -155,8 +155,8 @@ export function ProjectFinancialsView() {
               </div>
             </Card>
           ))}
-        </ProjectFinancialsColumn>
-        <ProjectFinancialsColumn className="w-full">
+        </ProjectCustomizationColumn>
+        <ProjectCustomizationColumn className="w-full">
           {currentScope && scopeVariables.data && pricing.data && (
             <UpdateProjectScopeForm
               projectVars={{
@@ -185,8 +185,8 @@ export function ProjectFinancialsView() {
               }}
             />
           )}
-        </ProjectFinancialsColumn>
-        <ProjectFinancialsColumn title="Totals" className="w-full">
+        </ProjectCustomizationColumn>
+        <ProjectCustomizationColumn title="Totals" className="w-full">
           <div className="w-full grow flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               {selectedScopes.filter(scope => scope.pricing.price > 0).map(scope => (
@@ -231,7 +231,7 @@ export function ProjectFinancialsView() {
               </>
             )}
           </div>
-        </ProjectFinancialsColumn>
+        </ProjectCustomizationColumn>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { ListFilter } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { createContext, useContext, useState } from "react";
 
-import type { ShowroomFilter } from "@/features/showroom/types";
+import type { ShowroomFilter, ShowroomItemType } from "@/features/showroom/types";
 
 import { Button } from "@olis/ui/components/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@olis/ui/components/popover";
@@ -12,6 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@olis/ui/components/pop
 import { FiltersDisplay } from "./filters-display";
 
 interface FilterContextProps { 
+  type: ShowroomItemType;
   modalOpen: boolean; 
   setModalOpen: (open: boolean) => void;
   selectedFilters: Omit<ShowroomFilter, "render">[];
@@ -30,7 +31,12 @@ export function useFiltersContext() {
   return context;
 }
 
-export function FiltersProvider({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+  type: ShowroomItemType;
+}
+
+export function FiltersProvider({ children, type }: Props) {
   const searchParams = useSearchParams(); 
 
   const initialFilters = [...searchParams.entries()]
@@ -43,6 +49,7 @@ export function FiltersProvider({ children }: { children: React.ReactNode }) {
   
   return (
     <filtersContext.Provider value={{ 
+      type,
       modalOpen, 
       setModalOpen, 
       selectedFilters, 
@@ -50,7 +57,7 @@ export function FiltersProvider({ children }: { children: React.ReactNode }) {
     }}
     >
       {children}
-      <FiltersDisplay />
+      <FiltersDisplay type={type} />
     </filtersContext.Provider>
   );
 }

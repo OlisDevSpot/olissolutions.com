@@ -2,7 +2,7 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { AppBreadcrumbs } from "@/shared/components/app-breadcrumbs";
-import { AppSidebar } from "@/shared/components/app-sidebar-provider";
+import { DashboardSidebar } from "@/shared/components/dashboard-sidebar";
 import { DashboardModals } from "@/shared/components/modals/dashboard-modals";
 import { requireAuth } from "@olis/auth/lib/utils";
 import { ROOTS } from "@olis/core/constants";
@@ -27,7 +27,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           "--topnav-height": "56px",
         } as React.CSSProperties}
       >
-        <AppSidebar />
+        <DashboardSidebar />
         <main className="grow min-w-0 h-dvh">
           <AppTopbar>
             <AppBreadcrumbs />

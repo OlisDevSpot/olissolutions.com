@@ -14,7 +14,6 @@ import { SearchInput } from "./search-input";
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
   type: ShowroomItemType;
-  scrolled?: boolean;
   children: React.ReactNode;
 }
 
@@ -36,13 +35,13 @@ function ShowroomHeaderProvider({ children, type }: { children: React.ReactNode;
   )
 }
 
-export function ShowroomHeader({ type, children, scrolled, ...props }: Props) {
+export function ShowroomHeader({ type, children, ...props }: Props) {
   // const [scrolled, setScrolled] = useState(false)
   
   return (
     <ShowroomHeaderProvider type={type}>
       <PageHeaderSection>
-        <PageHeaderSection.Frame className={cn("sticky top-0 z-10 bg-background", props.className)} scrolled={scrolled} {...props}>
+        <PageHeaderSection.Frame className={cn("sticky top-0 z-10 bg-background", props.className)} {...props}>
           <PageHeaderSection.Header title={`${capitalize(type)} Catalog`} description={`Transform your home with our comprehensive selection of premium ${type}s.`} sticky />
           {children}
         </PageHeaderSection.Frame>

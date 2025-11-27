@@ -36,7 +36,6 @@ export const trades = [
   'Plumbing',
   'Roof',
   'Solar',
-  'Weatherization',
   'Windows & Doors',
 ] as const
 
@@ -175,14 +174,6 @@ export const tradesData = [
     label: 'Solar',
     description: 'Install a new solar system',
     imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1755028717/solar_oef06y.jpg',
-    location: 'exterior',
-  },
-  {
-    accessor: 'weatherization',
-    slug: 'weatherization',
-    label: 'Weatherization',
-    description: 'Weatherization keeps you insulated & efficient!',
-    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1757819502/weatherization_wxkq7t.jpg',
     location: 'exterior',
   },
   {

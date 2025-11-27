@@ -1,6 +1,7 @@
 import { createTRPCRouter, publicProcedure } from '@olis/trpc/init'
 import { addonsRouter } from './addons/addons.router'
 import { benefitsRouter } from './benefits/benefits.router'
+import { coreRouter } from './core/core.router.ts'
 import { customersRouter } from './customers/customers.router'
 import { materialsRouter } from './materials/materials.router'
 import { scopesRouter } from './scopes/scopes.router'
@@ -10,6 +11,7 @@ export const platformRouter = createTRPCRouter({
   'health-check': publicProcedure.query(() => {
     return 'Hello, world!'
   }),
+  'core': coreRouter,
   'trades': tradesRouter,
   'scopes': scopesRouter,
   'addons': addonsRouter,

@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@olis/ui/lib/utils'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../dialog'
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   title: string
   description: string
   children: React.ReactNode
+  className?: string
 }
 
 export function Modal({
@@ -16,11 +18,12 @@ export function Modal({
   title,
   description,
   children,
+  className,
 }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={close}>
       <DialogContent
-        className="sm:max-w-[425px] space-y-2"
+        className={cn('sm:max-w-[425px] space-y-2 flex flex-col items-start', className)}
         onInteractOutside={(event) => {
           // Prevent closing when clicking Google Places dropdown
           if (

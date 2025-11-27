@@ -1,6 +1,5 @@
-import { useGetTradeAddons } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-addons";
-
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
+import { useGetTradeAddons } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-addons";
 import { Card } from "@olis/ui/components/card";
 import { EmptyState } from "@olis/ui/components/states/empty-state";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
@@ -29,7 +28,7 @@ export function AddonSelector({ currentTradeId }: Props) {
     return (
       <EmptyState 
         title="No addons" 
-        className="max-w-full"
+        className="max-w-full h-full"
       />
     );
   }

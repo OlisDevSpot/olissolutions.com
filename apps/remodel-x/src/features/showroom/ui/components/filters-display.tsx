@@ -1,15 +1,19 @@
-import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { Loader2, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { scopeFiltersDef } from "@/features/showroom/constants/filters";
 import { ROOTS } from "@olis/core/constants";
+import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
+
+import type { ShowroomItemType } from "../../types";
 
 import { useFiltersContext } from "./filters";
-import { useShowroomContext } from "./showroom-header";
 
-export function FiltersDisplay() {
-  const { type } = useShowroomContext();
+interface Props {
+  type: ShowroomItemType;
+}
+
+export function FiltersDisplay({ type }: Props) {
   const { data: trades } = useGetTrades();
   const { selectedFilters, setSelectedFilters } = useFiltersContext();
   const searchParams = useSearchParams();

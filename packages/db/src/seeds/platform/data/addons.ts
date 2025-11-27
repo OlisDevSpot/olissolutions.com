@@ -1,5 +1,5 @@
 import type { InsertAddon } from '@olis/db/schema/platform'
-import type { TradeAccessor } from '@olis/db/types/trades'
+import type { TradeAccessor } from '@olis/db/types'
 
 export const addonsData = [
   {
@@ -28,6 +28,13 @@ export const addonsData = [
     accessor: 'installDripSystem',
     description: 'Low maintenence, low cost watering system',
     imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764006767/drip-system_nhtveo.jpg',
+    tradeAccessor: 'dryscapingHardscaping',
+  },
+  {
+    label: 'Install small plants',
+    accessor: 'installSmallPlants',
+    description: 'Low maintenence, small plants',
+    imageUrl: 'https://res.cloudinary.com/doyafbzya/image/upload/v1764021057/small-plants_owhwfm.jpg',
     tradeAccessor: 'dryscapingHardscaping',
   },
   {

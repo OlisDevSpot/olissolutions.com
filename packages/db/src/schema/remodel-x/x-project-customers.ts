@@ -1,7 +1,7 @@
 import type z from 'zod'
 import { unsafeId } from '@olis/db/lib/schema-helpers'
 import { customers } from '@olis/db/schema/platform'
-import { projects } from '@olis/db/schema/remodel-x/project'
+import { projects } from '@olis/db/schema/remodel-x'
 import { relations } from 'drizzle-orm'
 import { boolean, unique, uuid } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'

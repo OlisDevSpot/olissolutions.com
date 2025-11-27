@@ -1,20 +1,21 @@
-import { useGetTradeScopes } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-scopes";
 import { MinusIcon, PlusIcon } from "lucide-react";
 
 import type { Scope } from "@olis/db/schema/platform";
 
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
-import { useScopeInfoDialogStore } from "@/shared/entities/scopes/hooks/use-scope-info-dialog-store";
+import { useGetTradeScopes } from "@olis/data-client/fetchers/platform/trades/queries/get-trade-scopes";
 import { Button } from "@olis/ui/components/button";
 import { Card } from "@olis/ui/components/card";
+import { ScopeInfoModal } from "@olis/ui/components/dialogs/scope-info-modal";
 import { EmptyState } from "@olis/ui/components/states/empty-state";
+import { useBaseModalStore } from "@olis/ui/hooks/use-base-modal-store";
 
 interface Props {
   currentTradeId?: number | null;
 }
 
 export function ScopeSelector({ currentTradeId }: Props) {
-  const { open: showInfoModal } = useScopeInfoDialogStore();
+  const { open: showInfoModal, setModal } = useBaseModalStore();
   const { addScopes, removeScopes, selectedScopes } = useProjectScopesStore();
   const scopes = useGetTradeScopes(currentTradeId!, { enabled: !!currentTradeId });
 
@@ -39,7 +40,11 @@ export function ScopeSelector({ currentTradeId }: Props) {
   
   function showInfo(e: React.MouseEvent, scope: Scope) {
     e.stopPropagation();
-    showInfoModal(scope);
+    setModal({
+      Element: <ScopeInfoModal scope={scope} />,
+      accessor: "scope-info-modal"
+    })
+    showInfoModal();
   }
 
   return (
@@ -63,7 +68,7 @@ export function ScopeSelector({ currentTradeId }: Props) {
                 {scope.label}
               </h3>
             </div>
-            <div className="absolute inset-0 bg-linear-to-b from-black/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-b from-background/70 via-transparent to-transparent" />
             <div className="absolute top-12 left-3">
               <a href={`https://www.google.com/search?q=${scope.label.replace(/[^a-z0-9 ]/gi, "").replace(" ", "+")}+replacement+cost+california`} target="_blank" rel="noopener noreferrer" className="absolute w-full min-w-max text-foreground text-semibold bg-background/50 backdrop-blur-sm px-2 py-1 rounded-md text-sm hover:bg-background/70 transition" onClick={e => e.stopPropagation()}>Compare on Google</a>
             </div>

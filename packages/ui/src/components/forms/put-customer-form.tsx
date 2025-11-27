@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form'
 
 interface Props {
   customer?: Customer
-  isPrimary: boolean | null
+  isPrimary?: boolean
   onSubmit: (data: CustomerFormSchema) => void
   isPending?: boolean
 }

@@ -23,6 +23,8 @@ export const ROOTS = {
     prodOrigin: 'https://remodelx.olissolutions.com',
     devOrigin: 'http://localhost:3001',
     dashboard: '/dashboard' as const,
+    admin: '/admin' as const,
+    getAdminRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.admin })}` as const,
     getProjectsRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/projects` as const,
     getShowroomRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/showroom` as const,
     getProjectsROICalculatorRoot: ({ absolute }: { absolute?: boolean } = {}) => `${generateUrl({ ...ROOTS.remodelX, absolute, basePath: ROOTS.remodelX.dashboard })}/project-roi-calculator` as const,

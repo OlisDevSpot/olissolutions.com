@@ -1,10 +1,11 @@
 'use client'
 
 import type { LucideIcon } from 'lucide-react'
+import { ROOTS } from '@olis/core/constants'
 import { getTypedKeys } from '@olis/core/lib/utils'
 import { useTRPC } from '@olis/data-client/trpc/client'
-import { Logo } from '@olis/ui/components/global/logo'
 
+import { Logo } from '@olis/ui/components/global/logo'
 import { SidebarUserButton } from '@olis/ui/components/navigation/sidebar-user-button-2'
 import {
   Sidebar,
@@ -26,6 +27,8 @@ import {
 import { HelpCircleIcon, LayoutDashboard, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Badge } from '../badge'
+import { buttonVariants } from '../button'
 
 interface SubItem {
   title: string
@@ -46,6 +49,7 @@ interface Item {
 interface Props<T extends Record<keyof K, Item[]>, K extends Record<string, string>> {
   sidebarItems: T
   sidebarGroups: K
+  adminUrl?: string
   settingsUrl?: string
   dashboardUrl?: string
   onSettingsClick?: () => void
@@ -57,11 +61,13 @@ interface Props<T extends Record<keyof K, Item[]>, K extends Record<string, stri
   isIdentityPending?: boolean
   logoColor?: 'primary' | 'green' | 'blue' | 'red'
   logoProduct?: string
+  isAdminPath?: boolean
 }
 
 export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<string, string>>({
   sidebarItems,
   sidebarGroups,
+  adminUrl = '/dashboard/admin',
   settingsUrl = '/dashboard/settings',
   dashboardUrl = '/dashboard',
   onSettingsClick,
@@ -69,6 +75,7 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
   isIdentityPending = false,
   logoColor,
   logoProduct,
+  isAdminPath = false,
 }: Props<T, K>) {
   const pathname = usePathname()
   const { setOpenMobile } = useSidebar()
@@ -79,11 +86,16 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
       <SidebarHeader className="border-b h-(--topnav-height) flex items-center pl-2">
         <SidebarMenu className="h-full flex justify-center">
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="p-0 items-center">
-              <Link href="/" className="w-full hover:bg-transparent active:bg-transparent relative">
-                <Logo full color={logoColor || 'primary'} product={logoProduct || 'Dashboard'} />
-              </Link>
-            </SidebarMenuButton>
+            <div className="flex gap-4 items-center justify-between">
+              <SidebarMenuButton asChild className="p-0 items-center">
+                <Link href="/" className="w-full hover:bg-transparent active:bg-transparent relative">
+                  <Logo full color={logoColor || 'primary'} product={logoProduct || 'Dashboard'} />
+                </Link>
+              </SidebarMenuButton>
+              {isAdminPath && (
+                <Badge variant="secondary">Admin</Badge>
+              )}
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -141,10 +153,17 @@ export function AppSidebar<T extends Record<keyof K, Item[]>, K extends Record<s
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
+            <SidebarMenuButton>
+              <Link href={adminUrl} className={buttonVariants({ variant: 'outline', className: 'border-accent' })}>
+                Admin
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
             <SidebarMenuButton
               asChild
               className="transition-colors duration-200 text-sidebar-foreground"
-              isActive={pathname.startsWith(`${dashboardUrl}/settings`)}
+              isActive={pathname.includes(`/settings`)}
               onClick={onSettingsClick ?? undefined}
             >
               {!onSettingsClick

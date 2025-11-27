@@ -8,7 +8,7 @@ export function NewProjectModal() {
   const { isOpen, close } = useModalStore();
 
   return (
-    <Modal close={close} isOpen={isOpen} title="Create new project" description="Add a new project to the portal">
+    <Modal close={close} isOpen={isOpen} title="Create new project" description="Add a new project to the portal" className="w-full">
       <InitProjectForm onSettled={() => close()} />
     </Modal>
   );

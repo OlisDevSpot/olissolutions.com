@@ -1,8 +1,10 @@
-import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { useQueryClient } from "@tanstack/react-query";
+
+import type { Trade } from "@olis/db/schema/platform";
 
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { useTRPC } from "@/trpc/client";
+import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 import { Card } from "@olis/ui/components/card";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
 import { cn } from "@olis/ui/lib/utils";
@@ -10,15 +12,20 @@ import { cn } from "@olis/ui/lib/utils";
 interface Props {
   currentTradeId: number | null;
   setCurrentTradeId: (tradeId: number | null) => void;
+  filter?: {
+    searchTerm?: string;
+  };
 }
 
-export function TradeSelector({ currentTradeId, setCurrentTradeId }: Props) {
+export function TradeSelector({ currentTradeId, setCurrentTradeId, filter }: Props) {
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const { selectedScopes } = useProjectScopesStore();
   const { data: trades, isLoading } = useGetTrades();
 
-  if (!trades) {
+  const filteredTrades = Object.keys(filter || {}).length > 0 ? trades?.filter(trade => trade.label.toLowerCase().includes(filter?.searchTerm?.toLowerCase() || "")) : trades;
+
+  if (!filteredTrades?.length) {
     return "No trades found!";
   }
 
@@ -38,12 +45,12 @@ export function TradeSelector({ currentTradeId, setCurrentTradeId }: Props) {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      {trades.map(trade => (
+      {(filteredTrades).map(trade => (
         <Card
           data-selected={selectedScopes.some(selectedScope => selectedScope.tradeId === trade.id)}
           key={trade.id}
           className={cn(
-            "group cursor-pointer hover:shadow-lg hover:brightness-75 transition-all duration-300 bg-card rounded-lg overflow-hidden p-0 h-24 brightness-50 data-[selected=true]:border-primary data-[selected=true]:border-2 data-[selected=true]:brightness-100",
+            "aspect-square group cursor-pointer hover:shadow-lg brightness-50 hover:brightness-90 transition-all duration-300 bg-card rounded-lg overflow-hidden p-0 data-[selected=true]:border-primary data-[selected=true]:border-2 data-[selected=true]:brightness-100 border gap-0",
             currentTradeId === trade.id && "brightness-100 hover:brightness-100",
           )}
           onMouseEnter={() => prefetch(trade.id)}
@@ -62,12 +69,12 @@ export function TradeSelector({ currentTradeId, setCurrentTradeId }: Props) {
               alt={trade.label}
               className="object-cover group-hover:scale-105 transition-transform duration-500 h-full w-full"
             />
-            <div className="absolute top-3 left-3 text-foreground z-10">
-              <h3 className="text-lg font-semibold group-hover:text-primary-foreground transition-colors">
-                {trade.label}
-              </h3>
-            </div>
             <div className="absolute inset-0 bg-lineear-to-b from-black/70 via-transparent to-transparent" />
+          </div>
+          <div className="p-2">
+            <h3 className="text-lg font-semibold group-hover:text-primary-foreground transition-colors">
+              {trade.label}
+            </h3>
           </div>
         </Card>
       ))}

@@ -86,7 +86,7 @@ export function InitProjectForm({ onSettled }: Props) {
   }
 
   return (
-    <section>
+    <section className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 

@@ -15,7 +15,6 @@ export default function ProjectLayout({ children }: { children: React.ReactNode 
 
   return (
     <>
-      <ScopeInfoDialog />
       <div className={cn("h-full w-full flex", isMobile ? "flex-col" : "flex-row")}>
         <div className="shrink-0">
           { isMobile 

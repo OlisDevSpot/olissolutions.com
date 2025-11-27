@@ -2,13 +2,13 @@ import { customerInfoFormSchema, jobsiteFormSchema, projectInfoFormSchema } from
 
 import { CustomerInfoForm } from "./customer-info-form";
 import { JobsiteForm } from "./jobsite-form";
-import { ProjectInfoForm } from "./project-info-form";
+import { ProjectInfoFields } from "./project-info-fields";
 
 export const NEW_PROJECT_FORM_STEPS = [
   {
     id: "project",
     label: "Project Info",
-    Component: ProjectInfoForm,
+    Component: ProjectInfoFields,
     validation: projectInfoFormSchema,
   },
   {

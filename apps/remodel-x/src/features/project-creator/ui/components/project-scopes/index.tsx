@@ -76,12 +76,12 @@ export function ProjectScopes() {
         <ProjectFlowSection.Content className="px-0 flex h-full ">
           <Tabs defaultValue={projectScopesSteps[0]!.accessor} className="w-full bg-transparent">
             <div className="flex w-full justify-between shrink-0">
-              <TabsList className="h-[120px] bg-transparent dark:bg-transparent">
+              <TabsList className="h-20 bg-transparent dark:bg-transparent">
                 {projectScopesSteps.map(({ label, accessor, description }) => (
-                  <TabsTrigger key={accessor} minimalCSS value={accessor} className="flex items-center justify-center w-[300px] dark:data-[state=active]:bg-transparent data-[state=active]:outline-none border-b-white rounded-b-none border-b-0 data-[state=active]:border-b-4 p-2 [&_h3]:text-white/30 [&_p]:text-muted-foreground/30 data-[state=active]:[&_h3]:text-white data-[state=active]:[&_p]:text-muted-foreground">
+                  <TabsTrigger key={accessor} minimalCSS value={accessor} className="flex items-center justify-center w-[300px] dark:data-[state=active]:bg-transparent data-[state=active]:outline-none border-b-white rounded-b-none border-b-0 data-[state=active]:border-b-4 p-2 [&_h3]:text-foreground/30 [&_p]:text-muted-foreground/30 data-[state=active]:[&_h3]:text-foreground data-[state=active]:[&_p]:text-muted-foreground">
                     <div className="w-full h-fit justify-start">
                       <h3 className="font-semibold text-lg">{label}</h3>
-                      <p className="text-muted-foreground font-sm text-nowrap text-clip">{description}</p>
+                      <p className="text-muted-foreground text-sm text-nowrap text-clip">{description}</p>
                     </div>
                   </TabsTrigger>
                 ))}

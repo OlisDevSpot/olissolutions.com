@@ -1,5 +1,5 @@
-import type { InsertPricing } from '../../../schema/remodel-x'
-import type { TradeAccessor } from '@olis/db/types/trades'
+import type { InsertPricing } from '@olis/db/schema/remodel-x'
+import type { TradeAccessor } from '@olis/db/types'
 
 export const pricingData = {
   solar: [
@@ -151,6 +151,11 @@ export const pricingData = {
       label: 'Dollar per SqFt (Pavers)',
       defaultValue: 11,
     },
+    {
+      key: 'dollarPerSqFtDg',
+      label: 'Dollar per SqFt (DG)',
+      defaultValue: 5,
+    },
   ],
   hvac: [
     {
@@ -214,10 +219,13 @@ export const pricingData = {
     },
   ],
   interiorPaint: [],
-  bathroomRemodel: [],
-  kitchenRemodel: [],
+  bathroom: [],
+  kitchen: [],
   plumbing: [],
   addition: [],
   flooring: [],
   adu: [],
+  blueprintsEngineering: [],
+  exteriorFeatures: [],
+  hazardousMaterials: [],
 } as const satisfies Record<TradeAccessor, InsertPricing[]>

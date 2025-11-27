@@ -1,6 +1,5 @@
 "use client";
 
-import { useUpdateCustomer } from "@olis/data-client/fetchers/platform/customers/mutations/update-customer";
 import { useQueryClient } from "@tanstack/react-query";
 import { PlusIcon } from "lucide-react";
 import { useEffect } from "react";
@@ -13,6 +12,7 @@ import { useCreateProjectCustomer } from "@/features/project-creator/hooks/use-c
 import { useCurrentProjectId } from "@/features/project-creator/hooks/use-current-project-id";
 import { ProjectFlowSection } from "@/features/project-creator/ui/components/project-flow-section";
 import { useTRPC } from "@/trpc/client";
+import { useUpdateCustomer } from "@olis/data-client/fetchers/platform/customers/mutations/update-customer";
 import { Button } from "@olis/ui/components/button";
 import { PutCustomerModal } from "@olis/ui/components/dialogs/put-customer-modal";
 import { PutCustomerForm } from "@olis/ui/components/forms/put-customer-form";
