@@ -2,12 +2,14 @@
 
 import type {
   ColumnDef,
+  ColumnFiltersState,
   SortingState,
 } from "@tanstack/react-table";
 
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -42,6 +44,8 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [rowSelection, setRowSelection] = useState({});
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pageIndex, setPageIndex] = useState(0);
 
   const table = useReactTable({
@@ -49,10 +53,15 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    enableSorting: true,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
+      rowSelection,
       pagination: {
         pageIndex,
         pageSize: 10,
@@ -64,11 +73,15 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
     <div className="bg-card h-full flex flex-col justify-between">
       <div className="overflow-hidden rounded-md border">
         <Table className="">
-          <TableHeader className="[&_th:first-child]:w-[250px]">
+          <TableHeader>
             {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <TableHead key={header.id} className="p-4">
+                  <TableHead
+                    key={header.id}
+                    style={{ width: header.getSize(), }}
+                    className="px-0"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -86,12 +99,12 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
                   table.getRowModel().rows.map(row => (
                     <TableRow
                       key={row.id}
-                      className="cursor-pointer bg-background hover:bg-background/80"
+                      className="cursor-pointer bg-background hover:bg-background/80 h-20"
                       onClick={() => router.push(`${ROOTS.remodelX.getProjectsRoot()}/${row.original.project.id}`)}
                       data-state={row.getIsSelected() && "selected"}
                     >
                       {row.getVisibleCells().map(cell => (
-                        <TableCell key={cell.id} className="p-4">
+                        <TableCell key={cell.id} className="p-0 h-20">
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </TableCell>
                       ))}

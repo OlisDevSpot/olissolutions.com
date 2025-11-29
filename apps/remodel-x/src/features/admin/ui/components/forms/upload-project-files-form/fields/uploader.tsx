@@ -23,9 +23,10 @@ export function Uploader({ className, onDrop }: Props) {
     maxSize: 5 * 1024 * 1024, // 5MB
     maxFiles: 100,
     noClick: true,
-    onDrop: (files) => {
-      onDrop(files)
-      form.setValue("files", files)
+    onDrop: (newFiles) => {
+      const currentFiles = form.getValues("files")
+      onDrop(newFiles)
+      form.setValue("files", [...currentFiles, ...newFiles])
     },
     onDropAccepted: () => {},
     onDropRejected: () => {},

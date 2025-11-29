@@ -31,7 +31,7 @@ export function UploadMetadataFields({ className }: Props) {
   }, [itemType])
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 flex gap-4", className)}>
       <FormField
         name="entity.type"
         control={form.control}

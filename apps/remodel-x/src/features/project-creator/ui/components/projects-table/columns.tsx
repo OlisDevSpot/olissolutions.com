@@ -7,9 +7,10 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 
 import type { GetProjectsOutput } from "@/features/project-creator/data/queries/get-projects";
 
-import { capitalize } from "@olis/core/lib/formatters";
+import { capitalize, convertUTCToPST } from "@olis/core/lib/formatters";
 import { Badge } from "@olis/ui/components/badge";
 import { Button } from "@olis/ui/components/button";
+import { Checkbox } from "@olis/ui/components/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,11 +24,60 @@ import { DeleteProjectButton } from "../delete-project-button";
 
 export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
   {
-    accessorKey: "date",
+    id: "select",
+    header: ({ table }) => (
+      <div 
+        onClick={(e) => {
+          e.stopPropagation();
+          if (e.currentTarget.attributes.getNamedItem("type")?.value === "checkbox") {
+            return undefined
+          }
+          table.toggleAllPageRowsSelected()
+        }}
+        className="flex justify-center items-center w-full h-full pr-4"
+      >
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected()
+            || (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
+      </div>
+    ),
+    cell: ({ row }) => (
+      <div 
+        onClick={(e) => {
+          e.stopPropagation();
+          if (e.currentTarget.attributes.getNamedItem("type")?.value === "checkbox") {
+            return undefined
+          }
+          row.toggleSelected()
+        }}
+        className="flex justify-center items-center w-full h-full pr-4 select-none"
+      >
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={value => row.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
+      </div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+    maxSize: 30,
+    size: 30,
+    minSize: 30
+  },
+  {
+    accessorKey: "project.createdAt",
     header: ({ column }) => {
       return (
         <div
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() => { 
+            column.toggleSorting(column.getIsSorted() === "asc") 
+          }}
           className="cursor-pointer flex items-center"
         >
           Created date
@@ -36,14 +86,27 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
       );
     },
     cell: ({ row }) => {
-      console.log(row.original.project.createdAt);
-      const formattedDate = formatRelative(row.original.project.createdAt, new Date());
-      return <div>{formattedDate}</div>;
+      const pstDate = convertUTCToPST(row.original.project.createdAt);
+      const formattedDate = formatRelative(pstDate, new Date());
+      return <div className="w-full h-full bg-red-500 flex items-center">{formattedDate}</div>;
     },
+    size: 50,
+    maxSize: 50,
+    minSize: 50
   },
   {
-    accessorKey: "address",
-    header: () => <div className="">Address</div>,
+    accessorKey: "fullAddress",
+    header: ({ column }) => {
+      return (
+        <div
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="cursor-pointer flex items-center"
+        >
+          Address
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      )
+    },
     cell: ({ row }) => {
       const address = row.original.fullAddress;
       const addressComponents = address.split(", ");
@@ -73,7 +136,7 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
       const fullNames = row.original.customers.map(customer => `${capitalize(customer.firstName)} ${capitalize(customer.lastName)}`);
 
       return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 h-full w-full items-center flex-wrap">
           {fullNames.map((fullName, index) => (
             <Badge key={`lastName-${index}`} className="border-muted-foreground/30 border rounded-lg gap-2">
               <div className="text-left font-medium">{fullName}</div>

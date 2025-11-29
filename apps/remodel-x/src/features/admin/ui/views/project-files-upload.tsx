@@ -22,7 +22,7 @@ export function ProjectFilesUploadView() {
           </PageHeaderSection.Header>
         </PageHeaderSection.Frame>
       </PageHeaderSection>
-      <ProjectFlowSection>
+      <ProjectFlowSection className="grow min-h-0 overflow-auto">
         <ProjectFlowSection.Header title="Platform Files" />
         <UploadProjectFilesForm />
       </ProjectFlowSection>

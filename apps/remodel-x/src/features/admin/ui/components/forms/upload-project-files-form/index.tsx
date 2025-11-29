@@ -48,19 +48,17 @@ export function UploadProjectFilesForm() {
         continue
       }
 
-      const url = output.url
-
-      await fetch(url, {
+      await fetch(output.url, {
         method: "PUT",
         body: file,
       })
     }
   }
 
-  const updateFiles = useCallback((acceptedFiles: File[]) => {
+  const updateFiles = useCallback((newFiles: File[]) => {
     setFiles(prev => ([
       ...prev,
-      ...acceptedFiles.map(file => ({
+      ...newFiles.map(file => ({
         id: crypto.randomUUID(),
         file,
         progress: 0,
@@ -73,27 +71,33 @@ export function UploadProjectFilesForm() {
   
   return (
     <Form {...form}>
-      <form
-        className=""
-        onSubmit={form.handleSubmit((data: UploadProjectFilesSchema) => {
-          uploadFiles(data)
-        })}
-      >
-        <div className="w-full h-full flex gap-4 p-4">
-          <UploadMetadataFields className="flex-1" />
-          <Uploader onDrop={(newFiles) => {
-            updateFiles(newFiles)
-          }}
-          />
-        </div>
-        <Button>Upload</Button>
-      </form>
-      <div className="w-full grid grid-cols-3 gap-4">
-        {files.map(file => (
-          <div key={file.id} className="w-full h-[300px] bg-red-500">
-            <img src={file.objectUrl} alt={file.file.name} className="object-cover w-full h-full" />
+      <div className="space-y-8 p-4 lg:p-6 w-full">
+        <form
+          className="w-full space-y-4"
+          onSubmit={form.handleSubmit((data: UploadProjectFilesSchema) => {
+            uploadFiles(data)
+          })}
+        >
+          <div className="w-full h-full flex flex-col gap-4">
+            <Uploader 
+              className="h-40"
+              onDrop={(newFiles) => {
+                updateFiles(newFiles)
+              }}
+            />
+            <UploadMetadataFields className="flex-1" />
           </div>
-        ))}
+          <Button>Upload</Button>
+        </form>
+        {files && files.length > 0 && (
+          <div className="w-full grid grid-cols-3 gap-4">
+            {files.map(file => (
+              <div key={file.id} className="w-full h-[300px] bg-red-500 rounded-lg overflow-hidden">
+                <img src={file.objectUrl} alt={file.file.name} className="object-cover w-full h-full" />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </Form>
   )
