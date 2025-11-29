@@ -1,14 +1,10 @@
-import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
-
 import { useGetItemsBenefits } from "@/features/showroom/hooks/use-get-items-benefits";
 import { iconMap } from "@olis/ui/lib/benefits-icons-map";
 
-interface Props<T extends ShowroomItemType> {
-  type: T;
-  item: ShowroomItem & { id: number };
-}
+import { useShowroomItemHeroContext } from "./showroom-item-hero";
 
-export function ShowroomItemBenefits<T extends ShowroomItemType>({ item, type }: Props<T>) {
+export function ShowroomItemBenefits() {
+  const { item, type } = useShowroomItemHeroContext();
   const itemBenefits = useGetItemsBenefits({ item, type });
 
   if (!itemBenefits?.data && !itemBenefits?.isLoading) {

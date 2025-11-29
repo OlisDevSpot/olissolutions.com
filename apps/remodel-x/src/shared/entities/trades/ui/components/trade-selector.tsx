@@ -1,7 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
 
-import type { Trade } from "@olis/db/schema/platform";
-
 import { useProjectScopesStore } from "@/features/project-creator/hooks/use-project-scopes-store";
 import { useTRPC } from "@/trpc/client";
 import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
@@ -45,7 +43,7 @@ export function TradeSelector({ currentTradeId, setCurrentTradeId, filter }: Pro
 
   return (
     <div className="w-full flex flex-col gap-4">
-      {(filteredTrades).map(trade => (
+      {filteredTrades.map(trade => (
         <Card
           data-selected={selectedScopes.some(selectedScope => selectedScope.tradeId === trade.id)}
           key={trade.id}

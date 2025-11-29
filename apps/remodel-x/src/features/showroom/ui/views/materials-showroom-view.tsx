@@ -11,7 +11,7 @@ export function MaterialsShowroomView() {
   const { data: materials, isLoading } = useGetMaterials();
   const [searchTerm, setSearchTerm] = useState("");
   const scrollableDivRef = useRef<HTMLDivElement>(null);
-  const { scrolled } = useContainerScroll({ containerRef: scrollableDivRef });
+  const { scrolled: _scrolled } = useContainerScroll({ containerRef: scrollableDivRef });
 
   if (!materials && !isLoading) {
     return (
@@ -24,7 +24,7 @@ export function MaterialsShowroomView() {
   // Filter materials based on search term
   const filteredMaterials = materials?.filter(material =>
     material.label.toLowerCase().includes(searchTerm.toLowerCase())
-    || material.description.toLowerCase().includes(searchTerm.toLowerCase()),
+    || material.description?.toLowerCase().includes(searchTerm.toLowerCase()),
   ) || [];
 
   const GridDisplay = () => filteredMaterials.length === 0 && !isLoading

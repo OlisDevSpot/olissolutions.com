@@ -4,7 +4,7 @@ import { ListFilter } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { createContext, useContext, useState } from "react";
 
-import type { ShowroomFilter, ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomFilter, ShowroomItem } from "@/features/showroom/types";
 
 import { Button } from "@olis/ui/components/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@olis/ui/components/popover";
@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@olis/ui/components/pop
 import { FiltersDisplay } from "./filters-display";
 
 interface FilterContextProps { 
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
   modalOpen: boolean; 
   setModalOpen: (open: boolean) => void;
   selectedFilters: Omit<ShowroomFilter, "render">[];
@@ -33,7 +33,7 @@ export function useFiltersContext() {
 
 interface Props {
   children: React.ReactNode;
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
 }
 
 export function FiltersProvider({ children, type }: Props) {

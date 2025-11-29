@@ -12,6 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { PlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -31,11 +32,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onEmptyButtonClick?: () => void;
 }
 
 export function DataTable<TData extends GetProjectsOutput[number], TValue>({
   columns,
   data,
+  onEmptyButtonClick,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -98,7 +101,20 @@ export function DataTable<TData extends GetProjectsOutput[number], TValue>({
               : (
                   <TableRow>
                     <TableCell colSpan={columns.length} className="h-24 text-center">
-                      No results.
+                      <div className="flex flex-col justify-center gap-2 items-center w-full">
+                        No results.
+                        <Button 
+                          size="sm" 
+                          className="w-fit" 
+                          variant="outline" 
+                          onClick={() => {
+                            onEmptyButtonClick?.();
+                          }}
+                        >
+                          <PlusIcon />
+                          Add Project
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 )}

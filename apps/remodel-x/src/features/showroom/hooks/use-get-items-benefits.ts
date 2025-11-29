@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client"
 
-import type { ShowroomItem, ShowroomItemType } from "../types"
+import type { ShowroomItem } from "../types"
 
 interface Props {
   item: ShowroomItem & { id: number };
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
 }
 
 export function useGetItemsBenefits({ item, type }: Props) {

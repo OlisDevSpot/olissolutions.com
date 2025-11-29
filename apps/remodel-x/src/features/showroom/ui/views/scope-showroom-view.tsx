@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetScopeByAccessor } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-by-accessor";
 import { ArrowLeft, Building, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -9,6 +8,7 @@ import type { ScopeAccessor } from "@olis/db/types"
 import { ShowroomItemBenefits } from "@/features/showroom/ui/components/showroom-item-benefits";
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
 import { ROOTS } from "@olis/core/constants";
+import { useGetScopeByAccessor } from "@olis/data-client/fetchers/platform/scopes/queries/get-scope-by-accessor";
 import { Button } from "@olis/ui/components/button";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
 
@@ -16,9 +16,9 @@ export function ScopeShowroomView() {
   const pathname = usePathname();
   const router = useRouter();
   const scopeAccessor = pathname.split("/").pop() as ScopeAccessor;
-  const scope = useGetScopeByAccessor(scopeAccessor);
+  const rawScope = useGetScopeByAccessor(scopeAccessor);
 
-  if (scope.isLoading) {
+  if (rawScope.isLoading) {
     return (
       <LoadingState
         title="Loading scope details..."
@@ -27,7 +27,7 @@ export function ScopeShowroomView() {
     );
   }
 
-  if (!scope.data) {
+  if (!rawScope.data) {
     return (
       <div className="h-full flex flex-col items-center justify-center space-y-4">
         <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
@@ -43,16 +43,21 @@ export function ScopeShowroomView() {
     );
   }
 
+  const scope = { 
+    ...rawScope.data, 
+    type: "scope" as const
+  }
+
   return (
     <ShowroomItemHero 
       type="scope"
-      item={scope.data}
+      item={scope}
     >
       <ShowroomItemHero.Content badge="New badge">
         <ShowroomItemHero.Stats>
           <ShowroomItemHeroStatCard Icon={TrendingUp} title="ROI" value="10%" description="Return on investment is a lot!" />
         </ShowroomItemHero.Stats>
-        <ShowroomItemBenefits item={scope.data} type="scope" />
+        <ShowroomItemBenefits />
       </ShowroomItemHero.Content>
     </ShowroomItemHero>
   );

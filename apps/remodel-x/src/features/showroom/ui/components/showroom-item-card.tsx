@@ -1,23 +1,19 @@
-import { useState } from "react";
-
-import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomItem } from "@/features/showroom/types";
 
 import { ItemCard } from "@/shared/components/cards/item-summary-card";
 
-interface Props extends React.ComponentProps<typeof ItemCard>, React.ComponentProps<typeof ItemCard.Image> {
-  item: ShowroomItem;
+interface Props extends Omit<React.ComponentProps<typeof ItemCard>, "children">, React.ComponentProps<typeof ItemCard.Image> {
+  type: ShowroomItem["type"];
+  item: Omit<ShowroomItem, "type">;
   onClick: () => void;
   showHeader?: boolean;
-  type?: ShowroomItemType;
-  estimatedPrice?: string;
   roiPercentage?: string;
-  showPricing?: boolean;
   showROI?: boolean;
   showQuickActions?: boolean;
-  onFavoriteToggle?: () => void;
   onQuickView?: () => void;
   status?: "available" | "popular" | "recommended" | "new" | "limited";
   variant?: "default" | "compact";
+  children?: React.ReactNode;
 }
 
 export function ShowroomCard({ 
@@ -27,26 +23,17 @@ export function ShowroomCard({
   showStars, 
   compareGoogle,
   type,
-  estimatedPrice,
   roiPercentage,
   showPricing = false,
   showROI = false,
   showQuickActions = false,
-  onFavoriteToggle,
   onQuickView,
   status,
   variant = "default",
   ...props 
 }: Props) {
-  const [isFavorited, setIsFavorited] = useState(false);
-  
-  const handleFavoriteToggle = () => {
-    setIsFavorited(!isFavorited);
-    onFavoriteToggle?.();
-  };
-  
   // Auto-determine pricing and ROI display based on type
-  const shouldShowPricing = showPricing || (type === "material" && !!estimatedPrice);
+  const shouldShowPricing = showPricing || (type === "material");
   const shouldShowROI = showROI || (type === "trade" && !!roiPercentage);
   
   // Auto-determine presentation features based on variant
@@ -55,12 +42,11 @@ export function ShowroomCard({
   
   return (
     <ItemCard 
+      type={type}
       item={item} 
       onClick={onClick}
       variant={variant}
       showQuickActions={enhancedShowQuickActions}
-      isFavorited={isFavorited}
-      onFavoriteToggle={handleFavoriteToggle}
       onQuickView={onQuickView}
       {...props}
     >

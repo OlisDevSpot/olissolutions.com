@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetAddonByAccessor } from "@olis/data-client/fetchers/platform/addons/queries/get-addon-by-accessor";
 import { ArrowLeft, Building, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -8,6 +7,7 @@ import type { AddonAccessor } from "@olis/db/types";
 
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
 import { ROOTS } from "@olis/core/constants";
+import { useGetAddonByAccessor } from "@olis/data-client/fetchers/platform/addons/queries/get-addon-by-accessor";
 import { Button } from "@olis/ui/components/button";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
 
@@ -45,7 +45,7 @@ export function AddonShowroomView() {
   return (
     <ShowroomItemHero 
       type="addon"
-      item={addon.data}
+      item={{ ...addon.data, type: "addon" }}
     >
       <ShowroomItemHero.Content badge="New badge">
         <ShowroomItemHero.Stats>

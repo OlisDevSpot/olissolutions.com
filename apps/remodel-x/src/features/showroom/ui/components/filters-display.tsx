@@ -5,12 +5,12 @@ import { scopeFiltersDef } from "@/features/showroom/constants/filters";
 import { ROOTS } from "@olis/core/constants";
 import { useGetTrades } from "@olis/data-client/fetchers/platform/trades/queries/get-trades";
 
-import type { ShowroomItemType } from "../../types";
+import type { ShowroomItem } from "../../types";
 
 import { useFiltersContext } from "./filters";
 
 interface Props {
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
 }
 
 export function FiltersDisplay({ type }: Props) {

@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-import type { ShowroomItem, ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomItem } from "@/features/showroom/types";
 
 import { ROOTS } from "@olis/core/constants";
 import { Badge } from "@olis/ui/components/badge";
@@ -11,14 +11,14 @@ import { cn } from "@olis/ui/lib/utils";
 import { ShowroomCard } from "./showroom-item-card";
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
-  type: ShowroomItemType;
-  items: ShowroomItem[];
+  items: Omit<ShowroomItem, "type">[];
   title?: string;
   isLoading?: boolean;
   className?: string;
+  type: ShowroomItem["type"];
 }
 
-export function ShowroomGrid({ type, items, title, isLoading = false, className, ...showroomCardProps }: Props) {
+export function ShowroomGrid({ items, type, title, isLoading = false, className, ...showroomCardProps }: Props) {
   const router = useRouter();
   const { open: sidebarOpen } = useSidebar();
 
@@ -44,6 +44,7 @@ export function ShowroomGrid({ type, items, title, isLoading = false, className,
                   <ShowroomCard
                     {...showroomCardProps}
                     key={item.accessor}
+                    type={type}
                     item={item}
                     onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/${type}s/${item.accessor}`)}
                     showHeader
@@ -71,7 +72,7 @@ export function ShowroomLoading() {
   )
 }
 
-export function EmptyShowroomGrid<T extends ShowroomItemType>({ type }: { type: T }) {
+export function EmptyShowroomGrid<T extends ShowroomItem["type"]>({ type }: { type: T }) {
   return (
     <div className="text-center py-12 grow min-h-0 flex flex-col items-center justify-center">
       <h3 className="text-lg font-semibold mb-2">
@@ -87,14 +88,17 @@ export function EmptyShowroomGrid<T extends ShowroomItemType>({ type }: { type: 
 }
 
 interface ShowroomGridsProps {
-  items: ShowroomItem[];
+  type: ShowroomItem["type"];
+  items: Omit<ShowroomItem, "type">[];
   title?: string;
   isLoading?: boolean;
 }
 
-export function TradeShowroomGrid({ items, title, isLoading }: ShowroomGridsProps) {
+export function TradeShowroomGrid({ type, items, title, isLoading }: ShowroomGridsProps) {
+  const itemsWithType = items.map(item => ({ ...item, type })) 
+  
   return (
-    <ShowroomGrid type="trade" items={items} title={title} isLoading={isLoading} />
+    <ShowroomGrid type="trade" items={itemsWithType} title={title} isLoading={isLoading} />
   )
 }
 

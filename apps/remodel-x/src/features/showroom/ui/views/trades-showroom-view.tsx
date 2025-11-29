@@ -30,7 +30,7 @@ export function TradesShowroomView() {
 
   const filteredTrades = trades?.filter(trade =>
     trade.label.toLowerCase().includes(searchTerm.toLowerCase())
-    || trade.description.toLowerCase().includes(searchTerm.toLowerCase())
+    || trade.description?.toLowerCase().includes(searchTerm.toLowerCase())
   ).filter((trade) => {
     return !locationParam || trade.location === locationParam;
   }) || [];
@@ -44,13 +44,13 @@ export function TradesShowroomView() {
     : (
         <>
           {(exteriorTrades.length > 0 || isLoading) && (
-            <TradeShowroomGrid items={exteriorTrades} title="Exterior Trades" isLoading={isLoading} />
+            <TradeShowroomGrid type="trade" items={exteriorTrades} title="Exterior Trades" isLoading={isLoading} />
           )}
           {(interiorTrades.length > 0 || isLoading) && (
-            <TradeShowroomGrid items={interiorTrades} title="Interior Trades" isLoading={isLoading} />
+            <TradeShowroomGrid type="trade" items={interiorTrades} title="Interior Trades" isLoading={isLoading} />
           )}
           {(lotTrades.length > 0 || isLoading) && (
-            <TradeShowroomGrid items={lotTrades} title="Lot Trades" isLoading={isLoading} />
+            <TradeShowroomGrid type="trade" items={lotTrades} title="Lot Trades" isLoading={isLoading} />
           )}
         </>
       )
@@ -59,7 +59,7 @@ export function TradesShowroomView() {
     <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
       <ShowroomHeader type="trade">
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading}>
-          <FiltersProvider>
+          <FiltersProvider type="trade">
             <Filters>
               <FilterByLocation />
             </Filters>

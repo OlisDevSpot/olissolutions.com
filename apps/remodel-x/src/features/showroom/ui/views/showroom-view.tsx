@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import type { ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomItem } from "@/features/showroom/types";
 
 import { useTRPC } from "@/trpc/client";
 import { ROOTS } from "@olis/core/constants";
@@ -22,28 +22,28 @@ export function ShowroommView() {
 
   return (
     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <ShowroomNavCard showroomItemType="trade" />
-      <ShowroomNavCard showroomItemType="scope" />
-      <ShowroomNavCard showroomItemType="addon" />
-      <ShowroomNavCard showroomItemType="material" />
+      <ShowroomNavCard type="trade" />
+      <ShowroomNavCard type="scope" />
+      <ShowroomNavCard type="addon" />
+      <ShowroomNavCard type="material" />
     </div>
   );
 }
 
 interface ShowroomNavCardProps {
-  showroomItemType: ShowroomItemType;
+  type: ShowroomItem["type"];
 }
 
-function ShowroomNavCard({ showroomItemType }: ShowroomNavCardProps) {
+function ShowroomNavCard({ type }: ShowroomNavCardProps) {
   const router = useRouter()
 
   return (
     <div 
       className="w-full h-full flex items-center justify-center border rounded-2xl hover:bg-muted transition-colors cursor-pointer"
-      onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/${showroomItemType}s`)}
+      onClick={() => router.push(`${ROOTS.remodelX.getShowroomRoot()}/${type}s`)}
     >
       <h1 className="text-2xl font-extrabold uppercase">
-        { showroomItemType }
+        { type }
         s
       </h1>
     </div>

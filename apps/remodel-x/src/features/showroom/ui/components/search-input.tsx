@@ -3,14 +3,14 @@ import type { Dispatch, SetStateAction } from "react";
 import { Search, X } from "lucide-react";
 import React, { useRef } from "react";
 
-import type { ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomItem } from "@/features/showroom/types";
 
 import { Input } from "@olis/ui/components/input";
 import { cn } from "@olis/ui/lib/utils";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
   searchTerm: string;
   setSearchTerm: Dispatch<SetStateAction<string>>;
 }

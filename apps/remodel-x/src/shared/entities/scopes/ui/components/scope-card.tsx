@@ -14,7 +14,7 @@ interface ScopeCardProps extends React.ComponentProps<typeof Card> {
 
 export function ScopeCard({ scope, showStars, showHeader, compareGoogle, ...props }: ScopeCardProps) {
   return (
-    <ItemCard item={scope} {...props}>
+    <ItemCard type="scope" item={scope} {...props}>
       <ItemCard.Image showStars={showStars} compareGoogle={compareGoogle} />
       {showHeader && <ItemCard.Header />}
     </ItemCard>

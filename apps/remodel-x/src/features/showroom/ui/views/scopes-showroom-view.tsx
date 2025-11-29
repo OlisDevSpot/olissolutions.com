@@ -32,7 +32,7 @@ export function ScopesShowroomView() {
   // Filter scopes based on search term
   const filteredScopes = scopes?.filter(scope =>
     scope.label.toLowerCase().includes(searchTerm.toLowerCase())
-    || scope.description.toLowerCase().includes(searchTerm.toLowerCase())
+    || scope.description?.toLowerCase().includes(searchTerm.toLowerCase())
   ).filter((scope) => {
     if (!tradeId) {
       return true;
@@ -47,13 +47,13 @@ export function ScopesShowroomView() {
 
   const GridDisplay = () => filteredScopes.length === 0 && !isLoading
     ? <EmptyShowroomGrid type="scope" />
-    : <ScopeShowroomGrid items={filteredScopes} isLoading={isLoading} title="Scopes" />;
+    : <ScopeShowroomGrid type="scope" items={filteredScopes} isLoading={isLoading} title="Scopes" />;
   
   return (
     <div className="scrollbar-gutter-stable h-full flex flex-col gap-8">
       <ShowroomHeader type="scope">
         <ShowroomHeader.Filters searchTerm={searchTerm} setSearchTerm={setSearchTerm} disabled={isLoading}>
-          <FiltersProvider>
+          <FiltersProvider type="scope">
             <Filters>
               {trades && <FilterByTrade />}
               <FilterByConstructionType />

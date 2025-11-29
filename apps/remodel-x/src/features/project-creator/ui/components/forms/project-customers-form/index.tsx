@@ -16,6 +16,9 @@ import { Form } from "@olis/ui/components/form";
 
 import type { PutProjectCustomerSchema } from "./schema";
 
+import { DisadvantagesForm } from "../update-home-situation-form/disadvantages-form";
+import { FinancialObligationsForm } from "../update-home-situation-form/financial-obligations-form";
+import { HomeValueForm } from "../update-home-situation-form/home-value-form";
 import { putProjectCustomerSchema } from "./schema"
 
 interface Props {
@@ -56,7 +59,7 @@ export function ProjectCustomersForm({ customer: _customer, projectId }: Props) 
     putProjectCustomer.mutate({ projectId, customer: data }, {
       onSuccess: () => {
         toast.success("Financial profile updated");
-        queryClient.invalidateQueries(trpc.projects.findProjectFinancialProfile.queryOptions({ projectId }));
+        queryClient.invalidateQueries(trpc.projects.financialProfile.findProjectFinancialProfile.queryOptions({ projectId }));
       },
     });
   }
@@ -86,7 +89,7 @@ export function ProjectCustomersForm({ customer: _customer, projectId }: Props) 
             </ProjectFlowSection>
           </div>
         </div>
-        <Button type="submit" disabled={updateProjectFinancialProfile.isPending} className="w-fit">Save</Button>
+        <Button type="submit" disabled={putProjectCustomer.isPending} className="w-fit">Save</Button>
       </form>
     </Form>
   );

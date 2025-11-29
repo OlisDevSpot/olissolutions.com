@@ -94,7 +94,7 @@ export function ProjectCustomersView() {
                 <PutCustomerForm 
                   key={customer.id}
                   customer={customer}
-                  isPrimary={isPrimary}
+                  isPrimary={isPrimary || undefined}
                   onSubmit={(data: CustomerFormSchema) => handleSubmit(customer.id)(data)}
                   isPending={updateCustomer.isPending}
                 />

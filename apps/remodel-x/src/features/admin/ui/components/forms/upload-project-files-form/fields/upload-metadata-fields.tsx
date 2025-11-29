@@ -9,7 +9,7 @@ import type { UploadProjectFilesSchema } from "../schema"
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UploadMetadataFields({ className, ...props }: Props) {
+export function UploadMetadataFields({ className }: Props) {
   const form = useFormContext<UploadProjectFilesSchema>()
   const itemType = useWatch({
     control: form.control,
@@ -20,10 +20,9 @@ export function UploadMetadataFields({ className, ...props }: Props) {
   const items = useCallback(() => {
     switch (itemType) {
       case "trade":
-        console.log("trade")
-        return [{ name: "trade", label: "Trade" }]
+        return [{ name: "trade", label: "Trade", value: 1 }]
       case "scope":
-        return [{ name: "scope", label: "Scope" }]
+        return [{ name: "scope", label: "Scope", value: 1 }]
       case "addon":
         return []
       case "material":
@@ -74,7 +73,9 @@ export function UploadMetadataFields({ className, ...props }: Props) {
               <Select
                 key={field.name}
                 defaultValue={field.name}
-                onValueChange={field.onChange}
+                onValueChange={(newVal) => {
+                  field.onChange(Number(newVal))
+                }}
                 disabled={field.disabled}
               >
                 <SelectTrigger>
@@ -82,7 +83,7 @@ export function UploadMetadataFields({ className, ...props }: Props) {
                 </SelectTrigger>
                 <SelectContent>
                   {items().map(item => (
-                    <SelectItem key={item?.name} value={item.label}>
+                    <SelectItem key={item?.name} value={String(item.value)}>
                       {item.label}
                     </SelectItem>
                   ))}

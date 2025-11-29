@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormContext } from "react-hook-form";
 
-import { useGetPresignedUrl } from "@olis/data-client/fetchers/platform/core/get-presigned-url";
 import { Button } from "@olis/ui/components/button";
 import { FormControl, FormField, FormItem, FormMessage, } from "@olis/ui/components/form"
 import { Input } from "@olis/ui/components/input";
@@ -19,23 +18,15 @@ interface Props {
 
 export function Uploader({ className, onDrop }: Props) {
   const form = useFormContext<UploadProjectFilesSchema>()
-  const getPresignedUrl = useGetPresignedUrl()
-  
-  const uploadFiles = useCallback(async (newFiles: File[]) => {
-    for (const file of newFiles) {
-      const presignedUrl = await getPresignedUrl.mutate({
-        fileName: file.name,
-        contentType: file.type,
-        size: file.size
-      })
-    }
-  }, [])
   
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     maxSize: 5 * 1024 * 1024, // 5MB
     maxFiles: 100,
     noClick: true,
-    onDrop,
+    onDrop: (files) => {
+      onDrop(files)
+      form.setValue("files", files)
+    },
     onDropAccepted: () => {},
     onDropRejected: () => {},
     accept: {
@@ -55,7 +46,12 @@ export function Uploader({ className, onDrop }: Props) {
             {...getRootProps()}
           >
             <FormControl>
-              <Input type="file" {...field} {...getInputProps()} className="max-w-[300px]" />
+              <Input
+                type="file"
+                {...field}
+                {...getInputProps()}
+                className="max-w-[300px]"
+              />
             </FormControl>
             {isDragActive
               ? (
@@ -68,7 +64,6 @@ export function Uploader({ className, onDrop }: Props) {
                       type="button"
                       variant="default"
                       onClick={() => {
-                        console.log("opening...")
                         open()
                       }}
                     >

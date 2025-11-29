@@ -1,4 +1,4 @@
-import { ArrowRight, Award, CheckCircle, Clock, DollarSign, Eye, Heart, Star, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, Award, CheckCircle, Clock, Eye, Star, TrendingUp, Zap } from "lucide-react";
 import { createContext, useContext } from "react";
 
 import type { ShowroomItem } from "@/features/showroom/types";
@@ -9,31 +9,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@olis
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@olis/ui/components/tooltip";
 import { cn } from "@olis/ui/lib/utils";
 
-interface ItemCardProps<T extends ShowroomItem> extends React.ComponentProps<typeof Card> {
-  item: T;
-  variant?: "default" | "compact";
-  showQuickActions?: boolean;
-  isFavorited?: boolean;
-  onClick: () => void;
-  onFavoriteToggle?: () => void;
-  onQuickView?: () => void;
-  children?: React.ReactNode;
-}
-
 interface ItemCardContext {
-  item: ShowroomItem;
+  type: ShowroomItem["type"];
+  item: Omit<ShowroomItem, "type">;
   variant?: "default" | "compact";
-  estimatedPrice?: string;
   roiPercentage?: string;
   showQuickActions?: boolean;
-  isFavorited?: boolean;
-  onFavoriteToggle?: () => void;
   onQuickView?: () => void;
 }
-
-type ItemCardProviderProps = {
-  children: React.ReactNode;
-} & ItemCardContext;
 
 const itemCardContext = createContext<ItemCardContext | null>(null);
 
@@ -45,26 +28,34 @@ export function useItemCardContext() {
   return context;
 }
 
-export function ItemCardProvider({ children, item, ...contextProps }: ItemCardProviderProps) {
+type ItemCardProviderProps = ItemCardContext & {
+  children: React.ReactNode;
+}
+
+export function ItemCardProvider({ ...contextProps }: ItemCardProviderProps) {
   return (
-    <itemCardContext.Provider value={{ item, ...contextProps }}>
-      {children}
+    <itemCardContext.Provider value={{ ...contextProps }}>
+      {contextProps.children}
     </itemCardContext.Provider>
   );
 }
 
-export function ItemCard<T extends ShowroomItem>({
+type ItemCardProps = ItemCardProviderProps & {
+  className?: string;
+  onClick?: () => void;
+}
+
+export function ItemCard({
+  type,
   item,
   variant = "default",
   showQuickActions = false,
-  isFavorited = false,
-  onClick,
-  onFavoriteToggle,
   onQuickView,
-  className,
   children,
+  className,
+  onClick,
   ...props
-}: ItemCardProps<T>) {
+}: ItemCardProps) {
   const cardVariants = {
     default: "group cursor-pointer hover:shadow-lg transition-all duration-300 border-0 bg-card rounded-xl overflow-hidden p-2",
     compact: "group cursor-pointer hover:shadow-md transition-all duration-200 border border-border bg-card rounded-md overflow-hidden p-0 h-32",
@@ -72,11 +63,10 @@ export function ItemCard<T extends ShowroomItem>({
 
   return (
     <ItemCardProvider 
+      type={type}
       item={item} 
       variant={variant}
       showQuickActions={showQuickActions}
-      isFavorited={isFavorited}
-      onFavoriteToggle={onFavoriteToggle}
       onQuickView={onQuickView}
     >
       <Card
@@ -94,7 +84,6 @@ export function ItemImage({
   showStars, 
   badges = [], 
   compareGoogle,
-  showPricing = false,
   showROI = false
 }: { 
   showStars?: boolean; 
@@ -103,7 +92,7 @@ export function ItemImage({
   showPricing?: boolean;
   showROI?: boolean;
 }) {
-  const { item, variant, estimatedPrice, roiPercentage, showQuickActions } = useItemCardContext();
+  const { item, variant, roiPercentage, showQuickActions } = useItemCardContext();
 
   const imageHeight = variant === "compact" ? "h-32" : "h-56";
 
@@ -121,7 +110,6 @@ export function ItemImage({
       <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
         <div className="flex flex-col gap-2">
           {compareGoogle && <CompareGoogle />}
-          {(showPricing && estimatedPrice) && <ItemPricing />}
         </div>
         
         <div className="flex flex-col items-end gap-2">
@@ -207,30 +195,6 @@ export function ExploreMore() {
   );
 }
 
-// New subcomponents for enhanced presenter UX
-export function ItemPricing() {
-  const { estimatedPrice } = useItemCardContext();
-  
-  if (!estimatedPrice) 
-    return null;
-  
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="flex items-center gap-1 bg-green-600/90 backdrop-blur-sm px-2 py-1 rounded-full hover:bg-green-600 transition-colors">
-            <DollarSign className="w-3 h-3 text-white" />
-            <span className="text-white text-xs font-medium">{estimatedPrice}</span>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Estimated project cost</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-}
-
 export function ItemROI() {
   const { roiPercentage } = useItemCardContext();
   
@@ -258,12 +222,7 @@ export function ItemROI() {
 }
 
 export function ItemQuickActions() {
-  const { isFavorited, onFavoriteToggle, onQuickView } = useItemCardContext();
-  
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onFavoriteToggle?.();
-  };
+  const { onQuickView } = useItemCardContext();
   
   const handleQuickViewClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -272,26 +231,6 @@ export function ItemQuickActions() {
   
   return (
     <div className="flex items-center gap-1">
-      {onFavoriteToggle && (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-6 w-6 p-0 bg-black/30 backdrop-blur-sm hover:bg-black/40 border-white/20"
-                onClick={handleFavoriteClick}
-              >
-                <Heart className={cn("w-3 h-3", isFavorited ? "fill-red-500 text-red-500" : "text-white")} />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{isFavorited ? "Remove from favorites" : "Add to favorites"}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      )}
-      
       {onQuickView && (
         <TooltipProvider>
           <Tooltip>
@@ -316,7 +255,7 @@ export function ItemQuickActions() {
 }
 
 export function ItemFooter() {
-  const { estimatedPrice, roiPercentage, variant } = useItemCardContext();
+  const { roiPercentage, variant } = useItemCardContext();
   
   if (variant === "compact") 
     return null;
@@ -325,12 +264,6 @@ export function ItemFooter() {
     <CardContent className="pt-2 pb-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          {estimatedPrice && (
-            <div className="flex items-center gap-1 text-green-600">
-              <DollarSign className="w-4 h-4" />
-              <span className="text-sm font-medium">{estimatedPrice}</span>
-            </div>
-          )}
           {roiPercentage && (
             <div className="flex items-center gap-1 text-blue-600">
               <TrendingUp className="w-4 h-4" />
@@ -378,7 +311,6 @@ ItemCard.CompareGoogle = CompareGoogle;
 ItemCard.Header = ItemHeader;
 ItemCard.Content = ItemContent;
 ItemCard.ExploreMore = ExploreMore;
-ItemCard.Pricing = ItemPricing;
 ItemCard.ROI = ItemROI;
 ItemCard.QuickActions = ItemQuickActions;
 ItemCard.Footer = ItemFooter;

@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetMaterialByAccessor } from "@olis/data-client/fetchers/platform/materials/queries/get-material-by-accessor";
 import { ArrowLeft, Building, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -9,6 +8,7 @@ import type { MaterialAccessor } from "@olis/db/types";
 import { ShowroomItemBenefits } from "@/features/showroom/ui/components/showroom-item-benefits";
 import { ShowroomItemHero, ShowroomItemHeroStatCard } from "@/features/showroom/ui/components/showroom-item-hero";
 import { ROOTS } from "@olis/core/constants";
+import { useGetMaterialByAccessor } from "@olis/data-client/fetchers/platform/materials/queries/get-material-by-accessor";
 import { Button } from "@olis/ui/components/button";
 import { LoadingState } from "@olis/ui/components/states/loading-state";
 
@@ -46,13 +46,13 @@ export function MaterialShowroomView() {
   return (
     <ShowroomItemHero 
       type="material"
-      item={material.data}
+      item={{ ...material.data, type: "material" }}
     >
       <ShowroomItemHero.Content badge="New badge">
         <ShowroomItemHero.Stats>
           <ShowroomItemHeroStatCard Icon={TrendingUp} title="ROI" value="10%" description="Return on investment is a lot!" />
         </ShowroomItemHero.Stats>
-        <ShowroomItemBenefits type="material" item={material.data} />
+        <ShowroomItemBenefits />
       </ShowroomItemHero.Content>
     </ShowroomItemHero>
   );

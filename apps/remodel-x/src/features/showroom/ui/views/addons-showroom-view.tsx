@@ -25,7 +25,7 @@ export function AddonsShowroomView() {
   // Filter addons based on search term
   const filteredAddons = addons?.filter(addon =>
     addon.label.toLowerCase().includes(searchTerm.toLowerCase())
-    || addon.description.toLowerCase().includes(searchTerm.toLowerCase()),
+    || addon.description?.toLowerCase().includes(searchTerm.toLowerCase()),
   ) || [];
 
   const GridDisplay = () => filteredAddons.length === 0 && !isLoading 

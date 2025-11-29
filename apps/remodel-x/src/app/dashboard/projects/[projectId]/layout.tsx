@@ -2,7 +2,6 @@
 
 import { useCurrentProjectId } from "@/features/project-creator/hooks/use-current-project-id";
 import { PROJECT_STEPS } from "@/features/project-creator/lib/project-menu";
-import { ScopeInfoDialog } from "@/shared/entities/scopes/ui/components/dialogs/scope-info-dialog";
 import { ROOTS } from "@olis/core/constants";
 import { SectionSidebar } from "@olis/ui/components/navigation/section-sidebar";
 import { SectionTopbar } from "@olis/ui/components/navigation/section-topbar";

@@ -4,7 +4,7 @@ import type { Dispatch, SetStateAction } from "react";
 
 import { createContext, useContext } from "react";
 
-import type { ShowroomItemType } from "@/features/showroom/types";
+import type { ShowroomItem } from "@/features/showroom/types";
 
 import { capitalize } from "@olis/core/lib/formatters";
 import { PageHeaderSection } from "@olis/ui/components/global/page-header";
@@ -13,11 +13,11 @@ import { cn } from "@olis/ui/lib/utils";
 import { SearchInput } from "./search-input";
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
-  type: ShowroomItemType;
+  type: ShowroomItem["type"];
   children: React.ReactNode;
 }
 
-const showroomHeaderContext = createContext<{ type: ShowroomItemType } | null>(null);
+const showroomHeaderContext = createContext<{ type: ShowroomItem["type"] } | null>(null);
 
 export function useShowroomContext() {
   const context = useContext(showroomHeaderContext);
@@ -27,7 +27,7 @@ export function useShowroomContext() {
   return context;
 }
 
-function ShowroomHeaderProvider({ children, type }: { children: React.ReactNode; type: ShowroomItemType }) {
+function ShowroomHeaderProvider({ children, type }: { children: React.ReactNode; type: ShowroomItem["type"] }) {
   return (
     <showroomHeaderContext.Provider value={{ type }}>
       {children}
