@@ -78,7 +78,7 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
           onClick={() => { 
             column.toggleSorting(column.getIsSorted() === "asc") 
           }}
-          className="cursor-pointer flex items-center"
+          className="cursor-pointer flex items-center select-none"
         >
           Created date
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -88,7 +88,7 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
     cell: ({ row }) => {
       const pstDate = convertUTCToPST(row.original.project.createdAt);
       const formattedDate = formatRelative(pstDate, new Date());
-      return <div className="w-full h-full bg-red-500 flex items-center">{formattedDate}</div>;
+      return <div className="w-full h-full flex items-center">{formattedDate}</div>;
     },
     size: 50,
     maxSize: 50,
@@ -100,7 +100,7 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
       return (
         <div
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="cursor-pointer flex items-center"
+          className="cursor-pointer flex items-center select-none"
         >
           Address
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -125,7 +125,7 @@ export const columns: ColumnDef<GetProjectsOutput[number]>[] = [
       return (
         <div
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="cursor-pointer flex items-center"
+          className="cursor-pointer flex items-center select-none"
         >
           Customers
           <ArrowUpDown className="ml-2 h-4 w-4" />
